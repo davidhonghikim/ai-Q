@@ -373,43 +373,43 @@
         }
       ]
     },
-    "01-12-testing-validation": {
-      "title": "Infrastructure Testing and Validation",
-      "components": ["Integration Tests", "Load Tests", "Validation Scripts"],
-      "total_tasks": 15,
-      "duration": "2 days",
+    "01-12-documentation-and-handover": {
+      "title": "Documentation and Handover",
+      "components": ["System Documentation", "User Guides", "Handover Procedures"],
+      "total_tasks": 10,
+      "duration": "1 day",
       "tasks": [
         {
           "task_id": "01-12-01",
-          "title": "Create Integration Tests",
-          "description": "Create comprehensive integration tests",
+          "title": "Create System Documentation",
+          "description": "Create comprehensive system documentation",
           "steps": [
-            "Create service integration tests",
-            "Create database integration tests",
-            "Create network integration tests",
-            "Create monitoring integration tests"
+            "Create system overview documentation",
+            "Create architecture documentation",
+            "Create configuration documentation",
+            "Create maintenance documentation"
           ]
         },
         {
           "task_id": "01-12-02",
-          "title": "Setup Load Testing",
-          "description": "Setup load testing infrastructure",
+          "title": "Create User Guides",
+          "description": "Create user guides for system administration",
           "steps": [
-            "Configure load testing tools",
-            "Create load testing scenarios",
-            "Setup load testing monitoring",
-            "Configure load testing reporting"
+            "Create administration guide",
+            "Create troubleshooting guide",
+            "Create maintenance guide",
+            "Create upgrade guide"
           ]
         },
         {
           "task_id": "01-12-03",
-          "title": "Create Validation Scripts",
-          "description": "Create automated validation scripts",
+          "title": "Create Handover Documentation",
+          "description": "Create handover documentation and procedures",
           "steps": [
-            "Create service validation scripts",
-            "Create configuration validation scripts",
-            "Create security validation scripts",
-            "Create performance validation scripts"
+            "Create handover checklist",
+            "Create contact information",
+            "Create escalation procedures",
+            "Create follow-up schedule"
           ]
         }
       ]
