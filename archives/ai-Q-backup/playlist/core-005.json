@@ -1,0 +1,13 @@
+{
+  "id": "core-005",
+  "module": "core",
+  "title": "Error Handling Base",
+  "description": "Implement a base error handling module for the system. Should define custom exceptions and error reporting utilities.",
+  "dependencies": [],
+  "inputs": [],
+  "outputs": ["src/utils/errors.py"],
+  "agent_requirements": ["Python"],
+  "completion_criteria": "Custom exceptions and error reporting utilities are available for use by other modules.",
+  "status": "pending",
+  "notes": ""
+} 

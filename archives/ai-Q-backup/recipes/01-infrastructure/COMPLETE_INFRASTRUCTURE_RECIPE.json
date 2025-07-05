@@ -1,0 +1,314 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-INFRASTRUCTURE-FOUNDATION",
+    "title": "Complete Infrastructure Foundation - Universal Digital Twin",
+    "version": "2.0.0",
+    "estimated_tokens": 87500,
+    "total_tasks": 45,
+    "estimated_time": "4-6 hours",
+    "agent_autonomy": "95%"
+  },
+  "overview": {
+    "description": "Complete foundational infrastructure for Universal Digital Twin system with Docker orchestration, databases, monitoring, logging, and security",
+    "deliverables": [
+      "Docker Compose with 15+ services",
+      "PostgreSQL with optimized schemas",
+      "Redis with clustering",
+      "Minio with encryption",
+      "Weaviate vector database",
+      "Grafana monitoring",
+      "ELK logging stack",
+      "SSL/TLS certificates",
+      "Automated backups"
+    ]
+  },
+  "tasks": [
+    {
+      "task_id": "01-001",
+      "title": "System Requirements Verification and Docker Optimization",
+      "description": "Comprehensive system verification including hardware specs, software installations, Docker optimization, and performance tuning for Universal Digital Twin infrastructure requirements.",
+      "estimated_time": "25 minutes",
+      "estimated_tokens": 1950,
+      "category": "verification",
+      "detailed_instructions": {
+        "overview": "Verify system meets requirements and optimize Docker for high-performance development environment supporting 15+ containerized services with proper resource allocation.",
+        "execution_steps": [
+          {
+            "step": 1,
+            "title": "Hardware Verification",
+            "commands": {
+              "windows": [
+                "Get-ComputerInfo | Select-Object TotalPhysicalMemory",
+                "Get-WmiObject Win32_Processor | Select Name,NumberOfCores",
+                "Get-WmiObject Win32_LogicalDisk | Select DeviceID,Size,FreeSpace"
+              ],
+              "linux": [
+                "free -h && cat /proc/meminfo | grep MemTotal",
+                "nproc && lscpu | grep -E 'CPU\\(s\\)|Model'",
+                "df -h / && lsblk"
+              ]
+            },
+            "validation": "RAM >= 32GB, CPU >= 8 cores, Storage >= 500GB",
+            "troubleshooting": [
+              {
+                "issue": "Insufficient RAM",
+                "solution": "Upgrade to 32GB+ or optimize Docker allocation",
+                "prevention": "Monitor memory usage during development"
+              }
+            ]
+          },
+          {
+            "step": 2,
+            "title": "Software Prerequisites",
+            "commands": [
+              "docker --version && docker info",
+              "docker compose version",
+              "git --version && git config --list",
+              "openssl version && curl --version"
+            ],
+            "requirements": {
+              "docker": ">=24.0.0",
+              "compose": ">=2.15.0",
+              "git": ">=2.35.0"
+            },
+            "troubleshooting": [
+              {
+                "issue": "Old Docker version",
+                "solution": "Update Docker Desktop/Engine",
+                "commands": ["# Download latest from docker.com"]
+              }
+            ]
+          },
+          {
+            "step": 3,
+            "title": "Docker Performance Optimization",
+            "commands": [
+              "export DOCKER_BUILDKIT=1",
+              "export COMPOSE_DOCKER_CLI_BUILD=1",
+              "docker buildx create --name ai-q-builder --use",
+              "docker buildx inspect --bootstrap"
+            ],
+            "configuration": {
+              "memory": "16GB minimum, 24GB recommended",
+              "cpu": "8 cores minimum, all available recommended",
+              "disk": "128GB virtual disk image"
+            },
+            "validation": "BuildKit enabled, custom builder created, resources allocated"
+          },
+          {
+            "step": 4,
+            "title": "Network Configuration",
+            "commands": [
+              "docker network create --subnet=172.20.0.0/16 ai-q-backend",
+              "docker network create --subnet=172.21.0.0/16 ai-q-frontend", 
+              "docker network create --subnet=172.22.0.0/16 ai-q-monitoring",
+              "curl -I https://registry-1.docker.io/v2/"
+            ],
+            "validation": "Networks created, connectivity verified, no conflicts"
+          }
+        ],
+        "acceptance_criteria": [
+          "System meets minimum requirements (32GB RAM, 8 cores, 500GB storage)",
+          "Docker optimized with BuildKit and custom networks",
+          "All connectivity tests pass",
+          "Performance benchmarks established"
+        ]
+      }
+    },
+    {
+      "task_id": "01-002",
+      "title": "Project Structure and Git Repository Setup",
+      "description": "Create enterprise-grade directory structure and initialize Git repository with advanced workflow configuration, branching strategy, and development automation.",
+      "estimated_time": "30 minutes",
+      "estimated_tokens": 1850,
+      "dependencies": ["01-001"],
+      "detailed_instructions": {
+        "overview": "Establish comprehensive project organization supporting multiple teams, complex integrations, and enterprise-scale development with Git workflow automation.",
+        "execution_steps": [
+          {
+            "step": 1,
+            "title": "Root Directory Creation",
+            "commands": [
+              "mkdir -p ai-Q-universal-digital-twin",
+              "cd ai-Q-universal-digital-twin",
+              "pwd"
+            ],
+            "validation": "Project root created and navigated"
+          },
+          {
+            "step": 2,
+            "title": "Backend Structure",
+            "commands": [
+              "mkdir -p src/{api,services,models,schemas,utils,config,middleware}",
+              "mkdir -p src/api/{routes,dependencies,security,exceptions}",
+              "mkdir -p src/services/{storage,database,cache,search,ai}",
+              "mkdir -p src/models/{database,pydantic,enums}",
+              "mkdir -p src/utils/{logging,encryption,validation,helpers}"
+            ],
+            "validation": "Backend follows clean architecture patterns"
+          },
+          {
+            "step": 3,
+            "title": "Frontend Structure",
+            "commands": [
+              "mkdir -p frontend/{src,public,dist,build}",
+              "mkdir -p frontend/src/{components,pages,hooks,utils,types,styles}",
+              "mkdir -p frontend/src/components/{common,forms,layout,navigation}",
+              "mkdir -p frontend/src/pages/{auth,dashboard,files,search,settings}"
+            ],
+            "validation": "Frontend supports component-based development"
+          },
+          {
+            "step": 4,
+            "title": "Infrastructure Directories",
+            "commands": [
+              "mkdir -p docker/{backend,frontend,database,monitoring}",
+              "mkdir -p config/{environments,secrets,certificates}",
+              "mkdir -p data/{uploads,processed,backups,logs}",
+              "mkdir -p tests/{unit,integration,e2e,performance}",
+              "mkdir -p docs/{api,architecture,deployment,guides}"
+            ],
+            "validation": "Infrastructure supports production deployment"
+          },
+          {
+            "step": 5,
+            "title": "Git Repository Initialization",
+            "commands": [
+              "git init",
+              "git config user.name 'AI-Q Development Team'",
+              "git config user.email 'dev@ai-q.digital-twin.com'",
+              "git config init.defaultBranch main",
+              "git branch -m main"
+            ],
+            "validation": "Git repository properly configured"
+          },
+          {
+            "step": 6,
+            "title": "Advanced .gitignore Creation",
+            "file_content": [
+              "# Environment and secrets",
+              ".env*",
+              "!.env.template",
+              "secrets/",
+              "*.key",
+              "*.pem",
+              "",
+              "# Python",
+              "__pycache__/",
+              "*.py[cod]",
+              "*.so",
+              ".Python",
+              "venv/",
+              "env/",
+              ".venv/",
+              "",
+              "# Node.js",
+              "node_modules/",
+              "npm-debug.log*",
+              ".npm",
+              "",
+              "# Build outputs",
+              "dist/",
+              "build/",
+              "*.egg-info/",
+              "",
+              "# Databases",
+              "*.db",
+              "*.sqlite*",
+              "",
+              "# Logs",
+              "logs/*.log",
+              "*.log",
+              "",
+              "# OS generated",
+              ".DS_Store",
+              "Thumbs.db",
+              "",
+              "# IDE",
+              ".vscode/",
+              ".idea/",
+              "",
+              "# Data directories",
+              "data/uploads/*",
+              "data/processed/*",
+              "data/backups/*",
+              "!data/uploads/.gitkeep",
+              "!data/processed/.gitkeep",
+              "!data/backups/.gitkeep"
+            ],
+            "validation": "Comprehensive ignore rules configured"
+          }
+        ]
+      }
+    },
+    {
+      "task_id": "01-003",
+      "title": "Docker Compose Infrastructure Definition",
+      "description": "Create comprehensive Docker Compose configuration with PostgreSQL, Redis, Minio, Weaviate, monitoring, and logging services with proper networking, volumes, and security.",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2200,
+      "dependencies": ["01-001", "01-002"],
+      "detailed_instructions": {
+        "overview": "Define complete containerized infrastructure with 15+ services, proper networking, persistent volumes, health checks, and service dependencies.",
+        "execution_steps": [
+          {
+            "step": 1,
+            "title": "Core Database Services",
+            "file_content": [
+              "version: '3.8'",
+              "",
+              "services:",
+              "  postgres:",
+              "    image: postgres:15-alpine",
+              "    container_name: ai-q-postgres",
+              "    environment:",
+              "      POSTGRES_DB: ai_q_db",
+              "      POSTGRES_USER: ai_q_user", 
+              "      POSTGRES_PASSWORD: ai_q_secure_password_2024",
+              "      POSTGRES_INITDB_ARGS: '--encoding=UTF-8 --lc-collate=C --lc-ctype=C'",
+              "    ports:",
+              "      - '5432:5432'",
+              "    volumes:",
+              "      - postgres_data:/var/lib/postgresql/data",
+              "      - ./config/database/init:/docker-entrypoint-initdb.d",
+              "      - ./config/database/postgres.conf:/etc/postgresql/postgresql.conf",
+              "    networks:",
+              "      - ai-q-backend",
+              "    healthcheck:",
+              "      test: ['CMD-SHELL', 'pg_isready -U ai_q_user -d ai_q_db']",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "      start_period: 60s",
+              "    restart: unless-stopped",
+              "    logging:",
+              "      driver: 'json-file'",
+              "      options:",
+              "        max-size: '10m'",
+              "        max-file: '3'",
+              "",
+              "  redis:",
+              "    image: redis:7-alpine",
+              "    container_name: ai-q-redis",
+              "    command: redis-server --appendonly yes --requirepass ai_q_redis_password_2024",
+              "    ports:",
+              "      - '6379:6379'",
+              "    volumes:",
+              "      - redis_data:/data",
+              "      - ./config/redis/redis.conf:/usr/local/etc/redis/redis.conf",
+              "    networks:",
+              "      - ai-q-backend",
+              "    healthcheck:",
+              "      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "    restart: unless-stopped"
+            ],
+            "validation": "Database services defined with security and persistence"
+          }
+        ]
+      }
+    }
+  ]
+} 

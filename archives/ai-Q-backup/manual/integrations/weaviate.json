@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "Weaviate Integration",
+    "description": "Integration spec for Weaviate vector DB (setup, schema, usage, agent tasks)",
+    "token_count": 300
+  },
+  "overview": "Weaviate is the primary vector database for semantic search and RAG. It supports multi-modal data (text, image, video, audio) and modular vectorization (OpenAI, Cohere, HuggingFace, CLIP, etc.).",
+  "setup": {
+    "docker_image": "semitechnologies/weaviate:latest",
+    "ports": [8080, 50051],
+    "modules": ["text2vec-openai", "text2vec-cohere", "text2vec-huggingface", "ref2vec-centroid", "generative-openai", "qna-openai"],
+    "data_persistence": "Docker volume"
+  },
+  "schema": {
+    "classes": ["Text", "Image", "Video", "Audio", "Document", "Code"],
+    "properties": ["filename", "type", "user", "upload date", "tags", "embedding", "metadata"],
+    "cross_references": ["Neo4j (knowledge graph)"]
+  },
+  "usage": [
+    "Store and query embeddings for all data types",
+    "Hybrid search (vector + keyword)",
+    "RAG pipeline integration"
+  ],
+  "agent_tasks": [
+    "Write Weaviate schema definition (YAML/JSON)",
+    "Implement Python/TypeScript client integration",
+    "Write ingestion and query utilities",
+    "Write tests for all modalities",
+    "Document setup and usage"
+  ]
+} 

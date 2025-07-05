@@ -1,0 +1,450 @@
+{
+  "metadata": {
+    "title": "AI Agent Integration Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-27T12:00:00Z",
+    "purpose": "Integrate AI development tools (RA.Aid, Browser-Use, ArchiveBox, Aider) as modular components in AI-Q Knowledge Library System",
+    "estimated_tokens": 85000,
+    "category": "ai_integration",
+    "priority": "HIGH"
+  },
+  "recipe_overview": {
+    "name": "AI Agent Integration System",
+    "description": "Integrate powerful AI development and content creation tools as modular, self-contained components that can be safely installed/uninstalled without breaking the system",
+    "prerequisites": [
+      "01-core-infrastructure-recipe.json completed",
+      "02-storage-systems-recipe.json completed", 
+      "04-api-gateway-recipe.json completed",
+      "Docker and Docker Compose installed",
+      "Python 3.9+ and Node.js 18+ installed"
+    ],
+    "target_outcome": "Fully integrated AI agent ecosystem for autonomous development, content creation, and knowledge management",
+    "success_criteria": [
+      "All AI tools integrated as modular components",
+      "Self-hosted LLM integration working",
+      "Web automation and archiving functional",
+      "AI-assisted development workflow operational",
+      "All components can be safely installed/uninstalled"
+    ]
+  },
+  "tool_integration_plan": {
+    "ra_aid_integration": {
+      "purpose": "Autonomous AI development and research agent",
+      "integration_points": [
+        "Content creation and code generation",
+        "Knowledge synthesis from multiple sources",
+        "Automated system component development",
+        "Research and documentation generation"
+      ],
+      "modular_components": [
+        "ra-aid-core-module",
+        "ra-aid-research-module", 
+        "ra-aid-development-module",
+        "ra-aid-content-module"
+      ],
+      "self_hosted_llm": "Ollama integration with local models"
+    },
+    "browser_use_integration": {
+      "purpose": "Web automation and enhanced UI capabilities",
+      "integration_points": [
+        "Web content ingestion and scraping",
+        "Research automation from multiple sources",
+        "Enhanced user interface components",
+        "External knowledge source integration"
+      ],
+      "modular_components": [
+        "browser-use-core-module",
+        "browser-use-scraper-module",
+        "browser-use-ui-module",
+        "browser-use-automation-module"
+      ]
+    },
+    "archivebox_integration": {
+      "purpose": "Comprehensive web archiving and preservation",
+      "integration_points": [
+        "Knowledge preservation and archiving",
+        "Research source documentation",
+        "Content backup and versioning",
+        "Historical content tracking"
+      ],
+      "modular_components": [
+        "archivebox-core-module",
+        "archivebox-archiver-module",
+        "archivebox-search-module",
+        "archivebox-preservation-module"
+      ]
+    },
+    "aider_integration": {
+      "purpose": "AI-powered code editing and development",
+      "integration_points": [
+        "Code generation and editing",
+        "Development workflow integration",
+        "Code documentation automation",
+        "Quality assurance and testing"
+      ],
+      "modular_components": [
+        "aider-core-module",
+        "aider-editor-module",
+        "aider-documentation-module",
+        "aider-quality-module"
+      ]
+    }
+  },
+  "implementation_steps": [
+    {
+      "task_id": "36-001",
+      "title": "Create AI Agent Module Manager",
+      "description": "Build central module manager for AI agent components with install/uninstall capabilities",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/modules/ai-agents",
+        "mkdir -p src/modules/ai-agents/manager",
+        "mkdir -p src/modules/ai-agents/ra-aid",
+        "mkdir -p src/modules/ai-agents/browser-use", 
+        "mkdir -p src/modules/ai-agents/archivebox",
+        "mkdir -p src/modules/ai-agents/aider"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/manager/module-manager.ts",
+        "src/modules/ai-agents/manager/installer.ts",
+        "src/modules/ai-agents/manager/validator.ts",
+        "src/modules/ai-agents/manager/types.ts"
+      ],
+      "acceptance_criteria": [
+        "Module manager can install/uninstall AI agent components",
+        "Dependency resolution works correctly",
+        "Conflict detection prevents incompatible combinations",
+        "Rollback capability on installation failure"
+      ]
+    },
+    {
+      "task_id": "36-002", 
+      "title": "RA.Aid Core Module Integration",
+      "description": "Integrate RA.Aid as modular component with self-hosted LLM support",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "cd src/modules/ai-agents/ra-aid",
+        "git clone https://github.com/ai-christianson/RA.Aid.git core",
+        "cp core/ra_aid ./ra-aid-core",
+        "rm -rf core"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/ra-aid/ra-aid-module.ts",
+        "src/modules/ai-agents/ra-aid/ollama-integration.ts",
+        "src/modules/ai-agents/ra-aid/research-engine.ts",
+        "src/modules/ai-agents/ra-aid/development-assistant.ts",
+        "src/modules/ai-agents/ra-aid/module-manifest.json"
+      ],
+      "acceptance_criteria": [
+        "RA.Aid core functionality integrated",
+        "Ollama integration working with local models",
+        "Research and development capabilities functional",
+        "Module can be safely installed/uninstalled"
+      ]
+    },
+    {
+      "task_id": "36-003",
+      "title": "Browser-Use Integration Module",
+      "description": "Integrate Browser-Use for web automation and enhanced UI capabilities",
+      "estimated_time": "45 minutes", 
+      "estimated_tokens": 2500,
+      "commands": [
+        "cd src/modules/ai-agents/browser-use",
+        "git clone https://github.com/browser-use/browser-use.git core",
+        "git clone https://github.com/browser-use/web-ui.git ui",
+        "cp -r core/* ./browser-use-core/",
+        "cp -r ui/* ./web-ui/",
+        "rm -rf core ui"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/browser-use/browser-use-module.ts",
+        "src/modules/ai-agents/browser-use/web-scraper.ts",
+        "src/modules/ai-agents/browser-use/automation-engine.ts",
+        "src/modules/ai-agents/browser-use/ui-enhancement.ts",
+        "src/modules/ai-agents/browser-use/module-manifest.json"
+      ],
+      "acceptance_criteria": [
+        "Web scraping functionality working",
+        "Automation engine operational",
+        "UI enhancements integrated",
+        "Module can be safely installed/uninstalled"
+      ]
+    },
+    {
+      "task_id": "36-004",
+      "title": "ArchiveBox Integration Module", 
+      "description": "Integrate ArchiveBox for comprehensive web archiving and preservation",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "cd src/modules/ai-agents/archivebox",
+        "git clone https://github.com/Monadical-SAS/ArchiveBox.git core",
+        "cp -r core/* ./archivebox-core/",
+        "rm -rf core"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/archivebox/archivebox-module.ts",
+        "src/modules/ai-agents/archivebox/archiver.ts",
+        "src/modules/ai-agents/archivebox/preservation.ts",
+        "src/modules/ai-agents/archivebox/search.ts",
+        "src/modules/ai-agents/archivebox/module-manifest.json"
+      ],
+      "acceptance_criteria": [
+        "Web archiving functionality working",
+        "Content preservation operational",
+        "Search capabilities functional",
+        "Module can be safely installed/uninstalled"
+      ]
+    },
+    {
+      "task_id": "36-005",
+      "title": "Aider Integration Module",
+      "description": "Integrate Aider for AI-powered code editing and development",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "cd src/modules/ai-agents/aider",
+        "git clone https://github.com/Aider-AI/aider.git core",
+        "cp -r core/* ./aider-core/",
+        "rm -rf core"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/aider/aider-module.ts",
+        "src/modules/ai-agents/aider/code-editor.ts",
+        "src/modules/ai-agents/aider/documentation.ts",
+        "src/modules/ai-agents/aider/quality-assurance.ts",
+        "src/modules/ai-agents/aider/module-manifest.json"
+      ],
+      "acceptance_criteria": [
+        "Code editing functionality working",
+        "Documentation generation operational",
+        "Quality assurance features functional",
+        "Module can be safely installed/uninstalled"
+      ]
+    },
+    {
+      "task_id": "36-006",
+      "title": "Self-Hosted LLM Integration",
+      "description": "Integrate Ollama and local LLM models for all AI agent components",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "docker pull ollama/ollama:latest",
+        "mkdir -p config/llm-models",
+        "mkdir -p data/llm-cache"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/llm/ollama-manager.ts",
+        "src/modules/ai-agents/llm/model-loader.ts",
+        "src/modules/ai-agents/llm/inference-engine.ts",
+        "src/modules/ai-agents/llm/cache-manager.ts",
+        "config/llm-models/models.json",
+        "docker-compose.llm.yml"
+      ],
+      "acceptance_criteria": [
+        "Ollama container running and accessible",
+        "Local models can be loaded and used",
+        "Inference engine working with all AI agents",
+        "Model caching and optimization functional"
+      ]
+    },
+    {
+      "task_id": "36-007",
+      "title": "AI Agent API Gateway",
+      "description": "Create unified API gateway for all AI agent components",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/ai-agents",
+        "mkdir -p src/api/ai-agents/endpoints"
+      ],
+      "files_to_create": [
+        "src/api/ai-agents/ai-agent-gateway.ts",
+        "src/api/ai-agents/endpoints/ra-aid-endpoints.ts",
+        "src/api/ai-agents/endpoints/browser-use-endpoints.ts",
+        "src/api/ai-agents/endpoints/archivebox-endpoints.ts",
+        "src/api/ai-agents/endpoints/aider-endpoints.ts",
+        "src/api/ai-agents/endpoints/llm-endpoints.ts"
+      ],
+      "acceptance_criteria": [
+        "All AI agent APIs accessible through gateway",
+        "Authentication and authorization working",
+        "Rate limiting and throttling functional",
+        "API documentation generated"
+      ]
+    },
+    {
+      "task_id": "36-008",
+      "title": "AI Agent Workflow Orchestration",
+      "description": "Create workflow orchestration system for coordinating AI agent activities",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/workflows/ai-agents",
+        "mkdir -p src/workflows/ai-agents/templates"
+      ],
+      "files_to_create": [
+        "src/workflows/ai-agents/workflow-orchestrator.ts",
+        "src/workflows/ai-agents/task-scheduler.ts",
+        "src/workflows/ai-agents/result-aggregator.ts",
+        "src/workflows/ai-agents/templates/content-creation-workflow.json",
+        "src/workflows/ai-agents/templates/research-workflow.json",
+        "src/workflows/ai-agents/templates/development-workflow.json"
+      ],
+      "acceptance_criteria": [
+        "Workflow orchestration system operational",
+        "Task scheduling and execution working",
+        "Result aggregation and storage functional",
+        "Workflow templates can be customized"
+      ]
+    },
+    {
+      "task_id": "36-009",
+      "title": "AI Agent UI Integration",
+      "description": "Integrate AI agent components into the main web interface",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/web/components/ai-agents",
+        "mkdir -p src/web/pages/ai-agents"
+      ],
+      "files_to_create": [
+        "src/web/components/ai-agents/ai-agent-dashboard.tsx",
+        "src/web/components/ai-agents/ra-aid-interface.tsx",
+        "src/web/components/ai-agents/browser-use-interface.tsx",
+        "src/web/components/ai-agents/archivebox-interface.tsx",
+        "src/web/components/ai-agents/aider-interface.tsx",
+        "src/web/pages/ai-agents/ai-agents-page.tsx"
+      ],
+      "acceptance_criteria": [
+        "AI agent dashboard accessible in main UI",
+        "All agent interfaces functional and responsive",
+        "Real-time status monitoring working",
+        "User-friendly controls for all agents"
+      ]
+    },
+    {
+      "task_id": "36-010",
+      "title": "AI Agent Security and Monitoring",
+      "description": "Implement security controls and monitoring for AI agent components",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/security/ai-agents",
+        "mkdir -p src/monitoring/ai-agents"
+      ],
+      "files_to_create": [
+        "src/security/ai-agents/ai-agent-security.ts",
+        "src/security/ai-agents/access-control.ts",
+        "src/security/ai-agents/audit-logger.ts",
+        "src/monitoring/ai-agents/ai-agent-monitor.ts",
+        "src/monitoring/ai-agents/performance-tracker.ts",
+        "src/monitoring/ai-agents/health-checker.ts"
+      ],
+      "acceptance_criteria": [
+        "Security controls active for all AI agents",
+        "Access control and authentication working",
+        "Audit logging and monitoring functional",
+        "Performance tracking and health checks operational"
+      ]
+    }
+  ],
+  "testing_requirements": {
+    "unit_tests": [
+      "Test all AI agent module installations",
+      "Test module uninstallation and rollback",
+      "Test LLM integration and inference",
+      "Test API gateway functionality",
+      "Test workflow orchestration"
+    ],
+    "integration_tests": [
+      "Test AI agent interactions with main system",
+      "Test content creation workflows",
+      "Test research and development processes",
+      "Test web automation and archiving",
+      "Test code generation and editing"
+    ],
+    "end_to_end_tests": [
+      "Complete content creation workflow",
+      "Complete research and documentation workflow",
+      "Complete development and testing workflow",
+      "Complete web archiving and preservation workflow"
+    ]
+  },
+  "validation_checklist": {
+    "functionality": [
+      "All AI agent modules can be installed/uninstalled safely",
+      "Self-hosted LLM integration working with local models",
+      "Web automation and scraping functional",
+      "Content archiving and preservation operational",
+      "AI-assisted development workflow working",
+      "All APIs accessible and documented"
+    ],
+    "performance": [
+      "AI agent response times under 5 seconds",
+      "LLM inference performance optimized",
+      "Memory usage within acceptable limits",
+      "Concurrent agent operations stable",
+      "Resource utilization monitored and controlled"
+    ],
+    "security": [
+      "All AI agents have proper access controls",
+      "Audit logging captures all agent activities",
+      "Input validation and sanitization active",
+      "Rate limiting prevents abuse",
+      "Secure communication between components"
+    ]
+  },
+  "deployment_configuration": {
+    "docker_services": {
+      "ollama": {
+        "image": "ollama/ollama:latest",
+        "ports": ["11434:11434"],
+        "volumes": ["ollama_data:/root/.ollama"],
+        "environment": ["OLLAMA_HOST=0.0.0.0"]
+      },
+      "ai_agents": {
+        "build": "./src/modules/ai-agents",
+        "ports": ["8001:8001"],
+        "depends_on": ["ollama", "postgres", "redis"],
+        "environment": [
+          "OLLAMA_BASE_URL=http://ollama:11434",
+          "DATABASE_URL=postgresql://user:pass@postgres:5432/aiq",
+          "REDIS_URL=redis://redis:6379"
+        ]
+      }
+    },
+    "environment_variables": {
+      "OLLAMA_BASE_URL": "http://localhost:11434",
+      "AI_AGENT_ENABLED": "true",
+      "AI_AGENT_MODULES": "ra-aid,browser-use,archivebox,aider",
+      "AI_AGENT_SECURITY_LEVEL": "high",
+      "AI_AGENT_RATE_LIMIT": "100"
+    }
+  },
+  "next_steps": [
+    "37-content-creation-workflows-recipe.json",
+    "38-research-automation-recipe.json", 
+    "39-development-automation-recipe.json",
+    "40-knowledge-synthesis-recipe.json"
+  ],
+  "maintenance_procedures": {
+    "regular_maintenance": [
+      "Update AI agent modules monthly",
+      "Monitor LLM model performance",
+      "Review and update security policies",
+      "Optimize resource usage",
+      "Backup AI agent configurations"
+    ],
+    "troubleshooting": [
+      "Check AI agent module status",
+      "Verify LLM connectivity and models",
+      "Review audit logs for issues",
+      "Test workflow orchestration",
+      "Validate API endpoints"
+    ]
+  }
+} 

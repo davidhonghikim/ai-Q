@@ -1,0 +1,526 @@
+{
+  "metadata": {
+    "title": "Storage Systems Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-27T14:00:00Z",
+    "purpose": "Implement comprehensive storage systems (MinIO, S3, local storage) with modular install capabilities for AI-Q Knowledge Library System",
+    "estimated_tokens": 85000,
+    "category": "infrastructure",
+    "priority": "HIGH",
+    "recipe_id": "02-storage-systems"
+  },
+  "recipe_overview": {
+    "name": "Storage Systems Integration",
+    "description": "Implement modular storage systems supporting MinIO, AWS S3, and local storage with unified API, versioning, and backup capabilities",
+    "prerequisites": [
+      "01-core-infrastructure-recipe.json completed",
+      "Docker and Docker Compose installed",
+      "Python 3.9+ and Node.js 18+ installed"
+    ],
+    "target_outcome": "Production-ready storage system with unified API, multiple backend support, and modular installation",
+    "success_criteria": [
+      "MinIO integration working with local and distributed setups",
+      "AWS S3 integration with proper authentication",
+      "Local storage with efficient file management",
+      "Unified storage API for all backends",
+      "Versioning and backup capabilities operational",
+      "All components can be safely installed/uninstalled"
+    ]
+  },
+  "storage_architecture": {
+    "minio_integration": {
+      "purpose": "Self-hosted object storage with S3 compatibility",
+      "features": [
+        "Multi-tenant bucket management",
+        "Object versioning and lifecycle policies",
+        "Access control and encryption",
+        "Distributed deployment support"
+      ],
+      "modular_components": [
+        "minio-core-service",
+        "minio-api-gateway",
+        "minio-storage-manager",
+        "minio-backup-service"
+      ]
+    },
+    "s3_integration": {
+      "purpose": "AWS S3 cloud storage integration",
+      "features": [
+        "Multi-region bucket support",
+        "IAM role-based access",
+        "CloudFront CDN integration",
+        "Cost optimization policies"
+      ],
+      "modular_components": [
+        "s3-client-service",
+        "s3-sync-manager",
+        "s3-cost-optimizer",
+        "s3-migration-tool"
+      ]
+    },
+    "local_storage": {
+      "purpose": "High-performance local file storage",
+      "features": [
+        "Efficient file organization",
+        "Compression and deduplication",
+        "Local backup and recovery",
+        "Performance monitoring"
+      ],
+      "modular_components": [
+        "local-storage-manager",
+        "local-backup-service",
+        "local-compression-engine",
+        "local-monitoring-agent"
+      ]
+    }
+  },
+  "implementation_steps": [
+    {
+      "task_id": "02-001",
+      "title": "Create Storage System Architecture",
+      "description": "Design and implement the core storage system architecture with unified API",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/storage",
+        "mkdir -p src/services/storage/minio",
+        "mkdir -p src/services/storage/s3",
+        "mkdir -p src/services/storage/local",
+        "mkdir -p src/services/storage/common"
+      ],
+      "files_to_create": [
+        "src/services/storage/__init__.py",
+        "src/services/storage/base.py",
+        "src/services/storage/manager.py",
+        "src/services/storage/config.py",
+        "src/services/storage/types.py"
+      ],
+      "acceptance_criteria": [
+        "Storage base classes defined with unified interface",
+        "Configuration system supports multiple backends",
+        "Type definitions for all storage operations",
+        "Manager class can handle multiple storage providers"
+      ]
+    },
+    {
+      "task_id": "02-002",
+      "title": "Implement MinIO Core Service",
+      "description": "Create MinIO integration with Docker deployment and API management",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "docker pull minio/minio:latest",
+        "mkdir -p data/minio",
+        "mkdir -p config/minio"
+      ],
+      "files_to_create": [
+        "src/services/storage/minio/__init__.py",
+        "src/services/storage/minio/client.py",
+        "src/services/storage/minio/bucket_manager.py",
+        "src/services/storage/minio/object_manager.py",
+        "docker-compose.minio.yml",
+        "config/minio/minio.conf"
+      ],
+      "acceptance_criteria": [
+        "MinIO client can connect and authenticate",
+        "Bucket creation and management working",
+        "Object upload/download operations functional",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "02-003",
+      "title": "Implement S3 Integration Service",
+      "description": "Create AWS S3 integration with IAM authentication and multi-region support",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "pip install boto3",
+        "mkdir -p config/aws"
+      ],
+      "files_to_create": [
+        "src/services/storage/s3/__init__.py",
+        "src/services/storage/s3/client.py",
+        "src/services/storage/s3/bucket_manager.py",
+        "src/services/storage/s3/object_manager.py",
+        "config/aws/credentials.template",
+        "config/aws/config.template"
+      ],
+      "acceptance_criteria": [
+        "S3 client can authenticate with AWS credentials",
+        "Multi-region bucket operations working",
+        "IAM role-based access functional",
+        "Configuration templates provided"
+      ]
+    },
+    {
+      "task_id": "02-004",
+      "title": "Implement Local Storage Manager",
+      "description": "Create high-performance local storage with file organization and compression",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p data/local-storage",
+        "mkdir -p data/local-storage/compressed",
+        "mkdir -p data/local-storage/backup"
+      ],
+      "files_to_create": [
+        "src/services/storage/local/__init__.py",
+        "src/services/storage/local/manager.py",
+        "src/services/storage/local/compression.py",
+        "src/services/storage/local/backup.py",
+        "config/local-storage/config.json"
+      ],
+      "acceptance_criteria": [
+        "Local file operations working efficiently",
+        "Compression and decompression functional",
+        "Backup and recovery operations working",
+        "File organization system operational"
+      ]
+    },
+    {
+      "task_id": "02-005",
+      "title": "Create Unified Storage API",
+      "description": "Implement unified API that abstracts all storage backends",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/api/routes/storage",
+        "mkdir -p tests/storage"
+      ],
+      "files_to_create": [
+        "src/api/routes/storage/__init__.py",
+        "src/api/routes/storage/endpoints.py",
+        "src/api/routes/storage/schemas.py",
+        "src/api/routes/storage/validators.py",
+        "tests/storage/test_storage_api.py",
+        "tests/storage/test_minio.py",
+        "tests/storage/test_s3.py",
+        "tests/storage/test_local.py"
+      ],
+      "acceptance_criteria": [
+        "Unified API endpoints for all storage operations",
+        "Request/response schemas defined",
+        "Input validation working",
+        "Comprehensive test coverage"
+      ]
+    },
+    {
+      "task_id": "02-006",
+      "title": "Implement Storage Versioning System",
+      "description": "Add versioning capabilities for all storage backends",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/storage/versioning"
+      ],
+      "files_to_create": [
+        "src/services/storage/versioning/__init__.py",
+        "src/services/storage/versioning/manager.py",
+        "src/services/storage/versioning/minio_versioning.py",
+        "src/services/storage/versioning/s3_versioning.py",
+        "src/services/storage/versioning/local_versioning.py"
+      ],
+      "acceptance_criteria": [
+        "Versioning works across all storage backends",
+        "Version history tracking functional",
+        "Rollback capabilities working",
+        "Version cleanup policies implemented"
+      ]
+    },
+    {
+      "task_id": "02-007",
+      "title": "Implement Backup and Recovery System",
+      "description": "Create comprehensive backup and recovery for all storage systems",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/storage/backup",
+        "mkdir -p data/backups"
+      ],
+      "files_to_create": [
+        "src/services/storage/backup/__init__.py",
+        "src/services/storage/backup/manager.py",
+        "src/services/storage/backup/minio_backup.py",
+        "src/services/storage/backup/s3_backup.py",
+        "src/services/storage/backup/local_backup.py",
+        "src/services/storage/backup/recovery.py",
+        "config/backup/schedule.json"
+      ],
+      "acceptance_criteria": [
+        "Automated backup scheduling working",
+        "Cross-backend backup capabilities",
+        "Recovery procedures functional",
+        "Backup verification and testing"
+      ]
+    },
+    {
+      "task_id": "02-008",
+      "title": "Implement Storage Monitoring and Metrics",
+      "description": "Add comprehensive monitoring and metrics for all storage systems",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/storage/monitoring",
+        "mkdir -p config/monitoring"
+      ],
+      "files_to_create": [
+        "src/services/storage/monitoring/__init__.py",
+        "src/services/storage/monitoring/metrics.py",
+        "src/services/storage/monitoring/alerts.py",
+        "src/services/storage/monitoring/dashboard.py",
+        "config/monitoring/storage_metrics.json",
+        "config/monitoring/alert_rules.json"
+      ],
+      "acceptance_criteria": [
+        "Storage usage metrics collection working",
+        "Performance monitoring operational",
+        "Alert system for storage issues",
+        "Dashboard for storage analytics"
+      ]
+    },
+    {
+      "task_id": "02-009",
+      "title": "Create Storage Migration Tools",
+      "description": "Implement tools for migrating between different storage backends",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/storage/migration",
+        "mkdir -p scripts/migration"
+      ],
+      "files_to_create": [
+        "src/services/storage/migration/__init__.py",
+        "src/services/storage/migration/manager.py",
+        "src/services/storage/migration/minio_to_s3.py",
+        "src/services/storage/migration/s3_to_local.py",
+        "src/services/storage/migration/local_to_minio.py",
+        "scripts/migration/migrate_storage.py",
+        "config/migration/migration_config.json"
+      ],
+      "acceptance_criteria": [
+        "Migration between all storage backends working",
+        "Data integrity verification during migration",
+        "Rollback capabilities for failed migrations",
+        "Progress tracking and reporting"
+      ]
+    },
+    {
+      "task_id": "02-010",
+      "title": "Implement Storage Security and Encryption",
+      "description": "Add comprehensive security and encryption for all storage operations",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/storage/security",
+        "mkdir -p config/security"
+      ],
+      "files_to_create": [
+        "src/services/storage/security/__init__.py",
+        "src/services/storage/security/encryption.py",
+        "src/services/storage/security/access_control.py",
+        "src/services/storage/security/audit.py",
+        "config/security/encryption_keys.json",
+        "config/security/access_policies.json"
+      ],
+      "acceptance_criteria": [
+        "Client-side encryption working",
+        "Access control policies enforced",
+        "Audit logging for all operations",
+        "Key management system operational"
+      ]
+    },
+    {
+      "task_id": "02-011",
+      "title": "Create Storage Performance Optimization",
+      "description": "Implement performance optimizations for all storage backends",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/storage/optimization"
+      ],
+      "files_to_create": [
+        "src/services/storage/optimization/__init__.py",
+        "src/services/storage/optimization/caching.py",
+        "src/services/storage/optimization/compression.py",
+        "src/services/storage/optimization/deduplication.py",
+        "src/services/storage/optimization/load_balancing.py"
+      ],
+      "acceptance_criteria": [
+        "Caching system improving performance",
+        "Compression reducing storage usage",
+        "Deduplication working effectively",
+        "Load balancing across storage nodes"
+      ]
+    },
+    {
+      "task_id": "02-012",
+      "title": "Implement Storage Testing Framework",
+      "description": "Create comprehensive testing framework for all storage components",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p tests/storage/integration",
+        "mkdir -p tests/storage/performance",
+        "mkdir -p tests/storage/security"
+      ],
+      "files_to_create": [
+        "tests/storage/integration/test_storage_integration.py",
+        "tests/storage/performance/test_storage_performance.py",
+        "tests/storage/security/test_storage_security.py",
+        "tests/storage/conftest.py",
+        "tests/storage/test_data/",
+        "config/testing/storage_test_config.json"
+      ],
+      "acceptance_criteria": [
+        "Integration tests for all storage backends",
+        "Performance benchmarks working",
+        "Security tests validating encryption",
+        "Test data and fixtures available"
+      ]
+    },
+    {
+      "task_id": "02-013",
+      "title": "Create Storage Documentation and Guides",
+      "description": "Comprehensive documentation for storage system usage and configuration",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/storage",
+        "mkdir -p examples/storage"
+      ],
+      "files_to_create": [
+        "docs/storage/README.md",
+        "docs/storage/installation.md",
+        "docs/storage/configuration.md",
+        "docs/storage/api_reference.md",
+        "docs/storage/troubleshooting.md",
+        "examples/storage/basic_usage.py",
+        "examples/storage/advanced_features.py",
+        "examples/storage/migration_examples.py"
+      ],
+      "acceptance_criteria": [
+        "Complete installation and setup guides",
+        "API documentation with examples",
+        "Configuration reference for all options",
+        "Troubleshooting guide with common issues"
+      ]
+    },
+    {
+      "task_id": "02-014",
+      "title": "Implement Storage Health Checks",
+      "description": "Add comprehensive health checks for all storage systems",
+      "estimated_time": "30 minutes",
+      "estimated_tokens": 2000,
+      "commands": [
+        "mkdir -p src/services/storage/health"
+      ],
+      "files_to_create": [
+        "src/services/storage/health/__init__.py",
+        "src/services/storage/health/checker.py",
+        "src/services/storage/health/minio_health.py",
+        "src/services/storage/health/s3_health.py",
+        "src/services/storage/health/local_health.py",
+        "config/health/health_check_config.json"
+      ],
+      "acceptance_criteria": [
+        "Health checks for all storage backends",
+        "Automatic health monitoring",
+        "Health status reporting",
+        "Failure detection and alerting"
+      ]
+    },
+    {
+      "task_id": "02-015",
+      "title": "Create Storage Integration Tests",
+      "description": "End-to-end integration tests for complete storage system",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p tests/storage/e2e"
+      ],
+      "files_to_create": [
+        "tests/storage/e2e/test_storage_e2e.py",
+        "tests/storage/e2e/test_migration_e2e.py",
+        "tests/storage/e2e/test_backup_recovery_e2e.py",
+        "tests/storage/e2e/test_performance_e2e.py",
+        "tests/storage/e2e/conftest.py"
+      ],
+      "acceptance_criteria": [
+        "End-to-end tests for all storage workflows",
+        "Migration testing between backends",
+        "Backup and recovery testing",
+        "Performance benchmarking tests"
+      ]
+    }
+  ],
+  "configuration": {
+    "environment_variables": {
+      "STORAGE_BACKEND": "minio|s3|local",
+      "MINIO_ENDPOINT": "http://localhost:9000",
+      "MINIO_ACCESS_KEY": "your-access-key",
+      "MINIO_SECRET_KEY": "your-secret-key",
+      "S3_BUCKET": "your-s3-bucket",
+      "S3_REGION": "us-east-1",
+      "AWS_ACCESS_KEY_ID": "your-aws-access-key",
+      "AWS_SECRET_ACCESS_KEY": "your-aws-secret-key",
+      "LOCAL_STORAGE_PATH": "/data/local-storage"
+    },
+    "docker_compose": {
+      "minio_service": {
+        "image": "minio/minio:latest",
+        "ports": ["9000:9000", "9001:9001"],
+        "environment": [
+          "MINIO_ROOT_USER=${MINIO_ACCESS_KEY}",
+          "MINIO_ROOT_PASSWORD=${MINIO_SECRET_KEY}"
+        ],
+        "volumes": ["./data/minio:/data"],
+        "command": "server /data --console-address :9001"
+      }
+    }
+  },
+  "validation_and_testing": {
+    "unit_tests": [
+      "Test storage client initialization",
+      "Test bucket operations",
+      "Test object operations",
+      "Test versioning",
+      "Test backup and recovery"
+    ],
+    "integration_tests": [
+      "Test cross-backend operations",
+      "Test migration workflows",
+      "Test performance under load",
+      "Test security and encryption"
+    ],
+    "performance_tests": [
+      "Upload/download speed tests",
+      "Concurrent access tests",
+      "Large file handling tests",
+      "Memory usage optimization"
+    ]
+  },
+  "deployment_instructions": {
+    "prerequisites": [
+      "Docker and Docker Compose installed",
+      "Python 3.9+ with required packages",
+      "AWS credentials (for S3 integration)",
+      "Sufficient disk space for local storage"
+    ],
+    "installation_steps": [
+      "1. Clone the repository and navigate to the project directory",
+      "2. Copy configuration templates and update with your settings",
+      "3. Start MinIO service: docker-compose -f docker-compose.minio.yml up -d",
+      "4. Install Python dependencies: pip install -r requirements.txt",
+      "5. Run storage system tests: python -m pytest tests/storage/",
+      "6. Initialize storage backends: python scripts/init_storage.py"
+    ],
+    "verification": [
+      "Check MinIO console at http://localhost:9001",
+      "Verify API endpoints respond correctly",
+      "Test file upload/download operations",
+      "Confirm monitoring and metrics are working"
+    ]
+  }
+}

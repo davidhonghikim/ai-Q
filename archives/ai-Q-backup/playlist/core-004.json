@@ -1,0 +1,13 @@
+{
+  "id": "core-004",
+  "module": "core",
+  "title": "Logging Utility",
+  "description": "Implement a logging utility for the system. Should support different log levels, output to file and console, and be easy to use from other modules.",
+  "dependencies": [],
+  "inputs": [],
+  "outputs": ["src/utils/logger.py"],
+  "agent_requirements": ["Python"],
+  "completion_criteria": "Logging utility can be imported and used by other modules.",
+  "status": "pending",
+  "notes": ""
+} 

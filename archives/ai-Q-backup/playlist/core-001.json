@@ -1,0 +1,13 @@
+{
+  "id": "core-001",
+  "module": "core",
+  "title": "Feature Flag Loader",
+  "description": "Implement a feature flag loader that reads YAML config (config/feature_flags.yml) and exposes feature flags to the system via a Python utility module.",
+  "dependencies": [],
+  "inputs": ["config/feature_flags.yml"],
+  "outputs": ["src/utils/feature_flags.py"],
+  "agent_requirements": ["Python", "YAML parsing"],
+  "completion_criteria": "Feature flags can be loaded and queried at runtime via a Python function.",
+  "status": "pending",
+  "notes": ""
+} 

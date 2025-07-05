@@ -1,0 +1,247 @@
+{
+  "task_id": "01-004",
+  "title": "Infrastructure Deployment and Health Verification",
+  "estimated_tokens": 1800,
+  "estimated_time": "35 minutes",
+  "description": "Deploy complete Docker infrastructure, verify all services healthy, test connectivity and establish baselines.",
+  "objectives": [
+    "Deploy all infrastructure services successfully",
+    "Verify health checks and service connectivity", 
+    "Test database and storage functionality",
+    "Establish monitoring baselines",
+    "Validate complete system readiness"
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "title": "Pre-deployment Verification",
+      "commands": [
+        "docker-compose config --quiet && echo 'Configuration valid'",
+        "docker system df && docker system info | grep -E 'Total Memory|CPUs'",
+        "docker network ls | grep ai-q && echo 'Networks ready'",
+        "docker-compose down --volumes --remove-orphans",
+        "docker system prune -f"
+      ]
+    },
+    {
+      "step": 2,
+      "title": "Phased Service Deployment",
+      "commands": [
+        "# Phase 1: Core databases",
+        "echo 'Deploying databases...'",
+        "docker-compose up -d postgres redis",
+        "sleep 30",
+        "",
+        "# Phase 2: Storage systems",
+        "echo 'Deploying storage...'", 
+        "docker-compose up -d minio",
+        "",
+        "# Phase 3: AI services (takes 2-3 minutes)",
+        "echo 'Deploying AI services...'",
+        "docker-compose up -d t2v-transformers multi2vec-clip",
+        "sleep 120",
+        "",
+        "# Phase 4: Vector database",
+        "echo 'Deploying vector database...'",
+        "docker-compose up -d weaviate",
+        "",
+        "# Phase 5: Monitoring and logging",
+        "echo 'Deploying monitoring...'",
+        "docker-compose up -d grafana prometheus elasticsearch kibana",
+        "",
+        "docker-compose ps"
+      ],
+      "timing": {
+        "databases": "30 seconds",
+        "storage": "15 seconds",
+        "ai_services": "2-3 minutes (model download)",
+        "vector_db": "30 seconds", 
+        "monitoring": "45 seconds"
+      }
+    },
+    {
+      "step": 3,
+      "title": "Service Health Testing",
+      "commands": [
+        "# Container status overview",
+        "docker-compose ps --format table",
+        "",
+        "# Database connectivity tests",
+        "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c 'SELECT version();'",
+        "docker exec ai-q-redis redis-cli -a ai_q_redis_password_2024 ping",
+        "",
+        "# Storage and AI service tests",
+        "curl -f http://localhost:9000/minio/health/live && echo 'Minio: OK'",
+        "curl -f http://localhost:8080/v1/.well-known/ready && echo 'Weaviate: OK'",
+        "",
+        "# Monitoring service tests",
+        "curl -f http://localhost:3001/api/health && echo 'Grafana: OK'",
+        "curl -f http://localhost:9090/-/healthy && echo 'Prometheus: OK'",
+        "",
+        "# Logging service tests",
+        "curl -f http://localhost:9200/_cluster/health && echo 'Elasticsearch: OK'",
+        "curl -f http://localhost:5601/api/status && echo 'Kibana: OK'"
+      ]
+    },
+    {
+      "step": 4,
+      "title": "Database Functionality Testing",
+      "commands": [
+        "# Verify schema creation",
+        "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c '\\dt content.*'",
+        "",
+        "# Test CRUD operations",
+        "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c \"",
+        "INSERT INTO content.files (filename, file_path, file_size, content_type) ",
+        "VALUES ('test.txt', '/test/test.txt', 1024, 'text/plain');\"",
+        "",
+        "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c 'SELECT COUNT(*) FROM content.files;'",
+        "",
+        "# Test Redis caching",
+        "docker exec ai-q-redis redis-cli -a ai_q_redis_password_2024 SET test_key 'test_value'",
+        "docker exec ai-q-redis redis-cli -a ai_q_redis_password_2024 GET test_key",
+        "",
+        "# Cleanup test data",
+        "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c 'DELETE FROM content.files;'",
+        "docker exec ai-q-redis redis-cli -a ai_q_redis_password_2024 DEL test_key"
+      ]
+    },
+    {
+      "step": 5,
+      "title": "Vector Database and AI Testing",
+      "commands": [
+        "# Create test schema in Weaviate",
+        "curl -X POST http://localhost:8080/v1/schema -H 'Content-Type: application/json' -d '{",
+        "  \"class\": \"TestDoc\",",
+        "  \"vectorizer\": \"text2vec-transformers\",",
+        "  \"properties\": [{\"name\": \"content\", \"dataType\": [\"text\"]}]",
+        "}'",
+        "",
+        "# Test object creation with vectorization",
+        "curl -X POST http://localhost:8080/v1/objects -H 'Content-Type: application/json' -d '{",
+        "  \"class\": \"TestDoc\",",
+        "  \"properties\": {\"content\": \"Infrastructure test document for vectorization\"}",
+        "}'",
+        "",
+        "# Query vector database",
+        "curl -X POST http://localhost:8080/v1/graphql -H 'Content-Type: application/json' -d '{",
+        "  \"query\": \"{Get{TestDoc{content _additional{vector}}}}\"",
+        "}'",
+        "",
+        "# Cleanup test schema",
+        "curl -X DELETE http://localhost:8080/v1/schema/TestDoc"
+      ]
+    },
+    {
+      "step": 6,
+      "title": "Storage and Monitoring Testing",
+      "commands": [
+        "# Test Minio bucket operations",
+        "docker exec ai-q-minio mc alias set local http://localhost:9000 ai_q_minio_admin ai_q_minio_secure_password_2024",
+        "docker exec ai-q-minio mc mb local/test-bucket",
+        "docker exec ai-q-minio mc ls local/",
+        "",
+        "# Test Prometheus metrics",
+        "curl -s http://localhost:9090/api/v1/targets | grep -o '\"health\":\"[^\"]*\"' | head -3",
+        "",
+        "# Test Grafana authentication",
+        "curl -u admin:ai_q_grafana_admin_2024 http://localhost:3001/api/datasources",
+        "",
+        "# Check Elasticsearch health",
+        "curl -s http://localhost:9200/_cat/health"
+      ]
+    },
+    {
+      "step": 7,
+      "title": "Performance Baseline Collection",
+      "commands": [
+        "# Resource usage snapshot",
+        "docker stats --no-stream --format 'table {{.Container}}\\t{{.CPUPerc}}\\t{{.MemUsage}}'",
+        "",
+        "# Disk usage assessment",
+        "docker system df",
+        "",
+        "# Service response time tests",
+        "time curl -s http://localhost:9000/minio/health/live > /dev/null",
+        "time curl -s http://localhost:8080/v1/.well-known/ready > /dev/null",
+        "time curl -s http://localhost:9200/_cluster/health > /dev/null",
+        "",
+        "# Log service readiness",
+        "docker-compose logs --tail=5 | grep -E 'ready|started|listening'"
+      ]
+    }
+  ],
+  "health_check_matrix": {
+    "postgres": "psql connection + version query",
+    "redis": "ping command returns pong",
+    "minio": "health endpoint returns 200",
+    "weaviate": "ready endpoint + schema operations",
+    "ai_services": "model inference endpoints responsive",
+    "grafana": "admin login + datasource query",
+    "prometheus": "targets endpoint accessible",
+    "elasticsearch": "cluster health green/yellow",
+    "kibana": "status endpoint operational"
+  },
+  "troubleshooting": [
+    {
+      "issue": "AI services timeout on first startup",
+      "solution": "Wait for model download completion (2-3 minutes)",
+      "monitoring": "docker logs -f ai-q-transformers"
+    },
+    {
+      "issue": "Database connection refused",
+      "solution": "Verify initialization completed",
+      "check": "docker exec ai-q-postgres pg_isready -U ai_q_user"
+    },
+    {
+      "issue": "Vector database schema creation fails",
+      "solution": "Ensure AI transformers are healthy first",
+      "dependency": "Weaviate depends on t2v-transformers"
+    },
+    {
+      "issue": "High memory usage during startup",
+      "solution": "Normal during initialization, stabilizes after load",
+      "note": "Monitor with docker stats --no-stream"
+    }
+  ],
+  "acceptance_criteria": [
+    "All 10+ services deployed with 'Up' status",
+    "Database connections working with CRUD operations",
+    "Vector database operational with AI vectorization",
+    "Object storage accessible with bucket operations", 
+    "Monitoring services collecting and displaying metrics",
+    "Logging infrastructure indexing service logs",
+    "Performance baselines within expected ranges",
+    "All health endpoints responding correctly",
+    "Service dependencies functioning properly"
+  ],
+  "validation_commands": [
+    "docker-compose ps | grep -c 'Up' | grep -E '10|[1-9][0-9]'",
+    "docker exec ai-q-postgres psql -U ai_q_user -d ai_q_db -c 'SELECT 1;'",
+    "docker exec ai-q-redis redis-cli -a ai_q_redis_password_2024 ping | grep PONG",
+    "curl -f http://localhost:9000/minio/health/live",
+    "curl -f http://localhost:8080/v1/.well-known/ready",
+    "curl -f http://localhost:3001/api/health",
+    "curl -f http://localhost:9200/_cluster/health"
+  ],
+  "performance_targets": {
+    "memory_usage": "< 8GB total all services",
+    "cpu_usage": "< 20% at idle state",
+    "startup_time": "< 5 minutes complete deployment",
+    "response_time": "< 100ms health check endpoints"
+  },
+  "service_urls": {
+    "frontend": "http://localhost:3000 (future)",
+    "backend_api": "http://localhost:8000 (future)",
+    "postgres": "localhost:5432", 
+    "redis": "localhost:6379",
+    "minio_api": "http://localhost:9000",
+    "minio_console": "http://localhost:9001",
+    "weaviate": "http://localhost:8080",
+    "grafana": "http://localhost:3001",
+    "prometheus": "http://localhost:9090",
+    "elasticsearch": "http://localhost:9200",
+    "kibana": "http://localhost:5601"
+  },
+  "next_task": "01-005: Security Configuration and SSL Setup"
+} 

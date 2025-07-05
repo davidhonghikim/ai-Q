@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "title": "Video & Audio Processing (ffmpeg, Whisper)",
+    "description": "Spec for video/audio processing, ffmpeg, Whisper, metadata extraction, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support video and audio upload, preview, keyframe extraction, transcription, summarization, and tagging using ffmpeg and Whisper.",
+  "requirements": [
+    "Chunked upload for large files.",
+    "Extract video/audio metadata (duration, codec, bitrate, etc.).",
+    "Use ffmpeg for keyframe extraction and thumbnail generation.",
+    "Transcribe audio using Whisper.",
+    "Generate embeddings for search (if model available)."
+  ],
+  "integration": {
+    "ffmpeg": {
+      "binary": "ffmpeg",
+      "usage": "Keyframe extraction, thumbnail generation, format conversion."
+    },
+    "whisper": {
+      "python_package": "openai-whisper",
+      "usage": "Speech-to-text transcription."
+    }
+  },
+  "agent_tasks": [
+    "Implement chunked upload endpoint for large files.",
+    "Write metadata extraction utility (Python, ffmpeg).",
+    "Integrate Whisper for transcription.",
+    "Build UI for video/audio preview and tagging.",
+    "Write tests for all file types and processing steps.",
+    "Document setup and usage."
+  ]
+} 

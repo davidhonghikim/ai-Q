@@ -1,0 +1,13 @@
+{
+  "id": "core-003",
+  "module": "core",
+  "title": "Environment Variable Parser",
+  "description": "Implement a utility that reads environment variables and provides them to the system in a structured way. Should support default values and type conversion.",
+  "dependencies": [],
+  "inputs": [],
+  "outputs": ["src/utils/env_parser.py"],
+  "agent_requirements": ["Python"],
+  "completion_criteria": "Environment variables can be loaded, parsed, and queried at runtime.",
+  "status": "pending",
+  "notes": ""
+} 

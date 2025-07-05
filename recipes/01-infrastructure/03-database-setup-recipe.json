@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "title": "Database Setup Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-27T14:00:00Z",
+    "purpose": "Implement comprehensive database infrastructure (PostgreSQL, Redis, Neo4j, Weaviate, Elasticsearch) for AI-Q Knowledge Library System",
+    "estimated_tokens": 85000,
+    "category": "infrastructure",
+    "priority": "HIGH",
+    "recipe_id": "03-database-setup"
+  },
+  "recipe_overview": {
+    "name": "Database Infrastructure Setup",
+    "description": "Implement production-ready database infrastructure with PostgreSQL, Redis, Neo4j, Weaviate, and Elasticsearch with unified management",
+    "prerequisites": [
+      "01-core-infrastructure-recipe.json completed",
+      "02-storage-systems-recipe.json completed",
+      "Docker and Docker Compose installed",
+      "Python 3.9+ and Node.js 18+ installed"
+    ],
+    "target_outcome": "Complete database infrastructure with all required databases operational and integrated",
+    "success_criteria": [
+      "PostgreSQL database with proper schema and migrations",
+      "Redis cache and session storage operational",
+      "Neo4j graph database with knowledge graph schema",
+      "Weaviate vector database for embeddings",
+      "Elasticsearch for full-text search",
+      "All databases can be safely installed/uninstalled"
+    ]
+  },
+  "database_architecture": {
+    "postgresql": {
+      "purpose": "Primary relational database for structured data",
+      "features": [
+        "User management and authentication",
+        "Content metadata and relationships",
+        "System configuration and settings",
+        "Audit logging and analytics"
+      ],
+      "modular_components": [
+        "postgresql-core-service",
+        "postgresql-migration-manager",
+        "postgresql-backup-service",
+        "postgresql-monitoring"
+      ]
+    },
+    "redis": {
+      "purpose": "High-performance caching and session storage",
+      "features": [
+        "Application caching layer",
+        "Session management",
+        "Real-time data storage",
+        "Job queue management"
+      ],
+      "modular_components": [
+        "redis-cache-service",
+        "redis-session-manager",
+        "redis-queue-service",
+        "redis-monitoring"
+      ]
+    },
+    "neo4j": {
+      "purpose": "Graph database for knowledge relationships",
+      "features": [
+        "Knowledge graph storage",
+        "Relationship mapping",
+        "Graph queries and traversal",
+        "Graph analytics"
+      ],
+      "modular_components": [
+        "neo4j-graph-service",
+        "neo4j-query-engine",
+        "neo4j-analytics",
+        "neo4j-visualization"
+      ]
+    },
+    "weaviate": {
+      "purpose": "Vector database for embeddings and semantic search",
+      "features": [
+        "Vector embeddings storage",
+        "Semantic search capabilities",
+        "Multi-modal data support",
+        "Similarity search"
+      ],
+      "modular_components": [
+        "weaviate-vector-service",
+        "weaviate-search-engine",
+        "weaviate-schema-manager",
+        "weaviate-monitoring"
+      ]
+    },
+    "elasticsearch": {
+      "purpose": "Full-text search and analytics engine",
+      "features": [
+        "Full-text search across content",
+        "Analytics and aggregations",
+        "Real-time search capabilities",
+        "Search result ranking"
+      ],
+      "modular_components": [
+        "elasticsearch-search-service",
+        "elasticsearch-index-manager",
+        "elasticsearch-analytics",
+        "elasticsearch-monitoring"
+      ]
+    }
+  },
+  "implementation_steps": [
+    {
+      "task_id": "03-001",
+      "title": "Create Database Infrastructure Architecture",
+      "description": "Design and implement the core database infrastructure with unified management",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/database",
+        "mkdir -p src/services/database/postgresql",
+        "mkdir -p src/services/database/redis",
+        "mkdir -p src/services/database/neo4j",
+        "mkdir -p src/services/database/weaviate",
+        "mkdir -p src/services/database/elasticsearch",
+        "mkdir -p src/services/database/common"
+      ],
+      "files_to_create": [
+        "src/services/database/__init__.py",
+        "src/services/database/base.py",
+        "src/services/database/manager.py",
+        "src/services/database/config.py",
+        "src/services/database/types.py"
+      ],
+      "acceptance_criteria": [
+        "Database base classes defined with unified interface",
+        "Configuration system supports all database types",
+        "Type definitions for all database operations",
+        "Manager class can handle multiple database providers"
+      ]
+    },
+    {
+      "task_id": "03-002",
+      "title": "Implement PostgreSQL Core Service",
+      "description": "Create PostgreSQL database with Docker deployment and schema management",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "docker pull postgres:15",
+        "mkdir -p data/postgresql",
+        "mkdir -p config/postgresql",
+        "mkdir -p migrations"
+      ],
+      "files_to_create": [
+        "src/services/database/postgresql/__init__.py",
+        "src/services/database/postgresql/client.py",
+        "src/services/database/postgresql/migrations.py",
+        "src/services/database/postgresql/schema.py",
+        "docker-compose.postgresql.yml",
+        "config/postgresql/postgresql.conf",
+        "migrations/001_initial_schema.sql"
+      ],
+      "acceptance_criteria": [
+        "PostgreSQL client can connect and authenticate",
+        "Database schema creation working",
+        "Migration system operational",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "03-003",
+      "title": "Implement Redis Cache Service",
+      "description": "Create Redis cache with Docker deployment and connection management",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "docker pull redis:7-alpine",
+        "mkdir -p data/redis",
+        "mkdir -p config/redis"
+      ],
+      "files_to_create": [
+        "src/services/database/redis/__init__.py",
+        "src/services/database/redis/client.py",
+        "src/services/database/redis/cache.py",
+        "src/services/database/redis/session.py",
+        "docker-compose.redis.yml",
+        "config/redis/redis.conf"
+      ],
+      "acceptance_criteria": [
+        "Redis client can connect and authenticate",
+        "Cache operations working",
+        "Session management functional",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "03-004",
+      "title": "Implement Neo4j Graph Database",
+      "description": "Create Neo4j graph database with Docker deployment and graph schema",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "docker pull neo4j:5",
+        "mkdir -p data/neo4j",
+        "mkdir -p config/neo4j"
+      ],
+      "files_to_create": [
+        "src/services/database/neo4j/__init__.py",
+        "src/services/database/neo4j/client.py",
+        "src/services/database/neo4j/graph.py",
+        "src/services/database/neo4j/queries.py",
+        "docker-compose.neo4j.yml",
+        "config/neo4j/neo4j.conf"
+      ],
+      "acceptance_criteria": [
+        "Neo4j client can connect and authenticate",
+        "Graph operations working",
+        "Cypher queries functional",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "03-005",
+      "title": "Implement Weaviate Vector Database",
+      "description": "Create Weaviate vector database with Docker deployment and schema management",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "docker pull semitechnologies/weaviate:1.22.4",
+        "mkdir -p data/weaviate",
+        "mkdir -p config/weaviate"
+      ],
+      "files_to_create": [
+        "src/services/database/weaviate/__init__.py",
+        "src/services/database/weaviate/client.py",
+        "src/services/database/weaviate/schema.py",
+        "src/services/database/weaviate/vectors.py",
+        "docker-compose.weaviate.yml",
+        "config/weaviate/weaviate.conf"
+      ],
+      "acceptance_criteria": [
+        "Weaviate client can connect and authenticate",
+        "Vector operations working",
+        "Schema management functional",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "03-006",
+      "title": "Implement Elasticsearch Search Engine",
+      "description": "Create Elasticsearch with Docker deployment and index management",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "docker pull docker.elastic.co/elasticsearch/elasticsearch:8.11.0",
+        "mkdir -p data/elasticsearch",
+        "mkdir -p config/elasticsearch"
+      ],
+      "files_to_create": [
+        "src/services/database/elasticsearch/__init__.py",
+        "src/services/database/elasticsearch/client.py",
+        "src/services/database/elasticsearch/index.py",
+        "src/services/database/elasticsearch/search.py",
+        "docker-compose.elasticsearch.yml",
+        "config/elasticsearch/elasticsearch.yml"
+      ],
+      "acceptance_criteria": [
+        "Elasticsearch client can connect and authenticate",
+        "Index operations working",
+        "Search functionality operational",
+        "Docker deployment configuration complete"
+      ]
+    },
+    {
+      "task_id": "03-007",
+      "title": "Create Unified Database API",
+      "description": "Implement unified API that abstracts all database operations",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/api/routes/database",
+        "mkdir -p tests/database"
+      ],
+      "files_to_create": [
+        "src/api/routes/database/__init__.py",
+        "src/api/routes/database/endpoints.py",
+        "src/api/routes/database/schemas.py",
+        "src/api/routes/database/validators.py",
+        "tests/database/test_database_api.py",
+        "tests/database/test_postgresql.py",
+        "tests/database/test_redis.py",
+        "tests/database/test_neo4j.py",
+        "tests/database/test_weaviate.py",
+        "tests/database/test_elasticsearch.py"
+      ],
+      "acceptance_criteria": [
+        "Unified API endpoints for all database operations",
+        "Request/response schemas defined",
+        "Input validation working",
+        "Comprehensive test coverage"
+      ]
+    },
+    {
+      "task_id": "03-008",
+      "title": "Implement Database Migration System",
+      "description": "Create comprehensive migration system for all databases",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/database/migrations",
+        "mkdir -p migrations/postgresql",
+        "mkdir -p migrations/neo4j",
+        "mkdir -p migrations/weaviate",
+        "mkdir -p migrations/elasticsearch"
+      ],
+      "files_to_create": [
+        "src/services/database/migrations/__init__.py",
+        "src/services/database/migrations/manager.py",
+        "src/services/database/migrations/postgresql_migrations.py",
+        "src/services/database/migrations/neo4j_migrations.py",
+        "src/services/database/migrations/weaviate_migrations.py",
+        "src/services/database/migrations/elasticsearch_migrations.py",
+        "migrations/postgresql/001_initial_schema.sql",
+        "migrations/neo4j/001_initial_graph.cypher",
+        "migrations/weaviate/001_initial_schema.json",
+        "migrations/elasticsearch/001_initial_mapping.json"
+      ],
+      "acceptance_criteria": [
+        "Migration system works for all database types",
+        "Version tracking and rollback capabilities",
+        "Migration testing and validation",
+        "Automated migration execution"
+      ]
+    },
+    {
+      "task_id": "03-009",
+      "title": "Implement Database Backup and Recovery",
+      "description": "Create comprehensive backup and recovery for all databases",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/database/backup",
+        "mkdir -p data/backups"
+      ],
+      "files_to_create": [
+        "src/services/database/backup/__init__.py",
+        "src/services/database/backup/manager.py",
+        "src/services/database/backup/postgresql_backup.py",
+        "src/services/database/backup/redis_backup.py",
+        "src/services/database/backup/neo4j_backup.py",
+        "src/services/database/backup/weaviate_backup.py",
+        "src/services/database/backup/elasticsearch_backup.py",
+        "src/services/database/backup/recovery.py",
+        "config/backup/database_schedule.json"
+      ],
+      "acceptance_criteria": [
+        "Automated backup scheduling for all databases",
+        "Cross-database backup coordination",
+        "Recovery procedures functional",
+        "Backup verification and testing"
+      ]
+    },
+    {
+      "task_id": "03-010",
+      "title": "Implement Database Monitoring and Metrics",
+      "description": "Add comprehensive monitoring and metrics for all databases",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/database/monitoring",
+        "mkdir -p config/monitoring"
+      ],
+      "files_to_create": [
+        "src/services/database/monitoring/__init__.py",
+        "src/services/database/monitoring/metrics.py",
+        "src/services/database/monitoring/alerts.py",
+        "src/services/database/monitoring/dashboard.py",
+        "config/monitoring/database_metrics.json",
+        "config/monitoring/alert_rules.json"
+      ],
+      "acceptance_criteria": [
+        "Database performance metrics collection",
+        "Connection monitoring and alerting",
+        "Query performance tracking",
+        "Dashboard for database analytics"
+      ]
+    },
+    {
+      "task_id": "03-011",
+      "title": "Implement Database Connection Pooling",
+      "description": "Create efficient connection pooling for all databases",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/database/pooling"
+      ],
+      "files_to_create": [
+        "src/services/database/pooling/__init__.py",
+        "src/services/database/pooling/manager.py",
+        "src/services/database/pooling/postgresql_pool.py",
+        "src/services/database/pooling/redis_pool.py",
+        "src/services/database/pooling/neo4j_pool.py",
+        "src/services/database/pooling/weaviate_pool.py",
+        "src/services/database/pooling/elasticsearch_pool.py"
+      ],
+      "acceptance_criteria": [
+        "Connection pooling for all database types",
+        "Connection health monitoring",
+        "Automatic connection recovery",
+        "Performance optimization"
+      ]
+    },
+    {
+      "task_id": "03-012",
+      "title": "Implement Database Security and Encryption",
+      "description": "Add comprehensive security and encryption for all databases",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/services/database/security",
+        "mkdir -p config/security"
+      ],
+      "files_to_create": [
+        "src/services/database/security/__init__.py",
+        "src/services/database/security/encryption.py",
+        "src/services/database/security/access_control.py",
+        "src/services/database/security/audit.py",
+        "config/security/database_encryption.json",
+        "config/security/access_policies.json"
+      ],
+      "acceptance_criteria": [
+        "Database encryption at rest and in transit",
+        "Access control policies enforced",
+        "Audit logging for all operations",
+        "Security compliance validation"
+      ]
+    },
+    {
+      "task_id": "03-013",
+      "title": "Implement Database Performance Optimization",
+      "description": "Create performance optimizations for all databases",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/services/database/optimization"
+      ],
+      "files_to_create": [
+        "src/services/database/optimization/__init__.py",
+        "src/services/database/optimization/query_optimizer.py",
+        "src/services/database/optimization/index_manager.py",
+        "src/services/database/optimization/cache_manager.py",
+        "src/services/database/optimization/performance_monitor.py"
+      ],
+      "acceptance_criteria": [
+        "Query optimization for all database types",
+        "Index management and optimization",
+        "Caching strategies implemented",
+        "Performance monitoring and tuning"
+      ]
+    },
+    {
+      "task_id": "03-014",
+      "title": "Implement Database Testing Framework",
+      "description": "Create comprehensive testing framework for all database components",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p tests/database/integration",
+        "mkdir -p tests/database/performance",
+        "mkdir -p tests/database/security"
+      ],
+      "files_to_create": [
+        "tests/database/integration/test_database_integration.py",
+        "tests/database/performance/test_database_performance.py",
+        "tests/database/security/test_database_security.py",
+        "tests/database/conftest.py",
+        "tests/database/test_data/",
+        "config/testing/database_test_config.json"
+      ],
+      "acceptance_criteria": [
+        "Integration tests for all database types",
+        "Performance benchmarks working",
+        "Security tests validating encryption",
+        "Test data and fixtures available"
+      ]
+    },
+    {
+      "task_id": "03-015",
+      "title": "Create Database Documentation and Guides",
+      "description": "Comprehensive documentation for database system usage and configuration",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/database",
+        "mkdir -p examples/database"
+      ],
+      "files_to_create": [
+        "docs/database/README.md",
+        "docs/database/installation.md",
+        "docs/database/configuration.md",
+        "docs/database/api_reference.md",
+        "docs/database/troubleshooting.md",
+        "examples/database/basic_usage.py",
+        "examples/database/advanced_features.py",
+        "examples/database/migration_examples.py"
+      ],
+      "acceptance_criteria": [
+        "Complete installation and setup guides",
+        "API documentation with examples",
+        "Configuration reference for all options",
+        "Troubleshooting guide with common issues"
+      ]
+    }
+  ],
+  "configuration": {
+    "environment_variables": {
+      "POSTGRES_HOST": "localhost",
+      "POSTGRES_PORT": "5432",
+      "POSTGRES_DB": "aiq_knowledge",
+      "POSTGRES_USER": "aiq_user",
+      "POSTGRES_PASSWORD": "your-password",
+      "REDIS_HOST": "localhost",
+      "REDIS_PORT": "6379",
+      "REDIS_PASSWORD": "your-redis-password",
+      "NEO4J_URI": "bolt://localhost:7687",
+      "NEO4J_USER": "neo4j",
+      "NEO4J_PASSWORD": "your-neo4j-password",
+      "WEAVIATE_URL": "http://localhost:8080",
+      "WEAVIATE_API_KEY": "your-weaviate-key",
+      "ELASTICSEARCH_URL": "http://localhost:9200",
+      "ELASTICSEARCH_USER": "elastic",
+      "ELASTICSEARCH_PASSWORD": "your-elastic-password"
+    },
+    "docker_compose": {
+      "postgresql_service": {
+        "image": "postgres:15",
+        "ports": ["5432:5432"],
+        "environment": [
+          "POSTGRES_DB=${POSTGRES_DB}",
+          "POSTGRES_USER=${POSTGRES_USER}",
+          "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+        ],
+        "volumes": ["./data/postgresql:/var/lib/postgresql/data"]
+      },
+      "redis_service": {
+        "image": "redis:7-alpine",
+        "ports": ["6379:6379"],
+        "volumes": ["./data/redis:/data"]
+      },
+      "neo4j_service": {
+        "image": "neo4j:5",
+        "ports": ["7474:7474", "7687:7687"],
+        "environment": [
+          "NEO4J_AUTH=${NEO4J_USER}/${NEO4J_PASSWORD}"
+        ],
+        "volumes": ["./data/neo4j:/data"]
+      },
+      "weaviate_service": {
+        "image": "semitechnologies/weaviate:1.22.4",
+        "ports": ["8080:8080"],
+        "volumes": ["./data/weaviate:/var/lib/weaviate"]
+      },
+      "elasticsearch_service": {
+        "image": "docker.elastic.co/elasticsearch/elasticsearch:8.11.0",
+        "ports": ["9200:9200"],
+        "environment": [
+          "ELASTIC_PASSWORD=${ELASTICSEARCH_PASSWORD}"
+        ],
+        "volumes": ["./data/elasticsearch:/usr/share/elasticsearch/data"]
+      }
+    }
+  },
+  "validation_and_testing": {
+    "unit_tests": [
+      "Test database client initialization",
+      "Test connection management",
+      "Test basic CRUD operations",
+      "Test migration system",
+      "Test backup and recovery"
+    ],
+    "integration_tests": [
+      "Test cross-database operations",
+      "Test migration workflows",
+      "Test performance under load",
+      "Test security and encryption"
+    ],
+    "performance_tests": [
+      "Database connection speed tests",
+      "Query performance tests",
+      "Concurrent access tests",
+      "Memory usage optimization"
+    ]
+  },
+  "deployment_instructions": {
+    "prerequisites": [
+      "Docker and Docker Compose installed",
+      "Python 3.9+ with required packages",
+      "Sufficient disk space for all databases",
+      "Memory requirements: 8GB+ recommended"
+    ],
+    "installation_steps": [
+      "1. Clone the repository and navigate to the project directory",
+      "2. Copy configuration templates and update with your settings",
+      "3. Start all database services: docker-compose up -d",
+      "4. Install Python dependencies: pip install -r requirements.txt",
+      "5. Run database system tests: python -m pytest tests/database/",
+      "6. Initialize all databases: python scripts/init_databases.py"
+    ],
+    "verification": [
+      "Check PostgreSQL at localhost:5432",
+      "Check Redis at localhost:6379",
+      "Check Neo4j browser at http://localhost:7474",
+      "Check Weaviate at http://localhost:8080",
+      "Check Elasticsearch at http://localhost:9200"
+    ]
+  }
+}

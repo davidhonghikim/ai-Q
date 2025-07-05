@@ -1,0 +1,590 @@
+{
+  "metadata": {
+    "recipe_id": "01-core-infrastructure",
+    "title": "Core Infrastructure Setup - Docker, Python, Node.js Environment",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T00:00:00Z",
+    "estimated_tokens": 9200,
+    "estimated_duration": "4-6 hours",
+    "difficulty_level": "intermediate",
+    "category": "infrastructure"
+  },
+  "recipe_overview": {
+    "description": "Complete setup of the foundational infrastructure for the Universal Digital Twin system including Docker containerization, Python FastAPI backend, Node.js frontend tooling, and all required development dependencies. This recipe ensures a consistent, reproducible development environment that matches production specifications.",
+    "objectives": [
+      "Set up Docker containerization environment",
+      "Configure Python 3.10+ with FastAPI and all ML dependencies", 
+      "Install Node.js 18+ with React and TypeScript tooling",
+      "Create development docker-compose configuration",
+      "Set up environment variable management",
+      "Configure development tools and linting",
+      "Implement health checks and monitoring",
+      "Create automated testing framework"
+    ],
+    "deliverables": [
+      "Docker containers running all services locally",
+      "Python virtual environment with all dependencies",
+      "Node.js environment with build tools configured",
+      "docker-compose.yml for complete local development",
+      "Environment configuration templates",
+      "Development workflow documentation"
+    ]
+  },
+  "prerequisites": {
+    "system_requirements": {
+      "operating_system": "Windows 10/11, macOS 12+, or Ubuntu 20.04+",
+      "ram": "16GB minimum, 32GB recommended",
+      "disk_space": "50GB free space minimum",
+      "cpu": "4 cores minimum, 8 cores recommended",
+      "network": "Broadband internet for package downloads"
+    },
+    "software_requirements": [
+      "Git 2.30+ installed and configured",
+      "Docker Desktop 4.0+ or Docker Engine 20.0+",
+      "Text editor or IDE (VS Code recommended)",
+      "Terminal/Command Prompt access",
+      "Administrator/sudo privileges"
+    ],
+    "knowledge_requirements": [
+      "Basic command line operations",
+      "Understanding of Docker concepts",
+      "Python package management (pip, virtual environments)",
+      "Node.js package management (npm/yarn)",
+      "JSON and YAML file formats"
+    ]
+  },
+  "environment_setup": {
+    "variables_required": [
+      "PROJECT_ROOT=/path/to/ai-Q",
+      "PYTHON_VERSION=3.10.7",
+      "NODE_VERSION=18.16.0",
+      "DOCKER_BUILDKIT=1"
+    ],
+    "directories_to_create": [
+      "src/api",
+      "src/services", 
+      "src/models",
+      "src/utils",
+      "src/config",
+      "frontend/src",
+      "frontend/public",
+      "docker/python",
+      "docker/nodejs",
+      "config/development",
+      "config/production",
+      "logs/development",
+      "data/development",
+      "tests/unit",
+      "tests/integration"
+    ]
+  },
+  "tasks": [
+    {
+      "task_id": "01-infra-001",
+      "title": "Verify and Install Docker Environment",
+      "description": "Ensure Docker is properly installed, configured, and running with appropriate resource allocations for the development environment.",
+      "estimated_time": "30 minutes",
+      "dependencies": [],
+      "inputs": {
+        "system_check": "Verify system meets minimum requirements",
+        "docker_installation": "Check existing Docker installation"
+      },
+      "step_by_step_instructions": [
+        {
+          "step": 1,
+          "title": "Verify System Requirements",
+          "description": "Check that the system meets minimum requirements for Docker and development",
+          "commands": [
+            "# Windows",
+            "systeminfo | findstr /C:\"Total Physical Memory\"",
+            "wmic cpu get Name,NumberOfCores,NumberOfLogicalProcessors",
+            "# macOS", 
+            "system_profiler SPHardwareDataType | grep \"Memory:\"",
+            "sysctl -n hw.ncpu",
+            "# Linux",
+            "free -h",
+            "nproc"
+          ],
+          "expected_output": "System specifications showing adequate RAM and CPU cores",
+          "validation": "Minimum 16GB RAM and 4 CPU cores confirmed"
+        },
+        {
+          "step": 2,
+          "title": "Install or Update Docker",
+          "description": "Install Docker Desktop (Windows/macOS) or Docker Engine (Linux) with latest stable version",
+          "commands": [
+            "# Check current Docker installation",
+            "docker --version",
+            "docker compose version",
+            "# If not installed, download from:",
+            "# Windows/macOS: https://www.docker.com/products/docker-desktop/",
+            "# Linux: curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh"
+          ],
+          "expected_output": "Docker version 20.0+ and Docker Compose version 2.0+",
+          "validation": "Both docker and docker compose commands work without errors"
+        },
+        {
+          "step": 3,
+          "title": "Configure Docker Resource Allocation", 
+          "description": "Allocate sufficient resources to Docker for development workloads",
+          "commands": [
+            "# Docker Desktop: Go to Settings > Resources",
+            "# Set Memory to 8GB minimum",
+            "# Set CPUs to half of available cores",
+            "# Set Disk image size to 64GB minimum",
+            "# Enable BuildKit for faster builds",
+            "echo 'export DOCKER_BUILDKIT=1' >> ~/.bashrc",
+            "echo 'export COMPOSE_DOCKER_CLI_BUILD=1' >> ~/.bashrc"
+          ],
+          "expected_output": "Docker configured with adequate resources",
+          "validation": "docker system info shows allocated resources"
+        },
+        {
+          "step": 4,
+          "title": "Test Docker Installation",
+          "description": "Verify Docker is working correctly with a test container",
+          "commands": [
+            "docker run hello-world",
+            "docker run --rm alpine:latest echo 'Docker is working'",
+            "docker system info",
+            "docker system prune -f"
+          ],
+          "expected_output": "Hello world message and successful Alpine test",
+          "validation": "No errors in Docker commands and system info shows healthy status"
+        }
+      ],
+      "acceptance_criteria": [
+        "Docker version 20.0+ installed and running",
+        "Docker Compose version 2.0+ available",
+        "Docker allocated minimum 8GB RAM and 4 CPU cores",
+        "Test containers run successfully",
+        "Docker system shows healthy status"
+      ],
+      "troubleshooting": [
+        {
+          "issue": "Docker won't start on Windows",
+          "solution": "Enable Hyper-V and WSL2, restart system",
+          "commands": ["dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart"]
+        },
+        {
+          "issue": "Permission denied on Linux",
+          "solution": "Add user to docker group",
+          "commands": ["sudo usermod -aG docker $USER", "newgrp docker"]
+        }
+      ]
+    },
+    {
+      "task_id": "01-infra-002", 
+      "title": "Set Up Python Development Environment",
+      "description": "Create isolated Python environment with FastAPI, ML libraries, and all required dependencies for the Universal Digital Twin backend.",
+      "estimated_time": "45 minutes",
+      "dependencies": ["01-infra-001"],
+      "inputs": {
+        "python_version": "3.10.7 or later",
+        "requirements_template": "Base requirements.txt template"
+      },
+      "step_by_step_instructions": [
+        {
+          "step": 1,
+          "title": "Verify Python Installation",
+          "description": "Check Python version and install if necessary",
+          "commands": [
+            "python --version",
+            "python3 --version",
+            "# If Python 3.10+ not available:",
+            "# Windows: Download from python.org",
+            "# macOS: brew install python@3.10",
+            "# Linux: sudo apt update && sudo apt install python3.10 python3.10-venv"
+          ],
+          "expected_output": "Python 3.10.0 or later",
+          "validation": "Python version 3.10+ confirmed"
+        },
+        {
+          "step": 2,
+          "title": "Create Virtual Environment",
+          "description": "Set up isolated Python environment for project dependencies",
+          "commands": [
+            "cd /path/to/ai-Q",
+            "python -m venv venv",
+            "# Windows activation:",
+            "venv\\Scripts\\activate",
+            "# macOS/Linux activation:",
+            "source venv/bin/activate",
+            "python -m pip install --upgrade pip setuptools wheel"
+          ],
+          "expected_output": "Virtual environment created and activated with (venv) prefix",
+          "validation": "which python shows virtual environment path"
+        },
+        {
+          "step": 3,
+          "title": "Install Core Python Dependencies",
+          "description": "Install FastAPI, ML libraries, and development tools",
+          "commands": [
+            "pip install fastapi[all]==0.104.1",
+            "pip install uvicorn[standard]==0.24.0",
+            "pip install pydantic==2.5.0",
+            "pip install sqlalchemy==2.0.23",
+            "pip install psycopg2-binary==2.9.9",
+            "pip install redis==5.0.1",
+            "pip install celery==5.3.4",
+            "pip install python-multipart==0.0.6",
+            "pip install python-jose[cryptography]==3.3.0",
+            "pip install passlib[bcrypt]==1.7.4",
+            "pip install httpx==0.25.2",
+            "pip install pytest==7.4.3",
+            "pip install pytest-asyncio==0.21.1"
+          ],
+          "expected_output": "All packages installed successfully",
+          "validation": "pip list shows all required packages"
+        },
+        {
+          "step": 4,
+          "title": "Install AI/ML Dependencies",
+          "description": "Install machine learning and AI processing libraries",
+          "commands": [
+            "pip install torch==2.1.1 torchvision==0.16.1 --index-url https://download.pytorch.org/whl/cpu",
+            "pip install transformers==4.36.0",
+            "pip install sentence-transformers==2.2.2",
+            "pip install opencv-python==4.8.1.78",
+            "pip install pillow==10.1.0",
+            "pip install numpy==1.24.4",
+            "pip install pandas==2.1.4",
+            "pip install scikit-learn==1.3.2",
+            "pip install matplotlib==3.8.2",
+            "pip install seaborn==0.13.0"
+          ],
+          "expected_output": "ML libraries installed without conflicts",
+          "validation": "import torch, transformers, cv2 work in Python"
+        },
+        {
+          "step": 5,
+          "title": "Install Development Tools",
+          "description": "Set up code quality, formatting, and testing tools",
+          "commands": [
+            "pip install black==23.11.0",
+            "pip install flake8==6.1.0",
+            "pip install mypy==1.7.1",
+            "pip install isort==5.12.0",
+            "pip install pre-commit==3.6.0",
+            "pip install bandit==1.7.5",
+            "pip install coverage==7.3.2",
+            "pip install pytest-cov==4.1.0"
+          ],
+          "expected_output": "Development tools installed successfully",
+          "validation": "black --version, flake8 --version work"
+        },
+        {
+          "step": 6,
+          "title": "Generate Requirements File",
+          "description": "Create requirements.txt with pinned versions",
+          "commands": [
+            "pip freeze > requirements.txt",
+            "cat requirements.txt | head -20",
+            "wc -l requirements.txt"
+          ],
+          "expected_output": "requirements.txt with 50+ packages and pinned versions",
+          "validation": "requirements.txt exists and contains FastAPI, torch, etc."
+        }
+      ],
+      "acceptance_criteria": [
+        "Python 3.10+ virtual environment active",
+        "FastAPI and all web dependencies installed",
+        "PyTorch and ML libraries working",
+        "Development tools configured",
+        "requirements.txt generated with pinned versions",
+        "All imports work without errors"
+      ]
+    },
+    {
+      "task_id": "01-infra-003",
+      "title": "Set Up Node.js Frontend Environment", 
+      "description": "Install Node.js, npm, and create React TypeScript frontend with all required build tools and dependencies.",
+      "estimated_time": "30 minutes",
+      "dependencies": ["01-infra-001"],
+      "inputs": {
+        "node_version": "18.16.0 or later",
+        "package_manager": "npm or yarn"
+      },
+      "step_by_step_instructions": [
+        {
+          "step": 1,
+          "title": "Install Node.js and npm",
+          "description": "Set up Node.js runtime and package manager",
+          "commands": [
+            "node --version",
+            "npm --version",
+            "# If not installed:",
+            "# Windows: Download from nodejs.org",
+            "# macOS: brew install node@18",
+            "# Linux: curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -"
+          ],
+          "expected_output": "Node.js 18.16.0+ and npm 9.0+",
+          "validation": "Both node and npm commands work"
+        },
+        {
+          "step": 2,
+          "title": "Create React TypeScript Project",
+          "description": "Initialize frontend project with Vite and TypeScript",
+          "commands": [
+            "cd /path/to/ai-Q",
+            "npm create vite@latest frontend -- --template react-ts",
+            "cd frontend",
+            "npm install",
+            "npm run dev"
+          ],
+          "expected_output": "Vite dev server running on localhost:5173",
+          "validation": "Frontend accessible in browser"
+        },
+        {
+          "step": 3,
+          "title": "Install UI and Utility Dependencies",
+          "description": "Add Material-UI, routing, state management, and utility libraries",
+          "commands": [
+            "npm install @mui/material@5.14.18 @emotion/react@11.11.1 @emotion/styled@11.11.0",
+            "npm install @mui/icons-material@5.14.18",
+            "npm install react-router-dom@6.19.0",
+            "npm install @types/react-router-dom@5.3.3",
+            "npm install zustand@4.4.7",
+            "npm install axios@1.6.2",
+            "npm install @types/node@20.9.1"
+          ],
+          "expected_output": "All dependencies installed without conflicts",
+          "validation": "package.json shows all required dependencies"
+        },
+        {
+          "step": 4,
+          "title": "Install Development Dependencies",
+          "description": "Add TypeScript tools, linting, and testing frameworks",
+          "commands": [
+            "npm install --save-dev @typescript-eslint/eslint-plugin@6.12.0",
+            "npm install --save-dev @typescript-eslint/parser@6.12.0",
+            "npm install --save-dev eslint@8.54.0",
+            "npm install --save-dev prettier@3.1.0",
+            "npm install --save-dev @vitejs/plugin-react@4.1.1",
+            "npm install --save-dev vitest@0.34.6",
+            "npm install --save-dev @testing-library/react@13.4.0"
+          ],
+          "expected_output": "Development tools installed successfully",
+          "validation": "npm run lint and npm run test scripts work"
+        },
+        {
+          "step": 5,
+          "title": "Configure Build Scripts",
+          "description": "Set up package.json scripts for development workflow",
+          "commands": [
+            "# Add to package.json scripts:",
+            "\"dev\": \"vite\"",
+            "\"build\": \"tsc && vite build\"",
+            "\"preview\": \"vite preview\"",
+            "\"lint\": \"eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0\"",
+            "\"format\": \"prettier --write \\\"src/**/*.{ts,tsx,js,jsx,json,css,md}\\\"\"",
+            "\"test\": \"vitest\"",
+            "\"test:coverage\": \"vitest --coverage\""
+          ],
+          "expected_output": "Scripts added to package.json",
+          "validation": "npm run build completes successfully"
+        }
+      ],
+      "acceptance_criteria": [
+        "Node.js 18+ and npm 9+ installed",
+        "React TypeScript project created with Vite",
+        "Material-UI and routing libraries installed",
+        "Development tools and linting configured",
+        "Build and test scripts working",
+        "Development server runs without errors"
+      ]
+    },
+    {
+      "task_id": "01-infra-004",
+      "title": "Create Docker Compose Development Environment",
+      "description": "Set up complete containerized development environment with all services, databases, and networking.",
+      "estimated_time": "60 minutes", 
+      "dependencies": ["01-infra-001", "01-infra-002", "01-infra-003"],
+      "inputs": {
+        "service_requirements": "PostgreSQL, Redis, Minio, Weaviate services",
+        "network_configuration": "Internal Docker networking"
+      },
+      "step_by_step_instructions": [
+        {
+          "step": 1,
+          "title": "Create Docker Compose File",
+          "description": "Define all services in docker-compose.yml",
+          "commands": [
+            "cd /path/to/ai-Q",
+            "touch docker-compose.yml",
+            "# Create comprehensive docker-compose.yml with all services"
+          ],
+          "file_content": {
+            "filename": "docker-compose.yml",
+            "content": "version: '3.8'\n\nservices:\n  postgres:\n    image: postgres:15-alpine\n    container_name: aiq-postgres\n    environment:\n      POSTGRES_DB: aiq_db\n      POSTGRES_USER: aiq_user\n      POSTGRES_PASSWORD: aiq_pass\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n      - ./config/postgres:/docker-entrypoint-initdb.d\n    healthcheck:\n      test: [\"CMD-SHELL\", \"pg_isready -U aiq_user -d aiq_db\"]\n      interval: 10s\n      timeout: 5s\n      retries: 5\n\n  redis:\n    image: redis:7-alpine\n    container_name: aiq-redis\n    ports:\n      - \"6379:6379\"\n    volumes:\n      - redis_data:/data\n    command: redis-server --appendonly yes\n    healthcheck:\n      test: [\"CMD\", \"redis-cli\", \"ping\"]\n      interval: 10s\n      timeout: 5s\n      retries: 5\n\n  minio:\n    image: minio/minio:latest\n    container_name: aiq-minio\n    environment:\n      MINIO_ROOT_USER: minioadmin\n      MINIO_ROOT_PASSWORD: minioadmin123\n    ports:\n      - \"9000:9000\"\n      - \"9001:9001\"\n    volumes:\n      - minio_data:/data\n    command: server /data --console-address \":9001\"\n    healthcheck:\n      test: [\"CMD\", \"curl\", \"-f\", \"http://localhost:9000/minio/health/live\"]\n      interval: 30s\n      timeout: 20s\n      retries: 3\n\n  weaviate:\n    image: semitechnologies/weaviate:1.22.4\n    container_name: aiq-weaviate\n    environment:\n      QUERY_DEFAULTS_LIMIT: 25\n      AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'\n      PERSISTENCE_DATA_PATH: '/var/lib/weaviate'\n      DEFAULT_VECTORIZER_MODULE: 'none'\n      ENABLE_MODULES: 'text2vec-transformers,img2vec-neural'\n      TRANSFORMERS_INFERENCE_API: 'http://t2v-transformers:8080'\n      CLUSTER_HOSTNAME: 'node1'\n    ports:\n      - \"8080:8080\"\n    volumes:\n      - weaviate_data:/var/lib/weaviate\n    depends_on:\n      - t2v-transformers\n\n  t2v-transformers:\n    image: semitechnologies/transformers-inference:sentence-transformers-all-MiniLM-L6-v2\n    container_name: aiq-transformers\n    environment:\n      ENABLE_CUDA: '0'\n\nvolumes:\n  postgres_data:\n  redis_data:\n  minio_data:\n  weaviate_data:\n\nnetworks:\n  default:\n    name: aiq-network"
+          },
+          "expected_output": "docker-compose.yml created with all services",
+          "validation": "docker-compose config validates without errors"
+        },
+        {
+          "step": 2,
+          "title": "Create Service Configuration",
+          "description": "Set up configuration files for each service",
+          "commands": [
+            "mkdir -p config/postgres config/redis config/minio",
+            "# Create PostgreSQL init script",
+            "cat > config/postgres/01-init.sql << 'EOF'\nCREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";\nCREATE EXTENSION IF NOT EXISTS \"pgcrypto\";\nEOF"
+          ],
+          "expected_output": "Configuration directories and files created",
+          "validation": "Config files exist and contain proper initialization"
+        },
+        {
+          "step": 3,
+          "title": "Start All Services",
+          "description": "Launch complete development environment",
+          "commands": [
+            "docker-compose up -d",
+            "docker-compose ps",
+            "docker-compose logs --tail=50"
+          ],
+          "expected_output": "All services running and healthy",
+          "validation": "docker-compose ps shows all services as Up"
+        },
+        {
+          "step": 4,
+          "title": "Verify Service Connectivity",
+          "description": "Test that all services are accessible and responding",
+          "commands": [
+            "# Test PostgreSQL",
+            "docker exec aiq-postgres psql -U aiq_user -d aiq_db -c 'SELECT version();'",
+            "# Test Redis", 
+            "docker exec aiq-redis redis-cli ping",
+            "# Test Minio",
+            "curl -f http://localhost:9000/minio/health/live",
+            "# Test Weaviate",
+            "curl -f http://localhost:8080/v1/.well-known/ready"
+          ],
+          "expected_output": "All health checks return positive responses",
+          "validation": "No connection errors from any service"
+        }
+      ],
+      "acceptance_criteria": [
+        "docker-compose.yml contains all required services",
+        "All services start successfully",
+        "Health checks pass for all services", 
+        "Services accessible on expected ports",
+        "Data persistence configured for stateful services",
+        "Network connectivity between services working"
+      ]
+    },
+    {
+      "task_id": "01-infra-005",
+      "title": "Configure Environment Variables and Settings",
+      "description": "Set up comprehensive environment configuration management with templates and validation.",
+      "estimated_time": "30 minutes",
+      "dependencies": ["01-infra-004"],
+      "step_by_step_instructions": [
+        {
+          "step": 1,
+          "title": "Create Environment Templates",
+          "description": "Set up .env templates for different environments",
+          "commands": [
+            "touch .env.template .env.development .env.production",
+            "echo '.env*' >> .gitignore"
+          ],
+          "file_content": {
+            "filename": ".env.template",
+            "content": "# AI-Q Universal Digital Twin - Environment Configuration\n\n# Database Configuration\nDATABASE_URL=postgresql://aiq_user:aiq_pass@localhost:5432/aiq_db\nDATABASE_POOL_SIZE=20\nDATABASE_MAX_OVERFLOW=30\n\n# Redis Configuration\nREDIS_URL=redis://localhost:6379/0\nREDIS_MAX_CONNECTIONS=100\n\n# Minio Configuration\nMINIO_ENDPOINT=localhost:9000\nMINIO_ACCESS_KEY=minioadmin\nMINIO_SECRET_KEY=minioadmin123\nMINIO_SECURE=false\n\n# Weaviate Configuration\nWEAVIATE_URL=http://localhost:8080\nWEAVIATE_API_KEY=\n\n# API Configuration\nAPI_HOST=0.0.0.0\nAPI_PORT=8000\nAPI_DEBUG=true\nAPI_RELOAD=true\n\n# Security\nSECRET_KEY=your-secret-key-here\nACCESS_TOKEN_EXPIRE_MINUTES=30\nALGORITHM=HS256\n\n# Feature Flags\nENABLE_RAG=true\nENABLE_VECTOR_SEARCH=true\nENABLE_KNOWLEDGE_GRAPH=true\nENABLE_IMAGE_PROCESSING=true\nENABLE_VIDEO_PROCESSING=false\nENABLE_AUDIO_PROCESSING=false\n\n# Processing Configuration\nMAX_FILE_SIZE_MB=100\nMAX_CONCURRENT_UPLOADS=10\nPROCESSING_TIMEOUT_SECONDS=300\n\n# Logging\nLOG_LEVEL=INFO\nLOG_FORMAT=json\nLOG_FILE=logs/app.log"
+          }
+        },
+        {
+          "step": 2,
+          "title": "Create Settings Validation",
+          "description": "Implement Pydantic settings validation",
+          "commands": [
+            "mkdir -p src/config",
+            "touch src/config/__init__.py src/config/settings.py"
+          ],
+          "file_content": {
+            "filename": "src/config/settings.py",
+            "content": "from typing import Optional, List\nfrom pydantic import BaseSettings, PostgresDsn, RedisDsn, validator\nfrom functools import lru_cache\n\nclass Settings(BaseSettings):\n    # Database\n    database_url: PostgresDsn\n    database_pool_size: int = 20\n    database_max_overflow: int = 30\n    \n    # Redis\n    redis_url: RedisDsn\n    redis_max_connections: int = 100\n    \n    # Minio\n    minio_endpoint: str\n    minio_access_key: str\n    minio_secret_key: str\n    minio_secure: bool = False\n    \n    # Weaviate\n    weaviate_url: str\n    weaviate_api_key: Optional[str] = None\n    \n    # API\n    api_host: str = \"0.0.0.0\"\n    api_port: int = 8000\n    api_debug: bool = False\n    api_reload: bool = False\n    \n    # Security\n    secret_key: str\n    access_token_expire_minutes: int = 30\n    algorithm: str = \"HS256\"\n    \n    # Feature Flags\n    enable_rag: bool = True\n    enable_vector_search: bool = True\n    enable_knowledge_graph: bool = True\n    enable_image_processing: bool = True\n    enable_video_processing: bool = False\n    enable_audio_processing: bool = False\n    \n    # Processing\n    max_file_size_mb: int = 100\n    max_concurrent_uploads: int = 10\n    processing_timeout_seconds: int = 300\n    \n    # Logging\n    log_level: str = \"INFO\"\n    log_format: str = \"json\"\n    log_file: str = \"logs/app.log\"\n    \n    class Config:\n        env_file = \".env\"\n        case_sensitive = False\n\n@lru_cache()\ndef get_settings() -> Settings:\n    return Settings()"
+          }
+        }
+      ],
+      "acceptance_criteria": [
+        "Environment templates created for all environments",
+        "Pydantic settings validation implemented",
+        "All configuration properly typed and validated",
+        "Environment variables loaded correctly",
+        "Sensitive values excluded from version control"
+      ]
+    }
+  ],
+  "recipe_validation": {
+    "automated_checks": [
+      {
+        "check_name": "Docker Services Health",
+        "command": "docker-compose ps --services --filter status=running | wc -l",
+        "expected_result": "5",
+        "description": "All 5 services should be running"
+      },
+      {
+        "check_name": "Python Environment",
+        "command": "source venv/bin/activate && python -c 'import fastapi, torch, transformers; print(\"OK\")'",
+        "expected_result": "OK",
+        "description": "All Python dependencies importable"
+      },
+      {
+        "check_name": "Node.js Environment", 
+        "command": "cd frontend && npm run build",
+        "expected_result": "Build completed successfully",
+        "description": "Frontend builds without errors"
+      },
+      {
+        "check_name": "Service Connectivity",
+        "command": "curl -f http://localhost:8080/v1/.well-known/ready && curl -f http://localhost:9000/minio/health/live",
+        "expected_result": "HTTP 200 responses",
+        "description": "External services responding"
+      }
+    ],
+    "manual_verification": [
+      {
+        "step": "Open http://localhost:5173 in browser",
+        "expected": "React development server loads successfully"
+      },
+      {
+        "step": "Check docker-compose logs for any errors",
+        "expected": "No error messages in service logs"
+      },
+      {
+        "step": "Verify all environment variables load",
+        "expected": "Settings validation passes without errors"
+      }
+    ]
+  },
+  "rollback_procedures": [
+    {
+      "step": 1,
+      "action": "Stop all Docker services",
+      "command": "docker-compose down -v"
+    },
+    {
+      "step": 2, 
+      "action": "Remove virtual environment",
+      "command": "rm -rf venv"
+    },
+    {
+      "step": 3,
+      "action": "Remove Node.js dependencies",
+      "command": "cd frontend && rm -rf node_modules package-lock.json"
+    },
+    {
+      "step": 4,
+      "action": "Clean Docker images and volumes",
+      "command": "docker system prune -af --volumes"
+    }
+  ],
+  "next_recipe": "02-storage-systems-recipe.json",
+  "documentation_updates": [
+    "Update README.md with setup instructions",
+    "Create DEVELOPMENT.md with workflow guide",
+    "Document troubleshooting common issues",
+    "Add architecture diagrams"
+  ]
+} 

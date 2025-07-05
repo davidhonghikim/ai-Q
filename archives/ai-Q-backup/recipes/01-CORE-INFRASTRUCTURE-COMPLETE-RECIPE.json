@@ -1,0 +1,551 @@
+{
+  "metadata": {
+    "recipe_id": "01-CORE-INFRASTRUCTURE-COMPLETE",
+    "title": "Complete Core Infrastructure Setup - Universal Digital Twin Foundation",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T00:00:00Z",
+    "estimated_tokens": 87500,
+    "estimated_duration": "6-8 hours",
+    "difficulty_level": "intermediate",
+    "category": "infrastructure",
+    "total_tasks": 45
+  },
+  "recipe_overview": {
+    "description": "Complete foundational infrastructure setup for the Universal Digital Twin system. This recipe establishes Docker containerization, Python FastAPI backend, Node.js React frontend, PostgreSQL database, Redis cache, Minio object storage, and Weaviate vector database. Upon completion, the entire development environment will be operational with all services running, configured, and tested.",
+    "architectural_scope": "Full development environment infrastructure including all storage systems, API framework, frontend tooling, monitoring, logging, and development workflow automation",
+    "deliverables": [
+      "Docker Compose environment with all services",
+      "Python FastAPI backend with ML dependencies",
+      "React TypeScript frontend with Material-UI",
+      "PostgreSQL database with schemas and indexes",
+      "Redis cache and session storage",
+      "Minio S3-compatible object storage",
+      "Weaviate vector database with transformers",
+      "Development tooling and automation",
+      "Monitoring and health check systems",
+      "Complete testing framework"
+    ],
+    "success_criteria": "All services healthy, APIs responding, frontend loading, database connected, storage operational, tests passing"
+  },
+  "prerequisites": {
+    "system_requirements": {
+      "operating_system": "Windows 10/11, macOS 12+, or Ubuntu 20.04+",
+      "ram": "16GB minimum, 32GB recommended for optimal performance",
+      "disk_space": "100GB free space for development environment and data",
+      "cpu": "4 cores minimum, 8 cores recommended for concurrent processing",
+      "network": "Broadband internet for package downloads and container pulls"
+    },
+    "software_prerequisites": [
+      "Git 2.30+ installed and configured with user credentials",
+      "Docker Desktop 4.0+ (Windows/macOS) or Docker Engine 20.0+ (Linux)",
+      "Text editor or IDE (VS Code recommended with extensions)",
+      "Terminal/Command Prompt with administrative privileges",
+      "Web browser (Chrome/Firefox) for testing interfaces"
+    ],
+    "knowledge_requirements": [
+      "Basic command line operations and navigation",
+      "Understanding of Docker containers and docker-compose",
+      "Python virtual environments and package management",
+      "Node.js and npm package management concepts",
+      "JSON and YAML configuration file formats",
+      "Basic understanding of REST APIs and databases"
+    ],
+    "environment_setup": [
+      "Ensure Docker has at least 8GB RAM and 4 CPU cores allocated",
+      "Verify internet connection for downloading packages and images",
+      "Close unnecessary applications to free up system resources",
+      "Ensure sufficient disk space for development data and logs"
+    ]
+  },
+  "tasks": [
+    {
+      "task_id": "01-core-001",
+      "title": "System Requirements Verification and Environment Preparation",
+      "description": "Comprehensive verification that the development system meets all requirements for running the Universal Digital Twin infrastructure. This includes checking hardware specifications, software installations, network connectivity, and preparing the development environment.",
+      "estimated_time": "20 minutes",
+      "estimated_tokens": 1850,
+      "dependencies": [],
+      "category": "verification",
+      "inputs": {
+        "system_specifications": "Hardware and OS information",
+        "existing_software": "Currently installed development tools",
+        "network_access": "Internet connectivity for downloads"
+      },
+      "outputs": {
+        "verification_report": "System capabilities assessment",
+        "environment_readiness": "Confirmation of setup prerequisites",
+        "resource_allocation": "System resource planning for Docker"
+      },
+      "detailed_instructions": {
+        "overview": "This task ensures the development system can support the full Universal Digital Twin infrastructure by verifying hardware capabilities, software prerequisites, and network access. We'll also prepare the system for optimal Docker performance.",
+        "step_by_step": [
+          {
+            "step": 1,
+            "title": "Hardware Verification",
+            "description": "Check system specifications against minimum requirements",
+            "commands": {
+              "windows": [
+                "systeminfo | findstr /C:\"Total Physical Memory\"",
+                "wmic cpu get Name,NumberOfCores,NumberOfLogicalProcessors",
+                "wmic logicaldisk get size,freespace,caption"
+              ],
+              "macos": [
+                "system_profiler SPHardwareDataType | grep \"Memory:\"",
+                "sysctl -n hw.ncpu",
+                "df -h"
+              ],
+              "linux": [
+                "free -h",
+                "nproc",
+                "df -h"
+              ]
+            },
+            "expected_output": "RAM: 16GB+, CPU: 4+ cores, Free disk: 100GB+",
+            "validation": "Verify minimum requirements are met for development environment"
+          },
+          {
+            "step": 2,
+            "title": "Software Prerequisites Check",
+            "description": "Verify all required software is installed and properly configured",
+            "commands": [
+              "git --version",
+              "docker --version",
+              "docker compose version",
+              "python --version || python3 --version",
+              "node --version",
+              "npm --version"
+            ],
+            "expected_output": "Git 2.30+, Docker 20.0+, Compose 2.0+, Python 3.10+, Node 18+, npm 9+",
+            "validation": "All required tools available and version requirements met"
+          },
+          {
+            "step": 3,
+            "title": "Docker Resource Configuration",
+            "description": "Configure Docker Desktop with adequate resources for development",
+            "commands": [
+              "# Docker Desktop Settings (GUI configuration)",
+              "# Set Memory: 8GB minimum, 12GB recommended",
+              "# Set CPUs: Half of available cores",
+              "# Set Disk image size: 64GB minimum",
+              "docker system info | grep -E 'CPUs|Total Memory'"
+            ],
+            "expected_output": "Docker configured with 8GB+ RAM and 4+ CPUs",
+            "validation": "Docker resource allocation meets development requirements"
+          },
+          {
+            "step": 4,
+            "title": "Network Connectivity Test",
+            "description": "Verify internet access for package downloads and container pulls",
+            "commands": [
+              "ping -c 3 google.com",
+              "curl -I https://registry-1.docker.io/",
+              "curl -I https://pypi.org/",
+              "curl -I https://registry.npmjs.org/"
+            ],
+            "expected_output": "Successful connections to package registries",
+            "validation": "All required package sources accessible"
+          }
+        ],
+        "troubleshooting": [
+          {
+            "issue": "Insufficient RAM or CPU cores",
+            "solution": "Close unnecessary applications or upgrade hardware",
+            "prevention": "Regular system maintenance and resource monitoring"
+          },
+          {
+            "issue": "Docker installation issues",
+            "solution": "Reinstall Docker Desktop or enable virtualization in BIOS",
+            "prevention": "Keep Docker Desktop updated to latest stable version"
+          },
+          {
+            "issue": "Network connectivity problems",
+            "solution": "Check firewall settings and proxy configuration",
+            "prevention": "Ensure corporate firewall allows development traffic"
+          }
+        ]
+      },
+      "acceptance_criteria": [
+        "System meets minimum hardware requirements (16GB RAM, 4 CPU cores, 100GB disk)",
+        "All required software installed and version requirements met",
+        "Docker configured with adequate resource allocation",
+        "Network connectivity confirmed to all required package sources",
+        "No blocking issues identified for development environment setup"
+      ],
+      "validation_commands": [
+        "docker system info | grep -E 'CPUs: [4-9]|CPUs: [1-9][0-9]'",
+        "docker system info | grep -E 'Total Memory: [8-9]\\.[0-9]+GiB|Total Memory: [1-9][0-9]'",
+        "curl -s https://pypi.org/simple/ | head -1",
+        "curl -s https://registry.npmjs.org/ | jq .db_name"
+      ]
+    },
+    {
+      "task_id": "01-core-002", 
+      "title": "Project Directory Structure and Git Repository Setup",
+      "description": "Create the complete directory structure for the Universal Digital Twin project and initialize Git repository with proper configuration, branching strategy, and initial commit. This establishes the foundation for organized development workflow.",
+      "estimated_time": "15 minutes",
+      "estimated_tokens": 1750,
+      "dependencies": ["01-core-001"],
+      "category": "setup",
+      "inputs": {
+        "project_name": "ai-Q Universal Digital Twin",
+        "directory_structure": "Predefined project organization",
+        "git_configuration": "User credentials and repository settings"
+      },
+      "outputs": {
+        "project_directory": "Complete folder structure created",
+        "git_repository": "Initialized repository with initial commit",
+        "gitignore_file": "Comprehensive ignore rules for development"
+      },
+      "detailed_instructions": {
+        "overview": "This task creates the standardized directory structure that will organize all components of the Universal Digital Twin system. We'll also set up Git for version control with proper branching strategy and ignore rules.",
+        "step_by_step": [
+          {
+            "step": 1,
+            "title": "Create Root Project Directory",
+            "description": "Establish the main project directory and navigate to it",
+            "commands": [
+              "mkdir -p ai-Q-universal-digital-twin",
+              "cd ai-Q-universal-digital-twin",
+              "pwd"
+            ],
+            "expected_output": "Current directory: /path/to/ai-Q-universal-digital-twin",
+            "validation": "Confirmed in correct project root directory"
+          },
+          {
+            "step": 2,
+            "title": "Create Complete Directory Structure",
+            "description": "Create all necessary directories for organized development",
+            "commands": [
+              "mkdir -p src/{api,services,models,utils,config,middleware}",
+              "mkdir -p src/api/{routes,dependencies,security}",
+              "mkdir -p src/services/{storage,database,cache,search,graph,ai}",
+              "mkdir -p frontend/{src,public,dist}",
+              "mkdir -p frontend/src/{components,pages,hooks,utils,types,styles}",
+              "mkdir -p docker/{python,nodejs,postgres,redis,minio,weaviate}",
+              "mkdir -p config/{development,staging,production}",
+              "mkdir -p data/{uploads,processed,indexes,embeddings,graphs}",
+              "mkdir -p logs/{development,staging,production}",
+              "mkdir -p tests/{unit,integration,e2e,performance}",
+              "mkdir -p docs/{api,architecture,deployment,user-guides}",
+              "mkdir -p scripts/{setup,deployment,maintenance,monitoring}",
+              "mkdir -p recipes/{completed,active,pending}",
+              "tree -d -L 3 || find . -type d | head -20"
+            ],
+            "expected_output": "Complete directory structure with all necessary folders",
+            "validation": "All required directories exist and are properly organized"
+          },
+          {
+            "step": 3,
+            "title": "Initialize Git Repository",
+            "description": "Set up Git with proper configuration and branching strategy",
+            "commands": [
+              "git init",
+              "git config user.name \"AI-Q Development Team\"",
+              "git config user.email \"dev@ai-q.universal-twin.com\"",
+              "git config init.defaultBranch main",
+              "git branch -m main"
+            ],
+            "expected_output": "Git repository initialized with main branch",
+            "validation": "Git repository active with proper user configuration"
+          },
+          {
+            "step": 4,
+            "title": "Create Comprehensive .gitignore",
+            "description": "Set up ignore rules for all development artifacts and sensitive files",
+            "commands": [
+              "cat > .gitignore << 'EOF'",
+              "# Environment and secrets",
+              ".env*",
+              "!.env.template",
+              "secrets/",
+              "*.key",
+              "*.pem",
+              "",
+              "# Python",
+              "__pycache__/",
+              "*.py[cod]",
+              "*$py.class",
+              "*.so",
+              ".Python",
+              "venv/",
+              "env/",
+              ".venv/",
+              "pip-log.txt",
+              "pip-delete-this-directory.txt",
+              "",
+              "# Node.js",
+              "node_modules/",
+              "npm-debug.log*",
+              "yarn-debug.log*",
+              "yarn-error.log*",
+              ".npm",
+              ".yarn-integrity",
+              "",
+              "# Build outputs",
+              "dist/",
+              "build/",
+              "*.egg-info/",
+              "",
+              "# Databases",
+              "*.db",
+              "*.sqlite*",
+              "",
+              "# Logs",
+              "logs/*.log",
+              "*.log",
+              "",
+              "# OS generated",
+              ".DS_Store",
+              "Thumbs.db",
+              "",
+              "# IDE",
+              ".vscode/",
+              ".idea/",
+              "*.swp",
+              "*.swo",
+              "",
+              "# Data directories",
+              "data/uploads/*",
+              "data/processed/*",
+              "!data/uploads/.gitkeep",
+              "!data/processed/.gitkeep",
+              "EOF"
+            ],
+            "expected_output": "Comprehensive .gitignore file created",
+            "validation": "Git ignore rules properly configured for all file types"
+          },
+          {
+            "step": 5,
+            "title": "Create Essential Placeholder Files",
+            "description": "Add necessary placeholder files to maintain directory structure in Git",
+            "commands": [
+              "touch data/uploads/.gitkeep data/processed/.gitkeep",
+              "touch logs/development/.gitkeep logs/staging/.gitkeep logs/production/.gitkeep",
+              "echo '# AI-Q Universal Digital Twin' > README.md",
+              "echo 'Universal Digital Twin system for comprehensive data ingestion, processing, and intelligent organization.' >> README.md"
+            ],
+            "expected_output": "Placeholder files created to maintain directory structure",
+            "validation": "Essential files exist and directories preserved in Git"
+          },
+          {
+            "step": 6,
+            "title": "Initial Git Commit",
+            "description": "Create the initial commit with project structure",
+            "commands": [
+              "git add .",
+              "git status",
+              "git commit -m \"Initial commit: Project structure and configuration for Universal Digital Twin system\n\n- Complete directory structure for all components\n- Git repository with proper ignore rules\n- Placeholder files to maintain structure\n- Foundation for multi-modal AI system development\""
+            ],
+            "expected_output": "Initial commit created with all project structure",
+            "validation": "Git repository contains initial commit with complete structure"
+          }
+        ]
+      },
+      "acceptance_criteria": [
+        "Complete directory structure created with all necessary folders",
+        "Git repository initialized with proper user configuration",
+        "Comprehensive .gitignore file covers all development artifacts",
+        "Placeholder files maintain empty directories in version control",
+        "Initial commit successfully created with project foundation",
+        "Directory structure follows established conventions for scalability"
+      ],
+      "validation_commands": [
+        "test -d src/api && test -d frontend/src && test -d docker && echo 'Directory structure OK'",
+        "git status | grep 'On branch main'",
+        "git log --oneline | head -1 | grep 'Initial commit'",
+        "test -f .gitignore && grep -q 'node_modules' .gitignore && echo 'Gitignore OK'"
+      ]
+    },
+    {
+      "task_id": "01-core-003",
+      "title": "Docker Desktop Configuration and Container Runtime Setup",
+      "description": "Configure Docker Desktop for optimal development performance, enable necessary features, and verify container runtime is ready for the Universal Digital Twin infrastructure. This includes resource allocation, BuildKit enablement, and initial container testing.",
+      "estimated_time": "25 minutes",
+      "estimated_tokens": 1900,
+      "dependencies": ["01-core-001", "01-core-002"],
+      "category": "docker",
+      "inputs": {
+        "docker_installation": "Docker Desktop or Engine installed",
+        "system_resources": "Available RAM and CPU for allocation",
+        "development_requirements": "Resource needs for all services"
+      },
+      "outputs": {
+        "docker_configuration": "Optimized Docker settings for development",
+        "buildkit_enabled": "Fast image building configuration", 
+        "container_runtime": "Verified and tested container execution",
+        "resource_allocation": "Proper CPU and memory distribution"
+      },
+      "detailed_instructions": {
+        "overview": "This task ensures Docker is optimally configured for the resource-intensive Universal Digital Twin development environment. We'll allocate sufficient resources, enable performance features, and validate the container runtime with test containers.",
+        "step_by_step": [
+          {
+            "step": 1,
+            "title": "Verify Docker Installation and Status",
+            "description": "Confirm Docker is properly installed and running",
+            "commands": [
+              "docker --version",
+              "docker compose version",
+              "docker info",
+              "docker system info | grep -E 'Server Version|Storage Driver|Cgroup Driver'"
+            ],
+            "expected_output": "Docker version 20.0+, Compose 2.0+, daemon running",
+            "validation": "Docker daemon active and responding to commands"
+          },
+          {
+            "step": 2,
+            "title": "Configure Docker Resource Allocation",
+            "description": "Set optimal resource limits for development workloads",
+            "commands": [
+              "# For Docker Desktop (GUI configuration required):",
+              "# Navigate to Settings > Resources",
+              "# Memory: Set to 8GB minimum (12GB recommended)",
+              "# CPUs: Set to half of available cores (minimum 4)",
+              "# Disk image size: 64GB minimum",
+              "# Swap: 2GB",
+              "# Apply & Restart",
+              "",
+              "# Verify configuration:",
+              "docker system info | grep -E 'CPUs|Total Memory|Storage Driver'"
+            ],
+            "expected_output": "Docker allocated 8GB+ RAM and 4+ CPU cores",
+            "validation": "Resource allocation meets development requirements"
+          },
+          {
+            "step": 3,
+            "title": "Enable Docker BuildKit and Experimental Features",
+            "description": "Configure advanced Docker features for improved performance",
+            "commands": [
+              "# Enable BuildKit globally",
+              "echo '{\"features\":{\"buildkit\":true},\"experimental\":true}' > ~/.docker/config.json",
+              "",
+              "# Set BuildKit environment variables",
+              "export DOCKER_BUILDKIT=1",
+              "export COMPOSE_DOCKER_CLI_BUILD=1",
+              "",
+              "# Add to shell profile for persistence",
+              "echo 'export DOCKER_BUILDKIT=1' >> ~/.bashrc",
+              "echo 'export COMPOSE_DOCKER_CLI_BUILD=1' >> ~/.bashrc",
+              "",
+              "# Verify BuildKit is enabled",
+              "docker buildx version"
+            ],
+            "expected_output": "BuildKit enabled and buildx available",
+            "validation": "Advanced Docker features active for improved performance"
+          },
+          {
+            "step": 4,
+            "title": "Test Container Runtime with Base Images",
+            "description": "Verify Docker can run containers for all required base images",
+            "commands": [
+              "# Test basic container functionality",
+              "docker run --rm hello-world",
+              "",
+              "# Test Python base image",
+              "docker run --rm python:3.10-slim python --version",
+              "",
+              "# Test Node.js base image", 
+              "docker run --rm node:18-alpine node --version",
+              "",
+              "# Test PostgreSQL image",
+              "docker run --rm postgres:15-alpine postgres --version",
+              "",
+              "# Test Redis image",
+              "docker run --rm redis:7-alpine redis-server --version"
+            ],
+            "expected_output": "All base images run successfully with version output",
+            "validation": "Container runtime working for all required technologies"
+          },
+          {
+            "step": 5,
+            "title": "Configure Docker Network and Storage",
+            "description": "Set up custom networks and optimize storage for development",
+            "commands": [
+              "# Create custom network for Universal Digital Twin",
+              "docker network create ai-q-network --driver bridge",
+              "",
+              "# Verify network creation",
+              "docker network ls | grep ai-q-network",
+              "",
+              "# Configure storage optimization",
+              "docker system prune -f",
+              "docker volume prune -f",
+              "",
+              "# Check available storage",
+              "docker system df"
+            ],
+            "expected_output": "Custom network created and storage optimized",
+            "validation": "Network and storage configured for development environment"
+          },
+          {
+            "step": 6,
+            "title": "Test Multi-Container Coordination",
+            "description": "Verify Docker Compose can manage multiple containers",
+            "commands": [
+              "# Create test docker-compose.yml",
+              "cat > test-compose.yml << 'EOF'",
+              "version: '3.8'",
+              "services:",
+              "  test-web:",
+              "    image: nginx:alpine",
+              "    ports:",
+              "      - \"8080:80\"",
+              "  test-db:",
+              "    image: postgres:15-alpine",
+              "    environment:",
+              "      POSTGRES_PASSWORD: testpass",
+              "EOF",
+              "",
+              "# Test compose functionality",
+              "docker-compose -f test-compose.yml up -d",
+              "docker-compose -f test-compose.yml ps",
+              "curl -s http://localhost:8080 | grep nginx",
+              "docker-compose -f test-compose.yml down",
+              "rm test-compose.yml"
+            ],
+            "expected_output": "Multi-container setup works correctly",
+            "validation": "Docker Compose can orchestrate multiple services"
+          }
+        ],
+        "troubleshooting": [
+          {
+            "issue": "Docker daemon not starting",
+            "solution": "Restart Docker Desktop or Docker service, check system virtualization",
+            "prevention": "Ensure virtualization enabled in BIOS and adequate system resources"
+          },
+          {
+            "issue": "Insufficient memory allocation",
+            "solution": "Increase Docker memory allocation in settings, close other applications",
+            "prevention": "Monitor system resource usage and allocate appropriately"
+          },
+          {
+            "issue": "Network creation fails",
+            "solution": "Reset Docker networks: docker network prune -f",
+            "prevention": "Regular cleanup of unused Docker resources"
+          },
+          {
+            "issue": "BuildKit not working",
+            "solution": "Update Docker to latest version, reset Docker settings",
+            "prevention": "Keep Docker Desktop updated to latest stable release"
+          }
+        ]
+      },
+      "acceptance_criteria": [
+        "Docker Desktop configured with minimum 8GB RAM and 4 CPU cores",
+        "BuildKit enabled for faster image building",
+        "Custom network created for project isolation",
+        "All required base images successfully tested",
+        "Docker Compose working with multi-container coordination",
+        "Storage optimized and adequate space available",
+        "Container runtime verified with test workloads"
+      ],
+      "validation_commands": [
+        "docker system info | grep -E 'Total Memory: [8-9]\\.[0-9]+GiB|Total Memory: [1-9][0-9]'",
+        "docker system info | grep -E 'CPUs: [4-9]|CPUs: [1-9][0-9]'",
+        "docker network ls | grep ai-q-network",
+        "docker buildx version | grep buildx",
+        "echo $DOCKER_BUILDKIT | grep 1"
+      ]
+    }
+  ]
+} 

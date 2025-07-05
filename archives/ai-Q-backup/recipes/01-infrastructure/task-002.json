@@ -1,0 +1,242 @@
+{
+  "task_id": "01-002",
+  "title": "Project Structure & Git Repository Setup",
+  "estimated_tokens": 1900,
+  "estimated_time": "30 minutes",
+  "description": "Create enterprise-grade directory structure and Git repository for Universal Digital Twin development.",
+  "objectives": [
+    "Create scalable project directory structure",
+    "Initialize Git with proper configuration", 
+    "Set up development standards",
+    "Establish documentation framework"
+  ],
+  "execution_steps": [
+    {
+      "step": 1,
+      "title": "Root Project Creation",
+      "commands": [
+        "mkdir -p ai-Q-universal-digital-twin",
+        "cd ai-Q-universal-digital-twin",
+        "pwd && echo 'Project root created'"
+      ]
+    },
+    {
+      "step": 2,
+      "title": "Backend Structure (FastAPI Clean Architecture)",
+      "commands": [
+        "mkdir -p src/{api,services,models,schemas,utils,config,middleware}",
+        "mkdir -p src/api/{routes,dependencies,security,exceptions}",
+        "mkdir -p src/services/{storage,database,cache,search,ai}",
+        "mkdir -p src/models/{database,pydantic,enums}",
+        "mkdir -p src/utils/{logging,encryption,validation,helpers}"
+      ],
+      "purpose": "Clean architecture with separation of API, business logic, models, and utilities"
+    },
+    {
+      "step": 3, 
+      "title": "Frontend Structure (React TypeScript)",
+      "commands": [
+        "mkdir -p frontend/{src,public,dist,build}",
+        "mkdir -p frontend/src/{components,pages,hooks,utils,types,styles,store}",
+        "mkdir -p frontend/src/components/{common,forms,layout,navigation,modals}",
+        "mkdir -p frontend/src/pages/{auth,dashboard,files,search,settings,admin}"
+      ],
+      "purpose": "Component-based React development with TypeScript support"
+    },
+    {
+      "step": 4,
+      "title": "Infrastructure Directories",
+      "commands": [
+        "mkdir -p docker/{backend,frontend,database,monitoring}",
+        "mkdir -p config/{environments,secrets,certificates}",
+        "mkdir -p data/{uploads,processed,backups,logs}",
+        "mkdir -p tests/{unit,integration,e2e,performance}",
+        "mkdir -p docs/{api,architecture,deployment,guides}",
+        "mkdir -p scripts/{setup,deployment,maintenance}"
+      ],
+      "purpose": "Production-ready infrastructure and operations support"
+    },
+    {
+      "step": 5,
+      "title": "Git Repository Setup",
+      "commands": [
+        "git init",
+        "git config user.name 'AI-Q Development Team'",
+        "git config user.email 'dev@ai-q.digital-twin.com'",
+        "git config init.defaultBranch main",
+        "git config core.autocrlf input",
+        "git branch -m main"
+      ]
+    },
+    {
+      "step": 6,
+      "title": "Essential Files Creation",
+      "files": {
+        ".gitignore": [
+          "# Environment and secrets",
+          ".env*",
+          "!.env.template",
+          "secrets/",
+          "*.key",
+          "*.pem",
+          "",
+          "# Python",
+          "__pycache__/",
+          "*.py[cod]",
+          "venv/",
+          "env/",
+          "",
+          "# Node.js", 
+          "node_modules/",
+          "npm-debug.log*",
+          "",
+          "# Build outputs",
+          "dist/",
+          "build/",
+          "",
+          "# Databases",
+          "*.db",
+          "*.sqlite*",
+          "",
+          "# Logs",
+          "logs/",
+          "*.log",
+          "",
+          "# OS generated",
+          ".DS_Store",
+          "Thumbs.db",
+          "",
+          "# IDE",
+          ".vscode/",
+          ".idea/",
+          "",
+          "# Data directories",
+          "data/uploads/*",
+          "data/processed/*",
+          "data/backups/*",
+          "!data/uploads/.gitkeep",
+          "!data/processed/.gitkeep",
+          "!data/backups/.gitkeep"
+        ],
+        "README.md": [
+          "# AI-Q Universal Digital Twin System",
+          "",
+          "## Overview",
+          "Universal Digital Twin for multi-modal data processing and intelligent organization.",
+          "",
+          "## Architecture",
+          "- **Backend**: Python FastAPI with async/await",
+          "- **Frontend**: React TypeScript with Material-UI",
+          "- **Database**: PostgreSQL with Redis caching", 
+          "- **Storage**: Minio S3-compatible object storage",
+          "- **AI**: Weaviate vector database with transformers",
+          "",
+          "## Quick Start",
+          "```bash",
+          "docker-compose up -d",
+          "# Frontend: http://localhost:3000",
+          "# Backend: http://localhost:8000",
+          "# Minio: http://localhost:9001",
+          "```"
+        ]
+      },
+      "commands": [
+        "# Create gitignore",
+        "cat > .gitignore << 'EOF'",
+        "# (content from files.gitignore above)",
+        "EOF",
+        "",
+        "# Create README",
+        "cat > README.md << 'EOF'", 
+        "# (content from files.README.md above)",
+        "EOF"
+      ]
+    },
+    {
+      "step": 7,
+      "title": "Placeholder Files for Directory Structure",
+      "commands": [
+        "touch data/uploads/.gitkeep",
+        "touch data/processed/.gitkeep",
+        "touch data/backups/.gitkeep",
+        "touch data/logs/.gitkeep",
+        "touch config/secrets/development/.gitkeep",
+        "touch config/certificates/.gitkeep"
+      ],
+      "purpose": "Maintain empty directories in Git"
+    },
+    {
+      "step": 8,
+      "title": "Initial Git Commit",
+      "commands": [
+        "git add .",
+        "git commit -m 'Initial commit: Universal Digital Twin project structure",
+        "",
+        "- Complete enterprise directory structure",
+        "- Backend: FastAPI clean architecture", 
+        "- Frontend: React TypeScript organization",
+        "- Infrastructure: Docker and deployment support",
+        "- Documentation: README and architecture guides",
+        "- Security: Comprehensive .gitignore",
+        "",
+        "Ready for development'",
+        "",
+        "git status"
+      ]
+    }
+  ],
+  "directory_structure": {
+    "src/": "Backend FastAPI application code",
+    "frontend/": "React TypeScript frontend application",
+    "docker/": "Container configurations and scripts",
+    "config/": "Environment and deployment configurations",
+    "data/": "Application data storage directories",
+    "tests/": "Comprehensive testing framework",
+    "docs/": "Documentation and architectural guides",
+    "scripts/": "Automation and deployment scripts"
+  },
+  "troubleshooting": [
+    {
+      "issue": "Permission denied creating directories",
+      "solution": "Ensure write permissions in current directory",
+      "prevention": "Check directory permissions before starting"
+    },
+    {
+      "issue": "Git configuration missing",
+      "solution": "Set global Git user configuration",
+      "commands": [
+        "git config --global user.name 'Your Name'",
+        "git config --global user.email 'your.email@example.com'"
+      ]
+    },
+    {
+      "issue": "Directory structure incomplete",
+      "solution": "Re-run directory creation commands",
+      "validation": "Use find . -type d | wc -l to count directories"
+    }
+  ],
+  "acceptance_criteria": [
+    "Complete directory structure following enterprise patterns",
+    "Backend structure supports clean architecture principles",
+    "Frontend structure enables component-based development", 
+    "Infrastructure directories support production deployment",
+    "Git repository properly initialized with team settings",
+    "Comprehensive .gitignore protects sensitive files",
+    "Essential documentation files created",
+    "Initial commit captures complete project foundation"
+  ],
+  "validation_commands": [
+    "find . -type d | wc -l | grep -E '[4-9][0-9]|[1-9][0-9]{2,}'",
+    "test -f .gitignore && test -f README.md && echo 'Essential files exist'",
+    "git log --oneline | wc -l | grep 1",
+    "git status | grep 'working tree clean'",
+    "ls -la data/ | grep -c .gitkeep | grep 4"
+  ],
+  "performance_metrics": {
+    "directory_count": "60+ directories created",
+    "structure_depth": "5+ levels deep for organization",
+    "git_repo_size": "<1MB initial commit",
+    "creation_time": "<30 minutes total"
+  },
+  "next_task": "01-003: Docker Compose Infrastructure Definition"
+} 

@@ -1,0 +1,375 @@
+# Project Organization Standards - Industry Best Practices
+# TOKEN COUNT: ~3,112 tokens
+---
+version: "1.0"
+last_updated: "2025-07-03T00:00:00Z"
+created_by: "Claude Sonnet 4"
+purpose: >
+  Industry-standard approaches for organizing large-scale software projects, drawing from
+  practices used by major tech companies and open-source communities.
+
+# REPOSITORY STRATEGY
+repository_strategy:
+  monorepo_approach:
+    recommended_for: "kOS project"
+    when_to_use: "Single team/organization, shared tooling, frequent cross-component changes"
+    benefits:
+      - "Easier dependency management"
+      - "Atomic commits across components"
+      - "Shared tooling and standards"
+      - "Better visibility and collaboration"
+    
+    structure:
+      griot_main:
+        apps: "Application frontends"
+          web_dashboard: "Main web interface"
+          mobile_client: "Mobile applications"
+          cli_tools: "Command-line tools"
+          admin_panel: "Administrative interface"
+        
+        packages: "Shared libraries and SDKs"
+          core: "Core business logic"
+          ui_components: "Shared UI components"
+          api_client: "API client libraries"
+          utils: "Utility functions"
+        
+        services: "Backend microservices"
+          api_gateway: "API gateway service"
+          auth_service: "Authentication service"
+          content_service: "Content processing"
+          search_service: "Search and RAG"
+          media_service: "Media processing"
+        
+        infrastructure: "Infrastructure and deployment"
+          docker: "Docker configurations"
+          kubernetes: "K8s manifests"
+          terraform: "Infrastructure as code"
+          scripts: "Deployment scripts"
+        
+        docs: "Documentation"
+          api: "API documentation"
+          user_guides: "User documentation"
+          developer: "Developer guides"
+          architecture: "Architecture decisions"
+        
+        tests: "Integration and E2E tests"
+        tools: "Development tools"
+        configs: "Configuration templates"
+  
+  polyrepo_approach:
+    when_to_use: "Multiple teams, different release cycles, independent scaling"
+    structure: "Separate repositories for each major component with shared package registry"
+
+# ENTERPRISE DISTRIBUTION & FEATURE MANAGEMENT
+enterprise_distribution:
+  feature_flag_system:
+    purpose: "Enable/disable features safely in production without code deployments"
+    implementation:
+      centralized_configuration: "All feature flags in system_config.yml"
+      runtime_toggle: "API endpoints to enable/disable features"
+      user_specific: "Per-user feature access control"
+      ab_testing: "Gradual rollout capabilities"
+      emergency_kill_switch: "Instant feature disablement"
+  
+  anonymous_generic_code:
+    principles:
+      - "No hardcoded data - All data comes from configuration or environment"
+      - "Generic interfaces - APIs designed for any use case"
+      - "Modular components - Each component is self-contained"
+      - "Configuration-driven - Behavior controlled by config files"
+      - "No branding - Generic naming and interfaces"
+  
+  security_standards:
+    requirements:
+      - "Zero Trust Architecture - Verify every request"
+      - "Encryption at Rest - All data encrypted"
+      - "Encryption in Transit - TLS for all communications"
+      - "Access Control - Role-based permissions"
+      - "Audit Logging - Track all access and changes"
+      - "Vulnerability Scanning - Regular security assessments"
+
+# DEPLOYMENT & DISTRIBUTION STRATEGY
+deployment_strategy:
+  clean_distribution_package:
+    components:
+      - "Docker Images - Pre-built, signed containers"
+      - "Configuration Templates - Default configs for different environments"
+      - "Installation Scripts - Automated setup and configuration"
+      - "Documentation - Complete user and admin guides"
+      - "Health Checks - Built-in monitoring and diagnostics"
+  
+  multi_environment_support:
+    environments:
+      development: "Local development setup"
+      staging: "Pre-production testing"
+      production: "Live deployment"
+      enterprise: "Multi-tenant, high-security deployments"
+  
+  update_maintenance:
+    strategy:
+      - "Rolling Updates - Zero-downtime deployments"
+      - "Rollback Capability - Quick reversion to previous versions"
+      - "Backward Compatibility - Maintain API compatibility"
+      - "Migration Scripts - Automated data migrations"
+
+# LAYERED ARCHITECTURE & SEPARATION OF CONCERNS
+layered_architecture:
+  core_principles:
+    - "Single Responsibility - Each module/component has one clear purpose"
+    - "Dependency Inversion - High-level modules don't depend on low-level modules"
+    - "Interface Segregation - Clients depend only on interfaces they use"
+    - "Open/Closed - Open for extension, closed for modification"
+  
+  standard_layers:
+    presentation_layer: "UI, APIs, CLI"
+    application_layer: "Use cases, workflows"
+    domain_layer: "Business logic, entities"
+    infrastructure_layer: "Data, external services"
+
+# BACKEND ORGANIZATION (MICROSERVICES)
+backend_organization:
+  service_structure:
+    service_name:
+      src:
+        controllers: "HTTP/gRPC handlers"
+        services: "Business logic"
+        models: "Data models"
+        repositories: "Data access"
+        utils: "Service utilities"
+      
+      tests:
+        unit: "Unit tests"
+        integration: "Integration tests"
+        e2e: "End-to-end tests"
+      
+      config: "Service configuration"
+      dockerfile: "Container definition"
+      docker_compose_yml: "Service orchestration"
+      package_json: "Dependencies and scripts"
+      readme_md: "Service documentation"
+  
+  api_design_standards:
+    - "RESTful APIs - Standard HTTP methods, status codes"
+    - "gRPC - For high-performance internal communication"
+    - "GraphQL - For complex data queries"
+    - "OpenAPI/Swagger - API documentation and contracts"
+
+# FRONTEND ORGANIZATION
+frontend_organization:
+  application_structure:
+    frontend_app:
+      src:
+        components: "Reusable UI components"
+        pages: "Page components"
+        hooks: "Custom React hooks"
+        services: "API calls, external services"
+        store: "State management"
+        utils: "Utility functions"
+        types: "TypeScript definitions"
+      
+      public: "Static assets"
+      tests: "Test files"
+      config: "Build configuration"
+      package_json: "Dependencies and scripts"
+  
+  component_architecture:
+    - "Atomic Design - Atoms → Molecules → Organisms → Templates → Pages"
+    - "Container/Presentational Pattern - Separate logic from presentation"
+    - "Composition over Inheritance - Favor composition for reusability"
+
+# DOCUMENTATION MANAGEMENT
+documentation_management:
+  documentation_types:
+    docs:
+      readme_md: "Project overview"
+      contributing_md: "Contribution guidelines"
+      changelog_md: "Version history"
+      
+      api: "API documentation"
+        rest: "REST API docs"
+        grpc: "gRPC API docs"
+        graphql: "GraphQL API docs"
+      
+      architecture: "Architecture decisions"
+        decisions: "ADRs (Architecture Decision Records)"
+        diagrams: "System diagrams"
+        patterns: "Design patterns"
+      
+      deployment: "Deployment guides"
+      development: "Developer guides"
+      user_guides: "End-user documentation"
+      security: "Security documentation"
+
+# TOOLING AND AUTOMATION
+tooling_automation:
+  development_tools:
+    version_control:
+      - "Git with clear branching strategy"
+      - "Pull request workflows"
+      - "Code review processes"
+      - "Automated merge checks"
+    
+    build_tools:
+      - "Automated build pipelines"
+      - "Dependency management"
+      - "Artifact versioning"
+      - "Build optimization"
+    
+    testing_tools:
+      - "Automated test execution"
+      - "Test coverage reporting"
+      - "Performance testing"
+      - "Security testing"
+    
+    deployment_tools:
+      - "Infrastructure as Code"
+      - "Automated deployment pipelines"
+      - "Environment management"
+      - "Rollback procedures"
+  
+  quality_assurance:
+    - "Automated code quality checks"
+    - "Static analysis tools"
+    - "Security scanning"
+    - "Performance monitoring"
+    - "Compliance validation"
+
+# GOVERNANCE AND PROCESSES
+governance_processes:
+  change_management:
+    - "Formal change approval process"
+    - "Impact assessment procedures"
+    - "Risk evaluation and mitigation"
+    - "Stakeholder communication"
+    - "Post-change validation"
+  
+  release_management:
+    - "Release planning and scheduling"
+    - "Feature flag management"
+    - "Gradual rollout strategies"
+    - "Rollback procedures"
+    - "Release validation and monitoring"
+  
+  incident_management:
+    - "Incident detection and alerting"
+    - "Escalation procedures"
+    - "Communication protocols"
+    - "Root cause analysis"
+    - "Post-incident reviews"
+
+# SCALABILITY CONSIDERATIONS
+scalability_considerations:
+  technical_scalability:
+    - "Horizontal scaling capabilities"
+    - "Load balancing and distribution"
+    - "Database scaling strategies"
+    - "Caching and optimization"
+    - "Performance monitoring"
+  
+  organizational_scalability:
+    - "Team structure and communication"
+    - "Knowledge sharing and documentation"
+    - "Process automation and optimization"
+    - "Tooling and infrastructure"
+    - "Training and skill development"
+
+# SECURITY AND COMPLIANCE
+security_compliance:
+  security_standards:
+    - "Secure coding practices"
+    - "Regular security assessments"
+    - "Vulnerability management"
+    - "Access control and authentication"
+    - "Data protection and privacy"
+  
+  compliance_requirements:
+    - "Regulatory compliance (GDPR, SOC2, etc.)"
+    - "Industry-specific standards"
+    - "Internal policy compliance"
+    - "Audit and reporting requirements"
+    - "Risk management procedures"
+
+# MONITORING AND OBSERVABILITY
+monitoring_observability:
+  monitoring_strategy:
+    - "Comprehensive system monitoring"
+    - "Business metrics tracking"
+    - "Performance monitoring"
+    - "Security monitoring"
+    - "User experience monitoring"
+  
+  observability_requirements:
+    - "Distributed tracing"
+    - "Structured logging"
+    - "Metrics collection and analysis"
+    - "Alerting and notification"
+    - "Dashboard and visualization"
+
+# BEST PRACTICES
+best_practices:
+  development:
+    - "Code review and pair programming"
+    - "Test-driven development"
+    - "Continuous integration and deployment"
+    - "Automated testing and validation"
+    - "Regular refactoring and optimization"
+  
+  operations:
+    - "Infrastructure as Code"
+    - "Automated deployment and rollback"
+    - "Monitoring and alerting"
+    - "Disaster recovery planning"
+    - "Capacity planning and scaling"
+  
+  team_management:
+    - "Clear roles and responsibilities"
+    - "Regular communication and collaboration"
+    - "Knowledge sharing and documentation"
+    - "Training and skill development"
+    - "Performance measurement and improvement"
+
+# IMPLEMENTATION GUIDELINES
+implementation_guidelines:
+  phase_1_foundation:
+    - "Establish project structure and standards"
+    - "Set up development tools and processes"
+    - "Create initial documentation"
+    - "Implement basic CI/CD pipeline"
+    - "Establish monitoring and alerting"
+  
+  phase_2_development:
+    - "Implement core functionality"
+    - "Establish testing practices"
+    - "Create comprehensive documentation"
+    - "Implement security controls"
+    - "Set up quality assurance processes"
+  
+  phase_3_optimization:
+    - "Performance optimization"
+    - "Security hardening"
+    - "Process improvement"
+    - "Tooling enhancement"
+    - "Team training and development"
+
+# SUCCESS METRICS
+success_metrics:
+  technical_metrics:
+    - "Code quality and maintainability"
+    - "System performance and reliability"
+    - "Security and compliance"
+    - "Deployment frequency and success rate"
+    - "Test coverage and quality"
+  
+  business_metrics:
+    - "Feature delivery speed"
+    - "User satisfaction and adoption"
+    - "System availability and uptime"
+    - "Cost efficiency and optimization"
+    - "Team productivity and satisfaction"
+
+# CONCLUSION
+conclusion: >
+  These industry standards provide a comprehensive framework for organizing, managing,
+  and scaling large-scale software projects. Implementation should be tailored to
+  specific project requirements while maintaining core principles of quality,
+  security, and maintainability. 

@@ -1,0 +1,521 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-INFRASTRUCTURE-FOUNDATION-COMPLETE",
+    "title": "Complete Infrastructure Foundation - Universal Digital Twin System",
+    "version": "2.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-30T11:00:00Z",
+    "estimated_tokens": 87500,
+    "estimated_execution_time": "4-6 hours",
+    "difficulty_level": "intermediate",
+    "total_tasks": 45,
+    "agent_autonomy_level": "95%",
+    "success_rate_target": "98%"
+  },
+  "recipe_overview": {
+    "description": "Complete foundational infrastructure setup for the Universal Digital Twin system. This recipe establishes the entire development environment with containerized services, development tooling, monitoring, logging, security configurations, and automated deployment capabilities. Upon completion, the full infrastructure will be operational, tested, and ready for application development.",
+    "architectural_scope": "Full production-ready development environment with Docker orchestration, database systems, caching layers, object storage, vector databases, monitoring systems, logging infrastructure, security configurations, and automated deployment pipelines",
+    "technology_stack": {
+      "containerization": "Docker Desktop 4.0+ with BuildKit and Compose V2",
+      "databases": "PostgreSQL 15, Redis 7, Weaviate vector database",
+      "storage": "Minio S3-compatible object storage with encryption",
+      "monitoring": "Grafana, Prometheus, cAdvisor for comprehensive observability",
+      "logging": "ELK Stack (Elasticsearch, Logstash, Kibana) for log aggregation",
+      "security": "SSL/TLS certificates, network isolation, secrets management",
+      "automation": "Docker Compose orchestration with health checks and dependencies"
+    },
+    "deliverables": [
+      "Complete Docker Compose environment with 15+ services",
+      "PostgreSQL database with optimized schemas and indexes",
+      "Redis cache with persistence and clustering configuration",
+      "Minio object storage with bucket policies and encryption",
+      "Weaviate vector database with custom schemas and transformers",
+      "Grafana monitoring dashboards with alerting rules",
+      "Elasticsearch logging infrastructure with Kibana visualization",
+      "SSL/TLS certificate generation and management",
+      "Automated backup and disaster recovery procedures",
+      "Performance monitoring and resource optimization",
+      "Security hardening and access control implementation",
+      "Comprehensive health checking and service discovery",
+      "Development workflow automation and CI/CD foundation"
+    ],
+    "success_criteria": [
+      "All 15+ services healthy and responding to health checks",
+      "Database connections established with optimized performance",
+      "Object storage operational with proper security policies",
+      "Monitoring dashboards displaying real-time metrics",
+      "Logging infrastructure capturing and indexing all service logs",
+      "SSL/TLS certificates valid and properly configured",
+      "Automated backups running on schedule with verification",
+      "Performance benchmarks meeting or exceeding targets",
+      "Security scans passing with no critical vulnerabilities",
+      "Complete infrastructure documentation generated"
+    ]
+  },
+  "prerequisites": {
+    "system_requirements": {
+      "operating_system": "Windows 10/11 (Build 19041+), macOS 12+, or Ubuntu 20.04 LTS+",
+      "memory": "32GB RAM minimum, 64GB recommended for optimal performance",
+      "storage": "500GB free SSD space for development environment and data",
+      "cpu": "8 cores minimum, 16 cores recommended for concurrent processing",
+      "network": "Gigabit ethernet or Wi-Fi 6 for efficient container downloads",
+      "virtualization": "Hardware virtualization enabled in BIOS/UEFI"
+    },
+    "software_prerequisites": [
+      "Docker Desktop 4.15+ (Windows/macOS) or Docker Engine 20.10+ (Linux)",
+      "Docker Compose V2 2.15+ with BuildKit support",
+      "Git 2.35+ with credential manager configured",
+      "Text editor or IDE: VS Code 1.75+ with Docker and YAML extensions",
+      "Web browser: Chrome 110+ or Firefox 110+ for monitoring interfaces",
+      "PowerShell 7+ (Windows) or Bash 5+ (macOS/Linux)",
+      "OpenSSL 1.1.1+ for certificate generation",
+      "Curl 7.80+ for API testing and health checks"
+    ],
+    "knowledge_requirements": [
+      "Advanced Docker and container orchestration concepts",
+      "Understanding of microservices architecture patterns",
+      "Database administration and optimization principles",
+      "Network security and SSL/TLS certificate management",
+      "Infrastructure monitoring and observability practices",
+      "Linux command line and system administration",
+      "YAML and JSON configuration file management",
+      "Basic understanding of DevOps and CI/CD principles"
+    ],
+    "environment_preparation": [
+      "Allocate Docker Desktop 16GB+ RAM and 8+ CPU cores",
+      "Configure Docker to use all available CPU cores",
+      "Set Docker disk image size to 128GB minimum",
+      "Enable Docker experimental features and BuildKit",
+      "Configure firewall rules for development ports",
+      "Set up dedicated development directory with appropriate permissions",
+      "Ensure stable internet connection for package downloads",
+      "Close unnecessary applications to maximize available resources"
+    ]
+  },
+  "tasks": [
+    {
+      "task_id": "01-001",
+      "title": "System Requirements Verification and Docker Optimization",
+      "description": "Comprehensive verification of system capabilities including hardware specifications, software installations, network connectivity, and Docker optimization for high-performance development environment. This task ensures the system can handle the demanding Universal Digital Twin infrastructure with proper resource allocation and performance tuning.",
+      "estimated_time": "25 minutes",
+      "estimated_tokens": 1950,
+      "dependencies": [],
+      "category": "verification",
+      "priority": "critical",
+      "inputs": {
+        "system_specifications": "Complete hardware and OS information",
+        "existing_software": "Currently installed development tools and versions",
+        "network_configuration": "Internet connectivity and firewall settings",
+        "docker_installation": "Docker Desktop or Engine installation status"
+      },
+      "outputs": {
+        "verification_report": "Comprehensive system capabilities assessment",
+        "optimization_settings": "Docker performance configuration applied",
+        "environment_readiness": "Confirmation of infrastructure prerequisites",
+        "resource_allocation_plan": "Optimal system resource distribution strategy"
+      },
+      "detailed_instructions": {
+        "overview": "This task performs comprehensive system verification and optimization to ensure the development environment can support the demanding Universal Digital Twin infrastructure. We'll verify hardware capabilities, optimize Docker configuration, test network connectivity, and establish baseline performance metrics.",
+        "step_by_step_execution": [
+          {
+            "step": 1,
+            "title": "Hardware and System Verification",
+            "description": "Comprehensive assessment of system specifications against infrastructure requirements",
+            "execution_details": {
+              "windows_commands": [
+                "# Check total system memory",
+                "Get-ComputerInfo | Select-Object TotalPhysicalMemory",
+                "# Verify CPU specifications",
+                "Get-WmiObject -Class Win32_Processor | Select-Object Name, NumberOfCores, NumberOfLogicalProcessors",
+                "# Check available disk space",
+                "Get-WmiObject -Class Win32_LogicalDisk | Where-Object {$_.DriveType -eq 3} | Select-Object DeviceID, Size, FreeSpace",
+                "# Verify virtualization support",
+                "Get-ComputerInfo | Select-Object HyperVRequirementVirtualizationFirmwareEnabled"
+              ],
+              "macos_commands": [
+                "# Check system memory",
+                "system_profiler SPHardwareDataType | grep 'Memory:'",
+                "# Verify CPU information",
+                "sysctl -n hw.ncpu && sysctl -n hw.physicalcpu",
+                "# Check disk space",
+                "df -h / | tail -1",
+                "# Verify virtualization support",
+                "sysctl kern.hv_support"
+              ],
+              "linux_commands": [
+                "# Check memory information",
+                "free -h && cat /proc/meminfo | grep MemTotal",
+                "# Verify CPU specifications",
+                "nproc && lscpu | grep -E 'CPU\\(s\\)|Model name'",
+                "# Check disk space",
+                "df -h / && lsblk",
+                "# Verify virtualization support",
+                "egrep -c '(vmx|svm)' /proc/cpuinfo"
+              ]
+            },
+            "validation_criteria": [
+              "System memory >= 32GB (minimum) or 64GB (recommended)",
+              "CPU cores >= 8 (minimum) or 16+ (recommended)",
+              "Available disk space >= 500GB",
+              "Virtualization enabled and supported",
+              "No hardware compatibility issues detected"
+            ],
+            "expected_outputs": {
+              "memory_verification": "RAM: 32GB+ available",
+              "cpu_verification": "CPU: 8+ cores with virtualization support",
+              "storage_verification": "Storage: 500GB+ free space",
+              "virtualization_verification": "Virtualization: Enabled and functional"
+            }
+          },
+          {
+            "step": 2,
+            "title": "Software Prerequisites Validation",
+            "description": "Verify all required software is installed with proper versions and configurations",
+            "execution_details": {
+              "verification_commands": [
+                "# Docker version and configuration",
+                "docker --version && docker info",
+                "# Docker Compose version",
+                "docker compose version",
+                "# Git installation and configuration",
+                "git --version && git config --list --global",
+                "# OpenSSL for certificate generation",
+                "openssl version",
+                "# Curl for API testing",
+                "curl --version",
+                "# PowerShell or Bash version",
+                "$PSVersionTable.PSVersion || echo $BASH_VERSION"
+              ],
+              "version_requirements": {
+                "docker": ">=24.0.0",
+                "docker_compose": ">=2.15.0",
+                "git": ">=2.35.0",
+                "openssl": ">=1.1.1",
+                "curl": ">=7.80.0"
+              }
+            },
+            "validation_criteria": [
+              "Docker Engine/Desktop version meets minimum requirements",
+              "Docker Compose V2 installed and functional",
+              "Git properly configured with user credentials",
+              "OpenSSL available for certificate operations",
+              "Curl available for API testing and health checks"
+            ],
+            "troubleshooting": [
+              {
+                "issue": "Docker version too old",
+                "solution": "Update Docker Desktop or Engine to latest stable version",
+                "commands": ["# Update via package manager or Docker Desktop installer"]
+              },
+              {
+                "issue": "Docker Compose V1 instead of V2",
+                "solution": "Enable Docker Compose V2 in Docker Desktop settings",
+                "commands": ["docker compose version"]
+              }
+            ]
+          },
+          {
+            "step": 3,
+            "title": "Docker Performance Optimization",
+            "description": "Configure Docker for optimal performance with proper resource allocation",
+            "execution_details": {
+              "resource_configuration": {
+                "memory_allocation": "16GB minimum, 24GB recommended",
+                "cpu_allocation": "8 cores minimum, all available cores recommended",
+                "disk_allocation": "128GB virtual disk image",
+                "swap_configuration": "4GB swap space"
+              },
+              "optimization_commands": [
+                "# Enable BuildKit for faster builds",
+                "export DOCKER_BUILDKIT=1",
+                "export COMPOSE_DOCKER_CLI_BUILD=1",
+                "# Configure Docker daemon settings",
+                "echo '{\"experimental\": true, \"features\": {\"buildkit\": true}}' > ~/.docker/config.json",
+                "# Verify BuildKit is enabled",
+                "docker buildx version",
+                "# Create custom builder instance",
+                "docker buildx create --name universal-twin-builder --use",
+                "# Test multi-platform build capability",
+                "docker buildx inspect --bootstrap"
+              ],
+              "performance_settings": {
+                "enable_experimental_features": true,
+                "enable_buildkit": true,
+                "enable_containerd_snapshotter": true,
+                "max_concurrent_downloads": 6,
+                "max_concurrent_uploads": 5
+              }
+            },
+            "validation_criteria": [
+              "Docker allocated sufficient RAM (16GB+)",
+              "CPU cores properly assigned (8+)",
+              "BuildKit enabled and functional",
+              "Experimental features activated",
+              "Custom builder instance created successfully"
+            ]
+          },
+          {
+            "step": 4,
+            "title": "Network Connectivity and Firewall Configuration",
+            "description": "Verify network access and configure firewall rules for development services",
+            "execution_details": {
+              "connectivity_tests": [
+                "# Test Docker Hub connectivity",
+                "curl -I https://registry-1.docker.io/v2/",
+                "# Test package registry access",
+                "curl -I https://pypi.org/simple/",
+                "curl -I https://registry.npmjs.org/",
+                "# Test GitHub connectivity",
+                "curl -I https://api.github.com/",
+                "# Test DNS resolution",
+                "nslookup docker.io && nslookup github.com"
+              ],
+              "firewall_configuration": {
+                "required_ports": [
+                  "5432 (PostgreSQL)",
+                  "6379 (Redis)",
+                  "9000-9001 (Minio)",
+                  "8080 (Weaviate)",
+                  "3000 (Frontend)",
+                  "8000 (Backend API)",
+                  "3001 (Grafana)",
+                  "9090 (Prometheus)",
+                  "5601 (Kibana)",
+                  "9200 (Elasticsearch)"
+                ],
+                "windows_firewall": [
+                  "New-NetFirewallRule -DisplayName 'Docker Development' -Direction Inbound -Protocol TCP -LocalPort 3000,5432,6379,8000,8080,9000,9001,3001,9090,5601,9200 -Action Allow"
+                ],
+                "linux_firewall": [
+                  "sudo ufw allow 3000,5432,6379,8000,8080,9000,9001,3001,9090,5601,9200/tcp"
+                ]
+              }
+            },
+            "validation_criteria": [
+              "All required package registries accessible",
+              "DNS resolution working properly",
+              "Firewall rules configured for development ports",
+              "No network connectivity issues detected",
+              "Docker can pull images successfully"
+            ]
+          },
+          {
+            "step": 5,
+            "title": "Docker Network and Security Setup",
+            "description": "Create isolated Docker networks with proper security configurations",
+            "execution_details": {
+              "network_creation": [
+                "# Create custom bridge networks",
+                "docker network create --driver bridge --subnet=172.20.0.0/16 ai-q-backend",
+                "docker network create --driver bridge --subnet=172.21.0.0/16 ai-q-frontend",
+                "docker network create --driver bridge --subnet=172.22.0.0/16 ai-q-monitoring",
+                "docker network create --driver bridge --subnet=172.23.0.0/16 ai-q-logging",
+                "# Verify network creation",
+                "docker network ls | grep ai-q",
+                "# Inspect network configurations",
+                "docker network inspect ai-q-backend"
+              ],
+              "security_configuration": {
+                "network_isolation": "Separate networks for different service tiers",
+                "internal_communication": "Services communicate via network aliases",
+                "external_access": "Only necessary ports exposed to host",
+                "encryption": "TLS encryption for inter-service communication"
+              }
+            },
+            "validation_criteria": [
+              "Custom networks created successfully",
+              "Network isolation properly configured",
+              "Subnet allocation non-conflicting",
+              "Network security policies applied",
+              "Inter-network communication rules established"
+            ]
+          }
+        ],
+        "troubleshooting_guide": [
+          {
+            "category": "Hardware Issues",
+            "common_problems": [
+              {
+                "problem": "Insufficient RAM for development environment",
+                "symptoms": "Docker containers failing to start, system slowdown",
+                "solution": "Upgrade system RAM to 32GB minimum or optimize Docker resource allocation",
+                "prevention": "Monitor memory usage and plan resource allocation appropriately"
+              },
+              {
+                "problem": "CPU cores insufficient for concurrent processing",
+                "symptoms": "Slow build times, container startup delays",
+                "solution": "Allocate more CPU cores to Docker or upgrade to higher core count processor",
+                "prevention": "Use CPU affinity settings to optimize core utilization"
+              }
+            ]
+          },
+          {
+            "category": "Software Issues",
+            "common_problems": [
+              {
+                "problem": "Docker Desktop installation corrupted",
+                "symptoms": "Docker commands fail, service won't start",
+                "solution": "Uninstall and reinstall Docker Desktop, reset to factory defaults",
+                "prevention": "Keep Docker Desktop updated and avoid force shutdowns"
+              },
+              {
+                "problem": "BuildKit not functioning properly",
+                "symptoms": "Build commands fail with BuildKit errors",
+                "solution": "Reset BuildKit configuration and recreate builder instance",
+                "prevention": "Regularly update Docker and monitor BuildKit functionality"
+              }
+            ]
+          },
+          {
+            "category": "Network Issues",
+            "common_problems": [
+              {
+                "problem": "Corporate firewall blocking Docker Hub",
+                "symptoms": "Image pull failures, connection timeouts",
+                "solution": "Configure proxy settings or work with IT to whitelist Docker registries",
+                "prevention": "Test connectivity before starting development work"
+              },
+              {
+                "problem": "Port conflicts with existing services",
+                "symptoms": "Services fail to bind to ports, connection refused errors",
+                "solution": "Change port mappings in Docker Compose or stop conflicting services",
+                "prevention": "Document and coordinate port usage across development team"
+              }
+            ]
+          }
+        ],
+        "performance_benchmarks": {
+          "docker_startup_time": "< 30 seconds for all services",
+          "image_pull_speed": "> 10 MB/s average download speed",
+          "container_memory_usage": "< 8GB total for base infrastructure",
+          "cpu_utilization": "< 20% idle, < 80% under load",
+          "disk_io_performance": "> 100 IOPS for database operations"
+        }
+      },
+      "acceptance_criteria": [
+        "System meets or exceeds minimum hardware requirements (32GB RAM, 8 CPU cores, 500GB storage)",
+        "All required software installed with proper versions and configurations",
+        "Docker optimized with 16GB+ RAM allocation and 8+ CPU cores",
+        "BuildKit enabled and custom builder instance created successfully",
+        "Network connectivity verified to all required package registries and services",
+        "Custom Docker networks created with proper security isolation",
+        "Firewall rules configured for all development service ports",
+        "Performance benchmarks met for startup time, resource usage, and throughput",
+        "Comprehensive system verification report generated with all checks passed",
+        "Environment prepared for high-performance Universal Digital Twin development"
+      ],
+      "validation_commands": [
+        "docker system info | grep -E 'Total Memory: (1[6-9]|[2-9][0-9])\\.[0-9]+GiB'",
+        "docker system info | grep -E 'CPUs: ([8-9]|[1-9][0-9])'",
+        "docker network ls | grep -c ai-q",
+        "docker buildx ls | grep universal-twin-builder",
+        "curl -s https://registry-1.docker.io/v2/ | head -1"
+      ],
+      "rollback_procedure": [
+        "Reset Docker Desktop to factory defaults if configuration issues occur",
+        "Remove custom networks: docker network prune -f",
+        "Reset BuildKit: docker buildx rm universal-twin-builder",
+        "Restore original firewall rules if connectivity issues arise",
+        "Document any changes made for future reference"
+      ]
+    },
+    {
+      "task_id": "01-002",
+      "title": "Project Structure Creation and Git Repository Configuration",
+      "description": "Establish comprehensive project directory structure with proper organization for scalable development, initialize Git repository with advanced configuration, branching strategy, and development workflow automation. This task creates the foundation for organized, collaborative, and maintainable Universal Digital Twin development.",
+      "estimated_time": "30 minutes",
+      "estimated_tokens": 1850,
+      "dependencies": ["01-001"],
+      "category": "setup",
+      "priority": "critical",
+      "inputs": {
+        "project_name": "ai-Q Universal Digital Twin",
+        "organization_structure": "Enterprise-grade directory organization",
+        "git_configuration": "Advanced Git configuration and workflow setup",
+        "development_standards": "Coding standards and project conventions"
+      },
+      "outputs": {
+        "project_directory": "Complete enterprise-grade folder structure",
+        "git_repository": "Advanced Git repository with workflow automation",
+        "documentation_framework": "Comprehensive documentation structure",
+        "development_environment": "Standardized development configuration"
+      },
+      "detailed_instructions": {
+        "overview": "This task creates a comprehensive project structure that supports enterprise-scale development with proper separation of concerns, scalable organization, and advanced Git workflow management. The structure is designed to accommodate multiple teams, complex integrations, and long-term maintainability.",
+        "step_by_step_execution": [
+          {
+            "step": 1,
+            "title": "Root Project Directory and Core Structure Creation",
+            "description": "Create the main project directory with enterprise-grade organization",
+            "execution_details": {
+              "directory_creation": [
+                "# Create main project directory",
+                "mkdir -p ai-Q-universal-digital-twin",
+                "cd ai-Q-universal-digital-twin",
+                "# Verify current directory",
+                "pwd && echo 'Project root established'"
+              ],
+              "core_structure": [
+                "# Backend application structure",
+                "mkdir -p src/{api,services,models,schemas,utils,config,middleware,workers}",
+                "mkdir -p src/api/{routes,dependencies,security,exceptions,validators}",
+                "mkdir -p src/services/{storage,database,cache,search,graph,ai,notifications,email}",
+                "mkdir -p src/models/{database,pydantic,enums,constants}",
+                "mkdir -p src/utils/{logging,encryption,validation,helpers,decorators}",
+                "# Frontend application structure",
+                "mkdir -p frontend/{src,public,dist,build}",
+                "mkdir -p frontend/src/{components,pages,hooks,utils,types,styles,store,contexts}",
+                "mkdir -p frontend/src/components/{common,forms,layout,navigation,modals,charts}",
+                "mkdir -p frontend/src/pages/{auth,dashboard,files,search,settings,admin}",
+                "mkdir -p frontend/src/hooks/{auth,api,storage,ui,forms}",
+                "mkdir -p frontend/src/utils/{api,formatting,validation,constants,helpers}"
+              ]
+            },
+            "validation_criteria": [
+              "Project root directory created successfully",
+              "Backend structure follows clean architecture patterns",
+              "Frontend structure supports component-based development",
+              "Directory naming follows established conventions"
+            ]
+          },
+          {
+            "step": 2,
+            "title": "Infrastructure and Configuration Directories",
+            "description": "Create comprehensive infrastructure and configuration management structure",
+            "execution_details": {
+              "infrastructure_structure": [
+                "# Docker and containerization",
+                "mkdir -p docker/{backend,frontend,database,cache,storage,monitoring,logging}",
+                "mkdir -p docker/backend/{Dockerfile,entrypoint,scripts}",
+                "mkdir -p docker/frontend/{Dockerfile,nginx,scripts}",
+                "mkdir -p docker/database/{postgres,redis,init-scripts,migrations}",
+                "# Configuration management",
+                "mkdir -p config/{environments,secrets,certificates,policies}",
+                "mkdir -p config/environments/{development,staging,production,testing}",
+                "mkdir -p config/secrets/{development,staging,production}",
+                "mkdir -p config/certificates/{ssl,api-keys,service-accounts}",
+                "# Infrastructure as Code",
+                "mkdir -p infrastructure/{terraform,ansible,kubernetes,helm}",
+                "mkdir -p infrastructure/terraform/{modules,environments,providers}",
+                "mkdir -p infrastructure/kubernetes/{manifests,configs,secrets}"
+              ],
+              "deployment_structure": [
+                "# Deployment and CI/CD",
+                "mkdir -p .github/{workflows,templates,ISSUE_TEMPLATE}",
+                "mkdir -p deployment/{scripts,configurations,monitoring}",
+                "mkdir -p deployment/scripts/{build,deploy,backup,maintenance}",
+                "mkdir -p deployment/configurations/{nginx,ssl,monitoring}"
+              ]
+            },
+            "validation_criteria": [
+              "Docker structure supports multi-service architecture",
+              "Configuration management follows security best practices",
+              "Infrastructure as Code structure supports multiple deployment targets",
+              "CI/CD structure supports automated workflows"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+} 

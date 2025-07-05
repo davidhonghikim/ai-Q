@@ -1,0 +1,13 @@
+{
+  "id": "core-002",
+  "module": "core",
+  "title": "System Config Loader",
+  "description": "Implement a system configuration loader that reads YAML config (config/system_config.yml) and exposes config values to the system via a Python utility module.",
+  "dependencies": [],
+  "inputs": ["config/system_config.yml"],
+  "outputs": ["src/utils/config_loader.py"],
+  "agent_requirements": ["Python", "YAML parsing"],
+  "completion_criteria": "System config values can be loaded and queried at runtime via a Python function.",
+  "status": "pending",
+  "notes": ""
+} 
