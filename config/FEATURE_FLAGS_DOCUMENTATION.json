@@ -1,0 +1,220 @@
+{
+  "document_metadata": {
+    "title": "AI-Q Feature Flag System Documentation",
+    "version": "1.0.0",
+    "created_date": "2025-01-30T16:00:00Z",
+    "document_type": "system_documentation",
+    "format": "json",
+    "purpose": "Comprehensive documentation of the feature flag system"
+  },
+  "overview": {
+    "description": "The AI-Q system supports a comprehensive feature flag system that allows you to dynamically enable/disable components and services at runtime. This makes the system truly modular and allows for easy customization without code changes.",
+    "key_benefits": [
+      "Modular Architecture: Only load components you need",
+      "Runtime Configuration: Change features without rebuilding",
+      "Resource Optimization: Reduce memory and CPU usage", 
+      "Easy Testing: Enable/disable features for testing",
+      "Production Flexibility: Different configurations for different environments"
+    ]
+  },
+  "system_architecture": {
+    "feature_flag_configuration": {
+      "location": "config/feature-flags.yml",
+      "structure": {
+        "core": {
+          "api_server": true,
+          "web_dashboard": true,
+          "health_monitoring": true
+        },
+        "databases": {
+          "postgresql": true,
+          "redis": true,
+          "elasticsearch": true,
+          "neo4j": true,
+          "weaviate": true
+        },
+        "storage": {
+          "minio": true
+        },
+        "monitoring": {
+          "prometheus": true,
+          "grafana": true,
+          "cadvisor": true
+        }
+      }
+    },
+    "dynamic_component_loading": {
+      "description": "The system uses dynamic imports to load only enabled components",
+      "example_code": "if feature_manager.is_component_enabled('api_server'): api_server = await feature_manager.load_component('api_server')"
+    },
+    "dependency_resolution": {
+      "description": "Components are loaded in the correct order based on dependencies",
+      "example_order": ["postgresql", "redis", "api_server", "web_dashboard"]
+    }
+  },
+  "usage_instructions": {
+    "command_line_interface": {
+      "windows_powershell": {
+        "show_status": ".\\scripts\\feature-toggle.ps1 status",
+        "list_features": ".\\scripts\\feature-toggle.ps1 list",
+        "enable_feature": ".\\scripts\\feature-toggle.ps1 toggle -Category databases -Feature redis -Enable",
+        "disable_feature": ".\\scripts\\feature-toggle.ps1 toggle -Category databases -Feature redis -Disable",
+        "generate_configs": ".\\scripts\\feature-toggle.ps1 generate",
+        "start_system": ".\\scripts\\feature-toggle.ps1 start"
+      },
+      "linux_mac_bash": {
+        "show_enabled_services": "python3 scripts/feature-flag-parser.py list-services",
+        "generate_docker_compose": "python3 scripts/feature-flag-parser.py generate-compose",
+        "generate_env_file": "python3 scripts/feature-flag-parser.py generate-env",
+        "check_specific_feature": "python3 scripts/feature-flag-parser.py check redis databases",
+        "start_dynamic_system": "./scripts/start-dynamic.sh"
+      }
+    },
+    "api_endpoints": {
+      "get_all_features": {
+        "method": "GET",
+        "endpoint": "/api/v1/features",
+        "description": "Get all features and status"
+      },
+      "get_component_status": {
+        "method": "GET",
+        "endpoint": "/api/v1/components",
+        "description": "Get component status"
+      },
+      "reload_component": {
+        "method": "POST",
+        "endpoint": "/api/v1/components/{component_name}/reload",
+        "description": "Reload a component"
+      },
+      "health_check": {
+        "method": "GET",
+        "endpoint": "/health",
+        "description": "Health check with component status"
+      }
+    }
+  },
+  "component_registry": {
+    "description": "Components are registered in the system with their dependencies",
+    "example_registration": {
+      "api_server": {
+        "module": "src.api.server",
+        "class": "APIServer",
+        "init_method": "initialize",
+        "dependencies": ["postgresql", "redis"]
+      },
+      "web_dashboard": {
+        "module": "src.web.dashboard",
+        "class": "WebDashboard",
+        "init_method": "start",
+        "dependencies": ["api_server"]
+      }
+    }
+  },
+  "adding_new_components": {
+    "step_1_create_component": {
+      "description": "Create the component class",
+      "example_code": "class MyComponent:\n    def __init__(self):\n        self.name = \"My Component\"\n    \n    async def initialize(self):\n        # Component initialization\n        pass\n    \n    async def cleanup(self):\n        # Component cleanup\n        pass"
+    },
+    "step_2_register_component": {
+      "description": "Register the component in feature_manager.py",
+      "example_code": "self.component_registry['my_component'] = {\n    'module': 'src.my_feature.my_component',\n    'class': 'MyComponent',\n    'init_method': 'initialize',\n    'dependencies': ['api_server']\n}"
+    },
+    "step_3_add_to_feature_flags": {
+      "description": "Add to feature flags configuration",
+      "example_config": "my_category:\n  my_component: true"
+    }
+  },
+  "configuration_files": {
+    "generated_files": [
+      "docker-compose.feature-flags.yml - Docker Compose with only enabled services",
+      ".env.feature-flags - Environment variables for enabled features",
+      "Dynamic API routes based on enabled components"
+    ]
+  },
+  "monitoring_and_health_checks": {
+    "health_check_response": {
+      "status": "healthy",
+      "version": "2.0.0",
+      "enabled_components": ["api_server", "postgresql", "redis"],
+      "loaded_components": ["api_server", "postgresql", "redis"],
+      "component_status": {
+        "api_server": {
+          "enabled": true,
+          "loaded": true,
+          "dependencies": ["postgresql", "redis"]
+        }
+      }
+    }
+  },
+  "performance_benefits": [
+    "Memory Usage: Only load required components",
+    "Startup Time: Faster startup with fewer components",
+    "Resource Allocation: Optimize for specific use cases",
+    "Scalability: Scale components independently"
+  ],
+  "development_workflow": [
+    "Feature Development: Develop features as independent components",
+    "Feature Testing: Enable/disable features for testing",
+    "Configuration Management: Use feature flags for different environments",
+    "Deployment: Deploy with specific feature configurations"
+  ],
+  "environment_specific_configurations": {
+    "development": {
+      "hot_reload": true,
+      "debug_mode": true,
+      "verbose_logging": true
+    },
+    "production": {
+      "hot_reload": false,
+      "debug_mode": false,
+      "verbose_logging": false
+    },
+    "testing": {
+      "databases": {
+        "postgresql": true,
+        "redis": true,
+        "elasticsearch": false,
+        "neo4j": false,
+        "weaviate": false
+      }
+    }
+  },
+  "troubleshooting": {
+    "component_not_loading": [
+      "Check if feature is enabled in config/feature-flags.yml",
+      "Verify component is registered in component_registry",
+      "Check dependencies are satisfied",
+      "Review logs for import errors"
+    ],
+    "dependency_issues": [
+      "Use feature_manager.resolve_dependency_order() to check load order",
+      "Ensure all dependencies are enabled",
+      "Check for circular dependencies"
+    ],
+    "configuration_issues": [
+      "Regenerate configurations: python3 scripts/feature-flag-parser.py generate-compose",
+      "Check generated files for syntax errors",
+      "Verify environment variables are set correctly"
+    ]
+  },
+  "best_practices": [
+    "Keep Components Independent: Minimize dependencies between components",
+    "Use Meaningful Categories: Organize features logically",
+    "Document Dependencies: Clearly document component dependencies",
+    "Test Feature Combinations: Test different feature flag combinations",
+    "Monitor Performance: Monitor resource usage with different configurations",
+    "Version Control: Include feature flag configurations in version control",
+    "Environment Separation: Use different configurations for different environments"
+  ],
+  "migration_from_static_system": {
+    "steps": [
+      "Backup Current Configuration: Save current Docker Compose and environment files",
+      "Enable Feature Flags: Set up config/feature-flags.yml",
+      "Test Components: Verify each component loads correctly",
+      "Update Startup Scripts: Use dynamic startup scripts",
+      "Monitor Performance: Compare performance with static system",
+      "Gradual Migration: Enable features one by one"
+    ]
+  },
+  "conclusion": "This feature flag system makes AI-Q truly modular and allows for easy customization and optimization based on your specific needs."
+} 

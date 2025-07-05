@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "AI-Q Project Manual",
+  "original_content": "# AI-Q Project Manual\n\n## Purpose\nThis manual is the canonical, modular reference for the entire AI-Q project. It contains all specifications, requirements, architecture, and implementation details, broken down into small, focused files and directories. All agents and contributors should use this as the source of truth for building, extending, and maintaining the system.\n\n## Structure\n- `architecture/` — System architecture, diagrams, and high-level overviews\n- `features/` — Detailed specs for each feature and subfeature\n- `integrations/` — Third-party and internal service integrations\n- `ai-pipelines/` — AI/ML pipelines for text, image, video, audio, etc.\n- `storage/` — Data storage, object storage, and database schemas\n- `security/` — Security, privacy, and compliance docs\n- `user-experience/` — UI/UX, personalization, and user stories\n- `agent-system/` — Agent orchestration, task assignment, and audit logging\n- `extensibility/` — Plugin system, feature flags, and modularity\n- `testing/` — Testing, CI/CD, and quality assurance\n- `automation/` — Workflow automation (n8n, etc.)\n- `data-science/` — Jupyter, analytics, and user scripting\n\n## Usage\n- Each file is focused on a single topic or component.\n- Use the directory structure to quickly find relevant specs.\n- All new features, changes, and extensions must be documented here.\n- This manual is the reference source for all agent tasks and implementation work.\n\n---\n\n**Always consult the manual before starting new work or making changes!** ",
+  "sections": {
+    "AI-Q Project Manual": "",
+    "Purpose": "This manual is the canonical, modular reference for the entire AI-Q project. It contains all specifications, requirements, architecture, and implementation details, broken down into small, focused files and directories. All agents and contributors should use this as the source of truth for building, extending, and maintaining the system.",
+    "Structure": "- `architecture/` — System architecture, diagrams, and high-level overviews\n- `features/` — Detailed specs for each feature and subfeature\n- `integrations/` — Third-party and internal service integrations\n- `ai-pipelines/` — AI/ML pipelines for text, image, video, audio, etc.\n- `storage/` — Data storage, object storage, and database schemas\n- `security/` — Security, privacy, and compliance docs\n- `user-experience/` — UI/UX, personalization, and user stories\n- `agent-system/` — Agent orchestration, task assignment, and audit logging\n- `extensibility/` — Plugin system, feature flags, and modularity\n- `testing/` — Testing, CI/CD, and quality assurance\n- `automation/` — Workflow automation (n8n, etc.)\n- `data-science/` — Jupyter, analytics, and user scripting",
+    "Usage": "- Each file is focused on a single topic or component.\n- Use the directory structure to quickly find relevant specs.\n- All new features, changes, and extensions must be documented here.\n- This manual is the reference source for all agent tasks and implementation work.\n\n---\n\n**Always consult the manual before starting new work or making changes!**"
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

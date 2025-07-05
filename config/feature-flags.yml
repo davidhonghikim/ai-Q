@@ -1,0 +1,57 @@
+# AI-Q Feature Flags Configuration
+# This file controls which components and services are enabled in the unified container
+
+# Core Application Features
+core:
+  api_server: true
+  web_dashboard: true
+  health_monitoring: true
+
+# Database Services
+databases:
+  postgresql: true
+  redis: true
+  elasticsearch: true
+  neo4j: true
+  weaviate: true
+
+# Storage Services
+storage:
+  minio: true
+
+# Monitoring & Observability
+monitoring:
+  prometheus: true
+  grafana: true
+  cadvisor: true
+
+# AI/ML Features
+ai_ml:
+  rag_enabled: true
+  vector_search: true
+  graph_analytics: true
+  content_analysis: true
+
+# Development Features
+development:
+  hot_reload: true
+  debug_mode: false
+  verbose_logging: false
+
+# Security Features
+security:
+  authentication: false
+  ssl_enabled: false
+  cors_enabled: true
+
+# Performance Features
+performance:
+  caching_enabled: true
+  compression_enabled: true
+  rate_limiting: false
+
+# Integration Features
+integrations:
+  openai_enabled: false
+  huggingface_enabled: false
+  external_apis: false 

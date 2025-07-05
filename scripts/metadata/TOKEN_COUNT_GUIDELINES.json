@@ -1,0 +1,183 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-01-27T12:00:00Z",
+  "created_by": "Claude Sonnet 4 - Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\scripts\\metadata\\TOKEN_COUNT_GUIDELINES.json",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "RobustYAMLToJSONConverter v1.0",
+  "purpose": "Comprehensive guidelines for adding token count metadata to different file types without breaking syntax or causing parsing errors.\n",
+  "overview": {
+    "purpose": "Track token usage across all project files for context window management",
+    "importance": "Critical for managing AI model context limits and optimizing performance",
+    "scope": "All project files including code, configuration, and documentation"
+  },
+  "json_files": {
+    "approach": "Add _metadata field within JSON structure",
+    "structure": "{\n  \"_metadata\": {\n    \"token_count\": 1234,\n    \"token_count_estimated\": true,\n    \"last_updated\": \"2025-01-27T12:00:00Z\",\n    \"created_by\": \"Claude Sonnet 4\",\n    \"model_version\": \"Claude Sonnet 4\"\n  },\n  \"actual_data\": {\n    // ... rest of JSON content\n  }\n}\n",
+    "advantages": [
+      "Maintains valid JSON syntax",
+      "Can be parsed by any JSON parser",
+      "Metadata is part of the data structure",
+      "Can include additional metadata fields"
+    ],
+    "disadvantages": [
+      "Adds extra fields to JSON structure",
+      "May affect existing code that expects specific structure"
+    ],
+    "implementation": [
+      "Use _metadata field at root level",
+      "Include token_count as integer",
+      "Include token_count_estimated as boolean",
+      "Include last_updated timestamp",
+      "Include agent identification"
+    ]
+  },
+  "yaml_files": {
+    "approach": "Add comment-style metadata at top of file",
+    "structure": "# TOKEN COUNT: ~1,234 tokens\n# Created by: Claude Sonnet 4\n# Model Version: Claude Sonnet 4\n# Timestamp: 2025-01-27T12:00:00Z\n---\nversion: \"1.0\"\n# ... rest of YAML content\n",
+    "advantages": [
+      "Standard YAML comment format",
+      "Doesn't affect YAML structure",
+      "Easy to read and parse",
+      "Can include multiple metadata lines"
+    ],
+    "disadvantages": [
+      "Comments may be stripped by some parsers",
+      "Not part of the actual data structure"
+    ],
+    "implementation": [
+      "Place after title line if exists",
+      "Use consistent format: # TOKEN COUNT: ~X tokens",
+      "Include agent identification",
+      "Include timestamp"
+    ]
+  },
+  "markdown_files": {
+    "approach": "Add comment-style metadata at top of file",
+    "structure": "<!-- TOKEN COUNT: ~1,234 tokens -->\n<!-- Created by: Claude Sonnet 4 -->\n<!-- Model Version: Claude Sonnet 4 -->\n<!-- Timestamp: 2025-01-27T12:00:00Z -->\n\n# Document Title\n\nDocument content...\n",
+    "advantages": [
+      "HTML comments are standard in Markdown",
+      "Don't affect Markdown rendering",
+      "Can be parsed by HTML parsers",
+      "Hidden from rendered output"
+    ],
+    "disadvantages": [
+      "HTML comments may be stripped by some processors",
+      "Not visible in plain text view"
+    ],
+    "implementation": [
+      "Use HTML comment format: <!-- TOKEN COUNT: ~X tokens -->",
+      "Place at very top of file",
+      "Include agent identification",
+      "Include timestamp"
+    ]
+  },
+  "typescript_javascript_files": {
+    "approach": "Add comment-style metadata at top of file",
+    "structure": "/**\n * TOKEN COUNT: ~1,234 tokens\n * Created by: Claude Sonnet 4\n * Model Version: Claude Sonnet 4\n * Timestamp: 2025-01-27T12:00:00Z\n */\n\n// ... rest of code\n",
+    "advantages": [
+      "Standard JSDoc comment format",
+      "Can be parsed by documentation generators",
+      "Doesn't affect code execution",
+      "Can include additional documentation"
+    ],
+    "disadvantages": [
+      "Comments may be stripped by minifiers",
+      "Not part of the actual code structure"
+    ],
+    "implementation": [
+      "Use JSDoc comment format: /** ... */",
+      "Place at top of file",
+      "Include agent identification",
+      "Include timestamp"
+    ]
+  },
+  "python_files": {
+    "approach": "Add comment-style metadata at top of file",
+    "structure": "# TOKEN COUNT: ~1,234 tokens\n# Created by: Claude Sonnet 4\n# Model Version: Claude Sonnet 4\n# Timestamp: 2025-01-27T12:00:00Z\n\"\"\"\nModule docstring...\n\"\"\"\n\n# ... rest of code\n",
+    "advantages": [
+      "Standard Python comment format",
+      "Doesn't affect code execution",
+      "Easy to read and parse",
+      "Can include multiple metadata lines"
+    ],
+    "disadvantages": [
+      "Comments may be stripped by some processors",
+      "Not part of the actual code structure"
+    ],
+    "implementation": [
+      "Use # comment format",
+      "Place at top of file",
+      "Include agent identification",
+      "Include timestamp"
+    ]
+  },
+  "text_files": {
+    "approach": "Add comment-style metadata at top of file",
+    "structure": "# TOKEN COUNT: ~1,234 tokens\n# Created by: Claude Sonnet 4\n# Model Version: Claude Sonnet 4\n# Timestamp: 2025-01-27T12:00:00Z\n\nText content...\n",
+    "advantages": [
+      "Simple and readable",
+      "Doesn't affect content",
+      "Easy to parse",
+      "Can include multiple metadata lines"
+    ],
+    "disadvantages": [
+      "Comments may be stripped by some processors",
+      "Not part of the actual content structure"
+    ],
+    "implementation": [
+      "Use # comment format",
+      "Place at top of file",
+      "Include agent identification",
+      "Include timestamp"
+    ]
+  },
+  "token_counting": {
+    "estimation_method": "Word-based approximation",
+    "formula": "max(words, characters / 4)",
+    "accuracy": "Approximate - within 10-20% of actual token count",
+    "purpose": "Context window management and optimization",
+    "considerations": [
+      "Different AI models may tokenize differently",
+      "Code files may have different tokenization than text",
+      "Special characters and formatting affect token count",
+      "Regular re-counting may be necessary"
+    ]
+  },
+  "automation": {
+    "script": "scripts/token_counter.py",
+    "features": [
+      "Automatic file type detection",
+      "Appropriate metadata format for each file type",
+      "Batch processing of multiple files",
+      "Dry-run mode for testing",
+      "Summary reporting"
+    ],
+    "usage": [
+      "python scripts/token_counter.py --path . --dry-run",
+      "python scripts/token_counter.py --path . --summary",
+      "python scripts/token_counter.py --extensions .json"
+    ]
+  },
+  "best_practices": {
+    "consistency": [
+      "Use consistent format across all files",
+      "Include agent identification in all metadata",
+      "Include timestamp in all metadata",
+      "Use same token counting methodology"
+    ],
+    "maintenance": [
+      "Update token counts when files change significantly",
+      "Regular validation of token count accuracy",
+      "Document any changes to counting methodology",
+      "Keep automation scripts updated"
+    ],
+    "validation": [
+      "Verify JSON files remain valid after metadata addition",
+      "Test YAML files parse correctly",
+      "Ensure Markdown renders properly",
+      "Validate code files compile/execute correctly"
+    ]
+  },
+  "conclusion": "Token count metadata is essential for managing AI model context windows and optimizing performance. Each file type requires a different approach to maintain syntax validity while providing the necessary metadata. The automated script handles this complexity and ensures consistent implementation across all file types. "
+}

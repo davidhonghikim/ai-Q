@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\integrations\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "Integrations Index",
+  "original_content": "# Integrations Index\n\nThis directory documents all third-party and internal service integrations for the AI-Q project.\n\n## Core Integrations\n- Weaviate (vector DB)\n- Neo4j (knowledge graph)\n- Minio (object storage)\n- Postgres (metadata)\n- Redis/RQ (cache, background jobs)\n- Ollama, Llama.cpp, VLLM (LLM inference)\n- ComfyUI, A1111 (image generation)\n- n8n (workflow automation)\n- Jupyter (data science)\n\nEach integration has its own file with setup, configuration, and agent task details. ",
+  "sections": {
+    "Integrations Index": "This directory documents all third-party and internal service integrations for the AI-Q project.",
+    "Core Integrations": "- Weaviate (vector DB)\n- Neo4j (knowledge graph)\n- Minio (object storage)\n- Postgres (metadata)\n- Redis/RQ (cache, background jobs)\n- Ollama, Llama.cpp, VLLM (LLM inference)\n- ComfyUI, A1111 (image generation)\n- n8n (workflow automation)\n- Jupyter (data science)\n\nEach integration has its own file with setup, configuration, and agent task details."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

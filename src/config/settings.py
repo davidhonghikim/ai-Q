@@ -109,12 +109,21 @@ class SecuritySettings(BaseSettings):
     jwt_expiration_hours: int = Field(default=24, description="JWT expiration hours")
     bcrypt_rounds: int = Field(default=12, description="BCrypt rounds")
     
+    model_config = {
+        "env_nested_delimiter": "__",
+        "extra": "ignore"
+    }
+    
     @field_validator('cors_origins', mode='before')
     @classmethod
     def parse_cors_origins(cls, v):
         """Parse CORS origins from comma-separated string or list."""
         if isinstance(v, str):
-            return [origin.strip() for origin in v.split(',')]
+            # Handle comma-separated string
+            if ',' in v:
+                return [origin.strip() for origin in v.split(',')]
+            # Handle single URL
+            return [v.strip()]
         return v
     
     @field_validator('allowed_hosts', mode='before')
@@ -122,7 +131,11 @@ class SecuritySettings(BaseSettings):
     def parse_allowed_hosts(cls, v):
         """Parse allowed hosts from comma-separated string or list."""
         if isinstance(v, str):
-            return [host.strip() for host in v.split(',')]
+            # Handle comma-separated string
+            if ',' in v:
+                return [host.strip() for host in v.split(',')]
+            # Handle single host
+            return [v.strip()]
         return v
 
 class APIServerSettings(BaseSettings):

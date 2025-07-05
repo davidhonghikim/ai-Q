@@ -1,0 +1,126 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "purpose": "AI-Q Knowledge Library System - Main Project Documentation",
+  "converted_from": "README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "title": "AI-Q Knowledge Library System",
+  "project_overview": {
+    "name": "AI-Q Knowledge Library System",
+    "description": "A comprehensive knowledge management and AI agent orchestration system designed for modular, scalable, and intelligent information processing",
+    "status": "Active Development - Phase 1 Complete",
+    "current_phase": "Documentation Standardization and Migration",
+    "target_architecture": "Modular plug-and-play with registry-based organization"
+  },
+  "documentation_format": {
+    "current_standard": "JSON (.json) only",
+    "conversion_completed": "2025-01-27T22:30:00Z",
+    "previous_formats": ["YAML (.yml, .yaml)", "Markdown (.md, .markdown)"],
+    "archival_status": "All original files removed, archives preserved",
+    "agent_consumption": "Direct JSON parsing with consistent metadata structure"
+  },
+  "project_structure": {
+    "root_directories": {
+      "agents": "Agent handoff documents, execution plans, and analysis reports",
+      "manual": "Comprehensive system documentation and guides",
+      "recipes": "Implementation recipes and architectural blueprints",
+      "scripts": "Automation and utility scripts",
+      "config": "Configuration files and templates",
+      "prompts": "AI agent prompts and system instructions",
+      "archives": "Historical documentation and backup files"
+    },
+    "key_files": {
+      "documentation_reference": "agents/DOCUMENTATION_REFERENCE_UPDATE.json",
+      "conversion_report": "agents/COMPREHENSIVE_CONVERSION_REPORT.json",
+      "execution_plan": "agents/EXECUTION_PLAN_PHASE_1.json",
+      "critical_issues": "agents/CRITICAL_ISSUES_ANALYSIS.json"
+    }
+  },
+  "current_status": {
+    "documentation_migration": {
+      "status": "COMPLETE",
+      "files_converted": 17,
+      "success_rate": "100%",
+      "format_standardization": "JSON-only format established"
+    },
+    "next_priorities": [
+      "Recipe system overhaul and standardization",
+      "Node specifications review and update",
+      "System architecture documentation update",
+      "Error analysis and resolution"
+    ]
+  },
+  "agent_workflow": {
+    "documentation_access": "All documentation now in JSON format with consistent metadata",
+    "parsing_requirements": "Use standard JSON libraries for all file operations",
+    "metadata_importance": "Always check conversion metadata for historical context",
+    "validation_requirements": "Validate JSON syntax before processing any documentation"
+  },
+  "development_guidelines": {
+    "new_documentation": "Create all new documentation in JSON format only",
+    "file_naming": "Use descriptive names with .json extension, UPPER_CASE for important docs",
+    "metadata_standards": "Include required conversion metadata fields",
+    "versioning": "Increment version field for significant changes",
+    "archival": "Archive old versions in archives/ directory"
+  },
+  "system_architecture": {
+    "core_components": {
+      "knowledge_library": "Centralized knowledge management and retrieval",
+      "agent_orchestration": "Multi-agent coordination and task distribution",
+      "modular_registry": "Plug-and-play component registration system",
+      "ai_pipelines": "Intelligent data processing and analysis workflows"
+    },
+    "technology_stack": {
+      "backend": "Python with modular architecture",
+      "frontend": "Web-based dashboard and interfaces",
+      "ai_integration": "OpenWebUI with Ollama, support for multiple LLMs",
+      "storage": "Distributed and scalable data storage"
+    }
+  },
+  "docker_setup": {
+    "organization": "All Docker files organized in docker/ directory",
+    "compose_files": {
+      "unified": "docker/compose/docker-compose.unified.yml",
+      "development": "docker/compose/docker-compose.yml",
+      "infrastructure": "docker/compose/docker-compose.infrastructure.yml",
+      "feature_flags": "docker/compose/docker-compose.feature-flags.yml"
+    },
+    "dockerfiles": {
+      "unified": "docker/dockerfiles/Dockerfile.unified",
+      "api": "docker/dockerfiles/Dockerfile.api",
+      "web": "docker/dockerfiles/Dockerfile.web"
+    },
+    "quick_start": {
+      "windows": ".\\scripts\\docker-run.ps1 up unified",
+      "linux_mac": "./scripts/docker-run.sh up unified",
+      "feature_flags": "python3 scripts/feature-flag-parser.py generate-compose"
+    },
+    "documentation": "See docker/README.md for detailed Docker setup instructions"
+  },
+  "getting_started": {
+    "prerequisites": [
+      "Python 3.8+",
+      "Docker and Docker Compose",
+      "Git for version control"
+    ],
+    "installation": "See manual/README.json for detailed setup instructions",
+    "configuration": "Review config/ directory for system configuration",
+    "first_steps": "Start with agents/EXECUTION_PLAN_PHASE_1.json for current priorities"
+  },
+  "contributing": {
+    "documentation_standards": "All contributions must use JSON format",
+    "code_standards": "Follow modular architecture principles",
+    "testing_requirements": "Comprehensive testing for all new features",
+    "review_process": "All changes require validation and testing"
+  },
+  "support_and_resources": {
+    "documentation": "All documentation available in JSON format in manual/ directory",
+    "recipes": "Implementation guides in recipes/ directory",
+    "agent_handoffs": "Current status in agents/ directory",
+    "archives": "Historical information in archives/ directory"
+  },
+  "conversion_notes": "This README was converted from Markdown to JSON format as part of the comprehensive documentation standardization effort. All internal references have been updated to reflect the new JSON-only format.",
+  "requires_manual_review": false
+}

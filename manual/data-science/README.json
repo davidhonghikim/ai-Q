@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\data-science\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "Data Science and Analytics Index",
+  "original_content": "# Data Science and Analytics Index\n\nThis directory documents all Jupyter, analytics, and user scripting features for the AI-Q project.\n\n## Topics\n- Jupyter Notebook Integration\n- Data Analytics and Dashboards\n- User Scripting and Experimentation\n\nEach topic is documented in its own file. ",
+  "sections": {
+    "Data Science and Analytics Index": "This directory documents all Jupyter, analytics, and user scripting features for the AI-Q project.",
+    "Topics": "- Jupyter Notebook Integration\n- Data Analytics and Dashboards\n- User Scripting and Experimentation\n\nEach topic is documented in its own file."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

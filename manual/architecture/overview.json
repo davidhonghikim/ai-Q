@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\architecture\\overview.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: overview.md",
+  "title": "AI-Q System Architecture Overview",
+  "original_content": "# AI-Q System Architecture Overview\n\n## Layers\n- **Ingestion Layer:** Handles all user uploads (text, image, video, audio, docs, code) via UI, API, or integrations.\n- **Storage Layer:** Minio (object storage), Postgres (metadata), Weaviate (vector search), Neo4j (knowledge graph), Redis (cache/queue).\n- **Processing Layer:** AI/ML pipelines for text, image, video, audio; background jobs (RQ); workflow automation (n8n).\n- **API Layer:** FastAPI/Fastify REST/gRPC endpoints for all operations.\n- **Frontend Layer:** React UI, user dashboards, search, gallery, automation, data science (Jupyter).\n\n## Data Flow\n1. User uploads or creates data via UI/API.\n2. Data is stored in Minio (raw), Postgres (metadata), and indexed in Weaviate/Neo4j.\n3. AI/ML pipelines process and enrich data (embeddings, tags, summaries, relationships).\n4. Users interact with data via search, dashboards, automations, and analytics.\n\n## Core Components\n- **Minio:** Universal file/object storage.\n- **Weaviate:** Multi-modal vector search and semantic retrieval.\n- **Neo4j:** Knowledge graph for relationships and context.\n- **Postgres:** Metadata, user data, permissions.\n- **Redis/RQ:** Caching, background jobs, queues.\n- **Ollama, Llama.cpp, VLLM:** LLM inference for text, chat, summarization.\n- **ComfyUI, A1111:** Image generation (GPU/CPU).\n- **n8n:** Workflow automation.\n- **Jupyter:** Data science and analytics.\n\n---\n\n**See subdirectories for detailed specs on each component and layer.** ",
+  "sections": {
+    "AI-Q System Architecture Overview": "",
+    "Layers": "- **Ingestion Layer:** Handles all user uploads (text, image, video, audio, docs, code) via UI, API, or integrations.\n- **Storage Layer:** Minio (object storage), Postgres (metadata), Weaviate (vector search), Neo4j (knowledge graph), Redis (cache/queue).\n- **Processing Layer:** AI/ML pipelines for text, image, video, audio; background jobs (RQ); workflow automation (n8n).\n- **API Layer:** FastAPI/Fastify REST/gRPC endpoints for all operations.\n- **Frontend Layer:** React UI, user dashboards, search, gallery, automation, data science (Jupyter).",
+    "Data Flow": "1. User uploads or creates data via UI/API.\n2. Data is stored in Minio (raw), Postgres (metadata), and indexed in Weaviate/Neo4j.\n3. AI/ML pipelines process and enrich data (embeddings, tags, summaries, relationships).\n4. Users interact with data via search, dashboards, automations, and analytics.",
+    "Core Components": "- **Minio:** Universal file/object storage.\n- **Weaviate:** Multi-modal vector search and semantic retrieval.\n- **Neo4j:** Knowledge graph for relationships and context.\n- **Postgres:** Metadata, user data, permissions.\n- **Redis/RQ:** Caching, background jobs, queues.\n- **Ollama, Llama.cpp, VLLM:** LLM inference for text, chat, summarization.\n- **ComfyUI, A1111:** Image generation (GPU/CPU).\n- **n8n:** Workflow automation.\n- **Jupyter:** Data science and analytics.\n\n---\n\n**See subdirectories for detailed specs on each component and layer.**"
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

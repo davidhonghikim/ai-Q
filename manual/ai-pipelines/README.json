@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\ai-pipelines\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "AI/ML Pipelines Index",
+  "original_content": "# AI/ML Pipelines Index\n\nThis directory contains specifications for all AI/ML pipelines in the AI-Q project.\n\n## Pipelines\n- Text Processing (LLMs, summarization, Q&A)\n- Image Processing (embedding, OCR, generation)\n- Video Processing (keyframes, transcription, summarization)\n- Audio Processing (transcription, speaker ID)\n- Document Processing (parsing, summarization)\n- Code Processing (embedding, explanation)\n\nEach pipeline has its own file with architecture, models, and agent task breakdowns. ",
+  "sections": {
+    "AI/ML Pipelines Index": "This directory contains specifications for all AI/ML pipelines in the AI-Q project.",
+    "Pipelines": "- Text Processing (LLMs, summarization, Q&A)\n- Image Processing (embedding, OCR, generation)\n- Video Processing (keyframes, transcription, summarization)\n- Audio Processing (transcription, speaker ID)\n- Document Processing (parsing, summarization)\n- Code Processing (embedding, explanation)\n\nEach pipeline has its own file with architecture, models, and agent task breakdowns."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

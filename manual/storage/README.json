@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\storage\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "Storage Index",
+  "original_content": "# Storage Index\n\nThis directory documents all storage backends, schemas, and data flows for the AI-Q project.\n\n## Storage Backends\n- Minio (object storage)\n- Postgres (metadata, user data)\n- Weaviate (vector search)\n- Neo4j (knowledge graph)\n- Redis (cache, queue)\n\nEach backend and schema is documented in its own file. ",
+  "sections": {
+    "Storage Index": "This directory documents all storage backends, schemas, and data flows for the AI-Q project.",
+    "Storage Backends": "- Minio (object storage)\n- Postgres (metadata, user data)\n- Weaviate (vector search)\n- Neo4j (knowledge graph)\n- Redis (cache, queue)\n\nEach backend and schema is documented in its own file."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\automation\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "Automation Index",
+  "original_content": "# Automation Index\n\nThis directory documents all workflow automation and scheduled job features for the AI-Q project.\n\n## Topics\n- n8n Workflow Automation\n- Scheduled and Background Jobs\n- Integration with AI Pipelines\n\nEach topic is documented in its own file. ",
+  "sections": {
+    "Automation Index": "This directory documents all workflow automation and scheduled job features for the AI-Q project.",
+    "Topics": "- n8n Workflow Automation\n- Scheduled and Background Jobs\n- Integration with AI Pipelines\n\nEach topic is documented in its own file."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

@@ -1,0 +1,49 @@
+{
+  "document_metadata": {
+    "title": "PowerShell Verb Fix",
+    "version": "1.0.0",
+    "created_date": "2025-01-30T16:30:00Z",
+    "document_type": "fix_report",
+    "format": "json",
+    "purpose": "Documentation of PowerShell verb compliance fix"
+  },
+  "issue_identified": {
+    "description": "The PowerShell script scripts/docker-run.ps1 was using an unapproved verb 'Run-' which violates PowerShell naming conventions",
+    "severity": "medium",
+    "category": "compliance",
+    "affected_file": "scripts/docker-run.ps1"
+  },
+  "fix_applied": {
+    "function_name_change": {
+      "before": "Run-DockerCompose",
+      "after": "Invoke-DockerCompose",
+      "reason": "Changed to use PowerShell-approved verb"
+    },
+    "changes_made": [
+      "Updated all function calls throughout the script",
+      "Maintained the same functionality",
+      "Used PowerShell-approved verb 'Invoke-'"
+    ]
+  },
+  "powershell_approved_verbs": {
+    "verb_chosen": "Invoke-",
+    "justification": [
+      "It's in the list of approved PowerShell verbs",
+      "It accurately describes the action (invoking a command)",
+      "It follows PowerShell best practices"
+    ]
+  },
+  "testing_results": {
+    "test_command": "powershell -ExecutionPolicy Bypass -File .\\scripts\\docker-run.ps1 help",
+    "result": "PASS",
+    "status": "success",
+    "description": "Script runs without warnings"
+  },
+  "benefits_achieved": [
+    "Compliance: Follows PowerShell naming conventions",
+    "No warnings: Script runs without unapproved verb warnings",
+    "Best practices: Uses proper PowerShell patterns",
+    "Maintainability: Follows standard PowerShell conventions"
+  ],
+  "conclusion": "The PowerShell script now uses approved verbs and follows proper PowerShell conventions!"
+} 
