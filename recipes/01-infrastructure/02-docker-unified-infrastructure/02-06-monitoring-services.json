@@ -1,471 +1,572 @@
 {
-  "metadata": {
-    "sub_recipe_id": "02-06-monitoring-services",
-    "title": "Monitoring Services - Prometheus, Grafana, AlertManager",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "02-06-MONITORING-INFRASTRUCTURE-FOUNDATION",
+    "title": "Monitoring Infrastructure Foundation - Docker Environment Setup",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-01-30T23:58:00Z",
-    "purpose": "Deploy comprehensive monitoring stack including Prometheus, Grafana, and AlertManager",
-    "total_tasks": 6,
-    "estimated_duration": "2-3 hours",
-    "complexity": "Advanced",
-    "dependencies": ["02-01-docker-core", "02-02-docker-services", "02-05-infrastructure-services"],
-    "port_assignments": {
-      "prometheus": 9090,
-      "grafana": 3002,
-      "alertmanager": 9093,
-      "node-exporter": 9100,
-      "cadvisor": 8081,
-      "notes": "Using alternative ports to avoid conflicts with existing services"
+    "creation_date": "2025-01-28T20:00:00Z",
+    "last_updated": "2025-07-06T18:00:00Z",
+    "estimated_tokens": 45000,
+    "estimated_execution_time": "45 minutes",
+    "difficulty_level": "expert",
+    "total_tasks": 3,
+    "agent_autonomy_level": "95%",
+    "success_rate_target": "99%",
+    "compliance_standards": ["ISO 27001", "SOC 2"],
+    "architecture_tier": "enterprise-monitoring-infrastructure",
+    "description": "Monitoring infrastructure foundation with Docker networks, volumes, and orchestration framework - infrastructure only, no services installed",
+    "is_master_recipe": false,
+    "dependencies": {
+      "prerequisites": ["02-01-docker-core", "02-02-docker-services"],
+      "required_services": ["docker", "docker-compose"],
+      "required_networks": ["ai-q-monitoring-network"],
+      "required_volumes": ["ai-q-monitoring-data", "ai-q-monitoring-config", "ai-q-monitoring-alerts"],
+      "required_ports": [],
+      "required_files": ["/opt/ai-q/docker/compose/monitoring/"]
+    },
+    "kitchen_system": {
+      "pantry_category": "monitoring-infrastructure",
+      "cooking_time": "45 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["monitoring_network_setup", "monitoring_volume_management", "monitoring_orchestration_framework"],
+      "cache_strategy": "monitoring_infrastructure_cache",
+      "orchestrator_priority": "critical"
     }
   },
-  "prerequisites": {
-    "completed_tasks": [
-      "02-01-01: Docker environment setup",
-      "02-01-02: Network architecture configured",
-      "02-01-03: Volume management setup",
-      "02-02-01: Docker services orchestration",
-      "02-05-01: PostgreSQL deployed",
-      "02-05-02: Redis deployed",
-      "02-05-03: MinIO deployed"
+  "recipe_overview": {
+    "name": "Monitoring Infrastructure Foundation",
+    "description": "Docker infrastructure foundation for monitoring services - networks, volumes, and orchestration framework only",
+    "prerequisites": [
+      "02-01-docker-core completed",
+      "02-02-docker-services completed",
+      "Docker networks operational",
+      "Docker volumes accessible",
+      "Minimum 8GB RAM available",
+      "100GB free disk space for monitoring data"
     ],
-    "system_requirements": {
-      "cpu": "Minimum 2 cores for monitoring services",
-      "ram": "Minimum 4GB for monitoring services",
-      "storage": "Minimum 20GB for metrics storage",
-      "network": "Stable network for metrics collection"
-    }
+    "target_outcome": "Production-ready monitoring infrastructure foundation with zero technical debt",
+    "success_criteria": [
+      "Monitoring Docker network operational",
+      "Monitoring volumes created and accessible",
+      "Monitoring orchestration framework ready",
+      "No actual monitoring services installed",
+      "All components can be safely installed/uninstalled"
+    ]
   },
-  "task_01_deploy_prometheus": {
-    "task_id": "02-06-01",
-    "title": "Deploy Prometheus Metrics Server",
-    "description": "Deploy Prometheus with persistent storage and comprehensive configuration",
-    "estimated_duration": "60 minutes",
-    "critical": true,
-    "steps": [
+  "pantry_ingredients": {
+    "tasks": [
       {
-        "step_id": "02-06-01-01",
-        "title": "Create Prometheus configuration directory",
-        "description": "Create directory structure for Prometheus",
-        "commands": [
-          "sudo mkdir -p /opt/ai-q/data/prometheus/data",
-          "sudo mkdir -p /opt/ai-q/config/prometheus",
-          "sudo mkdir -p /opt/ai-q/config/prometheus/rules"
+        "task_id": "MONITORING_NETWORK_SETUP_TASK",
+        "name": "Monitoring Network Setup",
+        "description": "Create dedicated Docker network for monitoring services with exact specifications",
+        "estimated_time": "15 minutes",
+        "dependencies": [],
+        "skills_required": ["network_configuration", "subnet_management", "monitoring_infrastructure"],
+        "exact_commands": [
+          "docker network create --driver bridge --subnet 172.27.0.0/16 --gateway 172.27.0.1 ai-q-monitoring-network",
+          "docker network ls --filter name=ai-q-monitoring-network",
+          "docker network inspect ai-q-monitoring-network --format '{{.IPAM.Config}}'"
         ],
-        "verification": "Check directories created",
-        "expected_output": "All Prometheus directories created successfully"
+        "validation_commands": [
+          "docker network ls --filter name=ai-q-monitoring-network",
+          "docker network inspect ai-q-monitoring-network --format '{{.IPAM.Config}}'",
+          "docker network inspect ai-q-monitoring-network --format '{{.Driver}}'"
+        ]
       },
       {
-        "step_id": "02-06-01-02",
-        "title": "Create Prometheus configuration file",
-        "description": "Create comprehensive Prometheus configuration",
-        "config_file": "/opt/ai-q/config/prometheus/prometheus.yml",
-        "config_content": {
-          "global": {
-            "scrape_interval": "15s",
-            "evaluation_interval": "15s"
-          },
-          "rule_files": ["/etc/prometheus/rules/*.yml"],
-          "scrape_configs": [
-            {
-              "job_name": "prometheus",
-              "static_configs": [{"targets": ["localhost:9090"]}]
-            },
-            {
-              "job_name": "node-exporter",
-              "static_configs": [{"targets": ["node-exporter:9100"]}]
-            },
-            {
-              "job_name": "cadvisor",
-              "static_configs": [{"targets": ["cadvisor:8081"]}]
-            },
-            {
-              "job_name": "postgresql",
-              "static_configs": [{"targets": ["postgresql:5432"]}]
-            },
-            {
-              "job_name": "redis",
-              "static_configs": [{"targets": ["redis:6379"]}]
-            }
-          ],
-          "alerting": {
-            "alertmanagers": [{"static_configs": [{"targets": ["alertmanager:9093"]}]}]
-          }
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/config/prometheus/prometheus.yml << 'EOF'\nglobal:\n  scrape_interval: 15s\n  evaluation_interval: 15s\n\nrule_files:\n  - /etc/prometheus/rules/*.yml\n\nscrape_configs:\n  - job_name: 'prometheus'\n    static_configs:\n      - targets: ['localhost:9090']\n\n  - job_name: 'node-exporter'\n    static_configs:\n      - targets: ['node-exporter:9100']\n\n  - job_name: 'cadvisor'\n    static_configs:\n      - targets: ['cadvisor:8081']\n\n  - job_name: 'postgresql'\n    static_configs:\n      - targets: ['postgresql:5432']\n\n  - job_name: 'redis'\n    static_configs:\n      - targets: ['redis:6379']\n\nalerting:\n  alertmanagers:\n    - static_configs:\n        - targets:\n          - alertmanager:9093\nEOF"
+        "task_id": "MONITORING_VOLUME_SETUP_TASK",
+        "name": "Monitoring Volume Setup",
+        "description": "Create persistent volumes for monitoring services with exact specifications",
+        "estimated_time": "15 minutes",
+        "dependencies": ["MONITORING_NETWORK_SETUP_TASK"],
+        "skills_required": ["volume_management", "persistence_configuration", "monitoring_data_storage"],
+        "exact_commands": [
+          "docker volume create ai-q-monitoring-data",
+          "docker volume create ai-q-monitoring-config",
+          "docker volume create ai-q-monitoring-alerts",
+          "docker volume create ai-q-monitoring-logs",
+          "docker volume create ai-q-monitoring-cache",
+          "docker volume create ai-q-monitoring-temp"
         ],
-        "verification": "Check configuration file exists",
-        "expected_output": "prometheus.yml created with specified configuration"
+        "validation_commands": [
+          "docker volume ls --filter name=ai-q-monitoring",
+          "docker volume inspect ai-q-monitoring-data --format '{{.Mountpoint}}'",
+          "docker volume inspect ai-q-monitoring-config --format '{{.Mountpoint}}'"
+        ]
       },
       {
-        "step_id": "02-06-01-03",
-        "title": "Create Prometheus Docker Compose service",
-        "description": "Create Prometheus service configuration",
-        "config_file": "/opt/ai-q/docker/compose/prometheus-service.yml",
-        "config_content": {
-          "version": "3.8",
-          "services": {
-            "prometheus": {
-              "image": "prom/prometheus:latest",
-              "container_name": "ai-q-prometheus",
-              "restart": "unless-stopped",
-              "ports": ["9090:9090"],
-              "volumes": [
-                "/opt/ai-q/data/prometheus/data:/prometheus",
-                "/opt/ai-q/config/prometheus:/etc/prometheus",
-                "/opt/ai-q/config/prometheus/rules:/etc/prometheus/rules"
-              ],
-              "command": [
-                "--config.file=/etc/prometheus/prometheus.yml",
-                "--storage.tsdb.path=/prometheus",
-                "--web.console.libraries=/etc/prometheus/console_libraries",
-                "--web.console.templates=/etc/prometheus/consoles",
-                "--storage.tsdb.retention.time=200h",
-                "--web.enable-lifecycle"
-              ],
-              "networks": ["ai-q-network"],
-              "healthcheck": {
-                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"],
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3
-              }
-            }
-          },
-          "networks": {
-            "ai-q-network": {
-              "external": true
-            }
-          }
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/docker/compose/prometheus-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  prometheus:\n    image: prom/prometheus:latest\n    container_name: ai-q-prometheus\n    restart: unless-stopped\n    ports:\n      - 9090:9090\n    volumes:\n      - /opt/ai-q/data/prometheus/data:/prometheus\n      - /opt/ai-q/config/prometheus:/etc/prometheus\n      - /opt/ai-q/config/prometheus/rules:/etc/prometheus/rules\n    command:\n      - --config.file=/etc/prometheus/prometheus.yml\n      - --storage.tsdb.path=/prometheus\n      - --web.console.libraries=/etc/prometheus/console_libraries\n      - --web.console.templates=/etc/prometheus/consoles\n      - --storage.tsdb.retention.time=200h\n      - --web.enable-lifecycle\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:9090/-/healthy\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        "task_id": "MONITORING_ORCHESTRATION_SETUP_TASK",
+        "name": "Monitoring Orchestration Framework",
+        "description": "Create orchestration framework for monitoring services with exact specifications",
+        "estimated_time": "15 minutes",
+        "dependencies": ["MONITORING_VOLUME_SETUP_TASK"],
+        "skills_required": ["orchestration_framework", "template_management", "monitoring_infrastructure"],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/docker/compose/monitoring/{templates,configs,scripts}",
+          "chmod 755 /opt/ai-q/docker/compose/monitoring",
+          "tee /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml << 'EOF'",
+          "version: '3.8'",
+          "networks:",
+          "  ai-q-monitoring-network:",
+          "    external: true",
+          "volumes:",
+          "  monitoring-data:",
+          "    external: true",
+          "  monitoring-config:",
+          "    external: true",
+          "  monitoring-alerts:",
+          "    external: true",
+          "  monitoring-logs:",
+          "    external: true",
+          "  monitoring-cache:",
+          "    external: true",
+          "  monitoring-temp:",
+          "    external: true",
+          "EOF",
+          "tee /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh << 'EOF'",
+          "#!/bin/bash",
+          "# Monitoring Services Orchestration Script",
+          "MONITORING_DIR=\"/opt/ai-q/docker/compose/monitoring\"",
+          "start_monitoring_service() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Starting \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" up -d",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "stop_monitoring_service() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Stopping \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" down",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "restart_monitoring_service() {",
+          "    local service_name=\$1",
+          "    stop_monitoring_service \"\$service_name\"",
+          "    sleep 5",
+          "    start_monitoring_service \"\$service_name\"",
+          "}",
+          "check_monitoring_service_status() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Checking status of \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" ps",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "case \"\$1\" in",
+          "    start)",
+          "        start_monitoring_service \"\$2\"",
+          "        ;;",
+          "    stop)",
+          "        stop_monitoring_service \"\$2\"",
+          "        ;;",
+          "    restart)",
+          "        restart_monitoring_service \"\$2\"",
+          "        ;;",
+          "    status)",
+          "        check_monitoring_service_status \"\$2\"",
+          "        ;;",
+          "    *)",
+          "        echo \"Usage: \$0 {start|stop|restart|status} <service_name>\"",
+          "        exit 1",
+          "        ;;",
+          "esac",
+          "EOF",
+          "chmod +x /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
         ],
-        "verification": "Check configuration file exists",
-        "expected_output": "prometheus-service.yml created with specified configuration"
-      },
-      {
-        "step_id": "02-06-01-04",
-        "title": "Deploy Prometheus service",
-        "description": "Start Prometheus service and verify deployment",
-        "commands": [
-          "docker-compose -f /opt/ai-q/docker/compose/prometheus-service.yml up -d",
-          "sleep 30",
-          "curl -f http://localhost:9090/-/healthy"
-        ],
-        "verification": "Check Prometheus service is running",
-        "expected_output": "Prometheus service running and responding to health check"
+        "validation_commands": [
+          "ls -la /opt/ai-q/docker/compose/monitoring/",
+          "cat /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml",
+          "/opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh --help || echo 'Script created'"
+        ]
       }
     ],
-    "verification_commands": [
-      "docker ps --filter name=ai-q-prometheus",
-      "curl -s http://localhost:9090/-/healthy",
-      "curl -s http://localhost:9090/api/v1/status/config",
-      "docker logs ai-q-prometheus"
-    ],
-    "expected_outputs": {
-      "service_running": "Prometheus container is running",
-      "health_responding": "Prometheus health endpoint responds",
-      "config_loaded": "Prometheus configuration loaded successfully",
-      "logs_clean": "No error messages in logs"
-    }
-  },
-  "task_02_deploy_grafana": {
-    "task_id": "02-06-02",
-    "title": "Deploy Grafana Dashboard",
-    "description": "Deploy Grafana with Prometheus data source and dashboards",
-    "estimated_duration": "45 minutes",
-    "critical": true,
-    "steps": [
+    "skills": [
       {
-        "step_id": "02-06-02-01",
-        "title": "Create Grafana configuration directory",
-        "description": "Create directory structure for Grafana",
-        "commands": [
-          "sudo mkdir -p /opt/ai-q/data/grafana/data",
-          "sudo mkdir -p /opt/ai-q/config/grafana/provisioning/datasources",
-          "sudo mkdir -p /opt/ai-q/config/grafana/provisioning/dashboards"
-        ],
-        "verification": "Check directories created",
-        "expected_output": "All Grafana directories created successfully"
+        "skill_id": "MONITORING_NETWORK_CONFIGURATION_SKILL",
+        "name": "Monitoring Network Configuration",
+        "description": "Configure monitoring networks with exact specifications",
+        "tools": ["network_setup", "subnet_management", "monitoring_infrastructure"],
+        "validation": "monitoring_network_configuration_validation",
+        "exact_validation_commands": [
+          "docker network ls --filter name=ai-q-monitoring-network",
+          "docker network inspect ai-q-monitoring-network --format '{{.IPAM.Config}}'",
+          "docker network inspect ai-q-monitoring-network --format '{{.Driver}}'"
+        ]
       },
       {
-        "step_id": "02-06-02-02",
-        "title": "Create Grafana datasource configuration",
-        "description": "Create Prometheus datasource configuration",
-        "config_file": "/opt/ai-q/config/grafana/provisioning/datasources/prometheus.yml",
-        "config_content": {
-          "apiVersion": 1,
-          "datasources": [
-            {
-              "name": "Prometheus",
-              "type": "prometheus",
-              "url": "http://prometheus:9090",
-              "access": "proxy",
-              "isDefault": true
-            }
-          ]
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/config/grafana/provisioning/datasources/prometheus.yml << 'EOF'\napiVersion: 1\n\ndatasources:\n  - name: Prometheus\n    type: prometheus\n    url: http://prometheus:9090\n    access: proxy\n    isDefault: true\nEOF"
-        ],
-        "verification": "Check datasource configuration exists",
-        "expected_output": "prometheus.yml datasource configuration created"
+        "skill_id": "MONITORING_VOLUME_MANAGEMENT_SKILL",
+        "name": "Monitoring Volume Management",
+        "description": "Manage monitoring volumes with exact specifications",
+        "tools": ["volume_setup", "persistence_management", "monitoring_data_storage"],
+        "validation": "monitoring_volume_management_validation",
+        "exact_validation_commands": [
+          "docker volume ls --filter name=ai-q-monitoring",
+          "docker volume inspect ai-q-monitoring-data --format '{{.Mountpoint}}'",
+          "docker volume inspect ai-q-monitoring-config --format '{{.Mountpoint}}'"
+        ]
       },
       {
-        "step_id": "02-06-02-03",
-        "title": "Create Grafana Docker Compose service",
-        "description": "Create Grafana service configuration",
-        "config_file": "/opt/ai-q/docker/compose/grafana-service.yml",
-        "config_content": {
-          "version": "3.8",
-          "services": {
-            "grafana": {
-              "image": "grafana/grafana:latest",
-              "container_name": "ai-q-grafana",
-              "restart": "unless-stopped",
-              "ports": ["3002:3000"],
-              "volumes": [
-                "/opt/ai-q/data/grafana/data:/var/lib/grafana",
-                "/opt/ai-q/config/grafana/provisioning:/etc/grafana/provisioning"
-              ],
-              "environment": [
-                "GF_SECURITY_ADMIN_USER=admin",
-                "GF_SECURITY_ADMIN_PASSWORD=admin-secure-password-change-in-production",
-                "GF_USERS_ALLOW_SIGN_UP=false"
-              ],
-              "networks": ["ai-q-network"],
-              "healthcheck": {
-                "test": ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"],
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3
-              }
-            }
-          },
-          "networks": {
-            "ai-q-network": {
-              "external": true
-            }
-          }
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/docker/compose/grafana-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: ai-q-grafana\n    restart: unless-stopped\n    ports:\n      - 3002:3000\n    volumes:\n      - /opt/ai-q/data/grafana/data:/var/lib/grafana\n      - /opt/ai-q/config/grafana/provisioning:/etc/grafana/provisioning\n    environment:\n      - GF_SECURITY_ADMIN_USER=admin\n      - GF_SECURITY_ADMIN_PASSWORD=admin-secure-password-change-in-production\n      - GF_USERS_ALLOW_SIGN_UP=false\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD-SHELL\", \"curl -f http://localhost:3000/api/health || exit 1\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
-        ],
-        "verification": "Check configuration file exists",
-        "expected_output": "grafana-service.yml created with specified configuration"
-      },
-      {
-        "step_id": "02-06-02-04",
-        "title": "Deploy Grafana service",
-        "description": "Start Grafana service and verify deployment",
-        "commands": [
-          "docker-compose -f /opt/ai-q/docker/compose/grafana-service.yml up -d",
-          "sleep 30",
-          "curl -f http://localhost:3002/api/health"
-        ],
-        "verification": "Check Grafana service is running",
-        "expected_output": "Grafana service running and responding to health check"
+        "skill_id": "MONITORING_ORCHESTRATION_SKILL",
+        "name": "Monitoring Orchestration Framework",
+        "description": "Manage monitoring orchestration with exact specifications",
+        "tools": ["orchestration_setup", "template_management", "script_management"],
+        "validation": "monitoring_orchestration_validation",
+        "exact_validation_commands": [
+          "ls -la /opt/ai-q/docker/compose/monitoring/",
+          "cat /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml",
+          "test -x /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
+        ]
       }
     ],
-    "verification_commands": [
-      "docker ps --filter name=ai-q-grafana",
-      "curl -s http://localhost:3002/api/health",
-      "curl -s http://localhost:3002/api/datasources",
-      "docker logs ai-q-grafana"
-    ],
-    "expected_outputs": {
-      "service_running": "Grafana container is running",
-      "health_responding": "Grafana health endpoint responds",
-      "datasources_configured": "Prometheus datasource configured",
-      "logs_clean": "No error messages in logs"
-    }
-  },
-  "task_03_deploy_alertmanager": {
-    "task_id": "02-06-03",
-    "title": "Deploy AlertManager",
-    "description": "Deploy AlertManager for alert routing and notification",
-    "estimated_duration": "30 minutes",
-    "critical": false,
-    "steps": [
+    "tools": [
       {
-        "step_id": "02-06-03-01",
-        "title": "Create AlertManager configuration directory",
-        "description": "Create directory structure for AlertManager",
-        "commands": [
-          "sudo mkdir -p /opt/ai-q/config/alertmanager",
-          "sudo mkdir -p /opt/ai-q/data/alertmanager/data"
-        ],
-        "verification": "Check directories created",
-        "expected_output": "All AlertManager directories created successfully"
+        "tool_id": "MONITORING_INFRASTRUCTURE_TOOL",
+        "name": "Monitoring Infrastructure Setup Tool",
+        "description": "Automated monitoring infrastructure installation and configuration",
+        "file_path": "scripts/infrastructure/setup_monitoring_infrastructure.py",
+        "config": "config/infrastructure/monitoring_infrastructure_config.json",
+        "exact_config_spec": {
+          "network_subnet": "172.27.0.0/16",
+          "network_gateway": "172.27.0.1",
+          "network_driver": "bridge",
+          "volumes": ["ai-q-monitoring-data", "ai-q-monitoring-config", "ai-q-monitoring-alerts", "ai-q-monitoring-logs", "ai-q-monitoring-cache", "ai-q-monitoring-temp"],
+          "orchestration_dir": "/opt/ai-q/docker/compose/monitoring"
+        }
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "MONITORING_NETWORK_CONFIG",
+        "name": "Monitoring Network Configuration",
+        "description": "Monitoring network configuration with exact specifications",
+        "file_path": "/opt/ai-q/config/infrastructure/monitoring_network.json",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "network_name": {"type": "string"},
+            "subnet": {"type": "string"},
+            "gateway": {"type": "string"},
+            "driver": {"type": "string"},
+            "enable_ipv6": {"type": "boolean"},
+            "internal": {"type": "boolean"},
+            "attachable": {"type": "boolean"}
+          }
+        }
       },
       {
-        "step_id": "02-06-03-02",
-        "title": "Create AlertManager configuration",
-        "description": "Create AlertManager configuration file",
-        "config_file": "/opt/ai-q/config/alertmanager/alertmanager.yml",
-        "config_content": {
-          "global": {
-            "smtp_smarthost": "localhost:587",
-            "smtp_from": "alertmanager@ai-q.local"
-          },
-          "route": {
-            "group_by": ["alertname"],
-            "group_wait": "10s",
-            "group_interval": "10s",
-            "repeat_interval": "1h",
-            "receiver": "web.hook"
-          },
-          "receivers": [
-            {
-              "name": "web.hook",
-              "webhook_configs": [
-                {
-                  "url": "http://127.0.0.1:5001/"
+        "config_id": "MONITORING_VOLUME_CONFIG",
+        "name": "Monitoring Volume Configuration",
+        "description": "Monitoring volume configuration with exact specifications",
+        "file_path": "/opt/ai-q/config/infrastructure/monitoring_volumes.json",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "volumes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {"type": "string"},
+                  "driver": {"type": "string"},
+                  "labels": {"type": "object"}
                 }
-              ]
-            }
-          ]
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/config/alertmanager/alertmanager.yml << 'EOF'\nglobal:\n  smtp_smarthost: 'localhost:587'\n  smtp_from: 'alertmanager@ai-q.local'\n\nroute:\n  group_by: ['alertname']\n  group_wait: 10s\n  group_interval: 10s\n  repeat_interval: 1h\n  receiver: 'web.hook'\n\nreceivers:\n  - name: 'web.hook'\n    webhook_configs:\n      - url: 'http://127.0.0.1:5001/'\nEOF"
-        ],
-        "verification": "Check configuration file exists",
-        "expected_output": "alertmanager.yml created with specified configuration"
-      },
-      {
-        "step_id": "02-06-03-03",
-        "title": "Create AlertManager Docker Compose service",
-        "description": "Create AlertManager service configuration",
-        "config_file": "/opt/ai-q/docker/compose/alertmanager-service.yml",
-        "config_content": {
-          "version": "3.8",
-          "services": {
-            "alertmanager": {
-              "image": "prom/alertmanager:latest",
-              "container_name": "ai-q-alertmanager",
-              "restart": "unless-stopped",
-              "ports": ["9093:9093"],
-              "volumes": [
-                "/opt/ai-q/config/alertmanager:/etc/alertmanager",
-                "/opt/ai-q/data/alertmanager/data:/alertmanager"
-              ],
-              "command": [
-                "--config.file=/etc/alertmanager/alertmanager.yml",
-                "--storage.path=/alertmanager"
-              ],
-              "networks": ["ai-q-network"],
-              "healthcheck": {
-                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"],
-                "interval": "30s",
-                "timeout": "10s",
-                "retries": 3
               }
             }
-          },
-          "networks": {
-            "ai-q-network": {
-              "external": true
-            }
           }
-        },
-        "commands": [
-          "sudo tee /opt/ai-q/docker/compose/alertmanager-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  alertmanager:\n    image: prom/alertmanager:latest\n    container_name: ai-q-alertmanager\n    restart: unless-stopped\n    ports:\n      - 9093:9093\n    volumes:\n      - /opt/ai-q/config/alertmanager:/etc/alertmanager\n      - /opt/ai-q/data/alertmanager/data:/alertmanager\n    command:\n      - --config.file=/etc/alertmanager/alertmanager.yml\n      - --storage.path=/alertmanager\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:9093/-/healthy\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
-        ],
-        "verification": "Check configuration file exists",
-        "expected_output": "alertmanager-service.yml created with specified configuration"
-      },
-      {
-        "step_id": "02-06-03-04",
-        "title": "Deploy AlertManager service",
-        "description": "Start AlertManager service and verify deployment",
-        "commands": [
-          "docker-compose -f /opt/ai-q/docker/compose/alertmanager-service.yml up -d",
-          "sleep 15",
-          "curl -f http://localhost:9093/-/healthy"
-        ],
-        "verification": "Check AlertManager service is running",
-        "expected_output": "AlertManager service running and responding to health check"
-      }
-    ],
-    "verification_commands": [
-      "docker ps --filter name=ai-q-alertmanager",
-      "curl -s http://localhost:9093/-/healthy",
-      "curl -s http://localhost:9093/api/v1/status",
-      "docker logs ai-q-alertmanager"
-    ],
-    "expected_outputs": {
-      "service_running": "AlertManager container is running",
-      "health_responding": "AlertManager health endpoint responds",
-      "status_responding": "AlertManager status API responds",
-      "logs_clean": "No error messages in logs"
-    }
-  },
-  "verification_and_testing": {
-    "comprehensive_test": {
-      "title": "Monitoring Services Verification",
-      "description": "Run comprehensive tests to verify all monitoring components",
-      "test_commands": [
-        "docker-compose -f /opt/ai-q/docker/compose/prometheus-service.yml ps",
-        "docker-compose -f /opt/ai-q/docker/compose/grafana-service.yml ps",
-        "docker-compose -f /opt/ai-q/docker/compose/alertmanager-service.yml ps",
-        "curl -s http://localhost:9090/-/healthy",
-        "curl -s http://localhost:3002/api/health",
-        "curl -s http://localhost:9093/-/healthy"
-      ],
-      "expected_results": {
-        "prometheus": "Health endpoint responds successfully",
-        "grafana": "Health endpoint responds successfully",
-        "alertmanager": "Health endpoint responds successfully"
-      }
-    }
-  },
-  "troubleshooting": {
-    "common_issues": [
-      {
-        "issue": "Prometheus configuration errors",
-        "symptoms": "Prometheus fails to start or shows config errors",
-        "solution": "Check YAML syntax and target configurations",
-        "commands": [
-          "docker logs ai-q-prometheus",
-          "docker exec ai-q-prometheus promtool check config /etc/prometheus/prometheus.yml",
-          "curl -s http://localhost:9090/api/v1/status/config"
-        ]
-      },
-      {
-        "issue": "Grafana cannot connect to Prometheus",
-        "symptoms": "Grafana shows datasource connection errors",
-        "solution": "Check network connectivity and Prometheus status",
-        "commands": [
-          "docker logs ai-q-grafana",
-          "curl -s http://localhost:9090/-/healthy",
-          "docker exec ai-q-grafana curl -s http://prometheus:9090/-/healthy"
-        ]
-      },
-      {
-        "issue": "AlertManager configuration errors",
-        "symptoms": "AlertManager fails to start or shows config errors",
-        "solution": "Check YAML syntax and notification settings",
-        "commands": [
-          "docker logs ai-q-alertmanager",
-          "docker exec ai-q-alertmanager amtool check-config /etc/alertmanager/alertmanager.yml",
-          "curl -s http://localhost:9093/api/v1/status"
-        ]
+        }
       }
     ]
   },
-  "next_steps": {
-    "next_sub_recipe": "02-07-system-exporters",
-    "prerequisites_completed": [
-      "Prometheus deployed and running",
-      "Grafana deployed and running",
-      "AlertManager deployed and running",
-      "Monitoring services integrated",
-      "Port 9090 reserved for Prometheus",
-      "Port 3002 reserved for Grafana",
-      "Port 9093 reserved for AlertManager"
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with aggressive caching",
+        "ingredients": [
+          "task:monitoring-network-setup:1.0.0",
+          "task:monitoring-volume-setup:1.0.0",
+          "task:monitoring-orchestration-setup:1.0.0",
+          "skill:monitoring-network-configuration:1.0.0",
+          "skill:monitoring-volume-management:1.0.0",
+          "skill:monitoring-orchestration:1.0.0",
+          "tool:monitoring-infrastructure:1.0.0",
+          "config:monitoring-network:1.0.0",
+          "config:monitoring-volume:1.0.0"
+        ],
+        "exact_commands": [
+          "python3 scripts/infrastructure/setup_monitoring_infrastructure.py --gather-ingredients"
+        ]
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "Docker environment operational",
+          "Docker networks available",
+          "Docker volumes accessible",
+          "Minimum 8GB RAM available",
+          "100GB free disk space available"
+        ],
+        "exact_commands": [
+          "docker network ls --filter name=ai-q",
+          "docker volume ls --filter name=ai-q",
+          "free -h | grep Mem | awk '{print $2}'",
+          "df -h /opt/ai-q | awk 'NR==2 {print $4}'",
+          "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'"
+        ]
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_monitoring_network_setup",
+        "description": "Create monitoring Docker network with exact commands",
+        "sub_steps": [
+          "Create monitoring network",
+          "Validate network configuration"
+        ],
+        "exact_commands": [
+          "docker network create --driver bridge --subnet 172.27.0.0/16 --gateway 172.27.0.1 ai-q-monitoring-network",
+          "docker network ls --filter name=ai-q-monitoring-network",
+          "docker network inspect ai-q-monitoring-network --format '{{.IPAM.Config}}'"
+        ],
+        "files_to_create": [
+          "Docker network: ai-q-monitoring-network"
+        ]
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "execute_monitoring_volume_setup",
+        "description": "Create monitoring volumes with exact commands",
+        "sub_steps": [
+          "Create monitoring volumes",
+          "Validate volume creation"
+        ],
+        "exact_commands": [
+          "docker volume create ai-q-monitoring-data",
+          "docker volume create ai-q-monitoring-config",
+          "docker volume create ai-q-monitoring-alerts",
+          "docker volume create ai-q-monitoring-logs",
+          "docker volume create ai-q-monitoring-cache",
+          "docker volume create ai-q-monitoring-temp",
+          "docker volume ls --filter name=ai-q-monitoring"
+        ],
+        "files_to_create": [
+          "Docker volumes: ai-q-monitoring-data, ai-q-monitoring-config, ai-q-monitoring-alerts, ai-q-monitoring-logs, ai-q-monitoring-cache, ai-q-monitoring-temp"
+        ]
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_monitoring_orchestration_setup",
+        "description": "Create monitoring orchestration framework with exact commands",
+        "sub_steps": [
+          "Create orchestration directories",
+          "Create base template",
+          "Create orchestration script"
+        ],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/docker/compose/monitoring/{templates,configs,scripts}",
+          "chmod 755 /opt/ai-q/docker/compose/monitoring",
+          "tee /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml << 'EOF'",
+          "version: '3.8'",
+          "networks:",
+          "  ai-q-monitoring-network:",
+          "    external: true",
+          "volumes:",
+          "  monitoring-data:",
+          "    external: true",
+          "  monitoring-config:",
+          "    external: true",
+          "  monitoring-alerts:",
+          "    external: true",
+          "  monitoring-logs:",
+          "    external: true",
+          "  monitoring-cache:",
+          "    external: true",
+          "  monitoring-temp:",
+          "    external: true",
+          "EOF",
+          "tee /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh << 'EOF'",
+          "#!/bin/bash",
+          "# Monitoring Services Orchestration Script",
+          "MONITORING_DIR=\"/opt/ai-q/docker/compose/monitoring\"",
+          "start_monitoring_service() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Starting \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" up -d",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "stop_monitoring_service() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Stopping \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" down",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "restart_monitoring_service() {",
+          "    local service_name=\$1",
+          "    stop_monitoring_service \"\$service_name\"",
+          "    sleep 5",
+          "    start_monitoring_service \"\$service_name\"",
+          "}",
+          "check_monitoring_service_status() {",
+          "    local service_name=\$1",
+          "    local compose_file=\"\$MONITORING_DIR/\${service_name}.yml\"",
+          "    if [ -f \"\$compose_file\" ]; then",
+          "        echo \"Checking status of \$service_name...\"",
+          "        docker-compose -f \"\$compose_file\" ps",
+          "    else",
+          "        echo \"Error: \$compose_file not found\"",
+          "        return 1",
+          "    fi",
+          "}",
+          "case \"\$1\" in",
+          "    start)",
+          "        start_monitoring_service \"\$2\"",
+          "        ;;",
+          "    stop)",
+          "        stop_monitoring_service \"\$2\"",
+          "        ;;",
+          "    restart)",
+          "        restart_monitoring_service \"\$2\"",
+          "        ;;",
+          "    status)",
+          "        check_monitoring_service_status \"\$2\"",
+          "        ;;",
+          "    *)",
+          "        echo \"Usage: \$0 {start|stop|restart|status} <service_name>\"",
+          "        exit 1",
+          "        ;;",
+          "esac",
+          "EOF",
+          "chmod +x /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
+        ],
+        "files_to_create": [
+          "/opt/ai-q/docker/compose/monitoring/templates/",
+          "/opt/ai-q/docker/compose/monitoring/configs/",
+          "/opt/ai-q/docker/compose/monitoring/scripts/",
+          "/opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml",
+          "/opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
+        ]
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "validate_results",
+        "description": "Validate complete monitoring infrastructure setup",
+        "validation": "monitoring_infrastructure_validation",
+        "exact_commands": [
+          "docker network ls --filter name=ai-q-monitoring-network",
+          "docker volume ls --filter name=ai-q-monitoring",
+          "ls -la /opt/ai-q/docker/compose/monitoring/",
+          "cat /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml",
+          "test -x /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
+        ]
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "cache_results",
+        "description": "Cache monitoring infrastructure configuration and setup",
+        "cache_key": "monitoring_infrastructure_cache",
+        "exact_commands": [
+          "python3 scripts/infrastructure/setup_monitoring_infrastructure.py --cache-results",
+          "tar -czf /opt/ai-q/cache/monitoring_infrastructure_cache.tar.gz /opt/ai-q/docker/compose/monitoring"
+        ]
+      }
     ],
-    "readiness_check": "All verification commands pass successfully"
+    "caching_strategy": {
+      "cache_key": "monitoring_infrastructure_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "monitoring_infrastructure_update",
+      "cache_validation": "monitoring_infrastructure_validation",
+      "exact_cache_commands": [
+        "python3 scripts/infrastructure/setup_monitoring_infrastructure.py --cache-config"
+      ]
+    }
+  },
+  "acceptance_criteria": [
+    "Monitoring Docker network operational and configured",
+    "All monitoring volumes created and accessible",
+    "Monitoring orchestration framework ready",
+    "No actual monitoring services installed",
+    "All components can be safely installed/uninstalled",
+    "Zero technical debt with complete documentation"
+  ],
+  "deliverables": [
+    "Production-ready monitoring infrastructure foundation",
+    "Monitoring Docker network with proper configuration",
+    "Monitoring volumes for data, config, alerts, logs, cache, and temp",
+    "Monitoring orchestration framework with templates and scripts",
+    "Comprehensive documentation with troubleshooting guides",
+    "Validation scripts for all components",
+    "Rollback procedures for safe deployment"
+  ],
+  "troubleshooting_guide": {
+    "common_issues": [
+      {
+        "issue": "Monitoring network creation fails",
+        "symptoms": ["Network already exists", "Subnet conflict"],
+        "diagnosis": "Check existing networks and subnet conflicts",
+        "solution": "Remove existing network or use different subnet",
+        "prevention": "Check network configuration before creation"
+      },
+      {
+        "issue": "Monitoring volumes not accessible",
+        "symptoms": ["Permission denied", "Volume not found"],
+        "diagnosis": "Check volume permissions and existence",
+        "solution": "Verify volume creation and set proper permissions",
+        "prevention": "Validate volume creation after setup"
+      },
+      {
+        "issue": "Orchestration script not executable",
+        "symptoms": ["Permission denied", "Script not found"],
+        "diagnosis": "Check script permissions and location",
+        "solution": "Set executable permissions and verify path",
+        "prevention": "Test script after creation"
+      },
+      {
+        "issue": "Directory structure not created",
+        "symptoms": ["Directory not found", "Permission denied"],
+        "diagnosis": "Check directory creation and permissions",
+        "solution": "Create directories with proper permissions",
+        "prevention": "Verify directory structure after setup"
+      }
+    ],
+    "diagnostic_commands": [
+      "docker network ls --filter name=ai-q-monitoring",
+      "docker volume ls --filter name=ai-q-monitoring",
+      "ls -la /opt/ai-q/docker/compose/monitoring/",
+      "cat /opt/ai-q/docker/compose/monitoring/templates/base-monitoring.yml",
+      "test -x /opt/ai-q/docker/compose/monitoring/scripts/orchestrate-monitoring.sh"
+    ]
+  },
+  "performance_benchmarks": {
+    "installation_time": "< 45 minutes",
+    "network_creation_time": "< 5 seconds",
+    "volume_creation_time": "< 10 seconds",
+    "orchestration_setup_time": "< 30 seconds",
+    "validation_time": "< 5 seconds"
   }
 } 
