@@ -1,0 +1,17 @@
+{
+  "handoff_document": {
+    "metadata": {
+      "agent_id": "",
+      "timestamp": "",
+      "version": "v1.0.0",
+      "status": "DRAFT|FINAL|ARCHIVED",
+      "category": "handoff",
+      "title": "",
+      "description": ""
+    },
+    "summary": "",
+    "next_steps": [],
+    "references": [],
+    "status": "pending|in_progress|complete|archived"
+  }
+} 

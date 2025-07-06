@@ -1,0 +1,17 @@
+{
+  "analysis_document": {
+    "metadata": {
+      "agent_id": "",
+      "timestamp": "",
+      "version": "v1.0.0",
+      "status": "DRAFT|FINAL|ARCHIVED",
+      "category": "analysis",
+      "title": "",
+      "description": ""
+    },
+    "scope": "",
+    "findings": [],
+    "recommendations": [],
+    "priority": "low|medium|high|critical"
+  }
+} 

@@ -1,0 +1,17 @@
+{
+  "execution_document": {
+    "metadata": {
+      "agent_id": "",
+      "timestamp": "",
+      "version": "v1.0.0",
+      "status": "DRAFT|FINAL|ARCHIVED",
+      "category": "execution",
+      "title": "",
+      "description": ""
+    },
+    "plan": [],
+    "progress": [],
+    "milestones": [],
+    "status": "pending|in_progress|complete|archived"
+  }
+} 

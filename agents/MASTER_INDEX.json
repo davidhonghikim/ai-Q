@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "title": "Agent Documentation Master Index",
+    "created_by": "Claude Sonnet 4",
+    "created": "2025-01-30T14:10:00Z",
+    "last_updated": "2025-01-30T14:10:00Z",
+    "description": "Single source of truth for all agent documentation. Tracks latest, previous, and archived docs by category, version, timestamp, and status.",
+    "categories": ["handoff", "analysis", "blueprint", "execution", "validation"],
+    "retention_policy": {
+      "handoff": "30 days in LATEST, then archive",
+      "analysis": "90 days in LATEST, then archive",
+      "blueprint": "permanent in LATEST",
+      "execution": "60 days in LATEST, then archive",
+      "validation": "45 days in LATEST, then archive"
+    }
+  },
+  "latest_documents": {},
+  "archived_documents": {},
+  "document_history": [],
+  "schema_version": "1.0.0"
+} 

@@ -1,0 +1,17 @@
+{
+  "validation_document": {
+    "metadata": {
+      "agent_id": "",
+      "timestamp": "",
+      "version": "v1.0.0",
+      "status": "DRAFT|FINAL|ARCHIVED",
+      "category": "validation",
+      "title": "",
+      "description": ""
+    },
+    "test_scope": "",
+    "results": [],
+    "issues": [],
+    "recommendations": []
+  }
+} 

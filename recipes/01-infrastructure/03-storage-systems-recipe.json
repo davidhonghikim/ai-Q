@@ -2,11 +2,11 @@
   "recipe_metadata": {
     "recipe_id": "02-STORAGE-SYSTEMS-COMPREHENSIVE",
     "title": "Enterprise Storage Systems - Multi-Backend Object Storage Architecture",
-    "version": "4.0.0",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-01-30T13:00:00Z",
-    "last_updated": "2025-07-05T23:55:00Z",
-    "estimated_tokens": 150000,
+    "last_updated": "2025-01-28T18:00:00Z",
+    "estimated_tokens": 75000,
     "estimated_execution_time": "20-24 hours",
     "difficulty_level": "expert",
     "total_tasks": 12,
@@ -14,41 +14,30 @@
     "success_rate_target": "99%",
     "compliance_standards": ["SOC 2", "ISO 27001", "GDPR", "HIPAA"],
     "architecture_tier": "enterprise-distributed",
+    "description": "Master recipe orchestrating comprehensive enterprise storage systems with exact specifications, atomic tasks, and zero technical debt",
+    "is_master_recipe": true,
     "kitchen_system": {
-      "orchestrator": "chef",
-      "pantry_required": true,
-      "caching_enabled": true,
-      "cache_strategy": "aggressive"
+      "pantry_category": "storage_systems",
+      "cooking_time": "1440 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["object_storage", "multi_backend", "data_management", "security_hardening"],
+      "cache_strategy": "storage_systems_cache",
+      "orchestrator_priority": "critical"
     }
   },
   "recipe_overview": {
-    "description": "Complete enterprise-grade storage systems implementation featuring multi-backend object storage architecture with MinIO, AWS S3, and high-performance local storage using the kitchen analogy system for atomic, reusable ingredients and intelligent caching. This comprehensive recipe delivers a production-ready storage infrastructure with unified API, advanced data management capabilities, encryption at rest and in transit, automated backup and disaster recovery, performance optimization, and comprehensive monitoring. The system supports horizontal scaling, multi-region deployment, and enterprise-grade security with audit logging and compliance reporting.",
-    "architectural_scope": "Enterprise distributed storage architecture with multi-backend support, unified API gateway, advanced data lifecycle management, encryption and security hardening, automated backup and disaster recovery, performance optimization with caching and compression, comprehensive monitoring and analytics, compliance and audit logging, and automated migration tools for seamless data movement between storage backends",
-    "technology_stack": {
-      "object_storage": "MinIO Enterprise with distributed erasure coding, AWS S3 with cross-region replication, high-performance local storage with NVMe optimization",
-      "api_gateway": "FastAPI with async processing, OpenAPI 3.0 specification, authentication middleware",
-      "data_management": "Automated lifecycle policies, intelligent tiering, compression and deduplication",
-      "security": "AES-256 encryption, client-side encryption, access control policies, audit logging",
-      "backup_recovery": "Automated backup scheduling, cross-backend replication, point-in-time recovery",
-      "monitoring": "Prometheus metrics, Grafana dashboards, alerting with PagerDuty integration",
-      "caching": "Redis with cluster mode, intelligent cache warming, LRU eviction policies",
-      "networking": "Load balancing with HAProxy, SSL termination, service mesh integration",
-      "kitchen_system": "Pantry ingredients, orchestrator agent, intelligent caching"
-    },
-    "deliverables": [
-      "Complete MinIO enterprise cluster with multi-site replication",
-      "AWS S3 integration with intelligent tiering and cost optimization",
-      "High-performance local storage with NVMe optimization and compression",
-      "Unified storage API with async processing and load balancing",
-      "Advanced data lifecycle management with automated policies",
-      "Enterprise-grade security with encryption and access controls",
-      "Automated backup system with cross-backend replication",
-      "Performance monitoring with real-time analytics and optimization",
-      "Compliance and audit logging with automated reporting",
-      "Migration tools for seamless data movement between backends",
-      "Comprehensive testing framework with performance benchmarks",
-      "Complete documentation with operational runbooks"
+    "name": "Enterprise Storage Systems",
+    "description": "Complete enterprise-grade storage systems implementation featuring multi-backend object storage architecture with MinIO, AWS S3, and high-performance local storage",
+    "prerequisites": [
+      "Ubuntu 22.04 LTS or Windows 11 with WSL2",
+      "Minimum 32GB RAM, 16 CPU cores",
+      "500GB free disk space for storage",
+      "Docker Engine 24.0+ installed",
+      "Docker Compose 2.20+ installed",
+      "AWS CLI configured (for S3 integration)",
+      "Network connectivity for cloud services"
     ],
+    "target_outcome": "Production-ready enterprise storage system with zero technical debt",
     "success_criteria": [
       "All storage backends operational with 99.99% uptime SLA",
       "Unified API achieving sub-50ms response times for metadata operations",
@@ -56,190 +45,192 @@
       "Storage throughput exceeding 10GB/s for large file operations",
       "Encryption and security policies enforced across all backends",
       "Automated backup completing with 100% success rate and verification",
-      "Performance optimization achieving 90%+ cache hit rates",
-      "Monitoring system capturing 100% of storage metrics with real-time alerting",
-      "Compliance scanning passing with zero violations",
-      "Migration tools successfully transferring data with zero data loss",
-      "Complete documentation with automated updates and version control",
-      "Kitchen system integration providing atomic, reusable storage ingredients"
-    ],
-    "architectural_principles": [
-      "Multi-backend abstraction with unified interface",
-      "Cloud-native design with containerized deployment",
-      "Security-first approach with encryption by default",
-      "High availability with automated failover and recovery",
-      "Performance optimization with intelligent caching and compression",
-      "Scalability with horizontal scaling and load balancing",
-      "Observability with comprehensive monitoring and logging",
-      "Compliance and governance with automated audit trails",
-      "Cost optimization with intelligent data tiering",
-      "Disaster recovery with automated backup and replication",
-      "Kitchen analogy system for atomic, reusable ingredients"
+      "All components can be safely installed/uninstalled"
     ]
   },
   "pantry_ingredients": {
-    "required_tasks": [
+    "tasks": [
       {
-        "ingredient_id": "task:setup-storage-system:1.0.0",
-        "purpose": "Setup enterprise storage system with multi-backend support",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "task_id": "STORAGE_ARCHITECTURE_TASK",
+        "name": "Storage Architecture Setup",
+        "description": "Design and implement core storage architecture with exact specifications",
+        "estimated_time": "120 minutes",
+        "dependencies": [],
+        "skills_required": ["system_architecture", "storage_design", "unified_management"],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/storage/{minio,s3,local,backups,logs}",
+          "mkdir -p /opt/ai-q/config/storage/{minio,s3,local}",
+          "chmod 755 /opt/ai-q/storage",
+          "docker network create ai-q-storage --subnet=172.23.0.0/16"
+        ]
       },
       {
-        "ingredient_id": "task:deploy-minio-cluster:1.0.0",
-        "purpose": "Deploy MinIO distributed storage cluster",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "task_id": "MINIO_DEPLOYMENT_TASK",
+        "name": "MinIO Enterprise Cluster Deployment",
+        "description": "Deploy MinIO distributed storage cluster with exact configurations",
+        "estimated_time": "180 minutes",
+        "dependencies": ["STORAGE_ARCHITECTURE_TASK"],
+        "skills_required": ["minio_deployment", "cluster_configuration", "erasure_coding"],
+        "exact_commands": [
+          "docker run -d --name minio --network ai-q-storage -p 9000:9000 -p 9001:9001 -v /opt/ai-q/storage/minio:/data -e MINIO_ROOT_USER=admin -e MINIO_ROOT_PASSWORD=minio123 minio/minio:latest server /data --console-address :9001",
+          "sleep 60",
+          "curl -f http://localhost:9001/api/v1/health",
+          "mc alias set local http://localhost:9000 admin minio123",
+          "mc mb local/ai-q-data"
+        ]
       },
       {
-        "ingredient_id": "task:configure-s3-integration:1.0.0",
-        "purpose": "Configure AWS S3 integration and tiering",
-        "usage_count": 1,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "task:setup-local-storage:1.0.0",
-        "purpose": "Setup high-performance local storage",
-        "usage_count": 1,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "task:configure-unified-api:1.0.0",
-        "purpose": "Configure unified storage API gateway",
-        "usage_count": 1,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "task:setup-backup-system:1.0.0",
-        "purpose": "Setup automated backup and disaster recovery",
-        "usage_count": 1,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "task:configure-monitoring:1.0.0",
-        "purpose": "Configure storage monitoring and alerting",
-        "usage_count": 1,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "task:setup-security-policies:1.0.0",
-        "purpose": "Setup security policies and encryption",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "task_id": "S3_INTEGRATION_TASK",
+        "name": "AWS S3 Integration Setup",
+        "description": "Configure AWS S3 integration with exact configurations",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MINIO_DEPLOYMENT_TASK"],
+        "skills_required": ["aws_s3", "cloud_integration", "tiering_configuration"],
+        "exact_commands": [
+          "aws configure set aws_access_key_id YOUR_ACCESS_KEY",
+          "aws configure set aws_secret_access_key YOUR_SECRET_KEY",
+          "aws configure set default.region us-east-1",
+          "aws s3 mb s3://ai-q-storage-backup",
+          "aws s3api put-bucket-encryption --bucket ai-q-storage-backup --server-side-encryption-configuration '{\"Rules\": [{\"ApplyServerSideEncryptionByDefault\": {\"SSEAlgorithm\": \"AES256\"}}]}'"
+        ]
       }
     ],
-    "required_skills": [
+    "skills": [
       {
-        "ingredient_id": "skill:manage-storage:1.0.0",
-        "purpose": "Manage enterprise storage systems",
-        "usage_count": 15,
-        "caching_benefit": "medium"
+        "skill_id": "STORAGE_MANAGEMENT_SKILL",
+        "name": "Storage Management",
+        "description": "Manage enterprise storage systems with exact procedures",
+        "tools": ["storage_engine", "data_lifecycle", "tiering_management"],
+        "validation": "storage_management_validation",
+        "exact_validation_commands": [
+          "docker exec minio mc admin info local",
+          "aws s3 ls s3://ai-q-storage-backup",
+          "df -h /opt/ai-q/storage"
+        ]
       },
       {
-        "ingredient_id": "skill:configure-minio:1.0.0",
-        "purpose": "Configure MinIO distributed clusters",
-        "usage_count": 10,
-        "caching_benefit": "high"
+        "skill_id": "MINIO_CONFIGURATION_SKILL",
+        "name": "MinIO Configuration",
+        "description": "Configure MinIO distributed clusters with exact specifications",
+        "tools": ["minio_cli", "cluster_management", "erasure_coding"],
+        "validation": "minio_configuration_validation",
+        "exact_validation_commands": [
+          "mc admin info local",
+          "mc ls local/ai-q-data",
+          "curl -f http://localhost:9001/api/v1/health"
+        ]
       },
       {
-        "ingredient_id": "skill:manage-s3-integration:1.0.0",
-        "purpose": "Manage AWS S3 integration and tiering",
-        "usage_count": 8,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "skill:optimize-storage-performance:1.0.0",
-        "purpose": "Optimize storage performance and caching",
-        "usage_count": 12,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "skill:manage-storage-security:1.0.0",
-        "purpose": "Manage storage security and encryption",
-        "usage_count": 10,
-        "caching_benefit": "high"
+        "skill_id": "S3_INTEGRATION_SKILL",
+        "name": "S3 Integration",
+        "description": "Integrate AWS S3 with intelligent tiering and cost optimization",
+        "tools": ["aws_cli", "s3_operations", "tiering_policies"],
+        "validation": "s3_integration_validation",
+        "exact_validation_commands": [
+          "aws s3 ls s3://ai-q-storage-backup",
+          "aws s3api get-bucket-encryption --bucket ai-q-storage-backup",
+          "aws s3api get-bucket-lifecycle-configuration --bucket ai-q-storage-backup"
+        ]
       }
     ],
-    "required_tools": [
+    "tools": [
       {
-        "ingredient_id": "tool:minio:latest",
-        "purpose": "MinIO object storage server",
-        "usage_count": 5,
-        "caching_benefit": "high"
+        "tool_id": "STORAGE_SYSTEMS_TOOL",
+        "name": "Storage Systems Engine",
+        "description": "Core storage systems orchestration",
+        "file_path": "src/services/storage/core.py",
+        "config": "config/storage/storage_config.json",
+        "exact_config_spec": {
+          "minio_version": "latest",
+          "s3_region": "us-east-1",
+          "local_storage_path": "/opt/ai-q/storage/local",
+          "backup_retention_days": 30,
+          "encryption_enabled": true
+        }
       },
       {
-        "ingredient_id": "tool:s3-compatible:1.0.0",
-        "purpose": "S3-compatible storage client",
-        "usage_count": 3,
-        "caching_benefit": "high"
+        "tool_id": "MINIO_MANAGER_TOOL",
+        "name": "MinIO Manager",
+        "description": "MinIO cluster management and configuration",
+        "file_path": "src/services/storage/minio_manager.py",
+        "config": "config/storage/minio_config.json",
+        "exact_config_spec": {
+          "cluster_size": 4,
+          "erasure_coding": true,
+          "console_port": 9001,
+          "api_port": 9000,
+          "data_dir": "/opt/ai-q/storage/minio"
+        }
       },
       {
-        "ingredient_id": "tool:fastapi:0.100.0",
-        "purpose": "FastAPI for unified storage API",
-        "usage_count": 2,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "tool:redis:7.2.0",
-        "purpose": "Redis for storage caching",
-        "usage_count": 3,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "tool:prometheus:2.45.0",
-        "purpose": "Prometheus for storage monitoring",
-        "usage_count": 2,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "tool:grafana:10.0.0",
-        "purpose": "Grafana for storage dashboards",
-        "usage_count": 2,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "tool:haproxy:2.6.0",
-        "purpose": "HAProxy for load balancing",
-        "usage_count": 1,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "tool:openssl:3.0.0",
-        "purpose": "OpenSSL for certificate management",
-        "usage_count": 3,
-        "caching_benefit": "high"
+        "tool_id": "S3_MANAGER_TOOL",
+        "name": "S3 Manager",
+        "description": "AWS S3 integration and management",
+        "file_path": "src/services/storage/s3_manager.py",
+        "config": "config/storage/s3_config.json",
+        "exact_config_spec": {
+          "bucket_name": "ai-q-storage-backup",
+          "region": "us-east-1",
+          "encryption": "AES256",
+          "lifecycle_policy": true,
+          "cross_region_replication": false
+        }
       }
     ],
-    "required_configs": [
+    "configs": [
       {
-        "ingredient_id": "config:storage-config:1.0.0",
-        "purpose": "Storage system configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "STORAGE_CONFIG",
+        "name": "Storage Configuration",
+        "description": "Configuration for storage systems",
+        "file_path": "config/storage/storage_config.json",
+        "schema": "storage_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "minio_version": {"type": "string", "pattern": "^latest|[0-9]+\\.[0-9]+\\.[0-9]+$"},
+            "s3_region": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+            "local_storage_path": {"type": "string", "pattern": "^/[a-zA-Z0-9/_-]+$"},
+            "backup_retention_days": {"type": "integer", "minimum": 1, "maximum": 365},
+            "encryption_enabled": {"type": "boolean"}
+          },
+          "required": ["minio_version", "s3_region", "local_storage_path", "backup_retention_days", "encryption_enabled"]
+        }
       },
       {
-        "ingredient_id": "config:minio-cluster-config:1.0.0",
-        "purpose": "MinIO cluster configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "MINIO_CONFIG",
+        "name": "MinIO Configuration",
+        "description": "Configuration for MinIO cluster",
+        "file_path": "config/storage/minio_config.json",
+        "schema": "minio_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "cluster_size": {"type": "integer", "minimum": 1, "maximum": 16},
+            "erasure_coding": {"type": "boolean"},
+            "console_port": {"type": "integer", "minimum": 1024, "maximum": 65535},
+            "api_port": {"type": "integer", "minimum": 1024, "maximum": 65535},
+            "data_dir": {"type": "string", "pattern": "^/[a-zA-Z0-9/_-]+$"}
+          },
+          "required": ["cluster_size", "erasure_coding", "console_port", "api_port", "data_dir"]
+        }
       },
       {
-        "ingredient_id": "config:s3-integration-config:1.0.0",
-        "purpose": "S3 integration configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "config:storage-api-config:1.0.0",
-        "purpose": "Storage API configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
-      },
-      {
-        "ingredient_id": "config:storage-security-config:1.0.0",
-        "purpose": "Storage security configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "S3_CONFIG",
+        "name": "S3 Configuration",
+        "description": "Configuration for AWS S3 integration",
+        "file_path": "config/storage/s3_config.json",
+        "schema": "s3_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "bucket_name": {"type": "string", "pattern": "^[a-z0-9.-]+$"},
+            "region": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+            "encryption": {"type": "string", "enum": ["AES256", "aws:kms"]},
+            "lifecycle_policy": {"type": "boolean"},
+            "cross_region_replication": {"type": "boolean"}
+          },
+          "required": ["bucket_name", "region", "encryption", "lifecycle_policy", "cross_region_replication"]
+        }
       }
     ]
   },

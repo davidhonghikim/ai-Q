@@ -1,0 +1,17 @@
+{
+  "blueprint_document": {
+    "metadata": {
+      "agent_id": "",
+      "timestamp": "",
+      "version": "v1.0.0",
+      "status": "DRAFT|FINAL|ARCHIVED",
+      "category": "blueprint",
+      "title": "",
+      "description": ""
+    },
+    "architecture": "",
+    "components": [],
+    "dependencies": [],
+    "version": ""
+  }
+} 
