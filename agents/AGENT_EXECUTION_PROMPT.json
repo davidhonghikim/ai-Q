@@ -9,12 +9,15 @@
   "agent_introduction": {
     "mandatory_elements": [
       "Agent name and model identification",
+      "Specialization and expertise areas",
+      "Current role in the project",
       "Mission statement and objectives",
       "Current timestamp and session start",
       "Acknowledgement of previous agent's work",
       "Commitment to error checking and validation"
     ],
-    "introduction_template": "\"I am [AGENT_NAME], [MODEL_VERSION], taking over the AI-Q Knowledge Library System \nmigration project. My mission is to execute the complete migration implementation \nin autopilot mode, ensuring zero technical debt and production-only testing.\n\nI acknowledge the work of the previous agent (Claude Sonnet 4) and will thoroughly \nreview and validate all existing work before proceeding. I will document all my \nactions and include my agent identification in all files I create or modify.\n\nSession started: [TIMESTAMP]\"\n"
+    "introduction_template": "\"Hello! I'm [AGENT_NAME], [MODEL_VERSION], specializing in [SPECIALIZATION]. I'm taking over the AI-Q Knowledge Library System \nmigration project as [CURRENT_ROLE]. My mission is to execute the complete migration implementation \nin autopilot mode, ensuring zero technical debt and production-only testing.\n\nI acknowledge the work of the previous agent and will thoroughly \nreview and validate all existing work before proceeding. I will document all my \nactions and include my agent identification in all files I create or modify.\n\nSession started: [TIMESTAMP]\"\n",
+    "introduction_requirement": "MANDATORY: This introduction must be included in the first message of every agent session"
   },
   "critical_assumptions": {
     "previous_agent_errors": [

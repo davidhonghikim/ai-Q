@@ -154,6 +154,7 @@
       "resource_requirements": ["array of CPU/memory/disk requirements"]
     },
     "agent_specific_guidance": {
+      "agent_introduction_requirement": "MANDATORY: All agents must introduce themselves at the start of their first message with their name, specialization, and current role in the project",
       "common_pitfalls": ["array of mistakes agents commonly make"],
       "success_patterns": ["array of patterns that lead to success"],
       "verification_checklist": ["array of items to verify before marking complete"],
