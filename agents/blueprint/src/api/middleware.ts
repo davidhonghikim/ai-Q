@@ -1,4 +1,3 @@
-# TOKEN COUNT: ~1,807 tokens
 /**
  * AI-Q Knowledge Library System - Middleware
  * Express middleware configuration

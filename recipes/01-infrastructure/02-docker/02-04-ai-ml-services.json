@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "sub_recipe_id": "02-03-ai-ml-services",
+    "title": "Docker Infrastructure for AI/ML Services",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T23:58:00Z",
+    "purpose": "Establish Docker infrastructure foundation for AI/ML services - networks, volumes, and orchestration framework",
+    "total_tasks": 3,
+    "estimated_duration": "30 minutes",
+    "complexity": "Intermediate",
+    "dependencies": ["02-01-docker-core", "02-02-docker-services"],
+    "port_assignments": {
+      "ai_ml_network": "ai-q-ai-ml-network",
+      "ai_ml_volumes": ["ai-q-ai-ml-data", "ai-q-ai-ml-models", "ai-q-ai-ml-config"],
+      "notes": "Infrastructure only - actual services installed by 02-ai-services recipes"
+    }
+  },
+  "prerequisites": {
+    "completed_tasks": [
+      "02-01-01: Docker environment setup",
+      "02-01-02: Network architecture configured",
+      "02-01-03: Volume management setup",
+      "02-02-01: Docker services orchestration"
+    ],
+    "system_requirements": {
+      "cpu": "Minimum 4 cores for AI/ML infrastructure",
+      "ram": "Minimum 8GB for AI/ML infrastructure",
+      "storage": "Minimum 100GB for AI/ML data and models",
+      "gpu": "Optional but recommended for future AI/ML services"
+    }
+  },
+  "task_01_create_ai_ml_network": {
+    "task_id": "02-03-01",
+    "title": "Create AI/ML Services Network",
+    "description": "Create dedicated Docker network for AI/ML services",
+    "estimated_duration": "5 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-03-01-01",
+        "title": "Create AI/ML network",
+        "description": "Create dedicated network for AI/ML services",
+        "commands": [
+          "docker network create --driver bridge --subnet 172.20.0.0/16 --gateway 172.20.0.1 ai-q-ai-ml-network",
+          "docker network ls --filter name=ai-q-ai-ml-network"
+        ],
+        "verification": "Check network created",
+        "expected_output": "ai-q-ai-ml-network network created and listed"
+      }
+    ],
+    "verification_commands": [
+      "docker network ls --filter name=ai-q-ai-ml-network",
+      "docker network inspect ai-q-ai-ml-network --format '{{.IPAM.Config}}'"
+    ],
+    "expected_outputs": {
+      "network_exists": "ai-q-ai-ml-network in network list",
+      "subnet_correct": "Subnet: 172.20.0.0/16, Gateway: 172.20.0.1"
+    }
+  },
+  "task_02_create_ai_ml_volumes": {
+    "task_id": "02-03-02",
+    "title": "Create AI/ML Data Volumes",
+    "description": "Create persistent volumes for AI/ML services data",
+    "estimated_duration": "10 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-03-02-01",
+        "title": "Create AI/ML data volumes",
+        "description": "Create volumes for AI/ML services data storage",
+        "commands": [
+          "docker volume create ai-q-ai-ml-data",
+          "docker volume create ai-q-ai-ml-models",
+          "docker volume create ai-q-ai-ml-config",
+          "docker volume create ai-q-ai-ml-cache"
+        ],
+        "verification": "Check volumes created",
+        "expected_output": "All AI/ML volumes created successfully"
+      },
+      {
+        "step_id": "02-03-02-02",
+        "title": "Set volume permissions",
+        "description": "Set appropriate permissions for AI/ML volumes",
+        "commands": [
+          "sudo chown -R 1000:1000 /var/lib/docker/volumes/ai-q-ai-ml-data/_data",
+          "sudo chown -R 1000:1000 /var/lib/docker/volumes/ai-q-ai-ml-models/_data",
+          "sudo chown -R 1000:1000 /var/lib/docker/volumes/ai-q-ai-ml-config/_data",
+          "sudo chown -R 1000:1000 /var/lib/docker/volumes/ai-q-ai-ml-cache/_data"
+        ],
+        "verification": "Check permissions set",
+        "expected_output": "Volume permissions set correctly"
+      }
+    ],
+    "verification_commands": [
+      "docker volume ls --filter name=ai-q-ai-ml",
+      "ls -la /var/lib/docker/volumes/ai-q-ai-ml-data/_data"
+    ],
+    "expected_outputs": {
+      "volumes_exist": "All ai-q-ai-ml volumes listed",
+      "permissions_correct": "Volumes owned by user 1000:1000"
+    }
+  },
+  "task_03_create_ai_ml_orchestration": {
+    "task_id": "02-03-03",
+    "title": "Create AI/ML Orchestration Framework",
+    "description": "Create Docker Compose templates and orchestration framework for AI/ML services",
+    "estimated_duration": "15 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-03-03-01",
+        "title": "Create AI/ML orchestration directory",
+        "description": "Create directory structure for AI/ML orchestration",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/docker/compose/ai-ml",
+          "sudo mkdir -p /opt/ai-q/docker/compose/ai-ml/templates",
+          "sudo mkdir -p /opt/ai-q/docker/compose/ai-ml/configs"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "AI/ML orchestration directories created"
+      },
+      {
+        "step_id": "02-03-03-02",
+        "title": "Create base AI/ML Docker Compose template",
+        "description": "Create base template for AI/ML services",
+        "config_file": "/opt/ai-q/docker/compose/ai-ml/templates/base-ai-ml.yml",
+        "config_content": {
+          "version": "3.8",
+          "networks": {
+            "ai-q-ai-ml-network": {
+              "external": true
+            }
+          },
+          "volumes": {
+            "ai-ml-data": {
+              "external": true
+            },
+            "ai-ml-models": {
+              "external": true
+            },
+            "ai-ml-config": {
+              "external": true
+            },
+            "ai-ml-cache": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/ai-ml/templates/base-ai-ml.yml << 'EOF'\nversion: '3.8'\n\nnetworks:\n  ai-q-ai-ml-network:\n    external: true\n\nvolumes:\n  ai-ml-data:\n    external: true\n  ai-ml-models:\n    external: true\n  ai-ml-config:\n    external: true\n  ai-ml-cache:\n    external: true\nEOF"
+        ],
+        "verification": "Check template created",
+        "expected_output": "Base AI/ML template created"
+      },
+      {
+        "step_id": "02-03-03-03",
+        "title": "Create AI/ML orchestration script",
+        "description": "Create orchestration script for AI/ML services",
+        "config_file": "/opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh",
+        "config_content": {
+          "script_purpose": "Orchestrate AI/ML services using Docker Compose",
+          "functions": [
+            "start_ai_ml_service(service_name)",
+            "stop_ai_ml_service(service_name)",
+            "restart_ai_ml_service(service_name)",
+            "check_ai_ml_service_status(service_name)"
+          ]
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh << 'EOF'\n#!/bin/bash\n\n# AI/ML Services Orchestration Script\n# This script provides functions for managing AI/ML services\n\nAI_ML_DIR=\"/opt/ai-q/docker/compose/ai-ml\"\n\nstart_ai_ml_service() {\n    local service_name=\$1\n    local compose_file=\"\$AI_ML_DIR/\${service_name}.yml\"\n    \n    if [ -f \"\$compose_file\" ]; then\n        echo \"Starting \$service_name...\"\n        docker-compose -f \"\$compose_file\" up -d\n    else\n        echo \"Error: \$compose_file not found\"\n        return 1\n    fi\n}\n\nstop_ai_ml_service() {\n    local service_name=\$1\n    local compose_file=\"\$AI_ML_DIR/\${service_name}.yml\"\n    \n    if [ -f \"\$compose_file\" ]; then\n        echo \"Stopping \$service_name...\"\n        docker-compose -f \"\$compose_file\" down\n    else\n        echo \"Error: \$compose_file not found\"\n        return 1\n    fi\n}\n\nrestart_ai_ml_service() {\n    local service_name=\$1\n    stop_ai_ml_service \"\$service_name\"\n    sleep 5\n    start_ai_ml_service \"\$service_name\"\n}\n\ncheck_ai_ml_service_status() {\n    local service_name=\$1\n    local compose_file=\"\$AI_ML_DIR/\${service_name}.yml\"\n    \n    if [ -f \"\$compose_file\" ]; then\n        echo \"Checking status of \$service_name...\"\n        docker-compose -f \"\$compose_file\" ps\n    else\n        echo \"Error: \$compose_file not found\"\n        return 1\n    fi\n}\n\n# Main script logic\ncase \"\$1\" in\n    start)\n        start_ai_ml_service \"\$2\"\n        ;;\n    stop)\n        stop_ai_ml_service \"\$2\"\n        ;;\n    restart)\n        restart_ai_ml_service \"\$2\"\n        ;;\n    status)\n        check_ai_ml_service_status \"\$2\"\n        ;;\n    *)\n        echo \"Usage: \$0 {start|stop|restart|status} <service_name>\"\n        exit 1\n        ;;\nesac\nEOF",
+          "sudo chmod +x /opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh"
+        ],
+        "verification": "Check script created and executable",
+        "expected_output": "AI/ML orchestration script created and executable"
+      }
+    ],
+    "verification_commands": [
+      "ls -la /opt/ai-q/docker/compose/ai-ml/",
+      "cat /opt/ai-q/docker/compose/ai-ml/templates/base-ai-ml.yml",
+      "/opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh --help"
+    ],
+    "expected_outputs": {
+      "directory_structure": "ai-ml directory with templates and configs",
+      "base_template": "Base AI/ML template with networks and volumes",
+      "orchestration_script": "Orchestration script is executable"
+    }
+  },
+  "acceptance_criteria": {
+    "infrastructure_ready": [
+      "ai-q-ai-ml-network Docker network exists and is configured",
+      "All AI/ML volumes (data, models, config, cache) created and accessible",
+      "AI/ML orchestration directory structure created",
+      "Base AI/ML Docker Compose template available",
+      "AI/ML orchestration script created and executable"
+    ],
+    "no_services_installed": [
+      "No actual AI/ML services (Ollama, OpenWebUI, etc.) are installed",
+      "Only infrastructure foundation is established",
+      "Ready for 02-ai-services recipes to install actual services"
+    ],
+    "integration_ready": [
+      "Network can be used by other AI/ML service recipes",
+      "Volumes can be mounted by other AI/ML service recipes",
+      "Orchestration framework ready for service management"
+    ]
+  },
+  "deliverables": {
+    "infrastructure_components": [
+      "Docker network: ai-q-ai-ml-network (172.20.0.0/16)",
+      "Docker volumes: ai-q-ai-ml-data, ai-q-ai-ml-models, ai-q-ai-ml-config, ai-q-ai-ml-cache",
+      "Orchestration directory: /opt/ai-q/docker/compose/ai-ml/",
+      "Base template: /opt/ai-q/docker/compose/ai-ml/templates/base-ai-ml.yml",
+      "Orchestration script: /opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh"
+    ],
+    "documentation": [
+      "AI/ML infrastructure setup complete",
+      "Ready for 02-ai-services recipes to install actual services",
+      "Orchestration framework available for service management"
+    ]
+  },
+  "troubleshooting_guide": {
+    "network_creation_failed": {
+      "issue": "Docker network creation fails",
+      "solution": "Check if network already exists: docker network ls | grep ai-q-ai-ml-network",
+      "commands": [
+        "docker network rm ai-q-ai-ml-network",
+        "docker network create --driver bridge --subnet 172.20.0.0/16 --gateway 172.20.0.1 ai-q-ai-ml-network"
+      ]
+    },
+    "volume_permissions_error": {
+      "issue": "Volume permissions not set correctly",
+      "solution": "Check Docker daemon user and set correct permissions",
+      "commands": [
+        "sudo chown -R 1000:1000 /var/lib/docker/volumes/ai-q-ai-ml-*/_data",
+        "sudo chmod -R 755 /var/lib/docker/volumes/ai-q-ai-ml-*/_data"
+      ]
+    },
+    "orchestration_script_not_executable": {
+      "issue": "Orchestration script not executable",
+      "solution": "Set executable permissions on the script",
+      "commands": [
+        "sudo chmod +x /opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh",
+        "ls -la /opt/ai-q/docker/compose/ai-ml/orchestrate-ai-ml.sh"
+      ]
+    }
+  },
+  "performance_benchmarks": {
+    "network_creation": "Docker network creation completes within 5 seconds",
+    "volume_creation": "All volumes created within 10 seconds",
+    "orchestration_setup": "Complete orchestration framework setup within 30 seconds",
+    "script_execution": "Orchestration script responds within 2 seconds"
+  },
+  "next_steps": {
+    "immediate": "Infrastructure ready for 02-ai-services recipes",
+    "future": "02-ai-services recipes will install actual AI/ML services using this infrastructure",
+    "integration": "Services will use ai-q-ai-ml-network and mounted volumes"
+  }
+} 

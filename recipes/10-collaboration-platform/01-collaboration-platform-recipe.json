@@ -1,8 +1,9 @@
 {
   "recipe_metadata": {
-    "recipe_id": "11-COLLABORATION-PLATFORM",
-    "title": "Real-Time Collaboration Platform - Universal Digital Twin System",
-    "version": "2.0.0",
+    "recipe_id": "10-COLLABORATION-PLATFORM",
+    "title": "Collaboration Platform System - Universal Digital Twin System",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:30:00Z",
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-01-30T12:00:00Z",
     "estimated_tokens": 85000,

@@ -1,0 +1,471 @@
+{
+  "metadata": {
+    "sub_recipe_id": "02-06-monitoring-services",
+    "title": "Monitoring Services - Prometheus, Grafana, AlertManager",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T23:58:00Z",
+    "purpose": "Deploy comprehensive monitoring stack including Prometheus, Grafana, and AlertManager",
+    "total_tasks": 6,
+    "estimated_duration": "2-3 hours",
+    "complexity": "Advanced",
+    "dependencies": ["02-01-docker-core", "02-02-docker-services", "02-05-infrastructure-services"],
+    "port_assignments": {
+      "prometheus": 9090,
+      "grafana": 3002,
+      "alertmanager": 9093,
+      "node-exporter": 9100,
+      "cadvisor": 8081,
+      "notes": "Using alternative ports to avoid conflicts with existing services"
+    }
+  },
+  "prerequisites": {
+    "completed_tasks": [
+      "02-01-01: Docker environment setup",
+      "02-01-02: Network architecture configured",
+      "02-01-03: Volume management setup",
+      "02-02-01: Docker services orchestration",
+      "02-05-01: PostgreSQL deployed",
+      "02-05-02: Redis deployed",
+      "02-05-03: MinIO deployed"
+    ],
+    "system_requirements": {
+      "cpu": "Minimum 2 cores for monitoring services",
+      "ram": "Minimum 4GB for monitoring services",
+      "storage": "Minimum 20GB for metrics storage",
+      "network": "Stable network for metrics collection"
+    }
+  },
+  "task_01_deploy_prometheus": {
+    "task_id": "02-06-01",
+    "title": "Deploy Prometheus Metrics Server",
+    "description": "Deploy Prometheus with persistent storage and comprehensive configuration",
+    "estimated_duration": "60 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-06-01-01",
+        "title": "Create Prometheus configuration directory",
+        "description": "Create directory structure for Prometheus",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/data/prometheus/data",
+          "sudo mkdir -p /opt/ai-q/config/prometheus",
+          "sudo mkdir -p /opt/ai-q/config/prometheus/rules"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All Prometheus directories created successfully"
+      },
+      {
+        "step_id": "02-06-01-02",
+        "title": "Create Prometheus configuration file",
+        "description": "Create comprehensive Prometheus configuration",
+        "config_file": "/opt/ai-q/config/prometheus/prometheus.yml",
+        "config_content": {
+          "global": {
+            "scrape_interval": "15s",
+            "evaluation_interval": "15s"
+          },
+          "rule_files": ["/etc/prometheus/rules/*.yml"],
+          "scrape_configs": [
+            {
+              "job_name": "prometheus",
+              "static_configs": [{"targets": ["localhost:9090"]}]
+            },
+            {
+              "job_name": "node-exporter",
+              "static_configs": [{"targets": ["node-exporter:9100"]}]
+            },
+            {
+              "job_name": "cadvisor",
+              "static_configs": [{"targets": ["cadvisor:8081"]}]
+            },
+            {
+              "job_name": "postgresql",
+              "static_configs": [{"targets": ["postgresql:5432"]}]
+            },
+            {
+              "job_name": "redis",
+              "static_configs": [{"targets": ["redis:6379"]}]
+            }
+          ],
+          "alerting": {
+            "alertmanagers": [{"static_configs": [{"targets": ["alertmanager:9093"]}]}]
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/config/prometheus/prometheus.yml << 'EOF'\nglobal:\n  scrape_interval: 15s\n  evaluation_interval: 15s\n\nrule_files:\n  - /etc/prometheus/rules/*.yml\n\nscrape_configs:\n  - job_name: 'prometheus'\n    static_configs:\n      - targets: ['localhost:9090']\n\n  - job_name: 'node-exporter'\n    static_configs:\n      - targets: ['node-exporter:9100']\n\n  - job_name: 'cadvisor'\n    static_configs:\n      - targets: ['cadvisor:8081']\n\n  - job_name: 'postgresql'\n    static_configs:\n      - targets: ['postgresql:5432']\n\n  - job_name: 'redis'\n    static_configs:\n      - targets: ['redis:6379']\n\nalerting:\n  alertmanagers:\n    - static_configs:\n        - targets:\n          - alertmanager:9093\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "prometheus.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-06-01-03",
+        "title": "Create Prometheus Docker Compose service",
+        "description": "Create Prometheus service configuration",
+        "config_file": "/opt/ai-q/docker/compose/prometheus-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "prometheus": {
+              "image": "prom/prometheus:latest",
+              "container_name": "ai-q-prometheus",
+              "restart": "unless-stopped",
+              "ports": ["9090:9090"],
+              "volumes": [
+                "/opt/ai-q/data/prometheus/data:/prometheus",
+                "/opt/ai-q/config/prometheus:/etc/prometheus",
+                "/opt/ai-q/config/prometheus/rules:/etc/prometheus/rules"
+              ],
+              "command": [
+                "--config.file=/etc/prometheus/prometheus.yml",
+                "--storage.tsdb.path=/prometheus",
+                "--web.console.libraries=/etc/prometheus/console_libraries",
+                "--web.console.templates=/etc/prometheus/consoles",
+                "--storage.tsdb.retention.time=200h",
+                "--web.enable-lifecycle"
+              ],
+              "networks": ["ai-q-network"],
+              "healthcheck": {
+                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9090/-/healthy"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/prometheus-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  prometheus:\n    image: prom/prometheus:latest\n    container_name: ai-q-prometheus\n    restart: unless-stopped\n    ports:\n      - 9090:9090\n    volumes:\n      - /opt/ai-q/data/prometheus/data:/prometheus\n      - /opt/ai-q/config/prometheus:/etc/prometheus\n      - /opt/ai-q/config/prometheus/rules:/etc/prometheus/rules\n    command:\n      - --config.file=/etc/prometheus/prometheus.yml\n      - --storage.tsdb.path=/prometheus\n      - --web.console.libraries=/etc/prometheus/console_libraries\n      - --web.console.templates=/etc/prometheus/consoles\n      - --storage.tsdb.retention.time=200h\n      - --web.enable-lifecycle\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:9090/-/healthy\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "prometheus-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-06-01-04",
+        "title": "Deploy Prometheus service",
+        "description": "Start Prometheus service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/prometheus-service.yml up -d",
+          "sleep 30",
+          "curl -f http://localhost:9090/-/healthy"
+        ],
+        "verification": "Check Prometheus service is running",
+        "expected_output": "Prometheus service running and responding to health check"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-prometheus",
+      "curl -s http://localhost:9090/-/healthy",
+      "curl -s http://localhost:9090/api/v1/status/config",
+      "docker logs ai-q-prometheus"
+    ],
+    "expected_outputs": {
+      "service_running": "Prometheus container is running",
+      "health_responding": "Prometheus health endpoint responds",
+      "config_loaded": "Prometheus configuration loaded successfully",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "task_02_deploy_grafana": {
+    "task_id": "02-06-02",
+    "title": "Deploy Grafana Dashboard",
+    "description": "Deploy Grafana with Prometheus data source and dashboards",
+    "estimated_duration": "45 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-06-02-01",
+        "title": "Create Grafana configuration directory",
+        "description": "Create directory structure for Grafana",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/data/grafana/data",
+          "sudo mkdir -p /opt/ai-q/config/grafana/provisioning/datasources",
+          "sudo mkdir -p /opt/ai-q/config/grafana/provisioning/dashboards"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All Grafana directories created successfully"
+      },
+      {
+        "step_id": "02-06-02-02",
+        "title": "Create Grafana datasource configuration",
+        "description": "Create Prometheus datasource configuration",
+        "config_file": "/opt/ai-q/config/grafana/provisioning/datasources/prometheus.yml",
+        "config_content": {
+          "apiVersion": 1,
+          "datasources": [
+            {
+              "name": "Prometheus",
+              "type": "prometheus",
+              "url": "http://prometheus:9090",
+              "access": "proxy",
+              "isDefault": true
+            }
+          ]
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/config/grafana/provisioning/datasources/prometheus.yml << 'EOF'\napiVersion: 1\n\ndatasources:\n  - name: Prometheus\n    type: prometheus\n    url: http://prometheus:9090\n    access: proxy\n    isDefault: true\nEOF"
+        ],
+        "verification": "Check datasource configuration exists",
+        "expected_output": "prometheus.yml datasource configuration created"
+      },
+      {
+        "step_id": "02-06-02-03",
+        "title": "Create Grafana Docker Compose service",
+        "description": "Create Grafana service configuration",
+        "config_file": "/opt/ai-q/docker/compose/grafana-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "grafana": {
+              "image": "grafana/grafana:latest",
+              "container_name": "ai-q-grafana",
+              "restart": "unless-stopped",
+              "ports": ["3002:3000"],
+              "volumes": [
+                "/opt/ai-q/data/grafana/data:/var/lib/grafana",
+                "/opt/ai-q/config/grafana/provisioning:/etc/grafana/provisioning"
+              ],
+              "environment": [
+                "GF_SECURITY_ADMIN_USER=admin",
+                "GF_SECURITY_ADMIN_PASSWORD=admin-secure-password-change-in-production",
+                "GF_USERS_ALLOW_SIGN_UP=false"
+              ],
+              "networks": ["ai-q-network"],
+              "healthcheck": {
+                "test": ["CMD-SHELL", "curl -f http://localhost:3000/api/health || exit 1"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/grafana-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  grafana:\n    image: grafana/grafana:latest\n    container_name: ai-q-grafana\n    restart: unless-stopped\n    ports:\n      - 3002:3000\n    volumes:\n      - /opt/ai-q/data/grafana/data:/var/lib/grafana\n      - /opt/ai-q/config/grafana/provisioning:/etc/grafana/provisioning\n    environment:\n      - GF_SECURITY_ADMIN_USER=admin\n      - GF_SECURITY_ADMIN_PASSWORD=admin-secure-password-change-in-production\n      - GF_USERS_ALLOW_SIGN_UP=false\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD-SHELL\", \"curl -f http://localhost:3000/api/health || exit 1\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "grafana-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-06-02-04",
+        "title": "Deploy Grafana service",
+        "description": "Start Grafana service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/grafana-service.yml up -d",
+          "sleep 30",
+          "curl -f http://localhost:3002/api/health"
+        ],
+        "verification": "Check Grafana service is running",
+        "expected_output": "Grafana service running and responding to health check"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-grafana",
+      "curl -s http://localhost:3002/api/health",
+      "curl -s http://localhost:3002/api/datasources",
+      "docker logs ai-q-grafana"
+    ],
+    "expected_outputs": {
+      "service_running": "Grafana container is running",
+      "health_responding": "Grafana health endpoint responds",
+      "datasources_configured": "Prometheus datasource configured",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "task_03_deploy_alertmanager": {
+    "task_id": "02-06-03",
+    "title": "Deploy AlertManager",
+    "description": "Deploy AlertManager for alert routing and notification",
+    "estimated_duration": "30 minutes",
+    "critical": false,
+    "steps": [
+      {
+        "step_id": "02-06-03-01",
+        "title": "Create AlertManager configuration directory",
+        "description": "Create directory structure for AlertManager",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/config/alertmanager",
+          "sudo mkdir -p /opt/ai-q/data/alertmanager/data"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All AlertManager directories created successfully"
+      },
+      {
+        "step_id": "02-06-03-02",
+        "title": "Create AlertManager configuration",
+        "description": "Create AlertManager configuration file",
+        "config_file": "/opt/ai-q/config/alertmanager/alertmanager.yml",
+        "config_content": {
+          "global": {
+            "smtp_smarthost": "localhost:587",
+            "smtp_from": "alertmanager@ai-q.local"
+          },
+          "route": {
+            "group_by": ["alertname"],
+            "group_wait": "10s",
+            "group_interval": "10s",
+            "repeat_interval": "1h",
+            "receiver": "web.hook"
+          },
+          "receivers": [
+            {
+              "name": "web.hook",
+              "webhook_configs": [
+                {
+                  "url": "http://127.0.0.1:5001/"
+                }
+              ]
+            }
+          ]
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/config/alertmanager/alertmanager.yml << 'EOF'\nglobal:\n  smtp_smarthost: 'localhost:587'\n  smtp_from: 'alertmanager@ai-q.local'\n\nroute:\n  group_by: ['alertname']\n  group_wait: 10s\n  group_interval: 10s\n  repeat_interval: 1h\n  receiver: 'web.hook'\n\nreceivers:\n  - name: 'web.hook'\n    webhook_configs:\n      - url: 'http://127.0.0.1:5001/'\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "alertmanager.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-06-03-03",
+        "title": "Create AlertManager Docker Compose service",
+        "description": "Create AlertManager service configuration",
+        "config_file": "/opt/ai-q/docker/compose/alertmanager-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "alertmanager": {
+              "image": "prom/alertmanager:latest",
+              "container_name": "ai-q-alertmanager",
+              "restart": "unless-stopped",
+              "ports": ["9093:9093"],
+              "volumes": [
+                "/opt/ai-q/config/alertmanager:/etc/alertmanager",
+                "/opt/ai-q/data/alertmanager/data:/alertmanager"
+              ],
+              "command": [
+                "--config.file=/etc/alertmanager/alertmanager.yml",
+                "--storage.path=/alertmanager"
+              ],
+              "networks": ["ai-q-network"],
+              "healthcheck": {
+                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9093/-/healthy"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/alertmanager-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  alertmanager:\n    image: prom/alertmanager:latest\n    container_name: ai-q-alertmanager\n    restart: unless-stopped\n    ports:\n      - 9093:9093\n    volumes:\n      - /opt/ai-q/config/alertmanager:/etc/alertmanager\n      - /opt/ai-q/data/alertmanager/data:/alertmanager\n    command:\n      - --config.file=/etc/alertmanager/alertmanager.yml\n      - --storage.path=/alertmanager\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:9093/-/healthy\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "alertmanager-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-06-03-04",
+        "title": "Deploy AlertManager service",
+        "description": "Start AlertManager service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/alertmanager-service.yml up -d",
+          "sleep 15",
+          "curl -f http://localhost:9093/-/healthy"
+        ],
+        "verification": "Check AlertManager service is running",
+        "expected_output": "AlertManager service running and responding to health check"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-alertmanager",
+      "curl -s http://localhost:9093/-/healthy",
+      "curl -s http://localhost:9093/api/v1/status",
+      "docker logs ai-q-alertmanager"
+    ],
+    "expected_outputs": {
+      "service_running": "AlertManager container is running",
+      "health_responding": "AlertManager health endpoint responds",
+      "status_responding": "AlertManager status API responds",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "verification_and_testing": {
+    "comprehensive_test": {
+      "title": "Monitoring Services Verification",
+      "description": "Run comprehensive tests to verify all monitoring components",
+      "test_commands": [
+        "docker-compose -f /opt/ai-q/docker/compose/prometheus-service.yml ps",
+        "docker-compose -f /opt/ai-q/docker/compose/grafana-service.yml ps",
+        "docker-compose -f /opt/ai-q/docker/compose/alertmanager-service.yml ps",
+        "curl -s http://localhost:9090/-/healthy",
+        "curl -s http://localhost:3002/api/health",
+        "curl -s http://localhost:9093/-/healthy"
+      ],
+      "expected_results": {
+        "prometheus": "Health endpoint responds successfully",
+        "grafana": "Health endpoint responds successfully",
+        "alertmanager": "Health endpoint responds successfully"
+      }
+    }
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Prometheus configuration errors",
+        "symptoms": "Prometheus fails to start or shows config errors",
+        "solution": "Check YAML syntax and target configurations",
+        "commands": [
+          "docker logs ai-q-prometheus",
+          "docker exec ai-q-prometheus promtool check config /etc/prometheus/prometheus.yml",
+          "curl -s http://localhost:9090/api/v1/status/config"
+        ]
+      },
+      {
+        "issue": "Grafana cannot connect to Prometheus",
+        "symptoms": "Grafana shows datasource connection errors",
+        "solution": "Check network connectivity and Prometheus status",
+        "commands": [
+          "docker logs ai-q-grafana",
+          "curl -s http://localhost:9090/-/healthy",
+          "docker exec ai-q-grafana curl -s http://prometheus:9090/-/healthy"
+        ]
+      },
+      {
+        "issue": "AlertManager configuration errors",
+        "symptoms": "AlertManager fails to start or shows config errors",
+        "solution": "Check YAML syntax and notification settings",
+        "commands": [
+          "docker logs ai-q-alertmanager",
+          "docker exec ai-q-alertmanager amtool check-config /etc/alertmanager/alertmanager.yml",
+          "curl -s http://localhost:9093/api/v1/status"
+        ]
+      }
+    ]
+  },
+  "next_steps": {
+    "next_sub_recipe": "02-07-system-exporters",
+    "prerequisites_completed": [
+      "Prometheus deployed and running",
+      "Grafana deployed and running",
+      "AlertManager deployed and running",
+      "Monitoring services integrated",
+      "Port 9090 reserved for Prometheus",
+      "Port 3002 reserved for Grafana",
+      "Port 9093 reserved for AlertManager"
+    ],
+    "readiness_check": "All verification commands pass successfully"
+  }
+} 

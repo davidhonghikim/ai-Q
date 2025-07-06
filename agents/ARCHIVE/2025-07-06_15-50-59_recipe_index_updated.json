@@ -1,0 +1,173 @@
+{
+  "recipe_index_metadata": {
+    "title": "ai-Q Knowledge Library System - Recipe Index",
+    "version": "2.0.0",
+    "last_updated": "2025-01-30T19:59:00Z",
+    "updated_by": "Claude Sonnet 4",
+    "total_recipes": 20,
+    "status": "ACTIVE"
+  },
+  "infrastructure_recipes": {
+    "01-core-infrastructure-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Core Infrastructure Setup",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "02-unified-docker-system-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Unified Docker System",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "03-storage-systems-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Storage Systems Configuration",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "04-database-setup-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Database Setup and Configuration",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "05-monitoring-observability-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Monitoring and Observability",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "06-api-gateway-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "API Gateway Configuration",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "07-authentication-security-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Authentication and Security",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "01-npm-installation-recipe.json": {
+      "version": "1.0.0",
+      "status": "NEW",
+      "title": "Safe npm Installation Process - Prevents Dependency Corruption",
+      "last_updated": "2025-01-30T19:57:00Z",
+      "priority": "CRITICAL",
+      "description": "Atomic, reproducible npm installation process that prevents dependency corruption"
+    }
+  },
+  "ai_agent_recipes": {
+    "01-ai-agent-integration-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "AI Agent Integration",
+      "last_updated": "2025-01-30T15:00:00Z"
+    }
+  },
+  "content_workflow_recipes": {
+    "01-content-creation-workflows-recipe.json": {
+      "version": "5.0.0",
+      "status": "COMPLETE",
+      "title": "Content Creation Workflows",
+      "last_updated": "2025-01-30T15:00:00Z"
+    },
+    "01-research-automation-recipe.json": {
+      "version": "2.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Research Automation",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-development-automation-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Development Automation",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-knowledge-synthesis-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Knowledge Synthesis",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-content-processing-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Content Processing",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-intelligence-analysis-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Intelligence Analysis",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-collaboration-workflows-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Collaboration Workflows",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-quality-assurance-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Quality Assurance",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-deployment-automation-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Deployment Automation",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-monitoring-alerting-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Monitoring and Alerting",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-backup-recovery-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Backup and Recovery",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    },
+    "01-scaling-optimization-recipe.json": {
+      "version": "1.0.0",
+      "status": "PENDING_ENHANCEMENT",
+      "title": "Scaling and Optimization",
+      "last_updated": "2025-01-30T15:00:00Z",
+      "target_version": "5.0.0"
+    }
+  },
+  "enhancement_progress": {
+    "v5_0_0_recipes": 9,
+    "recipes_needing_enhancement": 11,
+    "completion_percentage": 45,
+    "next_priority_recipes": [
+      "01-research-automation-recipe.json",
+      "01-development-automation-recipe.json",
+      "01-knowledge-synthesis-recipe.json"
+    ]
+  },
+  "critical_updates": {
+    "npm_installation_issue": {
+      "status": "RESOLVED",
+      "resolution_date": "2025-01-30T19:56:00Z",
+      "new_recipe_created": "01-npm-installation-recipe.json",
+      "impact": "All future npm installations will be safe and reproducible"
+    }
+  }
+} 

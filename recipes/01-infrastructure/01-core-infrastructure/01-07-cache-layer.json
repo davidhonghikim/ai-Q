@@ -1,16 +1,200 @@
 {
-  "metadata": {
-    "sub_recipe_id": "01-07-cache-layer",
+  "recipe_metadata": {
+    "recipe_id": "01-07-CACHE-LAYER-COMPREHENSIVE",
     "title": "Distributed Caching Layer - Complete Implementation",
-    "version": "1.0.0",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-01-27T19:00:00Z",
-    "purpose": "Exact step-by-step Redis cache layer implementation with zero ambiguity",
-    "total_tasks": 14,
-    "estimated_duration": "2 days",
-    "complexity": "Advanced",
-    "dependencies": ["01-01-docker-environment", "01-02-system-monitoring", "01-03-logging-infrastructure", "01-04-load-balancing", "01-05-service-discovery", "01-06-message-queue"],
-    "cache_stack": ["Redis", "Clustering", "Persistence", "Sentinel", "High Availability"]
+    "creation_date": "2025-01-27T19:00:00Z",
+    "last_updated": "2025-07-06T18:00:00Z",
+    "estimated_tokens": 45000,
+    "estimated_execution_time": "2-3 hours",
+    "difficulty_level": "expert",
+    "total_tasks": 8,
+    "agent_autonomy_level": "95%",
+    "success_rate_target": "99%",
+    "compliance_standards": ["ISO 27001", "SOC 2"],
+    "architecture_tier": "enterprise-caching",
+    "description": "Complete Redis cache layer implementation with clustering, persistence, sentinel, and high availability",
+    "is_master_recipe": false,
+    "dependencies": {
+      "prerequisites": ["01-01-docker-environment", "01-02-system-monitoring", "01-03-logging-infrastructure", "01-04-load-balancing", "01-05-service-discovery", "01-06-message-queue"],
+      "required_services": ["docker", "docker-compose"],
+      "required_networks": ["ai-q-network", "ai-q-services"],
+      "required_volumes": ["ai-q-data", "ai-q-config"],
+      "required_ports": [6379, 6380, 6381, 26379, 26380, 26381],
+      "required_files": ["/opt/ai-q/cache/"]
+    },
+    "kitchen_system": {
+      "pantry_category": "caching",
+      "cooking_time": "180 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["redis_setup", "clustering", "sentinel", "persistence"],
+      "cache_strategy": "cache_layer_infrastructure_cache",
+      "orchestrator_priority": "critical"
+    }
+  },
+  "recipe_overview": {
+    "name": "Distributed Caching Layer",
+    "description": "Complete Redis cache layer infrastructure with clustering, persistence, sentinel, and high availability",
+    "prerequisites": [
+      "01-01-docker-environment completed",
+      "01-02-system-monitoring completed",
+      "01-03-logging-infrastructure completed",
+      "01-04-load-balancing completed",
+      "01-05-service-discovery completed",
+      "01-06-message-queue completed",
+      "Docker networks operational",
+      "Docker volumes accessible",
+      "Minimum 4GB RAM available",
+      "20GB free disk space for cache persistence"
+    ],
+    "target_outcome": "Production-ready distributed caching infrastructure with comprehensive monitoring and high availability",
+    "success_criteria": [
+      "Redis server operational and healthy",
+      "Redis clustering configured and operational",
+      "Redis Sentinel monitoring active",
+      "Persistence configured and functional",
+      "High availability features enabled",
+      "All components can be safely installed/uninstalled"
+    ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "REDIS_SETUP_TASK",
+        "name": "Redis Server Setup",
+        "description": "Install and configure Redis server with exact specifications",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["redis_configuration", "caching", "clustering"],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/cache/redis/{config,data,logs,scripts,sentinel}",
+          "chmod 755 /opt/ai-q/cache/redis",
+          "tee /opt/ai-q/cache/redis/config/redis.conf << 'EOF'",
+          "bind 0.0.0.0",
+          "port 6379",
+          "tcp-backlog 511",
+          "timeout 0",
+          "tcp-keepalive 300",
+          "daemonize no",
+          "supervised no",
+          "pidfile /var/run/redis_6379.pid",
+          "loglevel notice",
+          "logfile /var/log/redis/redis.log",
+          "databases 16",
+          "save 900 1",
+          "save 300 10",
+          "save 60 10000",
+          "stop-writes-on-bgsave-error yes",
+          "rdbcompression yes",
+          "rdbchecksum yes",
+          "dbfilename dump.rdb",
+          "dir /data",
+          "replica-serve-stale-data yes",
+          "replica-read-only yes",
+          "repl-diskless-sync no",
+          "repl-diskless-sync-delay 5",
+          "repl-ping-replica-period 10",
+          "repl-timeout 60",
+          "repl-disable-tcp-nodelay no",
+          "repl-backlog-size 1mb",
+          "repl-backlog-ttl 3600",
+          "maxclients 10000",
+          "maxmemory 2gb",
+          "maxmemory-policy allkeys-lru",
+          "maxmemory-samples 5",
+          "appendonly yes",
+          "appendfilename appendonly.aof",
+          "appendfsync everysec",
+          "no-appendfsync-on-rewrite no",
+          "auto-aof-rewrite-percentage 100",
+          "auto-aof-rewrite-min-size 64mb",
+          "aof-load-truncated yes",
+          "aof-use-rdb-preamble yes",
+          "lua-time-limit 5000",
+          "slowlog-log-slower-than 10000",
+          "slowlog-max-len 128",
+          "latency-monitor-threshold 0",
+          "notify-keyspace-events \"\"",
+          "hash-max-ziplist-entries 512",
+          "hash-max-ziplist-value 64",
+          "list-max-ziplist-size -2",
+          "list-compress-depth 0",
+          "set-max-intset-entries 512",
+          "zset-max-ziplist-entries 128",
+          "zset-max-ziplist-value 64",
+          "hll-sparse-max-bytes 3000",
+          "stream-node-max-bytes 4096",
+          "stream-node-max-entries 100",
+          "activerehashing yes",
+          "client-output-buffer-limit normal 0 0 0",
+          "client-output-buffer-limit replica 256mb 64mb 60",
+          "client-output-buffer-limit pubsub 32mb 8mb 60",
+          "hz 10",
+          "dynamic-hz yes",
+          "aof-rewrite-incremental-fsync yes",
+          "rdb-save-incremental-fsync yes",
+          "EOF",
+          "chown -R 999:999 /opt/ai-q/cache/redis/"
+        ],
+        "validation_commands": [
+          "ls -la /opt/ai-q/cache/redis/",
+          "cat /opt/ai-q/cache/redis/config/redis.conf",
+          "redis-server --test-memory 1024"
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "REDIS_CONFIGURATION_SKILL",
+        "name": "Redis Configuration",
+        "description": "Configure Redis with exact specifications",
+        "tools": ["redis_setup", "caching", "clustering"],
+        "validation": "redis_configuration_validation",
+        "exact_validation_commands": [
+          "redis-cli ping",
+          "redis-cli info server",
+          "redis-cli info memory"
+        ]
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "REDIS_SETUP_TOOL",
+        "name": "Redis Setup Tool",
+        "description": "Automated Redis installation and configuration",
+        "file_path": "scripts/cache/setup_redis.py",
+        "config": "config/cache/redis_config.json",
+        "exact_config_spec": {
+          "redis_version": "7.2.0",
+          "bind": "0.0.0.0",
+          "port": 6379,
+          "maxmemory": "2gb",
+          "maxmemory_policy": "allkeys-lru",
+          "appendonly": "yes",
+          "appendfsync": "everysec"
+        }
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "REDIS_CONFIG",
+        "name": "Redis Configuration",
+        "description": "Redis configuration with exact specifications",
+        "file_path": "/opt/ai-q/cache/redis/config/redis.conf",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "bind": {"type": "string"},
+            "port": {"type": "integer"},
+            "maxmemory": {"type": "string"},
+            "maxmemory_policy": {"type": "string"},
+            "appendonly": {"type": "string"},
+            "appendfsync": {"type": "string"}
+          }
+        }
+      }
+    ]
   },
   "prerequisites": {
     "completed_tasks": [
@@ -504,6 +688,215 @@
           "docker logs ai-q-redis-sentinel-1"
         ]
       }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with aggressive caching",
+        "ingredients": [
+          "task:redis-setup:1.0.0",
+          "task:clustering:1.0.0",
+          "task:sentinel:1.0.0",
+          "task:persistence:1.0.0",
+          "skill:redis-configuration:1.0.0",
+          "skill:caching:1.0.0",
+          "skill:clustering:1.0.0",
+          "tool:redis-setup:1.0.0",
+          "config:redis:1.0.0"
+        ],
+        "exact_commands": [
+          "python3 scripts/cache/setup_redis.py --gather-ingredients",
+          "python3 scripts/cache/setup_cluster.py --gather-ingredients",
+          "python3 scripts/cache/setup_sentinel.py --gather-ingredients"
+        ]
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "Docker environment operational",
+          "Docker networks available",
+          "Docker volumes accessible",
+          "Minimum 4GB RAM available",
+          "20GB free disk space available",
+          "Message queue infrastructure operational"
+        ],
+        "exact_commands": [
+          "docker network ls --filter name=ai-q",
+          "docker volume ls --filter name=ai-q",
+          "free -h | grep Mem | awk '{print $2}'",
+          "df -h /opt/ai-q | awk 'NR==2 {print $4}'",
+          "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'",
+          "curl -u ai_q_admin:ai_q_admin_password http://localhost:15672/api/overview || echo 'Message queue not ready'"
+        ]
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_redis_setup",
+        "description": "Install and configure Redis server with exact commands",
+        "sub_steps": [
+          "Create Redis directories",
+          "Create Redis configuration",
+          "Set permissions",
+          "Validate configuration"
+        ],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/cache/redis/{config,data,logs,scripts,sentinel}",
+          "chmod 755 /opt/ai-q/cache/redis",
+          "tee /opt/ai-q/cache/redis/config/redis.conf << 'EOF'",
+          "bind 0.0.0.0",
+          "port 6379",
+          "tcp-backlog 511",
+          "timeout 0",
+          "tcp-keepalive 300",
+          "daemonize no",
+          "supervised no",
+          "pidfile /var/run/redis_6379.pid",
+          "loglevel notice",
+          "logfile /var/log/redis/redis.log",
+          "databases 16",
+          "save 900 1",
+          "save 300 10",
+          "save 60 10000",
+          "stop-writes-on-bgsave-error yes",
+          "rdbcompression yes",
+          "rdbchecksum yes",
+          "dbfilename dump.rdb",
+          "dir /data",
+          "replica-serve-stale-data yes",
+          "replica-read-only yes",
+          "repl-diskless-sync no",
+          "repl-diskless-sync-delay 5",
+          "repl-ping-replica-period 10",
+          "repl-timeout 60",
+          "repl-disable-tcp-nodelay no",
+          "repl-backlog-size 1mb",
+          "repl-backlog-ttl 3600",
+          "maxclients 10000",
+          "maxmemory 2gb",
+          "maxmemory-policy allkeys-lru",
+          "maxmemory-samples 5",
+          "appendonly yes",
+          "appendfilename appendonly.aof",
+          "appendfsync everysec",
+          "no-appendfsync-on-rewrite no",
+          "auto-aof-rewrite-percentage 100",
+          "auto-aof-rewrite-min-size 64mb",
+          "aof-load-truncated yes",
+          "aof-use-rdb-preamble yes",
+          "lua-time-limit 5000",
+          "slowlog-log-slower-than 10000",
+          "slowlog-max-len 128",
+          "latency-monitor-threshold 0",
+          "notify-keyspace-events \"\"",
+          "hash-max-ziplist-entries 512",
+          "hash-max-ziplist-value 64",
+          "list-max-ziplist-size -2",
+          "list-compress-depth 0",
+          "set-max-intset-entries 512",
+          "zset-max-ziplist-entries 128",
+          "zset-max-ziplist-value 64",
+          "hll-sparse-max-bytes 3000",
+          "stream-node-max-bytes 4096",
+          "stream-node-max-entries 100",
+          "activerehashing yes",
+          "client-output-buffer-limit normal 0 0 0",
+          "client-output-buffer-limit replica 256mb 64mb 60",
+          "client-output-buffer-limit pubsub 32mb 8mb 60",
+          "hz 10",
+          "dynamic-hz yes",
+          "aof-rewrite-incremental-fsync yes",
+          "rdb-save-incremental-fsync yes",
+          "EOF",
+          "chown -R 999:999 /opt/ai-q/cache/redis/"
+        ],
+        "files_to_create": [
+          "/opt/ai-q/cache/redis/config/",
+          "/opt/ai-q/cache/redis/data/",
+          "/opt/ai-q/cache/redis/logs/",
+          "/opt/ai-q/cache/redis/scripts/",
+          "/opt/ai-q/cache/redis/sentinel/",
+          "/opt/ai-q/cache/redis/config/redis.conf"
+        ]
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "execute_cluster_deployment",
+        "description": "Deploy Redis cluster with exact commands",
+        "sub_steps": [
+          "Deploy Redis containers",
+          "Wait for startup",
+          "Validate cluster formation"
+        ],
+        "exact_commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/cache-layer.yml up -d",
+          "sleep 30",
+          "docker logs ai-q-redis-master",
+          "docker logs ai-q-redis-slave-1",
+          "docker logs ai-q-redis-slave-2"
+        ],
+        "files_to_create": [
+          "Docker containers: ai-q-redis-master, ai-q-redis-slave-1, ai-q-redis-slave-2"
+        ]
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_sentinel_setup",
+        "description": "Configure Redis Sentinel for high availability",
+        "sub_steps": [
+          "Deploy Sentinel containers",
+          "Configure Sentinel monitoring",
+          "Validate Sentinel setup"
+        ],
+        "exact_commands": [
+          "docker logs ai-q-redis-sentinel-1",
+          "docker logs ai-q-redis-sentinel-2",
+          "docker logs ai-q-redis-sentinel-3",
+          "redis-cli -h localhost -p 26379 sentinel masters",
+          "redis-cli -h localhost -p 26379 sentinel slaves ai-q-master"
+        ],
+        "files_to_create": [
+          "Docker containers: ai-q-redis-sentinel-1, ai-q-redis-sentinel-2, ai-q-redis-sentinel-3"
+        ]
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "execute_integration_testing",
+        "description": "Test cache layer integration with other components",
+        "sub_steps": [
+          "Test Redis connectivity",
+          "Test replication",
+          "Test Sentinel monitoring"
+        ],
+        "exact_commands": [
+          "redis-cli -h localhost -p 6379 ping",
+          "redis-cli -h localhost -p 6379 info replication",
+          "redis-cli -h localhost -p 6380 ping",
+          "redis-cli -h localhost -p 6381 ping",
+          "redis-cli -h localhost -p 6379 set test_key test_value",
+          "redis-cli -h localhost -p 6379 get test_key"
+        ],
+        "files_to_create": []
+      }
+    ],
+    "acceptance_criteria": [
+      "Redis server is running and accessible on port 6379",
+      "Redis slaves are connected and replicating",
+      "Redis Sentinel is monitoring the cluster",
+      "Cache operations are functional",
+      "All configuration files are properly created and secured",
+      "Integration tests pass successfully",
+      "High availability features are working correctly"
+    ],
+    "rollback_instructions": [
+      "Stop Redis containers: docker-compose -f /opt/ai-q/docker/compose/cache-layer.yml down",
+      "Remove Redis containers: docker rm ai-q-redis-master ai-q-redis-slave-1 ai-q-redis-slave-2 ai-q-redis-sentinel-1 ai-q-redis-sentinel-2 ai-q-redis-sentinel-3",
+      "Remove Redis data: rm -rf /opt/ai-q/cache/",
+      "Remove Redis networks if created: docker network rm ai-q-redis-network"
     ]
   },
   "next_steps": {

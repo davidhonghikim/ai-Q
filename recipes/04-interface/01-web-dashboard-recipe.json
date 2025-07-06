@@ -1,7 +1,9 @@
 {
-  "metadata": {
-    "title": "Web Dashboard Recipe",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "04-01-WEB-DASHBOARD",
+    "title": "Web Dashboard System - Universal Digital Twin System",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:35:00Z",
     "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
     "purpose": "Implement comprehensive web dashboard with complete web interface and user experience for AI-Q Knowledge Library System",

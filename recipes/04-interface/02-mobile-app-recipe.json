@@ -1,7 +1,9 @@
 {
-  "metadata": {
-    "title": "Mobile App Recipe",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "04-02-MOBILE-APP",
+    "title": "Mobile App System - Universal Digital Twin System",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:35:00Z",
     "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
     "purpose": "Implement comprehensive mobile app with React Native for AI-Q Knowledge Library System",

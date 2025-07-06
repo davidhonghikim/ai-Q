@@ -1,17 +1,172 @@
 {
   "recipe_index": [
-    { "order": 1, "dir": "01-infrastructure", "description": "Core infrastructure, Docker, storage, monitoring, API gateway, authentication" },
-    { "order": 2, "dir": "02-ai-services", "description": "Ollama, OpenWebUI, vLLM, AnythingLLM, hardware profiling, etc." },
-    { "order": 3, "dir": "03-intelligence", "description": "RAG engine, semantic search, advanced AI/ML intelligence" },
-    { "order": 4, "dir": "04-ai-agent-integration", "description": "MCP server, multi-agent, tool registry, group chat, agent memory, collaborative features" },
-    { "order": 5, "dir": "04-interface", "description": "Web dashboard, agent console, feedback UI" },
-    { "order": 6, "dir": "05-development-automation", "description": "Code generation, CI/CD, dev tools" },
-    { "order": 7, "dir": "06-content-processing", "description": "Content ingestion, text/image/video/audio processing" },
-    { "order": 8, "dir": "07-content-creation-workflows", "description": "Content creation pipelines and automation" },
-    { "order": 9, "dir": "08-research-automation", "description": "Automated research tools and workflows" },
-    { "order": 10, "dir": "09-knowledge-synthesis", "description": "Knowledge graph, synthesis, and aggregation" },
-    { "order": 11, "dir": "10-collaboration-platform", "description": "Collaboration tools, shared workspaces, team features" },
-    { "order": 12, "dir": "12-advanced-interfaces", "description": "Advanced user/admin/agentic interfaces, meshnet, robotics, IoT, and all future expansion modules. This is the slot for long-term plans, experimental tech, and advanced integrations." },
-    { "order": 13, "dir": "13-deployment", "description": "Production deployment, packaging, off-grid, etc." }
-  ]
+    { 
+      "order": 1, 
+      "dir": "01-infrastructure", 
+      "description": "Core infrastructure, Docker, storage, monitoring, API gateway, authentication",
+      "execution_order": [
+        "01-infrastructure/01-core-infrastructure/01-01-docker-environment.json",
+        "01-infrastructure/02-docker/02-01-docker-core.json",
+        "01-infrastructure/02-docker/02-02-docker-services.json",
+        "01-infrastructure/02-docker/02-03-infrastructure-services.json",
+        "01-infrastructure/02-docker/02-04-ai-ml-services.json",
+        "01-infrastructure/02-docker/02-05-self-hosted-services.json",
+        "01-infrastructure/02-docker/02-06-monitoring-services.json",
+        "01-infrastructure/02-docker/02-07-system-exporters.json",
+        "01-infrastructure/02-docker/02-08-reverse-proxy.json",
+        "01-infrastructure/02-docker/02-09-security-services.json",
+        "01-infrastructure/02-docker/02-10-backup-services.json",
+        "01-infrastructure/03-storage-systems/",
+        "01-infrastructure/04-database-setup/",
+        "01-infrastructure/05-monitoring-observability/",
+        "01-infrastructure/06-creative-and-automation-services/",
+        "01-infrastructure/07-persistent-data-volumes/"
+      ],
+      "dependencies": []
+    },
+    { 
+      "order": 2, 
+      "dir": "02-ai-services", 
+      "description": "Ollama, OpenWebUI, vLLM, AnythingLLM, hardware profiling, etc.",
+      "execution_order": [
+        "02-ai-services/01-ai-services-master-recipe.json"
+      ],
+      "dependencies": ["01-infrastructure"]
+    },
+    { 
+      "order": 3, 
+      "dir": "03-intelligence", 
+      "description": "RAG engine, semantic search, advanced AI/ML intelligence",
+      "execution_order": [
+        "03-intelligence/01-rag-engine-recipe.json",
+        "03-intelligence/02-knowledge-graph-recipe.json",
+        "03-intelligence/03-semantic-search-recipe.json"
+      ],
+      "dependencies": ["02-ai-services"]
+    },
+    { 
+      "order": 4, 
+      "dir": "04-ai-agent-integration", 
+      "description": "MCP server, multi-agent, tool registry, group chat, agent memory, collaborative features",
+      "execution_order": [
+        "04-ai-agent-integration/01-ai-agent-integration-recipe.json"
+      ],
+      "dependencies": ["03-intelligence"]
+    },
+    { 
+      "order": 5, 
+      "dir": "04-interface", 
+      "description": "Web dashboard, agent console, feedback UI",
+      "execution_order": [
+        "04-interface/01-web-dashboard-recipe.json",
+        "04-interface/02-mobile-app-recipe.json"
+      ],
+      "dependencies": ["04-ai-agent-integration"]
+    },
+    { 
+      "order": 6, 
+      "dir": "05-development-automation", 
+      "description": "Code generation, CI/CD, dev tools",
+      "execution_order": [
+        "05-development-automation/01-development-automation-recipe.json"
+      ],
+      "dependencies": ["04-interface"]
+    },
+    { 
+      "order": 7, 
+      "dir": "06-content-processing", 
+      "description": "Content ingestion, text/image/video/audio processing",
+      "execution_order": [
+        "06-content-processing/01-content-ingestion-recipe.json",
+        "06-content-processing/02-text-processing-recipe.json",
+        "06-content-processing/03-image-processing-recipe.json",
+        "06-content-processing/04-video-audio-processing-recipe.json"
+      ],
+      "dependencies": ["05-development-automation"]
+    },
+    { 
+      "order": 8, 
+      "dir": "07-content-creation-workflows", 
+      "description": "Content creation pipelines and automation",
+      "execution_order": [
+        "07-content-creation-workflows/01-content-creation-workflows-recipe.json"
+      ],
+      "dependencies": ["06-content-processing"]
+    },
+    { 
+      "order": 9, 
+      "dir": "08-research-automation", 
+      "description": "Automated research tools and workflows",
+      "execution_order": [
+        "08-research-automation/01-research-automation-recipe.json"
+      ],
+      "dependencies": ["07-content-creation-workflows"]
+    },
+    { 
+      "order": 10, 
+      "dir": "09-knowledge-synthesis", 
+      "description": "Knowledge graph, synthesis, and aggregation",
+      "execution_order": [
+        "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json"
+      ],
+      "dependencies": ["08-research-automation"]
+    },
+    { 
+      "order": 11, 
+      "dir": "10-collaboration-platform", 
+      "description": "Collaboration tools, shared workspaces, team features",
+      "execution_order": [
+        "10-collaboration-platform/01-collaboration-platform-recipe.json"
+      ],
+      "dependencies": ["09-knowledge-synthesis"]
+    },
+    { 
+      "order": 12, 
+      "dir": "12-advanced-interfaces", 
+      "description": "Advanced user/admin/agentic interfaces, meshnet, robotics, IoT, and all future expansion modules. This is the slot for long-term plans, experimental tech, and advanced integrations.",
+      "execution_order": [
+        "12-advanced-interfaces/*.json"
+      ],
+      "dependencies": ["10-collaboration-platform"]
+    },
+    { 
+      "order": 13, 
+      "dir": "13-deployment", 
+      "description": "Production deployment, packaging, off-grid, etc.",
+      "execution_order": [
+        "13-deployment/*.json"
+      ],
+      "dependencies": ["12-advanced-interfaces"]
+    }
+  ],
+  "dependency_rules": {
+    "critical_dependencies": [
+      "Docker infrastructure must be established before any services",
+      "Database services must be installed after Docker infrastructure",
+      "Monitoring services must be installed after Docker infrastructure",
+      "AI services must be installed after infrastructure services",
+      "Intelligence services must be installed after AI services",
+      "Interfaces must be installed after intelligence services"
+    ],
+    "service_dependencies": {
+      "docker": "Required by all containerized services",
+      "postgresql": "Required by most applications",
+      "redis": "Required by caching and session management",
+      "monitoring": "Required for system health",
+      "storage": "Required for data persistence"
+    },
+    "network_dependencies": {
+      "ai-q-network": "Main network for all services",
+      "ai-q-infrastructure-network": "Infrastructure services network",
+      "ai-q-ai-ml-network": "AI/ML services network",
+      "ai-q-self-hosted-network": "Self-hosted services network"
+    }
+  },
+  "execution_guidelines": {
+    "order_importance": "CRITICAL - Recipes must be executed in exact order",
+    "dependency_checking": "Each recipe must validate its dependencies before execution",
+    "failure_handling": "If a recipe fails, all dependent recipes must be halted",
+    "rollback_strategy": "Each recipe should provide rollback instructions",
+    "validation_checkpoints": "Validate each phase before proceeding to next"
+  }
 } 

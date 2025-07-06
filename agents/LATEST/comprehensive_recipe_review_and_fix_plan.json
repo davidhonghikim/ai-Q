@@ -1,0 +1,427 @@
+{
+  "execution_plan_metadata": {
+    "title": "Comprehensive Recipe Review and Fix Plan - Kitchen/Pantry/Subrecipe System Alignment",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T18:30:00Z",
+    "status": "ACTIVE_EXECUTION",
+    "priority": "critical",
+    "agent_id": "claude-sonnet-4-comprehensive-recipe-fix",
+    "plan_type": "systematic_recipe_review_and_fix",
+    "estimated_duration": "10-12 hours",
+    "total_recipes_to_review": 24
+  },
+  "reference_standard": {
+    "file": "ai-Q/recipes/01-infrastructure/01-core-infrastructure/01-01-docker-environment.json",
+    "key_elements": {
+      "recipe_metadata": {
+        "version": "5.0.0",
+        "kitchen_system": "Complete kitchen system integration",
+        "estimated_tokens": "45000",
+        "total_tasks": "8",
+        "agent_autonomy_level": "95%"
+      },
+      "pantry_ingredients": {
+        "tasks": "Atomic tasks with exact_commands",
+        "skills": "Skills with exact_validation_commands",
+        "tools": "Tools with exact_config_spec",
+        "configs": "Configs with exact_schema"
+      },
+      "kitchen_execution": {
+        "orchestrator_steps": "Detailed steps with exact_commands",
+        "caching_strategy": "Complete caching configuration"
+      },
+      "acceptance_criteria": "Measurable and specific criteria",
+      "deliverables": "Specific and achievable outcomes",
+      "troubleshooting_guide": "Specific solutions for common issues",
+      "performance_benchmarks": "Exact targets and measurements"
+    }
+  },
+  "systematic_review_plan": {
+    "phase_1_infrastructure_review": {
+      "title": "Review and Fix Infrastructure Recipes (01)",
+      "description": "Ensure all infrastructure recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "01-infrastructure/01-core-infrastructure/01-01-docker-environment.json",
+          "status": "REFERENCE_STANDARD",
+          "action": "Use as template for other recipes"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-01-docker-core.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-02-docker-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-03-infrastructure-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-04-ai-ml-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-05-self-hosted-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-06-monitoring-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-07-system-exporters.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-08-reverse-proxy.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-09-security-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "01-infrastructure/02-docker/02-10-backup-services.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ],
+      "review_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check kitchen_execution.orchestrator_steps with exact_commands",
+        "Verify pantry_ingredients with exact specifications",
+        "Validate acceptance_criteria and deliverables",
+        "Check troubleshooting_guide and performance_benchmarks",
+        "Ensure proper dependency specifications"
+      ]
+    },
+    "phase_2_ai_services_review": {
+      "title": "Review and Fix AI Services Recipes (02)",
+      "description": "Ensure all AI services recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "02-ai-services/01-ai-services-master-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/01-hardware-profiler.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/02-ollama-setup.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/03-open-webui-setup.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/04-model-management.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/05-vllm-setup.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "02-ai-services/modules/06-anything-llm-setup.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_3_intelligence_review": {
+      "title": "Review and Fix Intelligence Recipes (03)",
+      "description": "Ensure all intelligence recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "03-intelligence/01-rag-engine-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "03-intelligence/02-knowledge-graph-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "03-intelligence/03-semantic-search-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_4_interface_review": {
+      "title": "Review and Fix Interface Recipes (04)",
+      "description": "Ensure all interface recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "04-interface/01-web-dashboard-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "04-interface/02-mobile-app-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "04-ai-agent-integration/01-ai-agent-integration-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_5_development_review": {
+      "title": "Review and Fix Development Recipes (05)",
+      "description": "Ensure development automation recipe follows the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "05-development-automation/01-development-automation-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_6_content_processing_review": {
+      "title": "Review and Fix Content Processing Recipes (06)",
+      "description": "Ensure all content processing recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "06-content-processing/01-content-ingestion-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "06-content-processing/02-text-processing-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "06-content-processing/03-image-processing-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "06-content-processing/04-video-audio-processing-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "06-content-processing/01-content-ingestion-core-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_7_workflow_review": {
+      "title": "Review and Fix Workflow Recipes (07-10)",
+      "description": "Ensure all workflow recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "07-content-creation-workflows/01-content-creation-workflows-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "08-research-automation/01-research-automation-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "10-collaboration-platform/01-collaboration-platform-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_8_quality_operations_review": {
+      "title": "Review and Fix Quality and Operations Recipes (11-17)",
+      "description": "Ensure all quality and operations recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "11-quality-assurance/01-quality-assurance-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "14-monitoring-alerting/01-monitoring-alerting-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "15-backup-recovery/01-backup-recovery-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "16-scaling-optimization/01-scaling-optimization-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "17-deployment-automation/01-deployment-automation-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    },
+    "phase_9_deployment_review": {
+      "title": "Review and Fix Deployment Recipes (13)",
+      "description": "Ensure all deployment recipes follow the reference standard",
+      "recipes_to_review": [
+        {
+          "recipe": "13-deployment/01-production-deployment-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        },
+        {
+          "recipe": "13-deployment/02-distribution-packaging-recipe.json",
+          "status": "NEEDS_REVIEW",
+          "action": "Check against reference standard and fix if needed"
+        }
+      ]
+    }
+  },
+  "missing_recipes_identification": {
+    "missing_recipes": [
+      {
+        "recipe_id": "01-infrastructure/01-core-infrastructure/01-02-system-monitoring.json",
+        "description": "System monitoring setup",
+        "priority": "high",
+        "dependencies": ["01-01-docker-environment"]
+      },
+      {
+        "recipe_id": "01-infrastructure/01-core-infrastructure/01-03-logging-infrastructure.json",
+        "description": "Logging infrastructure setup",
+        "priority": "high",
+        "dependencies": ["01-02-system-monitoring"]
+      },
+      {
+        "recipe_id": "01-infrastructure/03-storage-systems/01-storage-systems-recipe.json",
+        "description": "Storage systems setup",
+        "priority": "high",
+        "dependencies": ["02-10-backup-services"]
+      },
+      {
+        "recipe_id": "01-infrastructure/04-database-setup/01-database-setup-recipe.json",
+        "description": "Database setup",
+        "priority": "high",
+        "dependencies": ["03-storage-systems"]
+      },
+      {
+        "recipe_id": "01-infrastructure/05-monitoring-observability/01-monitoring-observability-recipe.json",
+        "description": "Monitoring and observability setup",
+        "priority": "high",
+        "dependencies": ["04-database-setup"]
+      },
+      {
+        "recipe_id": "01-infrastructure/06-creative-and-automation-services/01-creative-services-recipe.json",
+        "description": "Creative and automation services",
+        "priority": "medium",
+        "dependencies": ["05-monitoring-observability"]
+      },
+      {
+        "recipe_id": "01-infrastructure/07-persistent-data-volumes/01-persistent-data-volumes-recipe.json",
+        "description": "Persistent data volumes setup",
+        "priority": "medium",
+        "dependencies": ["06-creative-and-automation-services"]
+      }
+    ]
+  },
+  "quality_standards": {
+    "atomic_task_requirements": [
+      "Each task must have exact_commands array with specific shell commands",
+      "Each task must have files_to_create array with exact file paths",
+      "Each task must have acceptance_criteria array with measurable criteria",
+      "No room for interpretation - commands must be exact",
+      "All file paths must be absolute or relative to project root",
+      "All commands must be executable without modification"
+    ],
+    "kitchen_system_requirements": [
+      "All recipes must have kitchen_execution.orchestrator_steps",
+      "All orchestrator_steps must have exact_commands",
+      "All recipes must have caching_strategy",
+      "All recipes must reference pantry ingredients properly"
+    ],
+    "pantry_system_requirements": [
+      "All tasks must have exact_commands and exact_validation_commands",
+      "All skills must have exact_validation_commands",
+      "All tools must have exact_config_spec",
+      "All configs must have exact_schema"
+    ],
+    "documentation_requirements": [
+      "All recipes must have troubleshooting_guide with specific solutions",
+      "All recipes must have performance_benchmarks with exact targets",
+      "All recipes must have deliverables list with specific outcomes",
+      "All recipes must have acceptance_criteria with measurable outcomes"
+    ]
+  },
+  "execution_instructions": {
+    "step_1_analysis": "Analyze each recipe against the reference standard",
+    "step_2_identification": "Identify missing elements and non-compliance",
+    "step_3_fix": "Fix all issues with extremely specific details",
+    "step_4_validation": "Validate that no room for interpretation exists",
+    "step_5_testing": "Test that all commands and paths are correct",
+    "step_6_documentation": "Update recipe index and progress tracking",
+    "step_7_creation": "Create missing recipes following the reference standard"
+  },
+  "success_criteria": {
+    "all_recipes_v5_0_0": "All recipes must be at version 5.0.0",
+    "kitchen_system_compliance": "All recipes must have proper kitchen_execution sections",
+    "pantry_system_compliance": "All recipes must have proper pantry_ingredients sections",
+    "atomic_task_compliance": "All recipes must have extremely specific atomic tasks",
+    "no_interpretation": "No room for interpretation in any task",
+    "complete_documentation": "All recipes must have complete documentation",
+    "consistent_structure": "All recipes must follow the same structure",
+    "zero_technical_debt": "No technical debt left for future agents",
+    "all_missing_recipes_created": "All missing recipes must be created"
+  },
+  "next_agent_requirements": {
+    "skills_needed": [
+      "Systematic analysis and planning",
+      "Attention to detail and consistency",
+      "Understanding of kitchen/pantry system",
+      "Ability to write extremely specific commands",
+      "Quality assurance and validation"
+    ],
+    "tools_needed": [
+      "File editing tools for JSON modification",
+      "Search and replace tools for bulk updates",
+      "Validation tools for checking recipe structure",
+      "Documentation tools for progress tracking"
+    ],
+    "time_estimate": "10-12 hours for complete systematic review and fix",
+    "priority": "Critical - must be completed before any other work"
+  },
+  "handoff_notes": {
+    "current_progress": "Starting comprehensive review from phase 1",
+    "critical_issues": "Recipes need alignment with kitchen/pantry system",
+    "immediate_actions": "Start with 01-infrastructure and work systematically through all phases",
+    "quality_gates": "Each recipe must pass validation before moving to next",
+    "success_metrics": "All recipes must follow kitchen/pantry system with atomic tasks"
+  }
+} 

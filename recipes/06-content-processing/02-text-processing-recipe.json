@@ -1,7 +1,9 @@
 {
-  "metadata": {
-    "title": "Text Processing Recipe",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "06-02-TEXT-PROCESSING",
+    "title": "Text Processing System - Universal Digital Twin System",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:25:00Z",
     "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
     "purpose": "Implement comprehensive text processing system with OCR, NLP, summarization, and translation for AI-Q Knowledge Library System",

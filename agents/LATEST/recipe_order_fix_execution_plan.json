@@ -1,0 +1,359 @@
+{
+  "execution_plan_metadata": {
+    "title": "Recipe Order and Dependency Fix Execution Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T18:00:00Z",
+    "status": "CRITICAL_EXECUTION",
+    "priority": "critical",
+    "agent_id": "claude-sonnet-4-recipe-order-fix",
+    "plan_type": "recipe_order_and_dependency_fix",
+    "estimated_duration": "6-8 hours",
+    "total_issues_to_fix": 15
+  },
+  "critical_issues_identified": {
+    "major_order_problems": [
+      {
+        "issue": "Database setup before Docker infrastructure",
+        "current_order": "01-infrastructure/04-database-setup/ before 01-infrastructure/02-docker/",
+        "problem": "Database recipes expect Docker networks/volumes that don't exist yet",
+        "impact": "CRITICAL - Will cause complete failure"
+      },
+      {
+        "issue": "Monitoring setup before Docker infrastructure",
+        "current_order": "01-infrastructure/01-core-infrastructure/01-02-system-monitoring.json before Docker",
+        "problem": "Monitoring needs Docker containers but Docker isn't ready",
+        "impact": "CRITICAL - Will cause complete failure"
+      },
+      {
+        "issue": "Storage systems before Docker infrastructure",
+        "current_order": "01-infrastructure/03-storage-systems/ before 01-infrastructure/02-docker/",
+        "problem": "Storage services need Docker but Docker isn't ready",
+        "impact": "CRITICAL - Will cause complete failure"
+      },
+      {
+        "issue": "AI services before infrastructure services",
+        "current_order": "02-ai-services/ before infrastructure services are ready",
+        "problem": "AI services need databases, monitoring, storage that aren't ready",
+        "impact": "CRITICAL - Will cause complete failure"
+      }
+    ],
+    "sub_recipe_numbering_issues": [
+      {
+        "issue": "Wrong numbering in Docker recipes",
+        "current": "05-infrastructure-services.json in 02-docker/",
+        "problem": "Should be 02-03-infrastructure-services.json",
+        "impact": "Confusion and wrong execution order"
+      },
+      {
+        "issue": "Missing dependency specifications",
+        "problem": "No recipes specify what they depend on",
+        "impact": "Agents can't know correct execution order"
+      }
+    ]
+  },
+  "correct_execution_order": {
+    "phase_1_foundation": {
+      "title": "Foundation Setup (01-infrastructure)",
+      "description": "Basic system and Docker infrastructure",
+      "recipes_in_order": [
+        {
+          "order": 1,
+          "recipe": "01-infrastructure/01-core-infrastructure/01-01-docker-environment.json",
+          "purpose": "Basic Docker installation and environment setup",
+          "dependencies": []
+        },
+        {
+          "order": 2,
+          "recipe": "01-infrastructure/02-docker/02-01-docker-core.json",
+          "purpose": "Docker core infrastructure (networks, volumes, orchestration)",
+          "dependencies": ["01-01-docker-environment"]
+        },
+        {
+          "order": 3,
+          "recipe": "01-infrastructure/02-docker/02-02-docker-services.json",
+          "purpose": "Docker services orchestration framework",
+          "dependencies": ["02-01-docker-core"]
+        },
+        {
+          "order": 4,
+          "recipe": "01-infrastructure/02-docker/02-03-infrastructure-services.json",
+          "purpose": "Infrastructure Docker infrastructure (networks, volumes for infrastructure services)",
+          "dependencies": ["02-02-docker-services"]
+        },
+        {
+          "order": 5,
+          "recipe": "01-infrastructure/02-docker/02-04-ai-ml-services.json",
+          "purpose": "AI/ML Docker infrastructure (networks, volumes for AI services)",
+          "dependencies": ["02-03-infrastructure-services"]
+        },
+        {
+          "order": 6,
+          "recipe": "01-infrastructure/02-docker/02-05-self-hosted-services.json",
+          "purpose": "Self-hosted Docker infrastructure (networks, volumes for self-hosted services)",
+          "dependencies": ["02-04-ai-ml-services"]
+        }
+      ]
+    },
+    "phase_2_core_services": {
+      "title": "Core Services Setup (01-infrastructure)",
+      "description": "Core infrastructure services using Docker",
+      "recipes_in_order": [
+        {
+          "order": 7,
+          "recipe": "01-infrastructure/03-storage-systems/",
+          "purpose": "Storage services using Docker infrastructure",
+          "dependencies": ["02-05-self-hosted-services"]
+        },
+        {
+          "order": 8,
+          "recipe": "01-infrastructure/04-database-setup/",
+          "purpose": "Database services using Docker infrastructure",
+          "dependencies": ["03-storage-systems"]
+        },
+        {
+          "order": 9,
+          "recipe": "01-infrastructure/05-monitoring-observability/",
+          "purpose": "Monitoring services using Docker infrastructure",
+          "dependencies": ["04-database-setup"]
+        },
+        {
+          "order": 10,
+          "recipe": "01-infrastructure/06-creative-and-automation-services/",
+          "purpose": "Creative services using Docker infrastructure",
+          "dependencies": ["05-monitoring-observability"]
+        },
+        {
+          "order": 11,
+          "recipe": "01-infrastructure/07-persistent-data-volumes/",
+          "purpose": "Data volumes using Docker infrastructure",
+          "dependencies": ["06-creative-and-automation-services"]
+        }
+      ]
+    },
+    "phase_3_ai_services": {
+      "title": "AI Services Setup (02-ai-services)",
+      "description": "AI services using established infrastructure",
+      "recipes_in_order": [
+        {
+          "order": 12,
+          "recipe": "02-ai-services/01-ai-services-master-recipe.json",
+          "purpose": "AI services using established infrastructure",
+          "dependencies": ["07-persistent-data-volumes"]
+        }
+      ]
+    },
+    "phase_4_intelligence": {
+      "title": "Intelligence Setup (03-intelligence)",
+      "description": "Intelligence services using AI services",
+      "recipes_in_order": [
+        {
+          "order": 13,
+          "recipe": "03-intelligence/01-rag-engine-recipe.json",
+          "purpose": "RAG engine using AI services",
+          "dependencies": ["01-ai-services-master-recipe"]
+        },
+        {
+          "order": 14,
+          "recipe": "03-intelligence/02-knowledge-graph-recipe.json",
+          "purpose": "Knowledge graph using AI services",
+          "dependencies": ["01-rag-engine-recipe"]
+        },
+        {
+          "order": 15,
+          "recipe": "03-intelligence/03-semantic-search-recipe.json",
+          "purpose": "Semantic search using AI services",
+          "dependencies": ["02-knowledge-graph-recipe"]
+        }
+      ]
+    },
+    "phase_5_interfaces": {
+      "title": "Interface Setup (04-interface)",
+      "description": "User interfaces using intelligence services",
+      "recipes_in_order": [
+        {
+          "order": 16,
+          "recipe": "04-interface/01-web-dashboard-recipe.json",
+          "purpose": "Web dashboard using intelligence services",
+          "dependencies": ["03-semantic-search-recipe"]
+        },
+        {
+          "order": 17,
+          "recipe": "04-interface/02-mobile-app-recipe.json",
+          "purpose": "Mobile app using intelligence services",
+          "dependencies": ["01-web-dashboard-recipe"]
+        }
+      ]
+    },
+    "phase_6_development_content": {
+      "title": "Development and Content (05-07)",
+      "description": "Development tools and content processing",
+      "recipes_in_order": [
+        {
+          "order": 18,
+          "recipe": "05-development-automation/01-development-automation-recipe.json",
+          "purpose": "Development tools using interfaces",
+          "dependencies": ["02-mobile-app-recipe"]
+        },
+        {
+          "order": 19,
+          "recipe": "06-content-processing/01-content-ingestion-recipe.json",
+          "purpose": "Content processing using development tools",
+          "dependencies": ["01-development-automation-recipe"]
+        },
+        {
+          "order": 20,
+          "recipe": "07-content-creation-workflows/01-content-creation-workflows-recipe.json",
+          "purpose": "Content workflows using content processing",
+          "dependencies": ["01-content-ingestion-recipe"]
+        }
+      ]
+    },
+    "phase_7_advanced_features": {
+      "title": "Advanced Features (08-13)",
+      "description": "Advanced features and deployment",
+      "recipes_in_order": [
+        {
+          "order": 21,
+          "recipe": "08-research-automation/01-research-automation-recipe.json",
+          "purpose": "Research tools using content workflows",
+          "dependencies": ["01-content-creation-workflows-recipe"]
+        },
+        {
+          "order": 22,
+          "recipe": "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json",
+          "purpose": "Knowledge synthesis using research tools",
+          "dependencies": ["01-research-automation-recipe"]
+        },
+        {
+          "order": 23,
+          "recipe": "10-collaboration-platform/01-collaboration-platform-recipe.json",
+          "purpose": "Collaboration tools using knowledge synthesis",
+          "dependencies": ["01-knowledge-synthesis-recipe"]
+        },
+        {
+          "order": 24,
+          "recipe": "13-deployment/",
+          "purpose": "Production deployment using all services",
+          "dependencies": ["01-collaboration-platform-recipe"]
+        }
+      ]
+    }
+  },
+  "immediate_fixes_required": {
+    "fix_1_rename_docker_recipe": {
+      "action": "Rename 05-infrastructure-services.json to 02-03-infrastructure-services.json",
+      "reason": "Fix numbering to match logical order",
+      "commands": [
+        "cd ai-Q/recipes/01-infrastructure/02-docker/",
+        "mv 05-infrastructure-services.json 02-03-infrastructure-services.json"
+      ]
+    },
+    "fix_2_rename_other_docker_recipes": {
+      "action": "Rename remaining Docker recipes to correct order",
+      "reason": "Fix numbering to match logical order",
+      "commands": [
+        "mv 02-03-ai-ml-services.json 02-04-ai-ml-services.json",
+        "mv 02-04-self-hosted-services.json 02-05-self-hosted-services.json",
+        "mv 06-monitoring-services.json 02-06-monitoring-services.json",
+        "mv 07-system-exporters.json 02-07-system-exporters.json",
+        "mv 08-reverse-proxy.json 02-08-reverse-proxy.json",
+        "mv 09-security-services.json 02-09-security-services.json",
+        "mv 10-backup-services.json 02-10-backup-services.json"
+      ]
+    },
+    "fix_3_update_recipe_index": {
+      "action": "Update 00-RECIPE_INDEX.json with correct order",
+      "reason": "Reflect correct execution order",
+      "file": "ai-Q/00-RECIPE_INDEX.json"
+    },
+    "fix_4_add_dependencies": {
+      "action": "Add dependency specifications to all recipes",
+      "reason": "Enable proper dependency checking",
+      "template": {
+        "dependencies": {
+          "prerequisites": ["recipe_id_1", "recipe_id_2"],
+          "required_services": ["docker", "postgresql", "redis"],
+          "required_networks": ["ai-q-network", "ai-q-ai-ml-network"],
+          "required_volumes": ["ai-q-data", "ai-q-config"]
+        }
+      }
+    }
+  },
+  "dependency_specification_template": {
+    "recipe_metadata": {
+      "dependencies": {
+        "prerequisites": [
+          "List of recipe IDs that must be completed first"
+        ],
+        "required_services": [
+          "List of services that must be running"
+        ],
+        "required_networks": [
+          "List of Docker networks that must exist"
+        ],
+        "required_volumes": [
+          "List of Docker volumes that must exist"
+        ],
+        "required_ports": [
+          "List of ports that must be available"
+        ],
+        "required_files": [
+          "List of files that must exist"
+        ]
+      }
+    }
+  },
+  "validation_checks": {
+    "dependency_validation": [
+      "Check that all prerequisite recipes are completed",
+      "Check that all required services are running",
+      "Check that all required networks exist",
+      "Check that all required volumes exist",
+      "Check that all required ports are available",
+      "Check that all required files exist"
+    ],
+    "order_validation": [
+      "Verify recipe numbering matches execution order",
+      "Verify no circular dependencies exist",
+      "Verify all dependencies are satisfied before execution",
+      "Verify recipe index matches actual file structure"
+    ]
+  },
+  "execution_instructions": {
+    "step_1_rename_files": "Rename Docker recipe files to correct numbering",
+    "step_2_update_index": "Update recipe index with correct order",
+    "step_3_add_dependencies": "Add dependency specifications to all recipes",
+    "step_4_validate_order": "Validate that execution order makes sense",
+    "step_5_test_dependencies": "Test dependency validation logic",
+    "step_6_document_changes": "Document all changes made"
+  },
+  "success_criteria": {
+    "correct_order": "All recipes execute in logical dependency order",
+    "no_failures": "No recipes fail due to missing dependencies",
+    "clear_dependencies": "All recipes specify their dependencies clearly",
+    "proper_numbering": "All recipe files have correct numbering",
+    "validated_index": "Recipe index reflects actual execution order"
+  },
+  "risk_mitigation": {
+    "backup_strategy": "Backup all recipe files before making changes",
+    "incremental_testing": "Test each change before proceeding to next",
+    "rollback_plan": "Keep original files as backup for rollback",
+    "validation_checkpoints": "Validate at each step before proceeding"
+  },
+  "next_agent_instructions": {
+    "immediate_actions": [
+      "1. Rename Docker recipe files to correct numbering",
+      "2. Update recipe index with correct order",
+      "3. Add dependency specifications to all recipes",
+      "4. Validate execution order makes sense",
+      "5. Test dependency validation logic"
+    ],
+    "critical_reminders": [
+      "Recipe order is critical for successful execution",
+      "Dependencies must be clearly specified",
+      "Numbering must match logical order",
+      "Test each change before proceeding"
+    ]
+  }
+} 

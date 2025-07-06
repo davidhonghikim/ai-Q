@@ -1,0 +1,46 @@
+{
+  "name": "ai-q-knowledge-library-system",
+  "version": "1.0.0",
+  "description": "AI-Q Knowledge Library System - Dual-representation knowledge management framework",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "knowledge-management",
+    "rag",
+    "ai",
+    "knowledge-graph",
+    "semantic-search",
+    "vector-database",
+    "microservices",
+    "docker",
+    "typescript",
+    "nextjs",
+    "react"
+  ],
+  "author": "kOS Development Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "next": "15.3.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "20.10.5",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.18",
+    "eslint": "9.0.0",
+    "eslint-config-next": "15.3.5",
+    "prettier": "3.2.4"
+  }
+} 

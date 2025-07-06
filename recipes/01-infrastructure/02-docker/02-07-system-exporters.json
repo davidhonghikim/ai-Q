@@ -1,0 +1,254 @@
+{
+  "metadata": {
+    "sub_recipe_id": "02-07-system-exporters",
+    "title": "System Exporters - Node Exporter and cAdvisor",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T23:58:00Z",
+    "purpose": "Deploy system monitoring exporters including Node Exporter and cAdvisor for comprehensive metrics collection",
+    "total_tasks": 4,
+    "estimated_duration": "1-2 hours",
+    "complexity": "Intermediate",
+    "dependencies": ["02-01-docker-core", "02-02-docker-services", "02-06-monitoring-services"],
+    "port_assignments": {
+      "node-exporter": 9100,
+      "cadvisor": 8081,
+      "notes": "Using standard ports for system exporters"
+    }
+  },
+  "prerequisites": {
+    "completed_tasks": [
+      "02-01-01: Docker environment setup",
+      "02-01-02: Network architecture configured",
+      "02-01-03: Volume management setup",
+      "02-02-01: Docker services orchestration",
+      "02-06-01: Prometheus deployed",
+      "02-06-02: Grafana deployed"
+    ],
+    "system_requirements": {
+      "cpu": "Minimum 1 core for system exporters",
+      "ram": "Minimum 512MB for system exporters",
+      "storage": "Minimum 1GB for metrics storage",
+      "permissions": "Docker daemon access for cAdvisor"
+    }
+  },
+  "task_01_deploy_node_exporter": {
+    "task_id": "02-07-01",
+    "title": "Deploy Node Exporter",
+    "description": "Deploy Node Exporter for system metrics collection",
+    "estimated_duration": "30 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-07-01-01",
+        "title": "Create Node Exporter Docker Compose service",
+        "description": "Create Node Exporter service configuration",
+        "config_file": "/opt/ai-q/docker/compose/node-exporter-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "node-exporter": {
+              "image": "prom/node-exporter:latest",
+              "container_name": "ai-q-node-exporter",
+              "restart": "unless-stopped",
+              "ports": ["9100:9100"],
+              "volumes": [
+                "/proc:/host/proc:ro",
+                "/sys:/host/sys:ro",
+                "/:/rootfs:ro"
+              ],
+              "command": [
+                "--path.procfs=/host/proc",
+                "--path.sysfs=/host/sys",
+                "--path.rootfs=/rootfs",
+                "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)",
+                "--collector.filesystem.fs-types-exclude=^(sys|proc|auto)fs$$"
+              ],
+              "networks": ["ai-q-network"],
+              "healthcheck": {
+                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:9100/metrics"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/node-exporter-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  node-exporter:\n    image: prom/node-exporter:latest\n    container_name: ai-q-node-exporter\n    restart: unless-stopped\n    ports:\n      - 9100:9100\n    volumes:\n      - /proc:/host/proc:ro\n      - /sys:/host/sys:ro\n      - /:/rootfs:ro\n    command:\n      - --path.procfs=/host/proc\n      - --path.sysfs=/host/sys\n      - --path.rootfs=/rootfs\n      - --collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)\n      - --collector.filesystem.fs-types-exclude=^(sys|proc|auto)fs$$\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:9100/metrics\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "node-exporter-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-07-01-02",
+        "title": "Deploy Node Exporter service",
+        "description": "Start Node Exporter service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/node-exporter-service.yml up -d",
+          "sleep 15",
+          "curl -f http://localhost:9100/metrics"
+        ],
+        "verification": "Check Node Exporter service is running",
+        "expected_output": "Node Exporter service running and providing metrics"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-node-exporter",
+      "curl -s http://localhost:9100/metrics | head -20",
+      "curl -s http://localhost:9100/metrics | grep node_boot_time_seconds",
+      "docker logs ai-q-node-exporter"
+    ],
+    "expected_outputs": {
+      "service_running": "Node Exporter container is running",
+      "metrics_available": "Metrics endpoint returns data",
+      "system_metrics": "System metrics like boot time are available",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "task_02_deploy_cadvisor": {
+    "task_id": "02-07-02",
+    "title": "Deploy cAdvisor",
+    "description": "Deploy cAdvisor for container metrics collection",
+    "estimated_duration": "30 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-07-02-01",
+        "title": "Create cAdvisor Docker Compose service",
+        "description": "Create cAdvisor service configuration",
+        "config_file": "/opt/ai-q/docker/compose/cadvisor-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "cadvisor": {
+              "image": "gcr.io/cadvisor/cadvisor:latest",
+              "container_name": "ai-q-cadvisor",
+              "restart": "unless-stopped",
+              "ports": ["8081:8080"],
+              "volumes": [
+                "/:/rootfs:ro",
+                "/var/run:/var/run:ro",
+                "/sys:/sys:ro",
+                "/var/lib/docker/:/var/lib/docker:ro",
+                "/dev/disk/:/dev/disk:ro"
+              ],
+              "privileged": true,
+              "devices": ["/dev/kmsg"],
+              "networks": ["ai-q-network"],
+              "healthcheck": {
+                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/healthz"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/cadvisor-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  cadvisor:\n    image: gcr.io/cadvisor/cadvisor:latest\n    container_name: ai-q-cadvisor\n    restart: unless-stopped\n    ports:\n      - 8081:8080\n    volumes:\n      - /:/rootfs:ro\n      - /var/run:/var/run:ro\n      - /sys:/sys:ro\n      - /var/lib/docker/:/var/lib/docker:ro\n      - /dev/disk/:/dev/disk:ro\n    privileged: true\n    devices:\n      - /dev/kmsg\n    networks:\n      - ai-q-network\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:8080/healthz\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "cadvisor-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-07-02-02",
+        "title": "Deploy cAdvisor service",
+        "description": "Start cAdvisor service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/cadvisor-service.yml up -d",
+          "sleep 15",
+          "curl -f http://localhost:8081/healthz"
+        ],
+        "verification": "Check cAdvisor service is running",
+        "expected_output": "cAdvisor service running and responding to health check"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-cadvisor",
+      "curl -s http://localhost:8081/healthz",
+      "curl -s http://localhost:8081/metrics | head -20",
+      "docker logs ai-q-cadvisor"
+    ],
+    "expected_outputs": {
+      "service_running": "cAdvisor container is running",
+      "health_responding": "cAdvisor health endpoint responds",
+      "metrics_available": "Container metrics are available",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "verification_and_testing": {
+    "comprehensive_test": {
+      "title": "System Exporters Verification",
+      "description": "Run comprehensive tests to verify all system exporters",
+      "test_commands": [
+        "docker-compose -f /opt/ai-q/docker/compose/node-exporter-service.yml ps",
+        "docker-compose -f /opt/ai-q/docker/compose/cadvisor-service.yml ps",
+        "curl -s http://localhost:9100/metrics | grep -c '^[^#]'",
+        "curl -s http://localhost:8081/metrics | grep -c '^[^#]'",
+        "curl -s http://localhost:9100/metrics | grep node_boot_time_seconds",
+        "curl -s http://localhost:8081/metrics | grep container_cpu_usage_seconds_total"
+      ],
+      "expected_results": {
+        "node_exporter": "Returns system metrics including boot time",
+        "cadvisor": "Returns container metrics including CPU usage",
+        "prometheus_integration": "Both exporters accessible to Prometheus"
+      }
+    }
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Node Exporter permission errors",
+        "symptoms": "Node Exporter shows permission denied errors",
+        "solution": "Check volume mount permissions and SELinux settings",
+        "commands": [
+          "docker logs ai-q-node-exporter",
+          "ls -la /proc",
+          "getenforce"
+        ]
+      },
+      {
+        "issue": "cAdvisor cannot access Docker socket",
+        "symptoms": "cAdvisor shows Docker access errors",
+        "solution": "Check Docker socket permissions and privileged mode",
+        "commands": [
+          "docker logs ai-q-cadvisor",
+          "ls -la /var/run/docker.sock",
+          "docker exec ai-q-cadvisor ls -la /var/run/docker.sock"
+        ]
+      },
+      {
+        "issue": "Prometheus cannot scrape exporters",
+        "symptoms": "Prometheus shows scrape errors for exporters",
+        "solution": "Check network connectivity and target configurations",
+        "commands": [
+          "curl -s http://localhost:9100/metrics",
+          "curl -s http://localhost:8081/metrics",
+          "docker exec ai-q-prometheus curl -s http://node-exporter:9100/metrics"
+        ]
+      }
+    ]
+  },
+  "next_steps": {
+    "next_sub_recipe": "02-08-reverse-proxy",
+    "prerequisites_completed": [
+      "Node Exporter deployed and running",
+      "cAdvisor deployed and running",
+      "System exporters integrated with Prometheus",
+      "Port 9100 reserved for Node Exporter",
+      "Port 8081 reserved for cAdvisor"
+    ],
+    "readiness_check": "All verification commands pass successfully"
+  }
+} 

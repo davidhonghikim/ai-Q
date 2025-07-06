@@ -1,0 +1,48 @@
+{
+  "handoff_timestamp": "2025-07-06T17:00:00Z",
+  "agent": "Claude Sonnet 4 (handoff)",
+  "current_state": {
+    "recipe_library": "Contains a mix of monolithic and modular/atomic recipes. Some directories (e.g., 01-infrastructure/01-core-infrastructure) follow the atomic, numbered sub-recipe pattern. 02-docker and other directories have inconsistent naming and partial modularization. Some files may have been renamed or moved without a full audit.",
+    "canonical_port_assignments": "Centralized in ai-Q/agents/LATEST/canonical_port_assignments.json (see 00-RECIPE_INDEX.json for reference).",
+    "monolithic_recipes": "Preserved in REFERENCE_MONOLITHIC until all modular sub-recipes are complete and validated.",
+    "documentation": "Some directories have README.json files, but not all are up to date or accurate."
+  },
+  "immediate_next_steps": [
+    "Do not make changes until a full, top-down audit of every recipe directory and file is complete.",
+    "Document the current state before making any modifications.",
+    "Ensure all recipe files follow the atomic, numbered convention (e.g., 02-01-..., 02-02-...).",
+    "Remove, merge, or rename files only after confirming the intended structure.",
+    "Use monolithic recipes in REFERENCE_MONOLITHIC as the source of truth for modularization. Do not delete or alter these until all sub-recipes are complete and validated.",
+    "All port assignments must be checked against the canonical reference. Update recipes and documentation to resolve any conflicts.",
+    "Update README.json in every directory to reflect the current structure and logic.",
+    "Log every action, change, and finding for full traceability."
+  ],
+  "project_rules": [
+    "Atomicity: Every recipe and sub-recipe must be atomic, reproducible, and agent-agnostic.",
+    "Order: Work through recipes in strict order; do not jump ahead or skip.",
+    "No Guesswork: All changes must be based on a complete understanding of the system, not assumptions.",
+    "No Markdown: Do not use .md files for documentation; use .json or the project's preferred format.",
+    "No Premature Deletion: Do not remove monolithic or reference files until modularization is fully complete and validated."
+  ],
+  "log_location": "All shell commands and actions are logged in the shell history and agent logs. Any further findings or summaries should be appended to this handoff log.",
+  "final_note": "The next agent must begin with a full audit, restore order and consistency, and only then proceed with modularization or refactoring. All actions must be systematic, documented, and in strict alignment with the project's standards and user requirements.",
+  "audit_log_2025-07-06": {
+    "directory": "ai-Q/recipes/01-infrastructure/01-core-infrastructure/",
+    "recipes": [
+      {"file": "01-01-docker-environment.json", "v5.0.0_compliant": true, "kitchen_execution": true, "issues": []},
+      {"file": "01-02-system-monitoring.json", "v5.0.0_compliant": true, "kitchen_execution": true, "issues": []},
+      {"file": "01-03-logging-infrastructure.json", "v5.0.0_compliant": true, "kitchen_execution": true, "issues": []},
+      {"file": "01-04-load-balancing.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Missing or improperly structured kitchen_execution section. Needs rewrite to v5.0.0 standard."]},
+      {"file": "01-05-api-gateway.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Missing or improperly structured kitchen_execution section. Needs rewrite to v5.0.0 standard."]},
+      {"file": "01-05-service-discovery.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-06-message-queue.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-07-cache-layer.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-08-backup-infrastructure.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-09-security-hardening.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-10-performance-optimization.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-11-disaster-recovery.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]},
+      {"file": "01-12-documentation-and-handover.json", "v5.0.0_compliant": false, "kitchen_execution": false, "issues": ["Version is 1.0.0, uses 'metadata' not 'recipe_metadata', not atomic, not v5.0.0 structure. Needs full rewrite."]}
+    ],
+    "summary": "Only the first three recipes are fully v5.0.0 compliant. All others require rewrite to the v5.0.0 standard with proper kitchen_execution, atomic steps, and all required fields."
+  }
+} 

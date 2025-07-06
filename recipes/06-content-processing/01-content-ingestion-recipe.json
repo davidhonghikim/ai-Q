@@ -1,9 +1,11 @@
 {
-  "metadata": {
-    "title": "Content Ingestion Recipe",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "06-01-CONTENT-INGESTION",
+    "title": "Content Ingestion System - Universal Digital Twin System",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-01-27T14:00:00Z",
+    "creation_date": "2025-01-27T14:00:00Z",
+    "last_updated": "2025-01-30T22:20:00Z",
     "purpose": "Implement comprehensive content ingestion system with multi-format upload, validation, and modular processors for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "content_processing",
@@ -710,5 +712,97 @@
       "Check metadata extraction",
       "Confirm background processing"
     ]
-  }
+  },
+  "caching_strategy": {
+    "cache_key": "content_ingestion_cache",
+    "cache_components": [
+      "upload_configurations",
+      "validation_rules",
+      "processing_pipelines",
+      "metadata_templates"
+    ],
+    "invalidation_triggers": [
+      "upload_configuration_changes",
+      "validation_rule_updates",
+      "pipeline_modifications",
+      "metadata_template_changes"
+    ],
+    "cache_duration": "24 hours",
+    "validation_mechanism": "content_ingestion_validation"
+  },
+  "atomic_tasks": [
+    {
+      "task_id": "CI-001",
+      "title": "Content Architecture Setup",
+      "description": "Set up core content ingestion architecture",
+      "estimated_time": "60 minutes",
+      "dependencies": [],
+      "exact_commands": [
+        "mkdir -p src/services/content",
+        "mkdir -p src/services/content/ingestion",
+        "mkdir -p src/services/content/validation",
+        "touch src/services/content/__init__.py"
+      ]
+    },
+    {
+      "task_id": "CI-002",
+      "title": "File Upload System",
+      "description": "Implement comprehensive file upload system",
+      "estimated_time": "60 minutes",
+      "dependencies": ["CI-001"],
+      "exact_commands": [
+        "pip install python-magic pillow",
+        "mkdir -p src/services/content/ingestion/upload",
+        "touch src/services/content/ingestion/upload/__init__.py"
+      ]
+    },
+    {
+      "task_id": "CI-003",
+      "title": "Multi-Format Support",
+      "description": "Implement support for multiple file formats",
+      "estimated_time": "60 minutes",
+      "dependencies": ["CI-002"],
+      "exact_commands": [
+        "pip install PyPDF2 openpyxl",
+        "mkdir -p src/services/content/ingestion/formats",
+        "touch src/services/content/ingestion/formats/__init__.py"
+      ]
+    },
+    {
+      "task_id": "CI-004",
+      "title": "Content Validation",
+      "description": "Implement comprehensive content validation",
+      "estimated_time": "60 minutes",
+      "dependencies": ["CI-003"],
+      "exact_commands": [
+        "pip install python-magic bleach",
+        "mkdir -p src/services/content/validation",
+        "touch src/services/content/validation/__init__.py"
+      ]
+    },
+    {
+      "task_id": "CI-005",
+      "title": "Processing Pipeline",
+      "description": "Create content processing pipeline",
+      "estimated_time": "60 minutes",
+      "dependencies": ["CI-004"],
+      "exact_commands": [
+        "mkdir -p src/services/content/processing",
+        "mkdir -p src/services/content/processing/plugins",
+        "touch src/services/content/processing/__init__.py"
+      ]
+    }
+  ],
+  "success_criteria": [
+    "Multi-format file upload support",
+    "Content validation and sanitization",
+    "Modular processing pipeline",
+    "Metadata extraction and indexing",
+    "Progress tracking and error handling",
+    "All components can be safely installed/uninstalled",
+    "Background processing with queue management",
+    "Comprehensive testing framework",
+    "Performance monitoring and optimization",
+    "Complete documentation and examples"
+  ]
 }

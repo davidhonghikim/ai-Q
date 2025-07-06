@@ -1,0 +1,279 @@
+{
+  "metadata": {
+    "sub_recipe_id": "02-08-reverse-proxy",
+    "title": "Reverse Proxy - Nginx Load Balancer",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-30T23:58:00Z",
+    "purpose": "Deploy Nginx reverse proxy for load balancing and unified access to all services",
+    "total_tasks": 4,
+    "estimated_duration": "1-2 hours",
+    "complexity": "Advanced",
+    "dependencies": ["02-01-docker-core", "02-02-docker-services", "02-03-ai-ml-services", "02-04-self-hosted-services", "02-06-monitoring-services"],
+    "port_assignments": {
+      "nginx": 80,
+      "nginx-ssl": 443,
+      "notes": "Using standard HTTP/HTTPS ports for reverse proxy"
+    }
+  },
+  "prerequisites": {
+    "completed_tasks": [
+      "02-01-01: Docker environment setup",
+      "02-01-02: Network architecture configured",
+      "02-01-03: Volume management setup",
+      "02-02-01: Docker services orchestration",
+      "02-03-01: Ollama deployed",
+      "02-03-02: OpenWebUI deployed",
+      "02-04-01: Gitea deployed",
+      "02-04-02: NextCloud deployed",
+      "02-06-01: Prometheus deployed",
+      "02-06-02: Grafana deployed"
+    ],
+    "system_requirements": {
+      "cpu": "Minimum 1 core for reverse proxy",
+      "ram": "Minimum 512MB for reverse proxy",
+      "storage": "Minimum 1GB for logs and certificates",
+      "network": "Stable network for service routing"
+    }
+  },
+  "task_01_create_nginx_configuration": {
+    "task_id": "02-08-01",
+    "title": "Create Nginx Configuration",
+    "description": "Create comprehensive Nginx configuration for all services",
+    "estimated_duration": "45 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-08-01-01",
+        "title": "Create Nginx configuration directory",
+        "description": "Create directory structure for Nginx",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/config/nginx/conf.d",
+          "sudo mkdir -p /opt/ai-q/config/nginx/ssl",
+          "sudo mkdir -p /opt/ai-q/data/nginx/logs",
+          "sudo mkdir -p /opt/ai-q/data/nginx/cache"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All Nginx directories created successfully"
+      },
+      {
+        "step_id": "02-08-01-02",
+        "title": "Create main Nginx configuration",
+        "description": "Create main Nginx configuration file",
+        "config_file": "/opt/ai-q/config/nginx/nginx.conf",
+        "config_content": {
+          "user": "nginx",
+          "worker_processes": "auto",
+          "error_log": "/var/log/nginx/error.log warn",
+          "pid": "/var/run/nginx.pid",
+          "events": {
+            "worker_connections": 1024,
+            "use": "epoll",
+            "multi_accept": "on"
+          },
+          "http": {
+            "include": "/etc/nginx/mime.types",
+            "default_type": "application/octet-stream",
+            "log_format": "main '$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\"'",
+            "access_log": "/var/log/nginx/access.log main",
+            "sendfile": "on",
+            "tcp_nopush": "on",
+            "tcp_nodelay": "on",
+            "keepalive_timeout": 65,
+            "types_hash_max_size": 2048,
+            "client_max_body_size": "100M",
+            "gzip": "on",
+            "gzip_vary": "on",
+            "gzip_min_length": 1024,
+            "gzip_proxied": "any",
+            "gzip_comp_level": 6,
+            "gzip_types": ["text/plain", "text/css", "text/xml", "text/javascript", "application/json", "application/javascript", "application/xml+rss", "application/atom+xml", "image/svg+xml"],
+            "include": "/etc/nginx/conf.d/*.conf"
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/config/nginx/nginx.conf << 'EOF'\nuser nginx;\nworker_processes auto;\nerror_log /var/log/nginx/error.log warn;\npid /var/run/nginx.pid;\n\nevents {\n    worker_connections 1024;\n    use epoll;\n    multi_accept on;\n}\n\nhttp {\n    include /etc/nginx/mime.types;\n    default_type application/octet-stream;\n\n    log_format main '$remote_addr - $remote_user [$time_local] \"$request\" '\n                    '$status $body_bytes_sent \"$http_referer\" '\n                    '\"$http_user_agent\" \"$http_x_forwarded_for\"';\n\n    access_log /var/log/nginx/access.log main;\n\n    sendfile on;\n    tcp_nopush on;\n    tcp_nodelay on;\n    keepalive_timeout 65;\n    types_hash_max_size 2048;\n    client_max_body_size 100M;\n\n    gzip on;\n    gzip_vary on;\n    gzip_min_length 1024;\n    gzip_proxied any;\n    gzip_comp_level 6;\n    gzip_types\n        text/plain\n        text/css\n        text/xml\n        text/javascript\n        application/json\n        application/javascript\n        application/xml+rss\n        application/atom+xml\n        image/svg+xml;\n\n    include /etc/nginx/conf.d/*.conf;\n}\nEOF"
+        ],
+        "verification": "Check main configuration file exists",
+        "expected_output": "nginx.conf created with specified configuration"
+      },
+      {
+        "step_id": "02-08-01-03",
+        "title": "Create service-specific configurations",
+        "description": "Create individual configuration files for each service",
+        "config_files": {
+          "openwebui.conf": "/opt/ai-q/config/nginx/conf.d/openwebui.conf",
+          "gitea.conf": "/opt/ai-q/config/nginx/conf.d/gitea.conf",
+          "nextcloud.conf": "/opt/ai-q/config/nginx/conf.d/nextcloud.conf",
+          "grafana.conf": "/opt/ai-q/config/nginx/conf.d/grafana.conf",
+          "prometheus.conf": "/opt/ai-q/config/nginx/conf.d/prometheus.conf"
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/config/nginx/conf.d/openwebui.conf << 'EOF'\nserver {\n    listen 80;\n    server_name openwebui.local;\n\n    location / {\n        proxy_pass http://openwebui:8080;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n    }\n}\nEOF",
+          "sudo tee /opt/ai-q/config/nginx/conf.d/gitea.conf << 'EOF'\nserver {\n    listen 80;\n    server_name gitea.local;\n\n    location / {\n        proxy_pass http://gitea:3000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n    }\n}\nEOF",
+          "sudo tee /opt/ai-q/config/nginx/conf.d/nextcloud.conf << 'EOF'\nserver {\n    listen 80;\n    server_name nextcloud.local;\n\n    location / {\n        proxy_pass http://nextcloud:80;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n    }\n}\nEOF",
+          "sudo tee /opt/ai-q/config/nginx/conf.d/grafana.conf << 'EOF'\nserver {\n    listen 80;\n    server_name grafana.local;\n\n    location / {\n        proxy_pass http://grafana:3000;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n    }\n}\nEOF",
+          "sudo tee /opt/ai-q/config/nginx/conf.d/prometheus.conf << 'EOF'\nserver {\n    listen 80;\n    server_name prometheus.local;\n\n    location / {\n        proxy_pass http://prometheus:9090;\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n        proxy_set_header X-Forwarded-Proto $scheme;\n    }\n}\nEOF"
+        ],
+        "verification": "Check all service configuration files exist",
+        "expected_output": "All service-specific Nginx configurations created"
+      }
+    ],
+    "verification_commands": [
+      "ls -la /opt/ai-q/config/nginx/",
+      "ls -la /opt/ai-q/config/nginx/conf.d/",
+      "nginx -t -c /opt/ai-q/config/nginx/nginx.conf"
+    ],
+    "expected_outputs": {
+      "config_files_exist": "All Nginx configuration files present",
+      "conf_d_files_exist": "All service-specific configurations present",
+      "config_valid": "Nginx configuration syntax is valid"
+    }
+  },
+  "task_02_deploy_nginx": {
+    "task_id": "02-08-02",
+    "title": "Deploy Nginx Reverse Proxy",
+    "description": "Deploy Nginx container with all configurations",
+    "estimated_duration": "30 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "02-08-02-01",
+        "title": "Create Nginx Docker Compose service",
+        "description": "Create Nginx service configuration",
+        "config_file": "/opt/ai-q/docker/compose/nginx-service.yml",
+        "config_content": {
+          "version": "3.8",
+          "services": {
+            "nginx": {
+              "image": "nginx:alpine",
+              "container_name": "ai-q-nginx",
+              "restart": "unless-stopped",
+              "ports": ["80:80", "443:443"],
+              "volumes": [
+                "/opt/ai-q/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro",
+                "/opt/ai-q/config/nginx/conf.d:/etc/nginx/conf.d:ro",
+                "/opt/ai-q/config/nginx/ssl:/etc/nginx/ssl:ro",
+                "/opt/ai-q/data/nginx/logs:/var/log/nginx",
+                "/opt/ai-q/data/nginx/cache:/var/cache/nginx"
+              ],
+              "networks": ["ai-q-network"],
+              "depends_on": [
+                "openwebui",
+                "gitea",
+                "nextcloud",
+                "grafana",
+                "prometheus"
+              ],
+              "healthcheck": {
+                "test": ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/nginx_status"],
+                "interval": "30s",
+                "timeout": "10s",
+                "retries": 3
+              }
+            }
+          },
+          "networks": {
+            "ai-q-network": {
+              "external": true
+            }
+          }
+        },
+        "commands": [
+          "sudo tee /opt/ai-q/docker/compose/nginx-service.yml << 'EOF'\nversion: '3.8'\n\nservices:\n  nginx:\n    image: nginx:alpine\n    container_name: ai-q-nginx\n    restart: unless-stopped\n    ports:\n      - 80:80\n      - 443:443\n    volumes:\n      - /opt/ai-q/config/nginx/nginx.conf:/etc/nginx/nginx.conf:ro\n      - /opt/ai-q/config/nginx/conf.d:/etc/nginx/conf.d:ro\n      - /opt/ai-q/config/nginx/ssl:/etc/nginx/ssl:ro\n      - /opt/ai-q/data/nginx/logs:/var/log/nginx\n      - /opt/ai-q/data/nginx/cache:/var/cache/nginx\n    networks:\n      - ai-q-network\n    depends_on:\n      - openwebui\n      - gitea\n      - nextcloud\n      - grafana\n      - prometheus\n    healthcheck:\n      test: [\"CMD\", \"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost/nginx_status\"]\n      interval: 30s\n      timeout: 10s\n      retries: 3\n\nnetworks:\n  ai-q-network:\n    external: true\nEOF"
+        ],
+        "verification": "Check configuration file exists",
+        "expected_output": "nginx-service.yml created with specified configuration"
+      },
+      {
+        "step_id": "02-08-02-02",
+        "title": "Deploy Nginx service",
+        "description": "Start Nginx service and verify deployment",
+        "commands": [
+          "docker-compose -f /opt/ai-q/docker/compose/nginx-service.yml up -d",
+          "sleep 10",
+          "curl -f http://localhost/nginx_status"
+        ],
+        "verification": "Check Nginx service is running",
+        "expected_output": "Nginx service running and responding to status check"
+      }
+    ],
+    "verification_commands": [
+      "docker ps --filter name=ai-q-nginx",
+      "curl -s http://localhost/nginx_status",
+      "curl -s http://localhost/",
+      "docker logs ai-q-nginx"
+    ],
+    "expected_outputs": {
+      "service_running": "Nginx container is running",
+      "status_responding": "Nginx status endpoint responds",
+      "proxy_working": "Nginx responds to requests",
+      "logs_clean": "No error messages in logs"
+    }
+  },
+  "verification_and_testing": {
+    "comprehensive_test": {
+      "title": "Reverse Proxy Verification",
+      "description": "Run comprehensive tests to verify reverse proxy functionality",
+      "test_commands": [
+        "docker-compose -f /opt/ai-q/docker/compose/nginx-service.yml ps",
+        "curl -s http://localhost/nginx_status",
+        "curl -s -H 'Host: openwebui.local' http://localhost/",
+        "curl -s -H 'Host: gitea.local' http://localhost/",
+        "curl -s -H 'Host: nextcloud.local' http://localhost/",
+        "curl -s -H 'Host: grafana.local' http://localhost/",
+        "curl -s -H 'Host: prometheus.local' http://localhost/"
+      ],
+      "expected_results": {
+        "nginx_running": "Nginx container is running",
+        "status_ok": "Nginx status endpoint responds",
+        "service_routing": "All services accessible through reverse proxy"
+      }
+    }
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Nginx configuration syntax errors",
+        "symptoms": "Nginx fails to start or shows config errors",
+        "solution": "Check Nginx configuration syntax and file permissions",
+        "commands": [
+          "docker logs ai-q-nginx",
+          "docker exec ai-q-nginx nginx -t",
+          "ls -la /opt/ai-q/config/nginx/"
+        ]
+      },
+      {
+        "issue": "Service routing not working",
+        "symptoms": "Nginx returns 502 errors for services",
+        "solution": "Check service availability and network connectivity",
+        "commands": [
+          "docker ps --filter name=ai-q-",
+          "docker network inspect ai-q-network",
+          "docker exec ai-q-nginx curl -s http://openwebui:8080/"
+        ]
+      },
+      {
+        "issue": "SSL certificate errors",
+        "symptoms": "HTTPS connections fail",
+        "solution": "Check SSL certificate configuration and validity",
+        "commands": [
+          "ls -la /opt/ai-q/config/nginx/ssl/",
+          "openssl x509 -in /opt/ai-q/config/nginx/ssl/cert.pem -text -noout",
+          "docker logs ai-q-nginx"
+        ]
+      }
+    ]
+  },
+  "next_steps": {
+    "next_sub_recipe": "02-09-security-services",
+    "prerequisites_completed": [
+      "Nginx reverse proxy deployed and running",
+      "All services accessible through reverse proxy",
+      "Load balancing configured",
+      "Port 80 reserved for HTTP",
+      "Port 443 reserved for HTTPS"
+    ],
+    "readiness_check": "All verification commands pass successfully"
+  }
+} 

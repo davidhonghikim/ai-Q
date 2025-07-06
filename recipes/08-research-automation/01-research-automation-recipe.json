@@ -2,7 +2,8 @@
   "recipe_metadata": {
     "recipe_id": "08-RESEARCH-AUTOMATION",
     "title": "Research Automation System - Universal Digital Twin System",
-    "version": "2.0.0",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:30:00Z",
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-01-30T13:00:00Z",
     "estimated_tokens": 82000,

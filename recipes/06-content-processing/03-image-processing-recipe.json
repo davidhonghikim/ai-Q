@@ -1,7 +1,9 @@
 {
-  "metadata": {
-    "title": "Image Processing Recipe",
-    "version": "1.0.0",
+  "recipe_metadata": {
+    "recipe_id": "06-03-IMAGE-PROCESSING",
+    "title": "Image Processing System - Universal Digital Twin System",
+    "version": "5.0.0",
+    "last_updated": "2025-01-30T22:25:00Z",
     "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
     "purpose": "Implement comprehensive image processing system with computer vision, face recognition, and object detection for AI-Q Knowledge Library System",
