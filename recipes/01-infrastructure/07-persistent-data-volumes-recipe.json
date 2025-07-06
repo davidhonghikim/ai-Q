@@ -1,0 +1,350 @@
+{
+  "metadata": {
+    "recipe_id": "07-persistent-data-volumes-recipe",
+    "title": "Persistent Data Volumes & Storage Management - Master Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4 - Infrastructure Specialist",
+    "last_updated": "2025-01-27T23:00:00Z",
+    "purpose": "Master recipe orchestrating comprehensive persistent data management with caching, versioning, and off-grid capabilities",
+    "total_tasks": 6,
+    "estimated_duration": "2-3 days",
+    "complexity": "Advanced",
+    "dependencies": ["01-core-infrastructure", "02-storage-systems"],
+    "infrastructure_stack": ["Persistent Storage", "Docker Caching", "Backup Systems", "Self-Hosted Services", "Version Control"]
+  },
+
+  "prerequisites": {
+    "completed_recipes": [
+      "01-core-infrastructure/01-01-docker-environment",
+      "01-core-infrastructure/01-02-system-monitoring",
+      "02-storage-systems/01-postgresql-setup",
+      "02-storage-systems/02-redis-setup"
+    ],
+    "system_requirements": {
+      "storage": "Minimum 500GB available storage",
+      "ram": "Minimum 16GB RAM",
+      "cpu": "Minimum 8 CPU cores",
+      "network": "Access to Docker Hub for initial image pulls"
+    }
+  },
+
+  "sub_recipes": [
+    {
+      "recipe_id": "01-volume-structure-design",
+      "title": "Volume Structure Design & Implementation",
+      "description": "Design and implement comprehensive volume structure for all services",
+      "file_path": "07-persistent-data-volumes/01-volume-structure-design.json",
+      "estimated_duration": "4 hours",
+      "dependencies": [],
+      "critical": true
+    },
+    {
+      "recipe_id": "02-docker-caching-system",
+      "title": "Docker Image Caching & Version Control",
+      "description": "Implement intelligent Docker image caching with version control and rollback capabilities",
+      "file_path": "07-persistent-data-volumes/02-docker-caching-system.json",
+      "estimated_duration": "6 hours",
+      "dependencies": ["01-volume-structure-design"],
+      "critical": true
+    },
+    {
+      "recipe_id": "03-backup-and-restore",
+      "title": "Automated Backup & Restore System",
+      "description": "Create comprehensive backup and restore procedures for all data and configurations",
+      "file_path": "07-persistent-data-volumes/03-backup-and-restore.json",
+      "estimated_duration": "5 hours",
+      "dependencies": ["01-volume-structure-design"],
+      "critical": true
+    },
+    {
+      "recipe_id": "04-off-grid-deployment",
+      "title": "Off-Grid Deployment Framework",
+      "description": "Design system for deployment without internet connectivity with local update mechanisms",
+      "file_path": "07-persistent-data-volumes/04-off-grid-deployment.json",
+      "estimated_duration": "4 hours",
+      "dependencies": ["02-docker-caching-system"],
+      "critical": false
+    },
+    {
+      "recipe_id": "05-self-hosted-services",
+      "title": "Self-Hosted Services Integration",
+      "description": "Deploy self-hosted Git, NAS, and admin panel for complete off-grid operation",
+      "file_path": "07-persistent-data-volumes/05-self-hosted-services.json",
+      "estimated_duration": "6 hours",
+      "dependencies": ["01-volume-structure-design"],
+      "critical": false
+    },
+    {
+      "recipe_id": "06-versioning-and-rollback",
+      "title": "Versioning & Rollback Infrastructure",
+      "description": "Implement comprehensive versioning and rollback capabilities for all system components",
+      "file_path": "07-persistent-data-volumes/06-versioning-and-rollback.json",
+      "estimated_duration": "5 hours",
+      "dependencies": ["05-self-hosted-services"],
+      "critical": true
+    }
+  ],
+
+  "execution_plan": {
+    "phase_1_foundation": {
+      "phase": "Foundation Setup",
+      "duration": "1 day",
+      "recipes": ["01-volume-structure-design", "02-docker-caching-system"],
+      "objectives": [
+        "Establish persistent data infrastructure",
+        "Implement Docker caching system",
+        "Setup volume monitoring and health checks"
+      ]
+    },
+    "phase_2_backup_and_recovery": {
+      "phase": "Backup & Recovery",
+      "duration": "1 day", 
+      "recipes": ["03-backup-and-restore"],
+      "objectives": [
+        "Implement automated backup procedures",
+        "Create disaster recovery capabilities",
+        "Setup backup monitoring and validation"
+      ]
+    },
+    "phase_3_advanced_features": {
+      "phase": "Advanced Features",
+      "duration": "1 day",
+      "recipes": ["04-off-grid-deployment", "05-self-hosted-services", "06-versioning-and-rollback"],
+      "objectives": [
+        "Enable off-grid deployment capabilities",
+        "Deploy self-hosted services",
+        "Implement versioning and rollback systems"
+      ]
+    }
+  },
+
+  "volume_architecture": {
+    "data_tiers": {
+      "hot_storage": {
+        "location": "/opt/ai-q/data",
+        "purpose": "Active application data",
+        "services": ["postgresql", "redis", "elasticsearch", "weaviate", "minio"],
+        "backup_frequency": "Every 6 hours"
+      },
+      "warm_storage": {
+        "location": "/opt/ai-q/cache",
+        "purpose": "Frequently accessed data and Docker images",
+        "services": ["docker_registry", "redis_cache", "temp_files"],
+        "backup_frequency": "Daily"
+      },
+      "cold_storage": {
+        "location": "/opt/ai-q/archives",
+        "purpose": "Long-term archival data",
+        "retention": "7 years",
+        "backup_frequency": "Monthly"
+      }
+    },
+    "persistence_strategies": {
+      "volume_mounts": "Docker named volumes for container data",
+      "bind_mounts": "Host directory mounts for configuration files",
+      "network_storage": "Shared storage for distributed services"
+    }
+  },
+
+  "caching_strategy": {
+    "docker_registry": {
+      "location": "localhost:5000",
+      "storage": "/opt/ai-q/data/registry",
+      "versioning": "Tag-based version control",
+      "update_policy": "Intelligent pull with version comparison"
+    },
+    "image_management": {
+      "version_tracking": "JSON-based version manifest",
+      "rollback_capability": "Instant rollback to previous versions",
+      "cleanup_policy": "Automatic cleanup of old versions"
+    }
+  },
+
+  "backup_strategy": {
+    "automated_backups": {
+      "incremental": "Every 6 hours",
+      "daily": "Every day at 2:00 AM",
+      "weekly": "Every Sunday at 3:00 AM",
+      "monthly": "First day of each month at 4:00 AM"
+    },
+    "retention_policy": {
+      "incremental": "7 days",
+      "daily": "30 days",
+      "weekly": "12 weeks", 
+      "monthly": "7 years"
+    },
+    "validation": {
+      "integrity_checks": "SHA256 checksums",
+      "restore_testing": "Weekly automated restore tests",
+      "monitoring": "Real-time backup status monitoring"
+    }
+  },
+
+  "off_grid_capabilities": {
+    "local_dependencies": {
+      "docker_images": "All images cached locally",
+      "configuration": "All configs stored locally",
+      "documentation": "Complete offline documentation"
+    },
+    "update_mechanisms": {
+      "sync_when_connected": "Automatic sync when internet available",
+      "manual_updates": "Manual update procedures",
+      "version_control": "Local Git repository for all code"
+    }
+  },
+
+  "self_hosted_services": {
+    "git_server": {
+      "service": "Gitea",
+      "port": 3000,
+      "features": ["Repository management", "User management", "Webhooks"]
+    },
+    "file_storage": {
+      "service": "NextCloud",
+      "port": 8080,
+      "features": ["File sharing", "Collaboration", "Mobile sync"]
+    },
+    "admin_panel": {
+      "service": "Custom web interface",
+      "port": 8081,
+      "features": ["Service management", "Monitoring", "Configuration"]
+    }
+  },
+
+  "monitoring_and_alerting": {
+    "volume_monitoring": {
+      "disk_usage": "Real-time disk usage monitoring",
+      "permission_checks": "Volume permission validation",
+      "health_endpoints": "HTTP health check endpoints"
+    },
+    "backup_monitoring": {
+      "success_tracking": "Backup success/failure monitoring",
+      "size_tracking": "Backup size and growth monitoring",
+      "restore_testing": "Automated restore validation"
+    },
+    "cache_monitoring": {
+      "registry_health": "Docker registry health monitoring",
+      "image_usage": "Image usage and popularity tracking",
+      "update_status": "Cache update status monitoring"
+    }
+  },
+
+  "performance_targets": {
+    "data_persistence": "100% data retention across restarts",
+    "backup_speed": "< 30 minutes for full system backup",
+    "restore_speed": "< 60 minutes for full system restore",
+    "cache_efficiency": "90%+ cache hit rate",
+    "storage_utilization": "< 80% of available storage"
+  },
+
+  "security_considerations": {
+    "data_encryption": "AES-256 encryption for sensitive data",
+    "access_control": "Role-based access control for all volumes",
+    "audit_logging": "Comprehensive audit trails for data access",
+    "backup_security": "Encrypted backup storage with key management"
+  },
+
+  "verification_and_testing": {
+    "verification_commands": [
+      "ls -la /opt/ai-q/",
+      "docker volume ls | grep ai-q",
+      "curl -s http://localhost:5000/v2/_catalog",
+      "/opt/ai-q/scripts/volume-monitor.sh",
+      "/opt/ai-q/scripts/volume-backup.sh",
+      "curl -s http://localhost:8082/health | jq ."
+    ],
+    "expected_outputs": {
+      "directory_structure": "Complete directory hierarchy with correct permissions",
+      "docker_volumes": "All 12+ ai-q volumes created and available",
+      "registry": "Docker registry accessible and operational",
+      "monitoring": "Volume monitoring and health checks working",
+      "backup": "Backup procedures functional and tested"
+    }
+  },
+
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Permission denied errors",
+        "solution": "Check ownership and permissions with 'ls -la /opt/ai-q/' and adjust with chown/chmod"
+      },
+      {
+        "issue": "Docker registry connection failures",
+        "solution": "Verify registry container is running and accessible on port 5000"
+      },
+      {
+        "issue": "Backup script failures",
+        "solution": "Check available disk space and ensure backup directory is writable"
+      },
+      {
+        "issue": "Cache update failures",
+        "solution": "Verify network connectivity and Docker registry health"
+      }
+    ],
+    "recovery_procedures": [
+      {
+        "procedure": "Volume permission repair",
+        "commands": [
+          "sudo chown -R root:root /opt/ai-q",
+          "sudo chmod -R 755 /opt/ai-q"
+        ]
+      },
+      {
+        "procedure": "Registry recovery",
+        "commands": [
+          "docker restart ai-q-registry",
+          "curl -s http://localhost:5000/v2/_catalog"
+        ]
+      },
+      {
+        "procedure": "Backup restoration",
+        "commands": [
+          "/opt/ai-q/scripts/backup-verify.sh",
+          "/opt/ai-q/scripts/volume-restore.sh <backup_date>"
+        ]
+      }
+    ]
+  },
+
+  "next_steps": [
+    "Execute sub-recipes in order starting with volume structure design",
+    "Validate each component before proceeding to next",
+    "Test backup and restore procedures thoroughly",
+    "Verify off-grid deployment capabilities",
+    "Prepare handoff documentation for next agent"
+  ],
+
+  "success_criteria": [
+    "✅ Complete persistent data infrastructure operational",
+    "✅ Docker caching system with version control functional",
+    "✅ Automated backup and restore procedures working",
+    "✅ Off-grid deployment capabilities verified",
+    "✅ Self-hosted services deployed and operational",
+    "✅ Versioning and rollback systems implemented",
+    "✅ All monitoring and alerting systems active",
+    "✅ Performance targets met or exceeded"
+  ],
+
+  "handoff_notes": {
+    "completed_components": [
+      "Volume structure design and implementation",
+      "Docker caching system with version control",
+      "Backup and restore procedures",
+      "Off-grid deployment framework",
+      "Self-hosted services integration",
+      "Versioning and rollback infrastructure"
+    ],
+    "ongoing_maintenance": [
+      "Regular backup verification and testing",
+      "Cache update monitoring and management",
+      "Volume health monitoring and alerting",
+      "Performance optimization and tuning"
+    ],
+    "next_agent_responsibilities": [
+      "Continue with remaining infrastructure recipes",
+      "Integrate with AI services and agent systems",
+      "Implement advanced monitoring and automation",
+      "Prepare for production deployment"
+    ]
+  }
+} 
