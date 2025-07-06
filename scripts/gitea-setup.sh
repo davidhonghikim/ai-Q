@@ -59,7 +59,7 @@ create_gitea_config() {
     cat > "$config_file" << 'EOF'
 [server]
 DOMAIN = localhost
-ROOT_URL = http://localhost:3000/
+ROOT_URL = http://localhost:3002/
 HTTP_ADDR = 0.0.0.0
 HTTP_PORT = 3000
 
@@ -108,7 +108,7 @@ start_gitea_container() {
     docker run -d \
         --name ai-q-gitea \
         --restart unless-stopped \
-        -p 3000:3000 \
+        -p 3002:3000 \
         -p 222:22 \
         -e USER_UID=1000 \
         -e USER_GID=1000 \
@@ -129,7 +129,7 @@ wait_for_gitea() {
     local attempt=1
     
     while [[ $attempt -le $max_attempts ]]; do
-        if curl -s http://localhost:3000 > /dev/null 2>&1; then
+        if curl -s http://localhost:3002 > /dev/null 2>&1; then
             log "Gitea is ready"
             return 0
         fi
@@ -150,7 +150,7 @@ create_initial_repositories() {
     sleep 30
     
     # Create AI-Q repository
-    curl -X POST "http://localhost:3000/api/v1/user/repos" \
+    curl -X POST "http://localhost:3002/api/v1/user/repos" \
         -H "Content-Type: application/json" \
         -d '{
             "name": "ai-q",
@@ -163,7 +163,7 @@ create_initial_repositories() {
     }
     
     # Create documentation repository
-    curl -X POST "http://localhost:3000/api/v1/user/repos" \
+    curl -X POST "http://localhost:3002/api/v1/user/repos" \
         -H "Content-Type: application/json" \
         -d '{
             "name": "ai-q-docs",
@@ -188,12 +188,12 @@ verify_gitea_installation() {
     fi
     
     # Check if web interface is accessible
-    if ! curl -s http://localhost:3000 > /dev/null; then
+    if ! curl -s http://localhost:3002 > /dev/null; then
         error_exit "Gitea web interface is not accessible"
     fi
     
     # Check if API is working
-    if ! curl -s http://localhost:3000/api/v1/version > /dev/null; then
+    if ! curl -s http://localhost:3002/api/v1/version > /dev/null; then
         error_exit "Gitea API is not working"
     fi
     
@@ -213,7 +213,7 @@ main() {
     verify_gitea_installation
     
     log "Gitea setup process completed successfully"
-    log "Gitea is accessible at: http://localhost:3000"
+    log "Gitea is accessible at: http://localhost:3002"
     log "Admin credentials: admin / admin123"
 }
 

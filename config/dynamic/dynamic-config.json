@@ -1,0 +1,204 @@
+{
+  "dynamic_configuration": {
+    "config_id": "AI-Q-DYNAMIC-CONFIG-001",
+    "title": "AI-Q Dynamic Port and IP Configuration System",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T12:00:00Z",
+    "description": "Dynamic configuration system for ports and IPs with network profile support"
+  },
+  "network_profiles": {
+    "localhost": {
+      "name": "Localhost Development",
+      "description": "Single machine development",
+      "bind_address": "127.0.0.1",
+      "external_address": "localhost",
+      "subnet": "127.0.0.0/8",
+      "gateway": "127.0.0.1",
+      "dns": ["127.0.0.1", "8.8.8.8"],
+      "base_url": "http://localhost"
+    },
+    "local_network": {
+      "name": "Local Network (Default)",
+      "description": "Local network deployment with 192.168.1.x for remote access",
+      "bind_address": "0.0.0.0",
+      "external_address": "192.168.1.100",
+      "subnet": "192.168.1.0/24",
+      "gateway": "192.168.1.1",
+      "dns": ["192.168.1.1", "8.8.8.8"],
+      "base_url": "http://192.168.1.100"
+    },
+    "docker_network": {
+      "name": "Docker Internal Network",
+      "description": "Docker container communication",
+      "bind_address": "0.0.0.0",
+      "external_address": "172.20.0.1",
+      "subnet": "172.20.0.0/16",
+      "gateway": "172.20.0.1",
+      "dns": ["172.20.0.1", "8.8.8.8"],
+      "base_url": "http://172.20.0.1"
+    },
+    "production": {
+      "name": "Production Network",
+      "description": "Production deployment",
+      "bind_address": "0.0.0.0",
+      "external_address": "10.0.0.100",
+      "subnet": "10.0.0.0/24",
+      "gateway": "10.0.0.1",
+      "dns": ["10.0.0.1", "8.8.8.8"],
+      "base_url": "http://10.0.0.100"
+    }
+  },
+  "default_profile": "local_network",
+  "port_configuration": {
+    "frontend_services": {
+      "range": "3000-3099",
+      "description": "User-facing web interfaces",
+      "services": {
+        "openwebui": {
+          "port": 3000,
+          "name": "OpenWebUI",
+          "description": "AI chat interface",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/api/v1/models"
+        },
+        "grafana": {
+          "port": 3001,
+          "name": "Grafana",
+          "description": "Monitoring dashboard",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/api/health"
+        },
+        "gitea": {
+          "port": 3002,
+          "name": "Gitea",
+          "description": "Git web interface",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/api/v1/version"
+        },
+        "nextcloud": {
+          "port": 3003,
+          "name": "NextCloud",
+          "description": "File storage interface",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/status.php"
+        },
+        "admin_panel": {
+          "port": 3004,
+          "name": "Admin Panel",
+          "description": "System management",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/health"
+        }
+      }
+    },
+    "backend_services": {
+      "range": "8000-8099",
+      "description": "API services and core backend",
+      "services": {
+        "ai_q_api": {
+          "port": 8000,
+          "name": "AI-Q API",
+          "description": "Knowledge library API",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/health"
+        },
+        "ai_q_api_backup": {
+          "port": 8001,
+          "name": "AI-Q API Backup",
+          "description": "Load balancing backup",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/health"
+        }
+      }
+    },
+    "ai_ml_services": {
+      "range": "11000-11099",
+      "description": "AI/ML inference services",
+      "services": {
+        "ollama": {
+          "port": 11000,
+          "name": "Ollama",
+          "description": "LLM API",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/api/tags"
+        },
+        "vllm": {
+          "port": 11001,
+          "name": "vLLM",
+          "description": "High-performance LLM",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/health"
+        }
+      }
+    },
+    "middleware_services": {
+      "range": "5000-5099",
+      "description": "Infrastructure services",
+      "services": {
+        "docker_registry": {
+          "port": 5000,
+          "name": "Docker Registry",
+          "description": "Container registry",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/v2/"
+        }
+      }
+    },
+    "monitoring_services": {
+      "range": "9000-9099",
+      "description": "Observability services",
+      "services": {
+        "prometheus": {
+          "port": 9000,
+          "name": "Prometheus",
+          "description": "Metrics collection",
+          "url_template": "{base_url}:{port}",
+          "health_check": "/-/healthy"
+        }
+      }
+    },
+    "storage_services": {
+      "range": "7000-7099",
+      "description": "Databases and storage",
+      "services": {
+        "postgresql": {
+          "port": 7000,
+          "name": "PostgreSQL",
+          "description": "Primary database",
+          "url_template": "{base_url}:{port}",
+          "health_check": "tcp"
+        },
+        "redis": {
+          "port": 7002,
+          "name": "Redis",
+          "description": "Cache",
+          "url_template": "{base_url}:{port}",
+          "health_check": "tcp"
+        }
+      }
+    }
+  },
+  "environment_variables": {
+    "AIQ_NETWORK_PROFILE": "local_network",
+    "AIQ_BIND_ADDRESS": "0.0.0.0",
+    "AIQ_EXTERNAL_ADDRESS": "192.168.1.100",
+    "AIQ_BASE_URL": "http://192.168.1.100",
+    "AIQ_SUBNET": "192.168.1.0/24",
+    "AIQ_GATEWAY": "192.168.1.1"
+  },
+  "dynamic_url_generation": {
+    "template": "{base_url}:{port}",
+    "examples": {
+      "openwebui_localhost": "http://localhost:3000",
+      "openwebui_local_network": "http://192.168.1.100:3000",
+      "ollama_localhost": "http://localhost:11000",
+      "ollama_local_network": "http://192.168.1.100:11000"
+    }
+  },
+  "validation_rules": {
+    "ip_format": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+    "port_range": "1-65535",
+    "url_format": "^https?://[^\\s/$.?#].[^\\s]*$"
+  }
+} 

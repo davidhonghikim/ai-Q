@@ -10,7 +10,7 @@ services:
       - USER_UID=1000
       - USER_GID=1000
     ports:
-      - "3000:3000"
+      - "3002:3000"
       - "222:22"
     volumes:
       - /opt/ai-q/self-hosted/gitea:/data

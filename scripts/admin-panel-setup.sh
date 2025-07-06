@@ -182,13 +182,19 @@ create_admin_panel_html() {
                 <div class="service-card">
                     <h3><span class="status-indicator status-online"></span>Gitea Git Server</h3>
                     <p>Self-hosted Git repository management</p>
-                    <a href="http://localhost:3000" target="_blank" class="service-link">Access Gitea</a>
+                    <a href="http://localhost:3002" target="_blank" class="service-link">Access Gitea</a>
                 </div>
                 
                 <div class="service-card">
                     <h3><span class="status-indicator status-online"></span>NextCloud Storage</h3>
                     <p>File storage and synchronization</p>
                     <a href="http://localhost:8080" target="_blank" class="service-link">Access NextCloud</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3><span class="status-indicator status-online"></span>OpenWebUI</h3>
+                    <p>AI chat interface with Ollama</p>
+                    <a href="http://localhost:3000" target="_blank" class="service-link">Access OpenWebUI</a>
                 </div>
                 
                 <div class="service-card">
@@ -252,10 +258,10 @@ create_admin_panel_html() {
         // Update status indicators
         function updateStatusIndicators() {
             const services = [
-                { url: 'http://localhost:3000', selector: '.service-card:nth-child(1) .status-indicator' },
+                { url: 'http://localhost:3002', selector: '.service-card:nth-child(1) .status-indicator' },
                 { url: 'http://localhost:8080', selector: '.service-card:nth-child(2) .status-indicator' },
                 { url: 'http://localhost:8000', selector: '.service-card:nth-child(3) .status-indicator' },
-                { url: 'http://localhost:3001', selector: '.service-card:nth-child(4) .status-indicator' },
+                { url: 'http://localhost:3000', selector: '.service-card:nth-child(4) .status-indicator' },
                 { url: 'http://localhost:9090', selector: '.service-card:nth-child(5) .status-indicator' },
                 { url: 'http://localhost:5000', selector: '.service-card:nth-child(6) .status-indicator' }
             ];
