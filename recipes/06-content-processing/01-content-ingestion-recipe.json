@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "12-content-ingestion"
+    "recipe_id": "12-content-ingestion",
+    "kitchen_system": {
+      "pantry_category": "content_processing",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["file_upload", "content_validation", "processing_pipeline", "metadata_extraction"],
+      "cache_strategy": "content_ingestion_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Content Ingestion System",
@@ -30,6 +38,187 @@
       "Progress tracking and error handling",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "CONTENT_ARCHITECTURE_TASK",
+        "name": "Content Ingestion Architecture",
+        "description": "Design and implement core content ingestion architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["content_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "FILE_UPLOAD_TASK",
+        "name": "File Upload System Implementation",
+        "description": "Create comprehensive file upload system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["CONTENT_ARCHITECTURE_TASK"],
+        "skills_required": ["file_upload", "chunk_processing", "progress_tracking"]
+      },
+      {
+        "task_id": "MULTI_FORMAT_TASK",
+        "name": "Multi-Format Support Implementation",
+        "description": "Create support for multiple file formats",
+        "estimated_time": "60 minutes",
+        "dependencies": ["FILE_UPLOAD_TASK"],
+        "skills_required": ["format_detection", "multi_format_processing", "content_types"]
+      },
+      {
+        "task_id": "CONTENT_VALIDATION_TASK",
+        "name": "Content Validation Implementation",
+        "description": "Create comprehensive content validation system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MULTI_FORMAT_TASK"],
+        "skills_required": ["content_validation", "sanitization", "virus_scanning"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "FILE_UPLOAD_SKILL",
+        "name": "File Upload Management",
+        "description": "Handle file uploads and processing",
+        "tools": ["upload_manager", "chunk_processor", "progress_tracker"],
+        "validation": "file_upload_validation"
+      },
+      {
+        "skill_id": "CONTENT_VALIDATION_SKILL",
+        "name": "Content Validation",
+        "description": "Validate and sanitize content",
+        "tools": ["validation_engine", "sanitizer", "virus_scanner"],
+        "validation": "content_validation_validation"
+      },
+      {
+        "skill_id": "PROCESSING_PIPELINE_SKILL",
+        "name": "Processing Pipeline",
+        "description": "Manage content processing pipeline",
+        "tools": ["pipeline_manager", "processor_registry", "orchestrator"],
+        "validation": "processing_pipeline_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "CONTENT_INGESTION_TOOL",
+        "name": "Content Ingestion Engine",
+        "description": "Core content ingestion system",
+        "file_path": "src/services/content/core.py",
+        "config": "config/content/ingestion_config.json"
+      },
+      {
+        "tool_id": "FILE_UPLOAD_TOOL",
+        "name": "File Upload Manager",
+        "description": "Manage file uploads and processing",
+        "file_path": "src/services/content/ingestion/upload/manager.py",
+        "config": "config/content/upload_config.json"
+      },
+      {
+        "tool_id": "CONTENT_VALIDATION_TOOL",
+        "name": "Content Validation Engine",
+        "description": "Validate and sanitize content",
+        "file_path": "src/services/content/validation/engine.py",
+        "config": "config/content/validation_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "CONTENT_INGESTION_CONFIG",
+        "name": "Content Ingestion Configuration",
+        "description": "Configuration for content ingestion system",
+        "file_path": "config/content/ingestion_config.json",
+        "schema": "content_ingestion_config_schema"
+      },
+      {
+        "config_id": "FILE_UPLOAD_CONFIG",
+        "name": "File Upload Configuration",
+        "description": "Configuration for file upload system",
+        "file_path": "config/content/upload_config.json",
+        "schema": "file_upload_config_schema"
+      },
+      {
+        "config_id": "CONTENT_VALIDATION_CONFIG",
+        "name": "Content Validation Configuration",
+        "description": "Configuration for content validation",
+        "file_path": "config/content/validation_config.json",
+        "schema": "content_validation_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["CONTENT_ARCHITECTURE_TASK", "FILE_UPLOAD_SKILL", "CONTENT_INGESTION_TOOL"],
+        "description": "Gather content ingestion architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "content_ingestion_cache",
+        "description": "Check for existing content ingestion cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "CONTENT_ARCHITECTURE_TASK",
+        "description": "Execute content ingestion architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["FILE_UPLOAD_TASK", "CONTENT_VALIDATION_SKILL", "FILE_UPLOAD_TOOL"],
+        "description": "Gather file upload ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "FILE_UPLOAD_TASK",
+        "description": "Execute file upload task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["MULTI_FORMAT_TASK", "PROCESSING_PIPELINE_SKILL"],
+        "description": "Gather multi-format support ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "MULTI_FORMAT_TASK",
+        "description": "Execute multi-format support task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["CONTENT_VALIDATION_TASK", "CONTENT_VALIDATION_SKILL", "CONTENT_VALIDATION_TOOL"],
+        "description": "Gather content validation ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "CONTENT_VALIDATION_TASK",
+        "description": "Execute content validation task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "content_ingestion_validation",
+        "description": "Validate complete content ingestion system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "content_ingestion_cache",
+        "description": "Cache content ingestion configuration and processors"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "content_ingestion_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "processor_update",
+      "cache_validation": "content_ingestion_validation"
+    }
   },
   "content_ingestion_architecture": {
     "upload_system": {

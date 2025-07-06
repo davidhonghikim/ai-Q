@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "deployment",
     "priority": "HIGH",
-    "recipe_id": "21-production-deployment"
+    "recipe_id": "21-production-deployment",
+    "kitchen_system": {
+      "pantry_category": "deployment",
+      "cooking_time": "300 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["infrastructure_as_code", "deployment_pipeline", "monitoring_system", "scaling_system"],
+      "cache_strategy": "production_deployment_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Production Deployment System",
@@ -27,6 +35,187 @@
       "Security and compliance features",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "INFRASTRUCTURE_AS_CODE_TASK",
+        "name": "Infrastructure as Code Implementation",
+        "description": "Design and implement infrastructure automation",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["terraform", "docker", "kubernetes", "infrastructure_automation"]
+      },
+      {
+        "task_id": "KUBERNETES_DEPLOYMENT_TASK",
+        "name": "Kubernetes Deployment Implementation",
+        "description": "Create comprehensive Kubernetes deployment",
+        "estimated_time": "60 minutes",
+        "dependencies": ["INFRASTRUCTURE_AS_CODE_TASK"],
+        "skills_required": ["kubernetes", "container_orchestration", "service_mesh"]
+      },
+      {
+        "task_id": "CI_CD_PIPELINE_TASK",
+        "name": "CI/CD Pipeline Implementation",
+        "description": "Create comprehensive CI/CD pipeline",
+        "estimated_time": "60 minutes",
+        "dependencies": ["KUBERNETES_DEPLOYMENT_TASK"],
+        "skills_required": ["ci_cd", "automation", "deployment_strategies"]
+      },
+      {
+        "task_id": "LOAD_BALANCING_TASK",
+        "name": "Load Balancing Implementation",
+        "description": "Create load balancing and traffic management",
+        "estimated_time": "60 minutes",
+        "dependencies": ["CI_CD_PIPELINE_TASK"],
+        "skills_required": ["load_balancing", "traffic_management", "ssl_termination"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "INFRASTRUCTURE_AS_CODE_SKILL",
+        "name": "Infrastructure as Code",
+        "description": "Automate infrastructure provisioning and management",
+        "tools": ["terraform", "docker", "kubernetes", "cloud_providers"],
+        "validation": "infrastructure_as_code_validation"
+      },
+      {
+        "skill_id": "DEPLOYMENT_PIPELINE_SKILL",
+        "name": "Deployment Pipeline",
+        "description": "Manage CI/CD and deployment automation",
+        "tools": ["ci_cd_pipeline", "deployment_strategies", "rollback_manager"],
+        "validation": "deployment_pipeline_validation"
+      },
+      {
+        "skill_id": "MONITORING_SYSTEM_SKILL",
+        "name": "Monitoring System",
+        "description": "Monitor and observe system performance",
+        "tools": ["apm_system", "infrastructure_monitor", "alert_manager"],
+        "validation": "monitoring_system_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "PRODUCTION_DEPLOYMENT_TOOL",
+        "name": "Production Deployment Engine",
+        "description": "Core production deployment system",
+        "file_path": "src/services/deployment/core.py",
+        "config": "config/deployment/production_config.json"
+      },
+      {
+        "tool_id": "INFRASTRUCTURE_TOOL",
+        "name": "Infrastructure Engine",
+        "description": "Infrastructure automation and management",
+        "file_path": "src/services/deployment/infrastructure.py",
+        "config": "config/deployment/infrastructure_config.json"
+      },
+      {
+        "tool_id": "MONITORING_TOOL",
+        "name": "Monitoring Engine",
+        "description": "Monitoring and observability system",
+        "file_path": "src/services/deployment/monitoring.py",
+        "config": "config/deployment/monitoring_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "PRODUCTION_DEPLOYMENT_CONFIG",
+        "name": "Production Deployment Configuration",
+        "description": "Configuration for production deployment",
+        "file_path": "config/deployment/production_config.json",
+        "schema": "production_deployment_config_schema"
+      },
+      {
+        "config_id": "INFRASTRUCTURE_CONFIG",
+        "name": "Infrastructure Configuration",
+        "description": "Configuration for infrastructure automation",
+        "file_path": "config/deployment/infrastructure_config.json",
+        "schema": "infrastructure_config_schema"
+      },
+      {
+        "config_id": "MONITORING_CONFIG",
+        "name": "Monitoring Configuration",
+        "description": "Configuration for monitoring system",
+        "file_path": "config/deployment/monitoring_config.json",
+        "schema": "monitoring_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["INFRASTRUCTURE_AS_CODE_TASK", "INFRASTRUCTURE_AS_CODE_SKILL", "PRODUCTION_DEPLOYMENT_TOOL"],
+        "description": "Gather production deployment architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "production_deployment_cache",
+        "description": "Check for existing production deployment cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "INFRASTRUCTURE_AS_CODE_TASK",
+        "description": "Execute infrastructure as code task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["KUBERNETES_DEPLOYMENT_TASK", "DEPLOYMENT_PIPELINE_SKILL", "INFRASTRUCTURE_TOOL"],
+        "description": "Gather Kubernetes deployment ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "KUBERNETES_DEPLOYMENT_TASK",
+        "description": "Execute Kubernetes deployment task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["CI_CD_PIPELINE_TASK", "MONITORING_SYSTEM_SKILL", "MONITORING_TOOL"],
+        "description": "Gather CI/CD pipeline ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "CI_CD_PIPELINE_TASK",
+        "description": "Execute CI/CD pipeline task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["LOAD_BALANCING_TASK", "INFRASTRUCTURE_AS_CODE_SKILL"],
+        "description": "Gather load balancing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "LOAD_BALANCING_TASK",
+        "description": "Execute load balancing task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "production_deployment_validation",
+        "description": "Validate complete production deployment system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "production_deployment_cache",
+        "description": "Cache production deployment configuration and infrastructure"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "production_deployment_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "infrastructure_update",
+      "cache_validation": "production_deployment_validation"
+    }
   },
   "production_deployment_architecture": {
     "infrastructure_as_code": {

@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "intelligence",
     "priority": "HIGH",
-    "recipe_id": "17-knowledge-graph"
+    "recipe_id": "17-knowledge-graph",
+    "kitchen_system": {
+      "pantry_category": "intelligence_engines",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["graph_construction", "relationship_mapping", "semantic_reasoning", "graph_analytics"],
+      "cache_strategy": "knowledge_graph_cache",
+      "orchestrator_priority": "critical"
+    }
   },
   "recipe_overview": {
     "name": "Knowledge Graph System",
@@ -27,6 +35,187 @@
       "Insights generation and visualization",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "GRAPH_ARCHITECTURE_TASK",
+        "name": "Knowledge Graph Architecture",
+        "description": "Design and implement core knowledge graph architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["graph_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "GRAPH_CONSTRUCTION_TASK",
+        "name": "Graph Construction Implementation",
+        "description": "Create comprehensive graph construction system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["GRAPH_ARCHITECTURE_TASK"],
+        "skills_required": ["entity_extraction", "relationship_mapping", "graph_validation"]
+      },
+      {
+        "task_id": "GRAPH_STORAGE_TASK",
+        "name": "Graph Storage Implementation",
+        "description": "Create graph database storage with multiple backends",
+        "estimated_time": "60 minutes",
+        "dependencies": ["GRAPH_CONSTRUCTION_TASK"],
+        "skills_required": ["graph_databases", "storage_management", "backend_integration"]
+      },
+      {
+        "task_id": "GRAPH_QUERIES_TASK",
+        "name": "Graph Queries Implementation",
+        "description": "Create comprehensive graph querying system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["GRAPH_STORAGE_TASK"],
+        "skills_required": ["graph_queries", "traversal_algorithms", "graph_analytics"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "GRAPH_CONSTRUCTION_SKILL",
+        "name": "Graph Construction",
+        "description": "Build and manage knowledge graphs",
+        "tools": ["entity_extractor", "relationship_mapper", "graph_builder"],
+        "validation": "graph_construction_validation"
+      },
+      {
+        "skill_id": "RELATIONSHIP_MAPPING_SKILL",
+        "name": "Relationship Mapping",
+        "description": "Map and discover relationships between entities",
+        "tools": ["relationship_discovery", "entity_linking", "schema_manager"],
+        "validation": "relationship_mapping_validation"
+      },
+      {
+        "skill_id": "SEMANTIC_REASONING_SKILL",
+        "name": "Semantic Reasoning",
+        "description": "Perform semantic reasoning and inference",
+        "tools": ["reasoning_engine", "inference_engine", "ontology_manager"],
+        "validation": "semantic_reasoning_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "KNOWLEDGE_GRAPH_TOOL",
+        "name": "Knowledge Graph Engine",
+        "description": "Core knowledge graph with unified interface",
+        "file_path": "src/services/knowledge_graph/core.py",
+        "config": "config/knowledge_graph/graph_config.json"
+      },
+      {
+        "tool_id": "GRAPH_CONSTRUCTION_TOOL",
+        "name": "Graph Construction Engine",
+        "description": "Build and manage knowledge graphs",
+        "file_path": "src/services/knowledge_graph/construction/builder.py",
+        "config": "config/knowledge_graph/construction_config.json"
+      },
+      {
+        "tool_id": "GRAPH_STORAGE_TOOL",
+        "name": "Graph Storage Manager",
+        "description": "Manage multiple graph database backends",
+        "file_path": "src/services/knowledge_graph/storage/manager.py",
+        "config": "config/knowledge_graph/storage_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "KNOWLEDGE_GRAPH_CONFIG",
+        "name": "Knowledge Graph Configuration",
+        "description": "Configuration for knowledge graph system",
+        "file_path": "config/knowledge_graph/graph_config.json",
+        "schema": "knowledge_graph_config_schema"
+      },
+      {
+        "config_id": "GRAPH_CONSTRUCTION_CONFIG",
+        "name": "Graph Construction Configuration",
+        "description": "Configuration for graph construction",
+        "file_path": "config/knowledge_graph/construction_config.json",
+        "schema": "graph_construction_config_schema"
+      },
+      {
+        "config_id": "GRAPH_STORAGE_CONFIG",
+        "name": "Graph Storage Configuration",
+        "description": "Configuration for graph storage backends",
+        "file_path": "config/knowledge_graph/storage_config.json",
+        "schema": "graph_storage_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["GRAPH_ARCHITECTURE_TASK", "GRAPH_CONSTRUCTION_SKILL", "KNOWLEDGE_GRAPH_TOOL"],
+        "description": "Gather knowledge graph architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "knowledge_graph_cache",
+        "description": "Check for existing knowledge graph cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "GRAPH_ARCHITECTURE_TASK",
+        "description": "Execute knowledge graph architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["GRAPH_CONSTRUCTION_TASK", "RELATIONSHIP_MAPPING_SKILL", "GRAPH_CONSTRUCTION_TOOL"],
+        "description": "Gather graph construction ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "GRAPH_CONSTRUCTION_TASK",
+        "description": "Execute graph construction task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["GRAPH_STORAGE_TASK", "SEMANTIC_REASONING_SKILL", "GRAPH_STORAGE_TOOL"],
+        "description": "Gather graph storage ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "GRAPH_STORAGE_TASK",
+        "description": "Execute graph storage task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["GRAPH_QUERIES_TASK", "GRAPH_CONSTRUCTION_SKILL"],
+        "description": "Gather graph queries ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "GRAPH_QUERIES_TASK",
+        "description": "Execute graph queries task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "knowledge_graph_validation",
+        "description": "Validate complete knowledge graph system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "knowledge_graph_cache",
+        "description": "Cache knowledge graph configuration and data"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "knowledge_graph_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "graph_update",
+      "cache_validation": "knowledge_graph_validation"
+    }
   },
   "knowledge_graph_architecture": {
     "graph_construction": {

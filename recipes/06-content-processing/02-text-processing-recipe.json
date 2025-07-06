@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "13-text-processing"
+    "recipe_id": "13-text-processing",
+    "kitchen_system": {
+      "pantry_category": "content_processing",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["ocr_processing", "nlp_engine", "text_summarization", "translation"],
+      "cache_strategy": "text_processing_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Text Processing System",
@@ -27,6 +35,187 @@
       "Text classification and topic modeling",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "TEXT_ARCHITECTURE_TASK",
+        "name": "Text Processing Architecture",
+        "description": "Design and implement core text processing architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["text_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "OCR_SYSTEM_TASK",
+        "name": "OCR System Implementation",
+        "description": "Create comprehensive OCR system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["TEXT_ARCHITECTURE_TASK"],
+        "skills_required": ["ocr_processing", "image_preprocessing", "text_extraction"]
+      },
+      {
+        "task_id": "NLP_ENGINE_TASK",
+        "name": "NLP Engine Implementation",
+        "description": "Create comprehensive NLP engine",
+        "estimated_time": "60 minutes",
+        "dependencies": ["OCR_SYSTEM_TASK"],
+        "skills_required": ["nlp_processing", "entity_extraction", "sentiment_analysis"]
+      },
+      {
+        "task_id": "TEXT_SUMMARIZATION_TASK",
+        "name": "Text Summarization Implementation",
+        "description": "Create text summarization with multiple methods",
+        "estimated_time": "60 minutes",
+        "dependencies": ["NLP_ENGINE_TASK"],
+        "skills_required": ["text_summarization", "key_phrase_extraction", "summary_generation"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "OCR_PROCESSING_SKILL",
+        "name": "OCR Processing",
+        "description": "Extract text from images and documents",
+        "tools": ["ocr_engine", "layout_analyzer", "text_extractor"],
+        "validation": "ocr_processing_validation"
+      },
+      {
+        "skill_id": "NLP_ENGINE_SKILL",
+        "name": "NLP Engine",
+        "description": "Process and analyze natural language",
+        "tools": ["nlp_processor", "entity_extractor", "sentiment_analyzer"],
+        "validation": "nlp_engine_validation"
+      },
+      {
+        "skill_id": "TEXT_SUMMARIZATION_SKILL",
+        "name": "Text Summarization",
+        "description": "Summarize and extract key information",
+        "tools": ["summarizer", "key_phrase_extractor", "summary_generator"],
+        "validation": "text_summarization_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "TEXT_PROCESSING_TOOL",
+        "name": "Text Processing Engine",
+        "description": "Core text processing system",
+        "file_path": "src/services/text/core.py",
+        "config": "config/text/processing_config.json"
+      },
+      {
+        "tool_id": "OCR_ENGINE_TOOL",
+        "name": "OCR Engine",
+        "description": "OCR processing and text extraction",
+        "file_path": "src/services/text/ocr/engine.py",
+        "config": "config/text/ocr_config.json"
+      },
+      {
+        "tool_id": "NLP_ENGINE_TOOL",
+        "name": "NLP Engine",
+        "description": "Natural language processing",
+        "file_path": "src/services/text/nlp/engine.py",
+        "config": "config/text/nlp_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "TEXT_PROCESSING_CONFIG",
+        "name": "Text Processing Configuration",
+        "description": "Configuration for text processing system",
+        "file_path": "config/text/processing_config.json",
+        "schema": "text_processing_config_schema"
+      },
+      {
+        "config_id": "OCR_CONFIG",
+        "name": "OCR Configuration",
+        "description": "Configuration for OCR processing",
+        "file_path": "config/text/ocr_config.json",
+        "schema": "ocr_config_schema"
+      },
+      {
+        "config_id": "NLP_CONFIG",
+        "name": "NLP Configuration",
+        "description": "Configuration for NLP processing",
+        "file_path": "config/text/nlp_config.json",
+        "schema": "nlp_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["TEXT_ARCHITECTURE_TASK", "OCR_PROCESSING_SKILL", "TEXT_PROCESSING_TOOL"],
+        "description": "Gather text processing architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "text_processing_cache",
+        "description": "Check for existing text processing cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "TEXT_ARCHITECTURE_TASK",
+        "description": "Execute text processing architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["OCR_SYSTEM_TASK", "NLP_ENGINE_SKILL", "OCR_ENGINE_TOOL"],
+        "description": "Gather OCR system ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "OCR_SYSTEM_TASK",
+        "description": "Execute OCR system task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["NLP_ENGINE_TASK", "TEXT_SUMMARIZATION_SKILL", "NLP_ENGINE_TOOL"],
+        "description": "Gather NLP engine ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "NLP_ENGINE_TASK",
+        "description": "Execute NLP engine task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["TEXT_SUMMARIZATION_TASK", "TEXT_SUMMARIZATION_SKILL"],
+        "description": "Gather text summarization ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "TEXT_SUMMARIZATION_TASK",
+        "description": "Execute text summarization task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "text_processing_validation",
+        "description": "Validate complete text processing system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "text_processing_cache",
+        "description": "Cache text processing configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "text_processing_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "model_update",
+      "cache_validation": "text_processing_validation"
+    }
   },
   "text_processing_architecture": {
     "ocr_system": {

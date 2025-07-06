@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "interface",
     "priority": "HIGH",
-    "recipe_id": "20-mobile-app"
+    "recipe_id": "20-mobile-app",
+    "kitchen_system": {
+      "pantry_category": "user_interfaces",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["react_native", "mobile_ui", "native_features", "mobile_experience"],
+      "cache_strategy": "mobile_app_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Mobile App System",
@@ -27,6 +35,187 @@
       "App store deployment ready",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "MOBILE_ARCHITECTURE_TASK",
+        "name": "Mobile App Architecture",
+        "description": "Design and implement core mobile app architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["react_native", "mobile_architecture", "cross_platform"]
+      },
+      {
+        "task_id": "MOBILE_UI_TASK",
+        "name": "Mobile UI Components Implementation",
+        "description": "Create mobile-optimized UI components",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MOBILE_ARCHITECTURE_TASK"],
+        "skills_required": ["mobile_ui", "touch_interactions", "responsive_design"]
+      },
+      {
+        "task_id": "MOBILE_NAVIGATION_TASK",
+        "name": "Mobile Navigation Implementation",
+        "description": "Create mobile navigation with gesture support",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MOBILE_UI_TASK"],
+        "skills_required": ["mobile_navigation", "gesture_handling", "navigation_patterns"]
+      },
+      {
+        "task_id": "MOBILE_SEARCH_TASK",
+        "name": "Mobile Search Implementation",
+        "description": "Create mobile-optimized search interface",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MOBILE_NAVIGATION_TASK"],
+        "skills_required": ["mobile_search", "voice_search", "search_optimization"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "REACT_NATIVE_SKILL",
+        "name": "React Native Development",
+        "description": "Build cross-platform mobile applications",
+        "tools": ["react_native_cli", "typescript", "native_modules"],
+        "validation": "react_native_validation"
+      },
+      {
+        "skill_id": "MOBILE_UI_SKILL",
+        "name": "Mobile UI Development",
+        "description": "Create mobile-optimized user interfaces",
+        "tools": ["mobile_components", "touch_handlers", "responsive_layouts"],
+        "validation": "mobile_ui_validation"
+      },
+      {
+        "skill_id": "NATIVE_FEATURES_SKILL",
+        "name": "Native Features Integration",
+        "description": "Integrate native mobile capabilities",
+        "tools": ["camera_module", "notifications", "offline_storage"],
+        "validation": "native_features_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "MOBILE_APP_TOOL",
+        "name": "Mobile App",
+        "description": "Core React Native mobile application",
+        "file_path": "src/App.tsx",
+        "config": "config/mobile_app/app_config.json"
+      },
+      {
+        "tool_id": "MOBILE_UI_TOOL",
+        "name": "Mobile UI Components",
+        "description": "Mobile-optimized UI components",
+        "file_path": "src/components/ui/index.ts",
+        "config": "config/mobile_app/ui_config.json"
+      },
+      {
+        "tool_id": "MOBILE_NAVIGATION_TOOL",
+        "name": "Mobile Navigation",
+        "description": "Mobile navigation and gesture handling",
+        "file_path": "src/navigation/AppNavigator.tsx",
+        "config": "config/mobile_app/navigation_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "MOBILE_APP_CONFIG",
+        "name": "Mobile App Configuration",
+        "description": "Configuration for mobile app system",
+        "file_path": "config/mobile_app/app_config.json",
+        "schema": "mobile_app_config_schema"
+      },
+      {
+        "config_id": "MOBILE_UI_CONFIG",
+        "name": "Mobile UI Configuration",
+        "description": "Configuration for mobile UI components",
+        "file_path": "config/mobile_app/ui_config.json",
+        "schema": "mobile_ui_config_schema"
+      },
+      {
+        "config_id": "MOBILE_NAVIGATION_CONFIG",
+        "name": "Mobile Navigation Configuration",
+        "description": "Configuration for mobile navigation",
+        "file_path": "config/mobile_app/navigation_config.json",
+        "schema": "mobile_navigation_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["MOBILE_ARCHITECTURE_TASK", "REACT_NATIVE_SKILL", "MOBILE_APP_TOOL"],
+        "description": "Gather mobile app architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "mobile_app_cache",
+        "description": "Check for existing mobile app cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "MOBILE_ARCHITECTURE_TASK",
+        "description": "Execute mobile app architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["MOBILE_UI_TASK", "MOBILE_UI_SKILL", "MOBILE_UI_TOOL"],
+        "description": "Gather mobile UI ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "MOBILE_UI_TASK",
+        "description": "Execute mobile UI task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["MOBILE_NAVIGATION_TASK", "NATIVE_FEATURES_SKILL", "MOBILE_NAVIGATION_TOOL"],
+        "description": "Gather mobile navigation ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "MOBILE_NAVIGATION_TASK",
+        "description": "Execute mobile navigation task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["MOBILE_SEARCH_TASK", "NATIVE_FEATURES_SKILL"],
+        "description": "Gather mobile search ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "MOBILE_SEARCH_TASK",
+        "description": "Execute mobile search task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "mobile_app_validation",
+        "description": "Validate complete mobile app system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "mobile_app_cache",
+        "description": "Cache mobile app configuration and assets"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "mobile_app_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "app_update",
+      "cache_validation": "mobile_app_validation"
+    }
   },
   "mobile_app_architecture": {
     "react_native_framework": {

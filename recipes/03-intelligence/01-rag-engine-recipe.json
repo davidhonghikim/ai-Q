@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "intelligence",
     "priority": "HIGH",
-    "recipe_id": "16-rag-engine"
+    "recipe_id": "16-rag-engine",
+    "kitchen_system": {
+      "pantry_category": "intelligence_engines",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["semantic_search", "vector_embeddings", "knowledge_retrieval", "context_augmentation"],
+      "cache_strategy": "rag_engine_cache",
+      "orchestrator_priority": "critical"
+    }
   },
   "recipe_overview": {
     "name": "RAG Engine System",
@@ -27,6 +35,187 @@
       "Real-time knowledge updates",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "RAG_ARCHITECTURE_TASK",
+        "name": "RAG Engine Architecture",
+        "description": "Design and implement core RAG engine architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["system_architecture", "rag_design", "unified_management"]
+      },
+      {
+        "task_id": "EMBEDDING_SYSTEM_TASK",
+        "name": "Embedding System Implementation",
+        "description": "Create comprehensive embedding system with multiple models",
+        "estimated_time": "60 minutes",
+        "dependencies": ["RAG_ARCHITECTURE_TASK"],
+        "skills_required": ["embedding_models", "multi_modal_processing", "vector_operations"]
+      },
+      {
+        "task_id": "VECTOR_DATABASE_TASK",
+        "name": "Vector Database Integration",
+        "description": "Create vector database integration with multiple backends",
+        "estimated_time": "60 minutes",
+        "dependencies": ["EMBEDDING_SYSTEM_TASK"],
+        "skills_required": ["vector_databases", "database_integration", "backend_management"]
+      },
+      {
+        "task_id": "RETRIEVAL_SYSTEM_TASK",
+        "name": "Retrieval System Implementation",
+        "description": "Create semantic retrieval system with advanced search",
+        "estimated_time": "60 minutes",
+        "dependencies": ["VECTOR_DATABASE_TASK"],
+        "skills_required": ["semantic_search", "retrieval_strategies", "ranking_algorithms"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "SEMANTIC_SEARCH_SKILL",
+        "name": "Semantic Search",
+        "description": "Implement semantic search capabilities",
+        "tools": ["embedding_engine", "similarity_computation", "vector_search"],
+        "validation": "semantic_search_validation"
+      },
+      {
+        "skill_id": "VECTOR_EMBEDDINGS_SKILL",
+        "name": "Vector Embeddings",
+        "description": "Generate and manage vector embeddings",
+        "tools": ["embedding_models", "vector_processor", "embedding_optimizer"],
+        "validation": "vector_embeddings_validation"
+      },
+      {
+        "skill_id": "KNOWLEDGE_RETRIEVAL_SKILL",
+        "name": "Knowledge Retrieval",
+        "description": "Retrieve and augment knowledge from various sources",
+        "tools": ["retrieval_engine", "context_analyzer", "knowledge_integrator"],
+        "validation": "knowledge_retrieval_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "RAG_ENGINE_TOOL",
+        "name": "RAG Engine",
+        "description": "Core RAG engine with unified interface",
+        "file_path": "src/services/rag/core.py",
+        "config": "config/rag/rag_config.json"
+      },
+      {
+        "tool_id": "EMBEDDING_ENGINE_TOOL",
+        "name": "Embedding Engine",
+        "description": "Multi-modal embedding generation and management",
+        "file_path": "src/services/rag/embeddings/engine.py",
+        "config": "config/rag/embeddings_config.json"
+      },
+      {
+        "tool_id": "VECTOR_DB_MANAGER_TOOL",
+        "name": "Vector Database Manager",
+        "description": "Manage multiple vector database backends",
+        "file_path": "src/services/rag/vector_db/manager.py",
+        "config": "config/rag/vector_db_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "RAG_CONFIG",
+        "name": "RAG Configuration",
+        "description": "Configuration for RAG engine system",
+        "file_path": "config/rag/rag_config.json",
+        "schema": "rag_config_schema"
+      },
+      {
+        "config_id": "EMBEDDINGS_CONFIG",
+        "name": "Embeddings Configuration",
+        "description": "Configuration for embedding models and processing",
+        "file_path": "config/rag/embeddings_config.json",
+        "schema": "embeddings_config_schema"
+      },
+      {
+        "config_id": "VECTOR_DB_CONFIG",
+        "name": "Vector Database Configuration",
+        "description": "Configuration for vector database backends",
+        "file_path": "config/rag/vector_db_config.json",
+        "schema": "vector_db_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["RAG_ARCHITECTURE_TASK", "SEMANTIC_SEARCH_SKILL", "RAG_ENGINE_TOOL"],
+        "description": "Gather RAG architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "rag_engine_cache",
+        "description": "Check for existing RAG engine cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "RAG_ARCHITECTURE_TASK",
+        "description": "Execute RAG architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["EMBEDDING_SYSTEM_TASK", "VECTOR_EMBEDDINGS_SKILL", "EMBEDDING_ENGINE_TOOL"],
+        "description": "Gather embedding system ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "EMBEDDING_SYSTEM_TASK",
+        "description": "Execute embedding system task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["VECTOR_DATABASE_TASK", "KNOWLEDGE_RETRIEVAL_SKILL", "VECTOR_DB_MANAGER_TOOL"],
+        "description": "Gather vector database ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "VECTOR_DATABASE_TASK",
+        "description": "Execute vector database task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["RETRIEVAL_SYSTEM_TASK", "SEMANTIC_SEARCH_SKILL"],
+        "description": "Gather retrieval system ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "RETRIEVAL_SYSTEM_TASK",
+        "description": "Execute retrieval system task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "rag_engine_validation",
+        "description": "Validate complete RAG engine system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "rag_engine_cache",
+        "description": "Cache RAG engine configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "rag_engine_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "model_update",
+      "cache_validation": "rag_engine_validation"
+    }
   },
   "rag_engine_architecture": {
     "embedding_system": {

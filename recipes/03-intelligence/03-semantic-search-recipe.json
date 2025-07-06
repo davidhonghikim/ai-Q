@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "intelligence",
     "priority": "HIGH",
-    "recipe_id": "18-semantic-search"
+    "recipe_id": "18-semantic-search",
+    "kitchen_system": {
+      "pantry_category": "intelligence_engines",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["query_processing", "search_engine", "ranking_system", "discovery_engine"],
+      "cache_strategy": "semantic_search_cache",
+      "orchestrator_priority": "critical"
+    }
   },
   "recipe_overview": {
     "name": "Semantic Search System",
@@ -27,6 +35,187 @@
       "Search analytics and optimization",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "SEARCH_ARCHITECTURE_TASK",
+        "name": "Semantic Search Architecture",
+        "description": "Design and implement core semantic search architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["search_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "QUERY_PROCESSING_TASK",
+        "name": "Query Processing Implementation",
+        "description": "Create comprehensive query processing system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["SEARCH_ARCHITECTURE_TASK"],
+        "skills_required": ["nlp_processing", "query_expansion", "intent_recognition"]
+      },
+      {
+        "task_id": "SEARCH_ENGINE_TASK",
+        "name": "Search Engine Implementation",
+        "description": "Create multi-modal search engine with advanced indexing",
+        "estimated_time": "60 minutes",
+        "dependencies": ["QUERY_PROCESSING_TASK"],
+        "skills_required": ["search_engines", "indexing_systems", "multi_modal_search"]
+      },
+      {
+        "task_id": "RANKING_SYSTEM_TASK",
+        "name": "Ranking System Implementation",
+        "description": "Create advanced ranking system with learning-to-rank",
+        "estimated_time": "60 minutes",
+        "dependencies": ["SEARCH_ENGINE_TASK"],
+        "skills_required": ["ranking_algorithms", "learning_to_rank", "relevance_scoring"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "QUERY_PROCESSING_SKILL",
+        "name": "Query Processing",
+        "description": "Process and understand search queries",
+        "tools": ["nlp_processor", "query_expander", "intent_recognizer"],
+        "validation": "query_processing_validation"
+      },
+      {
+        "skill_id": "SEARCH_ENGINE_SKILL",
+        "name": "Search Engine",
+        "description": "Execute multi-modal search operations",
+        "tools": ["search_engine", "index_manager", "retrieval_engine"],
+        "validation": "search_engine_validation"
+      },
+      {
+        "skill_id": "RANKING_SYSTEM_SKILL",
+        "name": "Ranking System",
+        "description": "Rank and score search results",
+        "tools": ["ranking_engine", "relevance_scorer", "learning_ranker"],
+        "validation": "ranking_system_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "SEMANTIC_SEARCH_TOOL",
+        "name": "Semantic Search Engine",
+        "description": "Core semantic search with unified interface",
+        "file_path": "src/services/semantic_search/core.py",
+        "config": "config/semantic_search/search_config.json"
+      },
+      {
+        "tool_id": "QUERY_PROCESSOR_TOOL",
+        "name": "Query Processor",
+        "description": "Process and understand search queries",
+        "file_path": "src/services/semantic_search/query/processor.py",
+        "config": "config/semantic_search/query_config.json"
+      },
+      {
+        "tool_id": "SEARCH_ENGINE_TOOL",
+        "name": "Search Engine",
+        "description": "Multi-modal search engine with indexing",
+        "file_path": "src/services/semantic_search/engine/core.py",
+        "config": "config/semantic_search/engine_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "SEMANTIC_SEARCH_CONFIG",
+        "name": "Semantic Search Configuration",
+        "description": "Configuration for semantic search system",
+        "file_path": "config/semantic_search/search_config.json",
+        "schema": "semantic_search_config_schema"
+      },
+      {
+        "config_id": "QUERY_CONFIG",
+        "name": "Query Processing Configuration",
+        "description": "Configuration for query processing",
+        "file_path": "config/semantic_search/query_config.json",
+        "schema": "query_config_schema"
+      },
+      {
+        "config_id": "SEARCH_ENGINE_CONFIG",
+        "name": "Search Engine Configuration",
+        "description": "Configuration for search engine backends",
+        "file_path": "config/semantic_search/engine_config.json",
+        "schema": "search_engine_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["SEARCH_ARCHITECTURE_TASK", "QUERY_PROCESSING_SKILL", "SEMANTIC_SEARCH_TOOL"],
+        "description": "Gather semantic search architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "semantic_search_cache",
+        "description": "Check for existing semantic search cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "SEARCH_ARCHITECTURE_TASK",
+        "description": "Execute semantic search architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["QUERY_PROCESSING_TASK", "SEARCH_ENGINE_SKILL", "QUERY_PROCESSOR_TOOL"],
+        "description": "Gather query processing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "QUERY_PROCESSING_TASK",
+        "description": "Execute query processing task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["SEARCH_ENGINE_TASK", "RANKING_SYSTEM_SKILL", "SEARCH_ENGINE_TOOL"],
+        "description": "Gather search engine ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "SEARCH_ENGINE_TASK",
+        "description": "Execute search engine task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["RANKING_SYSTEM_TASK", "RANKING_SYSTEM_SKILL"],
+        "description": "Gather ranking system ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "RANKING_SYSTEM_TASK",
+        "description": "Execute ranking system task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "semantic_search_validation",
+        "description": "Validate complete semantic search system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "semantic_search_cache",
+        "description": "Cache semantic search configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "semantic_search_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "model_update",
+      "cache_validation": "semantic_search_validation"
+    }
   },
   "semantic_search_architecture": {
     "query_processing": {

@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "15-video-audio-processing"
+    "recipe_id": "15-video-audio-processing",
+    "kitchen_system": {
+      "pantry_category": "content_processing",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["video_processing", "audio_processing", "media_analysis", "transcription"],
+      "cache_strategy": "video_audio_processing_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Video & Audio Processing System",
@@ -27,6 +35,187 @@
       "Media enhancement and quality improvement",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "MEDIA_ARCHITECTURE_TASK",
+        "name": "Video & Audio Processing Architecture",
+        "description": "Design and implement core media processing architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["media_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "VIDEO_PROCESSING_TASK",
+        "name": "Video Processing Engine Implementation",
+        "description": "Create comprehensive video processing engine",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MEDIA_ARCHITECTURE_TASK"],
+        "skills_required": ["video_processing", "ffmpeg_integration", "scene_detection"]
+      },
+      {
+        "task_id": "AUDIO_PROCESSING_TASK",
+        "name": "Audio Processing Engine Implementation",
+        "description": "Create comprehensive audio processing engine",
+        "estimated_time": "60 minutes",
+        "dependencies": ["VIDEO_PROCESSING_TASK"],
+        "skills_required": ["audio_processing", "speech_recognition", "feature_extraction"]
+      },
+      {
+        "task_id": "TRANSCRIPTION_TASK",
+        "name": "Video Transcription Implementation",
+        "description": "Create video transcription system with subtitle generation",
+        "estimated_time": "60 minutes",
+        "dependencies": ["AUDIO_PROCESSING_TASK"],
+        "skills_required": ["transcription", "subtitle_generation", "audio_sync"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "VIDEO_PROCESSING_SKILL",
+        "name": "Video Processing",
+        "description": "Process and analyze video content",
+        "tools": ["video_engine", "transcription_processor", "scene_detector"],
+        "validation": "video_processing_validation"
+      },
+      {
+        "skill_id": "AUDIO_PROCESSING_SKILL",
+        "name": "Audio Processing",
+        "description": "Process and analyze audio content",
+        "tools": ["audio_engine", "speech_recognizer", "feature_extractor"],
+        "validation": "audio_processing_validation"
+      },
+      {
+        "skill_id": "TRANSCRIPTION_SKILL",
+        "name": "Transcription",
+        "description": "Transcribe audio and video content",
+        "tools": ["transcription_engine", "subtitle_generator", "audio_sync"],
+        "validation": "transcription_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "MEDIA_PROCESSING_TOOL",
+        "name": "Media Processing Engine",
+        "description": "Core media processing system",
+        "file_path": "src/services/media/core.py",
+        "config": "config/media/processing_config.json"
+      },
+      {
+        "tool_id": "VIDEO_PROCESSING_TOOL",
+        "name": "Video Processing Engine",
+        "description": "Video processing and analysis",
+        "file_path": "src/services/media/video/engine.py",
+        "config": "config/media/video_config.json"
+      },
+      {
+        "tool_id": "AUDIO_PROCESSING_TOOL",
+        "name": "Audio Processing Engine",
+        "description": "Audio processing and analysis",
+        "file_path": "src/services/media/audio/engine.py",
+        "config": "config/media/audio_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "MEDIA_PROCESSING_CONFIG",
+        "name": "Media Processing Configuration",
+        "description": "Configuration for media processing system",
+        "file_path": "config/media/processing_config.json",
+        "schema": "media_processing_config_schema"
+      },
+      {
+        "config_id": "VIDEO_CONFIG",
+        "name": "Video Processing Configuration",
+        "description": "Configuration for video processing",
+        "file_path": "config/media/video_config.json",
+        "schema": "video_config_schema"
+      },
+      {
+        "config_id": "AUDIO_CONFIG",
+        "name": "Audio Processing Configuration",
+        "description": "Configuration for audio processing",
+        "file_path": "config/media/audio_config.json",
+        "schema": "audio_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["MEDIA_ARCHITECTURE_TASK", "VIDEO_PROCESSING_SKILL", "MEDIA_PROCESSING_TOOL"],
+        "description": "Gather media processing architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "video_audio_processing_cache",
+        "description": "Check for existing video/audio processing cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "MEDIA_ARCHITECTURE_TASK",
+        "description": "Execute media processing architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["VIDEO_PROCESSING_TASK", "AUDIO_PROCESSING_SKILL", "VIDEO_PROCESSING_TOOL"],
+        "description": "Gather video processing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "VIDEO_PROCESSING_TASK",
+        "description": "Execute video processing task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["AUDIO_PROCESSING_TASK", "TRANSCRIPTION_SKILL", "AUDIO_PROCESSING_TOOL"],
+        "description": "Gather audio processing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "AUDIO_PROCESSING_TASK",
+        "description": "Execute audio processing task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["TRANSCRIPTION_TASK", "TRANSCRIPTION_SKILL"],
+        "description": "Gather transcription ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "TRANSCRIPTION_TASK",
+        "description": "Execute transcription task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "video_audio_processing_validation",
+        "description": "Validate complete video/audio processing system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "video_audio_processing_cache",
+        "description": "Cache video/audio processing configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "video_audio_processing_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "model_update",
+      "cache_validation": "video_audio_processing_validation"
+    }
   },
   "video_audio_processing_architecture": {
     "video_processing": {

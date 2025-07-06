@@ -6,18 +6,134 @@
     "created_by": "Gemini",
     "creation_date": "2025-07-05T00:00:00Z",
     "difficulty_level": "intermediate",
-    "total_tasks": 1
+    "total_tasks": 1,
+    "kitchen_system": {
+      "pantry_category": "system_profiling",
+      "cooking_time": "30 minutes",
+      "complexity": "intermediate",
+      "kitchen_tools": ["hardware_detection", "system_analysis", "configuration_management"],
+      "cache_strategy": "hardware_profile_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "description": "This recipe creates a system to detect the host's operating system, CPU, GPU (including model and VRAM), and available RAM. The collected data will inform which AI services and models can be run effectively, enabling auto-configuration and user recommendations.",
     "technology_stack": {
-      "language": "Python"
+      "language": "Python",
+      "dependencies": ["psutil", "py-cpuinfo", "GPUtil"],
+      "integration_points": ["configuration_system", "ai_service_selection", "model_recommendations"]
     },
     "deliverables": [
       "A script to detect OS, CPU, GPU, and RAM.",
       "A JSON output file containing the hardware profile.",
       "Integration with the main configuration system."
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "HARDWARE_PROFILING_TASK",
+        "name": "System Hardware Profiling",
+        "description": "Detect and profile system hardware components",
+        "estimated_time": "30 minutes",
+        "dependencies": [],
+        "skills_required": ["python_scripting", "system_analysis", "hardware_detection"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "HARDWARE_DETECTION_SKILL",
+        "name": "Hardware Detection",
+        "description": "Detect CPU, GPU, RAM, and OS information",
+        "tools": ["psutil", "py-cpuinfo", "GPUtil"],
+        "validation": "hardware_profile_validation"
+      },
+      {
+        "skill_id": "SYSTEM_ANALYSIS_SKILL",
+        "name": "System Analysis",
+        "description": "Analyze system capabilities and limitations",
+        "tools": ["hardware_profiler", "capability_assessment"],
+        "validation": "system_analysis_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "HARDWARE_PROFILER_TOOL",
+        "name": "Hardware Profiler",
+        "description": "Python script for hardware detection",
+        "file_path": "scripts/system/hardware_profiler.py",
+        "config": "config/hardware_profile.json"
+      },
+      {
+        "tool_id": "CAPABILITY_ASSESSMENT_TOOL",
+        "name": "Capability Assessment",
+        "description": "Assess system capabilities for AI workloads",
+        "file_path": "scripts/system/capability_assessment.py",
+        "config": "config/capability_profile.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "HARDWARE_PROFILE_CONFIG",
+        "name": "Hardware Profile Configuration",
+        "description": "Configuration for hardware profiling",
+        "file_path": "config/hardware_profile.json",
+        "schema": "hardware_profile_schema"
+      },
+      {
+        "config_id": "CAPABILITY_PROFILE_CONFIG",
+        "name": "Capability Profile Configuration",
+        "description": "Configuration for system capabilities",
+        "file_path": "config/capability_profile.json",
+        "schema": "capability_profile_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["HARDWARE_PROFILING_TASK", "HARDWARE_DETECTION_SKILL", "HARDWARE_PROFILER_TOOL"],
+        "description": "Gather hardware profiling ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "hardware_profile_cache",
+        "description": "Check for existing hardware profile cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "HARDWARE_PROFILING_TASK",
+        "description": "Execute hardware profiling task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "validate_results",
+        "validation": "hardware_profile_validation",
+        "description": "Validate hardware profiling results"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "cache_results",
+        "cache_key": "hardware_profile_cache",
+        "description": "Cache hardware profiling results"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "integrate_with_system",
+        "integration": "configuration_system",
+        "description": "Integrate results with main configuration system"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "hardware_profile_cache",
+      "cache_duration": "24 hours",
+      "cache_invalidation": "system_restart",
+      "cache_validation": "hardware_profile_validation"
+    }
   },
   "tasks": [
     {

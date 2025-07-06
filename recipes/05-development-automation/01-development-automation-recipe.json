@@ -10,7 +10,15 @@
     "difficulty_level": "advanced",
     "total_tasks": 55,
     "agent_autonomy_level": "95%",
-    "success_rate_target": "98%"
+    "success_rate_target": "98%",
+    "kitchen_system": {
+      "pantry_category": "development_automation",
+      "cooking_time": "480 minutes",
+      "complexity": "advanced",
+      "kitchen_tools": ["ai_code_generation", "automated_testing", "ci_cd_pipelines", "code_analysis"],
+      "cache_strategy": "development_automation_cache",
+      "orchestrator_priority": "critical"
+    }
   },
   "recipe_overview": {
     "description": "Advanced development automation system for AI-assisted code generation, automated testing, documentation generation, and intelligent deployment. This recipe implements comprehensive development automation including code generation, testing frameworks, documentation tools, CI/CD pipelines, and intelligent code analysis with quality assurance.",
@@ -273,5 +281,186 @@
       "ai-q-dev docs --generate",
       "ai-q-dev pipeline --status"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "AI_CODE_GENERATION_TASK",
+        "name": "AI Code Generation Infrastructure",
+        "description": "Set up comprehensive AI code generation infrastructure",
+        "estimated_time": "90 minutes",
+        "dependencies": [],
+        "skills_required": ["ai_integration", "code_generation", "llm_management"]
+      },
+      {
+        "task_id": "AUTOMATED_TESTING_TASK",
+        "name": "Automated Testing Framework",
+        "description": "Implement comprehensive automated testing framework",
+        "estimated_time": "90 minutes",
+        "dependencies": ["AI_CODE_GENERATION_TASK"],
+        "skills_required": ["testing_frameworks", "test_automation", "coverage_analysis"]
+      },
+      {
+        "task_id": "DOCUMENTATION_GENERATION_TASK",
+        "name": "Documentation Generation System",
+        "description": "Create automated documentation generation system",
+        "estimated_time": "75 minutes",
+        "dependencies": ["AI_CODE_GENERATION_TASK"],
+        "skills_required": ["documentation_tools", "api_documentation", "auto_generation"]
+      },
+      {
+        "task_id": "CI_CD_PIPELINE_TASK",
+        "name": "CI/CD Pipeline Development",
+        "description": "Build intelligent CI/CD pipelines with quality gates",
+        "estimated_time": "90 minutes",
+        "dependencies": ["AUTOMATED_TESTING_TASK"],
+        "skills_required": ["ci_cd", "pipeline_automation", "deployment_strategies"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "AI_CODE_GENERATION_SKILL",
+        "name": "AI Code Generation",
+        "description": "Generate code using AI models and templates",
+        "tools": ["openai_codex", "github_copilot", "local_llms"],
+        "validation": "ai_code_generation_validation"
+      },
+      {
+        "skill_id": "AUTOMATED_TESTING_SKILL",
+        "name": "Automated Testing",
+        "description": "Create and run automated tests",
+        "tools": ["jest", "pytest", "selenium", "playwright"],
+        "validation": "automated_testing_validation"
+      },
+      {
+        "skill_id": "CI_CD_SKILL",
+        "name": "CI/CD Pipeline Management",
+        "description": "Manage continuous integration and deployment",
+        "tools": ["github_actions", "gitlab_ci", "jenkins"],
+        "validation": "ci_cd_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "AI_CODE_GENERATOR_TOOL",
+        "name": "AI Code Generator",
+        "description": "AI-powered code generation system",
+        "file_path": "src/automation/ai_code_generator.py",
+        "config": "config/automation/ai_generation_config.json"
+      },
+      {
+        "tool_id": "TESTING_FRAMEWORK_TOOL",
+        "name": "Testing Framework",
+        "description": "Comprehensive testing framework",
+        "file_path": "src/automation/testing_framework.py",
+        "config": "config/automation/testing_config.json"
+      },
+      {
+        "tool_id": "CI_CD_PIPELINE_TOOL",
+        "name": "CI/CD Pipeline",
+        "description": "Intelligent CI/CD pipeline system",
+        "file_path": "src/automation/ci_cd_pipeline.py",
+        "config": "config/automation/ci_cd_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "AI_GENERATION_CONFIG",
+        "name": "AI Generation Configuration",
+        "description": "Configuration for AI code generation",
+        "file_path": "config/automation/ai_generation_config.json",
+        "schema": "ai_generation_config_schema"
+      },
+      {
+        "config_id": "TESTING_CONFIG",
+        "name": "Testing Configuration",
+        "description": "Configuration for automated testing",
+        "file_path": "config/automation/testing_config.json",
+        "schema": "testing_config_schema"
+      },
+      {
+        "config_id": "CI_CD_CONFIG",
+        "name": "CI/CD Configuration",
+        "description": "Configuration for CI/CD pipelines",
+        "file_path": "config/automation/ci_cd_config.json",
+        "schema": "ci_cd_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["AI_CODE_GENERATION_TASK", "AI_CODE_GENERATION_SKILL", "AI_CODE_GENERATOR_TOOL"],
+        "description": "Gather AI code generation ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "development_automation_cache",
+        "description": "Check for existing development automation cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "AI_CODE_GENERATION_TASK",
+        "description": "Execute AI code generation task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["AUTOMATED_TESTING_TASK", "AUTOMATED_TESTING_SKILL", "TESTING_FRAMEWORK_TOOL"],
+        "description": "Gather automated testing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "AUTOMATED_TESTING_TASK",
+        "description": "Execute automated testing task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["DOCUMENTATION_GENERATION_TASK", "AI_CODE_GENERATION_SKILL"],
+        "description": "Gather documentation generation ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "DOCUMENTATION_GENERATION_TASK",
+        "description": "Execute documentation generation task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["CI_CD_PIPELINE_TASK", "CI_CD_SKILL", "CI_CD_PIPELINE_TOOL"],
+        "description": "Gather CI/CD pipeline ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "CI_CD_PIPELINE_TASK",
+        "description": "Execute CI/CD pipeline task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "development_automation_validation",
+        "description": "Validate complete development automation system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "development_automation_cache",
+        "description": "Cache development automation configuration and tools"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "development_automation_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "tool_update",
+      "cache_validation": "development_automation_validation"
+    }
   }
 }

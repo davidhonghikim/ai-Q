@@ -8,7 +8,15 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "14-image-processing"
+    "recipe_id": "14-image-processing",
+    "kitchen_system": {
+      "pantry_category": "content_processing",
+      "cooking_time": "240 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["computer_vision", "face_recognition", "image_enhancement", "metadata_extraction"],
+      "cache_strategy": "image_processing_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "name": "Image Processing System",
@@ -27,6 +35,187 @@
       "Image metadata extraction and analysis",
       "All components can be safely installed/uninstalled"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "IMAGE_ARCHITECTURE_TASK",
+        "name": "Image Processing Architecture",
+        "description": "Design and implement core image processing architecture",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["image_architecture", "system_design", "unified_management"]
+      },
+      {
+        "task_id": "COMPUTER_VISION_TASK",
+        "name": "Computer Vision Engine Implementation",
+        "description": "Create comprehensive computer vision engine",
+        "estimated_time": "60 minutes",
+        "dependencies": ["IMAGE_ARCHITECTURE_TASK"],
+        "skills_required": ["computer_vision", "object_detection", "deep_learning"]
+      },
+      {
+        "task_id": "FACE_RECOGNITION_TASK",
+        "name": "Face Recognition System Implementation",
+        "description": "Create comprehensive face recognition system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["COMPUTER_VISION_TASK"],
+        "skills_required": ["face_recognition", "facial_analysis", "emotion_detection"]
+      },
+      {
+        "task_id": "IMAGE_ENHANCEMENT_TASK",
+        "name": "Image Enhancement Implementation",
+        "description": "Create image enhancement and preprocessing system",
+        "estimated_time": "60 minutes",
+        "dependencies": ["FACE_RECOGNITION_TASK"],
+        "skills_required": ["image_enhancement", "preprocessing", "filtering"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "COMPUTER_VISION_SKILL",
+        "name": "Computer Vision",
+        "description": "Process and analyze images with computer vision",
+        "tools": ["vision_engine", "object_detector", "image_classifier"],
+        "validation": "computer_vision_validation"
+      },
+      {
+        "skill_id": "FACE_RECOGNITION_SKILL",
+        "name": "Face Recognition",
+        "description": "Detect and recognize faces in images",
+        "tools": ["face_detector", "face_recognizer", "emotion_analyzer"],
+        "validation": "face_recognition_validation"
+      },
+      {
+        "skill_id": "IMAGE_ENHANCEMENT_SKILL",
+        "name": "Image Enhancement",
+        "description": "Enhance and preprocess images",
+        "tools": ["enhancement_engine", "noise_reducer", "color_corrector"],
+        "validation": "image_enhancement_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "IMAGE_PROCESSING_TOOL",
+        "name": "Image Processing Engine",
+        "description": "Core image processing system",
+        "file_path": "src/services/image/core.py",
+        "config": "config/image/processing_config.json"
+      },
+      {
+        "tool_id": "COMPUTER_VISION_TOOL",
+        "name": "Computer Vision Engine",
+        "description": "Computer vision and object detection",
+        "file_path": "src/services/image/vision/engine.py",
+        "config": "config/image/vision_config.json"
+      },
+      {
+        "tool_id": "FACE_RECOGNITION_TOOL",
+        "name": "Face Recognition Engine",
+        "description": "Face recognition and analysis",
+        "file_path": "src/services/image/face/engine.py",
+        "config": "config/image/face_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "IMAGE_PROCESSING_CONFIG",
+        "name": "Image Processing Configuration",
+        "description": "Configuration for image processing system",
+        "file_path": "config/image/processing_config.json",
+        "schema": "image_processing_config_schema"
+      },
+      {
+        "config_id": "COMPUTER_VISION_CONFIG",
+        "name": "Computer Vision Configuration",
+        "description": "Configuration for computer vision",
+        "file_path": "config/image/vision_config.json",
+        "schema": "computer_vision_config_schema"
+      },
+      {
+        "config_id": "FACE_RECOGNITION_CONFIG",
+        "name": "Face Recognition Configuration",
+        "description": "Configuration for face recognition",
+        "file_path": "config/image/face_config.json",
+        "schema": "face_recognition_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["IMAGE_ARCHITECTURE_TASK", "COMPUTER_VISION_SKILL", "IMAGE_PROCESSING_TOOL"],
+        "description": "Gather image processing architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "image_processing_cache",
+        "description": "Check for existing image processing cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "IMAGE_ARCHITECTURE_TASK",
+        "description": "Execute image processing architecture task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["COMPUTER_VISION_TASK", "FACE_RECOGNITION_SKILL", "COMPUTER_VISION_TOOL"],
+        "description": "Gather computer vision ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "COMPUTER_VISION_TASK",
+        "description": "Execute computer vision task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["FACE_RECOGNITION_TASK", "IMAGE_ENHANCEMENT_SKILL", "FACE_RECOGNITION_TOOL"],
+        "description": "Gather face recognition ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "FACE_RECOGNITION_TASK",
+        "description": "Execute face recognition task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["IMAGE_ENHANCEMENT_TASK", "IMAGE_ENHANCEMENT_SKILL"],
+        "description": "Gather image enhancement ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "IMAGE_ENHANCEMENT_TASK",
+        "description": "Execute image enhancement task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "image_processing_validation",
+        "description": "Validate complete image processing system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "image_processing_cache",
+        "description": "Cache image processing configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "image_processing_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "model_update",
+      "cache_validation": "image_processing_validation"
+    }
   },
   "image_processing_architecture": {
     "computer_vision": {

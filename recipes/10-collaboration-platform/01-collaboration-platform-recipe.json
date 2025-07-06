@@ -10,7 +10,15 @@
     "difficulty_level": "advanced",
     "total_tasks": 50,
     "agent_autonomy_level": "95%",
-    "success_rate_target": "98%"
+    "success_rate_target": "98%",
+    "kitchen_system": {
+      "pantry_category": "collaboration_platform",
+      "cooking_time": "420 minutes",
+      "complexity": "advanced",
+      "kitchen_tools": ["real_time_communication", "collaborative_editing", "version_control", "team_management"],
+      "cache_strategy": "collaboration_platform_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "description": "Advanced real-time collaboration platform enabling seamless team workflows, document editing, version control, and project management. This recipe implements a comprehensive collaboration system with WebSocket-based real-time communication, conflict resolution, user presence tracking, and integrated project management capabilities.",
@@ -48,6 +56,187 @@
       "API endpoints documented and tested",
       "Performance benchmarks met under load"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "REAL_TIME_COMMUNICATION_TASK",
+        "name": "Real-Time Communication Infrastructure Setup",
+        "description": "Establish WebSocket-based real-time communication infrastructure",
+        "estimated_time": "45 minutes",
+        "dependencies": [],
+        "skills_required": ["websocket", "socket_io", "redis_pubsub"]
+      },
+      {
+        "task_id": "COLLABORATIVE_EDITING_TASK",
+        "name": "Collaborative Document Editor Implementation",
+        "description": "Implement operational transform-based collaborative editor",
+        "estimated_time": "90 minutes",
+        "dependencies": ["REAL_TIME_COMMUNICATION_TASK"],
+        "skills_required": ["operational_transform", "conflict_resolution", "real_time_sync"]
+      },
+      {
+        "task_id": "VERSION_CONTROL_TASK",
+        "name": "Version Control Integration",
+        "description": "Integrate Git-based version control with collaborative editing",
+        "estimated_time": "60 minutes",
+        "dependencies": ["COLLABORATIVE_EDITING_TASK"],
+        "skills_required": ["git_integration", "version_control", "merge_strategies"]
+      },
+      {
+        "task_id": "TEAM_MANAGEMENT_TASK",
+        "name": "Team Management System",
+        "description": "Implement comprehensive team management",
+        "estimated_time": "75 minutes",
+        "dependencies": ["REAL_TIME_COMMUNICATION_TASK"],
+        "skills_required": ["user_management", "role_based_access", "activity_tracking"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "REAL_TIME_COMMUNICATION_SKILL",
+        "name": "Real-Time Communication",
+        "description": "Handle real-time communication and synchronization",
+        "tools": ["websocket", "socket_io", "redis_pubsub"],
+        "validation": "real_time_communication_validation"
+      },
+      {
+        "skill_id": "COLLABORATIVE_EDITING_SKILL",
+        "name": "Collaborative Editing",
+        "description": "Enable collaborative document editing",
+        "tools": ["operational_transform", "crdt", "conflict_resolution"],
+        "validation": "collaborative_editing_validation"
+      },
+      {
+        "skill_id": "TEAM_MANAGEMENT_SKILL",
+        "name": "Team Management",
+        "description": "Manage teams and user permissions",
+        "tools": ["user_management", "role_based_access", "project_management"],
+        "validation": "team_management_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "COLLABORATION_PLATFORM_TOOL",
+        "name": "Collaboration Platform Engine",
+        "description": "Core collaboration platform system",
+        "file_path": "src/services/collaboration/core.py",
+        "config": "config/collaboration/platform_config.json"
+      },
+      {
+        "tool_id": "REAL_TIME_COMMUNICATION_TOOL",
+        "name": "Real-Time Communication Engine",
+        "description": "Real-time communication and synchronization",
+        "file_path": "src/services/collaboration/communication_engine.py",
+        "config": "config/collaboration/communication_config.json"
+      },
+      {
+        "tool_id": "COLLABORATIVE_EDITING_TOOL",
+        "name": "Collaborative Editing Engine",
+        "description": "Collaborative document editing",
+        "file_path": "src/services/collaboration/editing_engine.py",
+        "config": "config/collaboration/editing_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "COLLABORATION_PLATFORM_CONFIG",
+        "name": "Collaboration Platform Configuration",
+        "description": "Configuration for collaboration platform",
+        "file_path": "config/collaboration/platform_config.json",
+        "schema": "collaboration_platform_config_schema"
+      },
+      {
+        "config_id": "REAL_TIME_COMMUNICATION_CONFIG",
+        "name": "Real-Time Communication Configuration",
+        "description": "Configuration for real-time communication",
+        "file_path": "config/collaboration/communication_config.json",
+        "schema": "real_time_communication_config_schema"
+      },
+      {
+        "config_id": "COLLABORATIVE_EDITING_CONFIG",
+        "name": "Collaborative Editing Configuration",
+        "description": "Configuration for collaborative editing",
+        "file_path": "config/collaboration/editing_config.json",
+        "schema": "collaborative_editing_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["REAL_TIME_COMMUNICATION_TASK", "REAL_TIME_COMMUNICATION_SKILL", "COLLABORATION_PLATFORM_TOOL"],
+        "description": "Gather collaboration platform architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "collaboration_platform_cache",
+        "description": "Check for existing collaboration platform cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "REAL_TIME_COMMUNICATION_TASK",
+        "description": "Execute real-time communication infrastructure task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["COLLABORATIVE_EDITING_TASK", "COLLABORATIVE_EDITING_SKILL", "REAL_TIME_COMMUNICATION_TOOL"],
+        "description": "Gather collaborative editing ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "COLLABORATIVE_EDITING_TASK",
+        "description": "Execute collaborative editing task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["VERSION_CONTROL_TASK", "TEAM_MANAGEMENT_SKILL", "COLLABORATIVE_EDITING_TOOL"],
+        "description": "Gather version control ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "VERSION_CONTROL_TASK",
+        "description": "Execute version control task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["TEAM_MANAGEMENT_TASK", "TEAM_MANAGEMENT_SKILL"],
+        "description": "Gather team management ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "TEAM_MANAGEMENT_TASK",
+        "description": "Execute team management task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "collaboration_platform_validation",
+        "description": "Validate complete collaboration platform system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "collaboration_platform_cache",
+        "description": "Cache collaboration platform configuration and sessions"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "collaboration_platform_cache",
+      "cache_duration": "session_based",
+      "cache_invalidation": "session_expiry",
+      "cache_validation": "collaboration_platform_validation"
+    }
   },
   "prerequisites": {
     "system_requirements": {

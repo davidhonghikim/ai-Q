@@ -10,7 +10,15 @@
     "difficulty_level": "advanced",
     "total_tasks": 40,
     "agent_autonomy_level": "95%",
-    "success_rate_target": "98%"
+    "success_rate_target": "98%",
+    "kitchen_system": {
+      "pantry_category": "knowledge_synthesis",
+      "cooking_time": "360 minutes",
+      "complexity": "advanced",
+      "kitchen_tools": ["knowledge_graphs", "entity_extraction", "semantic_reasoning", "insight_generation"],
+      "cache_strategy": "knowledge_synthesis_cache",
+      "orchestrator_priority": "high"
+    }
   },
   "recipe_overview": {
     "description": "Advanced knowledge synthesis system for intelligent relationship mapping, insight generation, and knowledge graph construction. This recipe implements comprehensive knowledge synthesis capabilities including entity extraction, relationship discovery, semantic reasoning, pattern recognition, and automated insight generation with visualization.",
@@ -48,6 +56,187 @@
       "Knowledge quality maintained through validation processes",
       "Dynamic updates preserving knowledge graph integrity"
     ]
+  },
+  "pantry_ingredients": {
+    "tasks": [
+      {
+        "task_id": "KNOWLEDGE_GRAPH_TASK",
+        "name": "Knowledge Graph Infrastructure Setup",
+        "description": "Establish comprehensive knowledge graph infrastructure",
+        "estimated_time": "75 minutes",
+        "dependencies": [],
+        "skills_required": ["knowledge_graphs", "neo4j", "graph_algorithms"]
+      },
+      {
+        "task_id": "ENTITY_EXTRACTION_TASK",
+        "name": "Entity Extraction and Recognition",
+        "description": "Implement advanced entity extraction",
+        "estimated_time": "90 minutes",
+        "dependencies": ["KNOWLEDGE_GRAPH_TASK"],
+        "skills_required": ["entity_extraction", "named_entity_recognition", "entity_linking"]
+      },
+      {
+        "task_id": "RELATIONSHIP_DISCOVERY_TASK",
+        "name": "Relationship Discovery and Mapping",
+        "description": "Create intelligent relationship discovery system",
+        "estimated_time": "90 minutes",
+        "dependencies": ["ENTITY_EXTRACTION_TASK"],
+        "skills_required": ["relationship_discovery", "link_prediction", "similarity_metrics"]
+      },
+      {
+        "task_id": "SEMANTIC_REASONING_TASK",
+        "name": "Semantic Reasoning Engine",
+        "description": "Build semantic reasoning engine",
+        "estimated_time": "75 minutes",
+        "dependencies": ["RELATIONSHIP_DISCOVERY_TASK"],
+        "skills_required": ["semantic_reasoning", "rdf_reasoning", "owl_ontologies"]
+      }
+    ],
+    "skills": [
+      {
+        "skill_id": "KNOWLEDGE_GRAPHS_SKILL",
+        "name": "Knowledge Graphs",
+        "description": "Build and manage knowledge graphs",
+        "tools": ["neo4j", "rdf", "sparql", "graphql"],
+        "validation": "knowledge_graphs_validation"
+      },
+      {
+        "skill_id": "ENTITY_EXTRACTION_SKILL",
+        "name": "Entity Extraction",
+        "description": "Extract and recognize entities",
+        "tools": ["spacy", "nltk", "bert", "named_entity_recognition"],
+        "validation": "entity_extraction_validation"
+      },
+      {
+        "skill_id": "SEMANTIC_REASONING_SKILL",
+        "name": "Semantic Reasoning",
+        "description": "Perform semantic reasoning and inference",
+        "tools": ["rdf_reasoning", "owl_ontologies", "logical_inference"],
+        "validation": "semantic_reasoning_validation"
+      }
+    ],
+    "tools": [
+      {
+        "tool_id": "KNOWLEDGE_SYNTHESIS_TOOL",
+        "name": "Knowledge Synthesis Engine",
+        "description": "Core knowledge synthesis system",
+        "file_path": "src/services/knowledge_synthesis/core.py",
+        "config": "config/knowledge_synthesis/synthesis_config.json"
+      },
+      {
+        "tool_id": "KNOWLEDGE_GRAPH_TOOL",
+        "name": "Knowledge Graph Engine",
+        "description": "Knowledge graph construction and management",
+        "file_path": "src/services/knowledge_synthesis/graph_engine.py",
+        "config": "config/knowledge_synthesis/graph_config.json"
+      },
+      {
+        "tool_id": "ENTITY_EXTRACTION_TOOL",
+        "name": "Entity Extraction Engine",
+        "description": "Entity extraction and recognition",
+        "file_path": "src/services/knowledge_synthesis/entity_extractor.py",
+        "config": "config/knowledge_synthesis/entity_config.json"
+      }
+    ],
+    "configs": [
+      {
+        "config_id": "KNOWLEDGE_SYNTHESIS_CONFIG",
+        "name": "Knowledge Synthesis Configuration",
+        "description": "Configuration for knowledge synthesis system",
+        "file_path": "config/knowledge_synthesis/synthesis_config.json",
+        "schema": "knowledge_synthesis_config_schema"
+      },
+      {
+        "config_id": "KNOWLEDGE_GRAPH_CONFIG",
+        "name": "Knowledge Graph Configuration",
+        "description": "Configuration for knowledge graphs",
+        "file_path": "config/knowledge_synthesis/graph_config.json",
+        "schema": "knowledge_graph_config_schema"
+      },
+      {
+        "config_id": "ENTITY_EXTRACTION_CONFIG",
+        "name": "Entity Extraction Configuration",
+        "description": "Configuration for entity extraction",
+        "file_path": "config/knowledge_synthesis/entity_config.json",
+        "schema": "entity_extraction_config_schema"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step_id": "STEP_1",
+        "action": "gather_ingredients",
+        "ingredients": ["KNOWLEDGE_GRAPH_TASK", "KNOWLEDGE_GRAPHS_SKILL", "KNOWLEDGE_SYNTHESIS_TOOL"],
+        "description": "Gather knowledge synthesis architecture ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "knowledge_synthesis_cache",
+        "description": "Check for existing knowledge synthesis cache"
+      },
+      {
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "KNOWLEDGE_GRAPH_TASK",
+        "description": "Execute knowledge graph infrastructure task"
+      },
+      {
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["ENTITY_EXTRACTION_TASK", "ENTITY_EXTRACTION_SKILL", "KNOWLEDGE_GRAPH_TOOL"],
+        "description": "Gather entity extraction ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "ENTITY_EXTRACTION_TASK",
+        "description": "Execute entity extraction task"
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["RELATIONSHIP_DISCOVERY_TASK", "SEMANTIC_REASONING_SKILL", "ENTITY_EXTRACTION_TOOL"],
+        "description": "Gather relationship discovery ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "RELATIONSHIP_DISCOVERY_TASK",
+        "description": "Execute relationship discovery task"
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "gather_ingredients",
+        "ingredients": ["SEMANTIC_REASONING_TASK", "SEMANTIC_REASONING_SKILL"],
+        "description": "Gather semantic reasoning ingredients from pantry"
+      },
+      {
+        "step_id": "STEP_9",
+        "action": "execute_task",
+        "task": "SEMANTIC_REASONING_TASK",
+        "description": "Execute semantic reasoning task"
+      },
+      {
+        "step_id": "STEP_10",
+        "action": "validate_results",
+        "validation": "knowledge_synthesis_validation",
+        "description": "Validate complete knowledge synthesis system"
+      },
+      {
+        "step_id": "STEP_11",
+        "action": "cache_results",
+        "cache_key": "knowledge_synthesis_cache",
+        "description": "Cache knowledge synthesis configuration and models"
+      }
+    ],
+    "caching_strategy": {
+      "cache_key": "knowledge_synthesis_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "knowledge_update",
+      "cache_validation": "knowledge_synthesis_validation"
+    }
   },
   "prerequisites": {
     "system_requirements": {

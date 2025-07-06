@@ -2,16 +2,23 @@
   "recipe_metadata": {
     "recipe_id": "02-AI-SERVICES-MASTER",
     "title": "AI Services Deployment (Master Recipe)",
-    "version": "1.0.0",
-    "created_by": "Gemini",
+    "version": "2.0.0",
+    "created_by": "Claude Sonnet 4",
     "creation_date": "2025-07-05T00:00:00Z",
+    "last_updated": "2025-07-06T00:00:00Z",
     "difficulty_level": "expert",
     "architecture_tier": "ai-services",
-    "description": "This is a master recipe that orchestrates the deployment and configuration of various AI services. It uses a hardware profiler to determine compatible services and allows for user customization via a central configuration file. It is composed of multiple, modular sub-recipes.",
-    "is_master_recipe": true
+    "description": "This is a master recipe that orchestrates the deployment and configuration of various AI services using the kitchen analogy system. It uses a hardware profiler to determine compatible services and allows for user customization via a central configuration file. It is composed of multiple, modular sub-recipes, each with atomic pantry ingredients and aggressive caching.",
+    "is_master_recipe": true,
+    "kitchen_system": {
+      "orchestrator": "chef",
+      "pantry_required": true,
+      "caching_enabled": true,
+      "cache_strategy": "aggressive"
+    }
   },
   "recipe_overview": {
-    "description": "Deploys a comprehensive, user-configurable AI service layer. Defaults to Ollama and Open WebUI, with optional services like vLLM and AnythingLLM. Intelligently selects and pulls LLMs based on detected hardware and user preferences.",
+    "description": "Deploys a comprehensive, user-configurable AI service layer. Defaults to Ollama and Open WebUI, with optional services like vLLM and AnythingLLM. Intelligently selects and pulls LLMs based on detected hardware and user preferences. All submodules are managed as atomic pantry ingredients with orchestrator-driven execution and caching.",
     "sub_recipe_directory": "modules/",
     "sub_recipes": [
       "01-hardware-profiler.json",
@@ -20,7 +27,61 @@
       "04-model-management.json",
       "05-vllm-setup.json",
       "06-anything-llm-setup.json"
+    ],
+    "technology_stack": {
+      "llm_server": ["Ollama", "vLLM (optional)", "AnythingLLM (optional)"],
+      "llm_ui": ["Open WebUI", "AnythingLLM (optional)"],
+      "orchestration": "Docker Compose",
+      "language": "Python (for profiling/model management)"
+    },
+    "deliverables": [
+      "Central AI services configuration file (config/ai_services_config.yml)",
+      "Hardware profile (config/hardware_profile.json)",
+      "All required Docker Compose files for each service",
+      "Model management scripts and configs",
+      "User-customizable service selection and model overrides",
+      "Atomic, reusable pantry ingredients for each service"
     ]
+  },
+  "pantry_ingredients": {
+    "required_tasks": [
+      {"ingredient_id": "task:init-ai-services-config:1.0.0", "purpose": "Initialize AI services config file", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:hardware-profiler:1.0.0", "purpose": "Detect hardware and OS details", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:deploy-ollama:1.0.0", "purpose": "Deploy Ollama LLM server", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:deploy-open-webui:1.0.0", "purpose": "Deploy Open WebUI interface", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:model-management:1.0.0", "purpose": "Manage and pull LLM models", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:deploy-vllm:1.0.0", "purpose": "Deploy vLLM server (optional)", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "task:deploy-anythingllm:1.0.0", "purpose": "Deploy AnythingLLM stack (optional)", "usage_count": 1, "caching_benefit": "high"}
+    ],
+    "required_skills": [
+      {"ingredient_id": "skill:manage-ai-services:1.0.0", "purpose": "Manage AI service deployment", "usage_count": 10, "caching_benefit": "medium"},
+      {"ingredient_id": "skill:configure-docker:1.0.0", "purpose": "Configure Docker Compose for services", "usage_count": 8, "caching_benefit": "high"},
+      {"ingredient_id": "skill:profile-hardware:1.0.0", "purpose": "Profile hardware for optimal service selection", "usage_count": 5, "caching_benefit": "high"}
+    ],
+    "required_tools": [
+      {"ingredient_id": "tool:docker:24.0.0", "purpose": "Docker engine", "usage_count": 5, "caching_benefit": "high"},
+      {"ingredient_id": "tool:docker-compose:2.20.0", "purpose": "Docker Compose", "usage_count": 5, "caching_benefit": "high"},
+      {"ingredient_id": "tool:python:3.10.0", "purpose": "Python for scripting", "usage_count": 2, "caching_benefit": "high"}
+    ],
+    "required_configs": [
+      {"ingredient_id": "config:ai-services-config:1.0.0", "purpose": "AI services configuration", "usage_count": 1, "caching_benefit": "high"},
+      {"ingredient_id": "config:hardware-profile:1.0.0", "purpose": "Hardware profile JSON", "usage_count": 1, "caching_benefit": "high"}
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {"step": 1, "action": "gather_ingredients", "description": "Load all required pantry ingredients with aggressive caching", "ingredients": ["task:init-ai-services-config:1.0.0", "task:hardware-profiler:1.0.0", "task:deploy-ollama:1.0.0", "task:deploy-open-webui:1.0.0", "task:model-management:1.0.0", "task:deploy-vllm:1.0.0", "task:deploy-anythingllm:1.0.0", "skill:manage-ai-services:1.0.0", "skill:configure-docker:1.0.0", "skill:profile-hardware:1.0.0", "tool:docker:24.0.0", "tool:docker-compose:2.20.0", "tool:python:3.10.0", "config:ai-services-config:1.0.0", "config:hardware-profile:1.0.0"]},
+      {"step": 2, "action": "validate_dependencies", "description": "Verify all ingredient dependencies are satisfied", "checks": ["Docker and Docker Compose installed", "Python 3.10+ available", "Hardware profiler script present", "User configuration loaded"]},
+      {"step": 3, "action": "execute_ai_services_deployment", "description": "Execute deployment of all selected AI services in order", "sub_steps": ["Initialize config file", "Run hardware profiler", "Read user config and hardware profile", "Deploy Ollama", "Deploy Open WebUI", "Deploy vLLM (if enabled)", "Deploy AnythingLLM (if enabled)", "Run model management scripts"]},
+      {"step": 4, "action": "cache_results", "description": "Cache successful deployment results for future use", "cache_items": ["AI services config", "Hardware profile", "Docker Compose files", "Model management scripts and configs"]}
+    ],
+    "caching_strategy": {
+      "ingredient_caching": "aggressive",
+      "result_caching": "aggressive",
+      "cache_validation": "content_hash",
+      "cache_ttl": 604800,
+      "cache_location": "local"
+    }
   },
   "tasks": [
     {
@@ -28,19 +89,15 @@
       "title": "Initialize AI Services Configuration",
       "description": "Create a default configuration file for the AI services module. This file will be populated by the hardware profiler and can be overridden by the user to select their preferred services and models.",
       "estimated_time": "5 minutes",
-      "files_to_create": [
-        "config/ai_services_config.yml"
-      ],
-      "acceptance_criteria": [
-        "A default 'config/ai_services_config.yml' is created with placeholder values for services and models."
-      ]
+      "files_to_create": ["config/ai_services_config.yml"],
+      "acceptance_criteria": ["A default 'config/ai_services_config.yml' is created with placeholder values for services and models."]
     }
   ],
   "execution_plan": [
-    "1. Initialize the central configuration file (`config/ai_services_config.yml`).",
-    "2. Execute the `01-hardware-profiler.json` sub-recipe to populate the hardware details in the config.",
-    "3. Read the final configuration (user overrides applied) to determine which services to deploy.",
-    "4. Execute the sub-recipes for the selected services in order.",
+    "Step 1: Use kitchen system to gather all required pantry ingredients",
+    "Step 2: Validate all dependencies and configurations",
+    "Step 3: Execute sub-recipes in the order listed in the `sub_recipes` array, based on user config and hardware profile",
+    "Step 4: Cache successful deployment results for future use",
     "Refer to the `README.json` in the `modules/` directory for details on each sub-recipe."
   ]
 } 
