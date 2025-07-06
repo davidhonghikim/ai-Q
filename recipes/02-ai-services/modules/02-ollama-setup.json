@@ -1,0 +1,43 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-SERVICE-OLLAMA-SETUP-002",
+    "title": "Ollama Service Setup",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "intermediate",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Deploys the Ollama service using Docker. This service is a default component for running local LLMs and will be configured based on the hardware profile.",
+    "technology_stack": {
+      "llm_server": "Ollama",
+      "orchestration": "Docker Compose"
+    },
+    "deliverables": [
+      "A running Ollama Docker container.",
+      "A Docker Compose file for easy management.",
+      "Configuration to expose the Ollama API to other services."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "40-002",
+      "title": "Deploy Ollama Container",
+      "description": "Create and configure a docker-compose.yml file to run the official Ollama image. The setup will be optimized based on the hardware profile (e.g., assigning GPU resources).",
+      "dependencies": ["40-001"],
+      "estimated_time": "20 minutes",
+      "commands": [
+        "docker-compose -f docker/compose/ollama.yml up -d"
+      ],
+      "files_to_create": [
+        "docker/compose/ollama.yml"
+      ],
+      "acceptance_criteria": [
+        "The ollama.yml Docker Compose file is created.",
+        "The Ollama container starts successfully without errors.",
+        "The Ollama API is accessible on its default port (11434)."
+      ]
+    }
+  ]
+} 
