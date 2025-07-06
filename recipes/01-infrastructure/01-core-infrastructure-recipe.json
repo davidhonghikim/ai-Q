@@ -1,504 +1,516 @@
 {
   "recipe_metadata": {
     "recipe_id": "01-CORE-INFRASTRUCTURE-MASTER",
-    "title": "Core Infrastructure Recipe - Master Orchestration",
-    "version": "4.0.0",
+    "title": "Core Infrastructure Master Recipe",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-01-28T13:30:00Z",
-    "last_updated": "2025-07-05T23:55:00Z",
+    "last_updated": "2025-01-28T16:00:00Z",
     "difficulty_level": "expert",
     "architecture_tier": "enterprise-foundation",
-    "description": "This is a master recipe that orchestrates the complete core infrastructure implementation using the kitchen analogy system. It coordinates all sub-recipes to create a production-ready infrastructure foundation with Docker environment, monitoring, logging, load balancing, service discovery, message queues, caching, backup, security, performance optimization, disaster recovery, and comprehensive documentation.",
+    "description": "Master recipe orchestrating complete core infrastructure implementation with exact specifications, atomic tasks, and zero technical debt",
     "is_master_recipe": true,
     "kitchen_system": {
-      "orchestrator": "chef",
-      "pantry_required": true,
-      "caching_enabled": true,
-      "cache_strategy": "smart"
+      "pantry_category": "infrastructure",
+      "cooking_time": "480 minutes",
+      "complexity": "expert",
+      "kitchen_tools": ["docker_orchestration", "monitoring_setup", "security_hardening", "performance_optimization"],
+      "cache_strategy": "core_infrastructure_cache",
+      "orchestrator_priority": "critical"
     }
   },
   "recipe_overview": {
-    "description": "Complete core infrastructure implementation featuring Docker environment, comprehensive monitoring, centralized logging, load balancing, service discovery, message queues, distributed caching, automated backup, security hardening, performance optimization, disaster recovery, and comprehensive documentation. This master recipe orchestrates all sub-recipes using the kitchen analogy system for atomic, reusable ingredients and intelligent caching.",
-    "sub_recipe_directory": "01-core-infrastructure/",
-    "sub_recipes": [
-      "01-01-docker-environment.json",
-      "01-02-system-monitoring.json",
-      "01-03-logging-infrastructure.json",
-      "01-04-load-balancing.json",
-      "01-05-service-discovery.json",
-      "01-06-message-queue.json",
-      "01-07-cache-layer.json",
-      "01-08-backup-infrastructure.json",
-      "01-09-security-hardening.json",
-      "01-10-performance-optimization.json",
-      "01-11-disaster-recovery.json",
-      "01-12-documentation-and-handover.json"
+    "name": "Core Infrastructure Master System",
+    "description": "Complete enterprise-grade core infrastructure with Docker orchestration, monitoring, security, and performance optimization",
+    "prerequisites": [
+      "Ubuntu 22.04 LTS or Windows 11 with WSL2",
+      "Minimum 16GB RAM, 8 CPU cores",
+      "100GB free disk space",
+      "Docker Engine 24.0+ installed",
+      "Docker Compose 2.20+ installed",
+      "Git 2.35+ installed"
     ],
-    "total_sub_recipes": 12,
-    "total_tasks": 180,
-    "estimated_duration": "3-4 weeks",
-    "complexity": "Advanced",
-    "dependencies": []
+    "target_outcome": "Production-ready infrastructure foundation with zero technical debt",
+    "success_criteria": [
+      "All Docker services start successfully with health checks",
+      "Monitoring dashboard accessible at http://localhost:3000",
+      "Logging system operational with centralized collection",
+      "Security hardening applied and validated",
+      "Performance benchmarks met (response time < 200ms)",
+      "Backup system functional with automated scheduling",
+      "All components can be safely installed/uninstalled"
+    ]
   },
   "pantry_ingredients": {
-    "required_tasks": [
+    "tasks": [
       {
-        "ingredient_id": "task:pull-docker-image:1.0.0",
-        "purpose": "Pull Docker images for all services",
-        "usage_count": 15,
-        "caching_benefit": "high"
+        "task_id": "DOCKER_ENVIRONMENT_TASK",
+        "name": "Docker Environment Setup",
+        "description": "Create production-ready Docker environment with exact configurations",
+        "estimated_time": "60 minutes",
+        "dependencies": [],
+        "skills_required": ["docker_orchestration", "container_management", "network_configuration"],
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/{data,config,logs,backups}",
+          "chmod 755 /opt/ai-q",
+          "docker network create ai-q-network --subnet=172.20.0.0/16",
+          "docker network create ai-q-monitoring --subnet=172.21.0.0/16"
+        ]
       },
       {
-        "ingredient_id": "task:create-docker-network:1.0.0",
-        "purpose": "Create Docker networks for service isolation",
-        "usage_count": 8,
-        "caching_benefit": "medium"
+        "task_id": "MONITORING_SETUP_TASK",
+        "name": "Monitoring Infrastructure Setup",
+        "description": "Deploy Prometheus, Grafana, and alerting with exact configurations",
+        "estimated_time": "60 minutes",
+        "dependencies": ["DOCKER_ENVIRONMENT_TASK"],
+        "skills_required": ["prometheus_config", "grafana_setup", "alerting_configuration"],
+        "exact_commands": [
+          "docker run -d --name prometheus --network ai-q-monitoring -p 9090:9090 -v /opt/ai-q/config/prometheus:/etc/prometheus prom/prometheus:v2.45.0",
+          "docker run -d --name grafana --network ai-q-monitoring -p 3000:3000 -v /opt/ai-q/data/grafana:/var/lib/grafana grafana/grafana:10.0.0"
+        ]
       },
       {
-        "ingredient_id": "task:validate-docker-compose:1.0.0",
-        "purpose": "Validate Docker Compose configurations",
-        "usage_count": 12,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "task:start-docker-service:1.0.0",
-        "purpose": "Start Docker services with health checks",
-        "usage_count": 20,
-        "caching_benefit": "low"
+        "task_id": "SECURITY_HARDENING_TASK",
+        "name": "Security Hardening Implementation",
+        "description": "Apply comprehensive security hardening with exact configurations",
+        "estimated_time": "60 minutes",
+        "dependencies": ["MONITORING_SETUP_TASK"],
+        "skills_required": ["security_configuration", "firewall_setup", "ssl_certificates"],
+        "exact_commands": [
+          "ufw allow 22/tcp",
+          "ufw allow 80/tcp",
+          "ufw allow 443/tcp",
+          "ufw enable",
+          "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /opt/ai-q/config/ssl/nginx.key -out /opt/ai-q/config/ssl/nginx.crt"
+        ]
       }
     ],
-    "required_skills": [
+    "skills": [
       {
-        "ingredient_id": "skill:run-docker-compose:1.0.0",
-        "purpose": "Execute Docker Compose operations",
-        "usage_count": 25,
-        "caching_benefit": "medium"
+        "skill_id": "DOCKER_ORCHESTRATION_SKILL",
+        "name": "Docker Orchestration",
+        "description": "Orchestrate Docker containers and services",
+        "tools": ["docker", "docker_compose", "docker_swarm"],
+        "validation": "docker_orchestration_validation",
+        "exact_validation_commands": [
+          "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'",
+          "docker network ls --filter name=ai-q",
+          "docker-compose config --quiet"
+        ]
       },
       {
-        "ingredient_id": "skill:configure-monitoring:1.0.0",
-        "purpose": "Configure monitoring and alerting",
-        "usage_count": 10,
-        "caching_benefit": "high"
+        "skill_id": "MONITORING_SETUP_SKILL",
+        "name": "Monitoring Setup",
+        "description": "Setup and configure monitoring systems",
+        "tools": ["prometheus", "grafana", "alertmanager"],
+        "validation": "monitoring_setup_validation",
+        "exact_validation_commands": [
+          "curl -f http://localhost:9090/-/healthy",
+          "curl -f http://localhost:3000/api/health",
+          "docker exec prometheus promtool check config /etc/prometheus/prometheus.yml"
+        ]
       },
       {
-        "ingredient_id": "skill:setup-logging:1.0.0",
-        "purpose": "Setup centralized logging infrastructure",
-        "usage_count": 8,
-        "caching_benefit": "high"
+        "skill_id": "SECURITY_HARDENING_SKILL",
+        "name": "Security Hardening",
+        "description": "Apply security hardening measures",
+        "tools": ["firewall", "ssl_certificates", "security_scanning"],
+        "validation": "security_hardening_validation",
+        "exact_validation_commands": [
+          "ufw status verbose",
+          "openssl x509 -in /opt/ai-q/config/ssl/nginx.crt -text -noout",
+          "nmap -sT localhost -p 22,80,443,3000,9090"
+        ]
       }
     ],
-    "required_tools": [
+    "tools": [
       {
-        "ingredient_id": "tool:docker:24.0.0",
-        "purpose": "Docker container platform",
-        "usage_count": 50,
-        "caching_benefit": "high"
+        "tool_id": "CORE_INFRASTRUCTURE_TOOL",
+        "name": "Core Infrastructure Engine",
+        "description": "Core infrastructure orchestration system",
+        "file_path": "src/services/infrastructure/core.py",
+        "config": "config/infrastructure/core_config.json",
+        "exact_config_spec": {
+          "docker_compose_version": "3.8",
+          "prometheus_version": "v2.45.0",
+          "grafana_version": "10.0.0",
+          "network_subnet": "172.20.0.0/16",
+          "monitoring_subnet": "172.21.0.0/16"
+        }
       },
       {
-        "ingredient_id": "tool:docker-compose:2.20.0",
-        "purpose": "Docker Compose orchestration",
-        "usage_count": 30,
-        "caching_benefit": "high"
+        "tool_id": "DOCKER_ORCHESTRATOR_TOOL",
+        "name": "Docker Orchestrator",
+        "description": "Docker container orchestration",
+        "file_path": "src/services/infrastructure/docker_orchestrator.py",
+        "config": "config/infrastructure/docker_config.json",
+        "exact_config_spec": {
+          "container_restart_policy": "unless-stopped",
+          "health_check_interval": "30s",
+          "health_check_timeout": "10s",
+          "health_check_retries": 3
+        }
       },
       {
-        "ingredient_id": "tool:prometheus:2.45.0",
-        "purpose": "Monitoring and alerting",
-        "usage_count": 5,
-        "caching_benefit": "medium"
-      },
-      {
-        "ingredient_id": "tool:grafana:10.0.0",
-        "purpose": "Visualization and dashboards",
-        "usage_count": 3,
-        "caching_benefit": "medium"
+        "tool_id": "MONITORING_TOOL",
+        "name": "Monitoring Engine",
+        "description": "Monitoring and alerting system",
+        "file_path": "src/services/infrastructure/monitoring.py",
+        "config": "config/infrastructure/monitoring_config.json",
+        "exact_config_spec": {
+          "prometheus_retention_days": 15,
+          "grafana_admin_password": "admin123",
+          "alert_check_interval": "1m",
+          "dashboard_auto_refresh": "30s"
+        }
       }
     ],
-    "required_configs": [
+    "configs": [
       {
-        "ingredient_id": "config:docker-compose-base:1.0.0",
-        "purpose": "Base Docker Compose configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "CORE_INFRASTRUCTURE_CONFIG",
+        "name": "Core Infrastructure Configuration",
+        "description": "Configuration for core infrastructure system",
+        "file_path": "config/infrastructure/core_config.json",
+        "schema": "core_infrastructure_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "docker_compose_version": {"type": "string", "pattern": "^3\\.[0-9]+$"},
+            "prometheus_version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+            "grafana_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+            "network_subnet": {"type": "string", "format": "ipv4-cidr"},
+            "monitoring_subnet": {"type": "string", "format": "ipv4-cidr"}
+          },
+          "required": ["docker_compose_version", "prometheus_version", "grafana_version", "network_subnet", "monitoring_subnet"]
+        }
       },
       {
-        "ingredient_id": "config:prometheus-config:1.0.0",
-        "purpose": "Prometheus monitoring configuration",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "DOCKER_CONFIG",
+        "name": "Docker Configuration",
+        "description": "Configuration for Docker orchestration",
+        "file_path": "config/infrastructure/docker_config.json",
+        "schema": "docker_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "container_restart_policy": {"type": "string", "enum": ["no", "always", "unless-stopped", "on-failure"]},
+            "health_check_interval": {"type": "string", "pattern": "^[0-9]+s$"},
+            "health_check_timeout": {"type": "string", "pattern": "^[0-9]+s$"},
+            "health_check_retries": {"type": "integer", "minimum": 1, "maximum": 10}
+          },
+          "required": ["container_restart_policy", "health_check_interval", "health_check_timeout", "health_check_retries"]
+        }
       },
       {
-        "ingredient_id": "config:grafana-dashboards:1.0.0",
-        "purpose": "Grafana dashboard configurations",
-        "usage_count": 1,
-        "caching_benefit": "high"
+        "config_id": "MONITORING_CONFIG",
+        "name": "Monitoring Configuration",
+        "description": "Configuration for monitoring system",
+        "file_path": "config/infrastructure/monitoring_config.json",
+        "schema": "monitoring_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "prometheus_retention_days": {"type": "integer", "minimum": 1, "maximum": 365},
+            "grafana_admin_password": {"type": "string", "minLength": 8},
+            "alert_check_interval": {"type": "string", "pattern": "^[0-9]+[smhd]$"},
+            "dashboard_auto_refresh": {"type": "string", "pattern": "^[0-9]+s$"}
+          },
+          "required": ["prometheus_retention_days", "grafana_admin_password", "alert_check_interval", "dashboard_auto_refresh"]
+        }
       }
     ]
   },
   "kitchen_execution": {
     "orchestrator_steps": [
       {
-        "step": 1,
+        "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "description": "Load all required pantry ingredients with caching",
-        "ingredients": [
-          "task:pull-docker-image:1.0.0",
-          "task:create-docker-network:1.0.0",
-          "task:validate-docker-compose:1.0.0",
-          "task:start-docker-service:1.0.0",
-          "skill:run-docker-compose:1.0.0",
-          "skill:configure-monitoring:1.0.0",
-          "skill:setup-logging:1.0.0",
-          "tool:docker:24.0.0",
-          "tool:docker-compose:2.20.0",
-          "tool:prometheus:2.45.0",
-          "tool:grafana:10.0.0",
-          "config:docker-compose-base:1.0.0",
-          "config:prometheus-config:1.0.0",
-          "config:grafana-dashboards:1.0.0"
+        "ingredients": ["DOCKER_ENVIRONMENT_TASK", "DOCKER_ORCHESTRATION_SKILL", "CORE_INFRASTRUCTURE_TOOL"],
+        "description": "Gather core infrastructure ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/infrastructure/core.py --gather-ingredients",
+          "python3 src/services/infrastructure/core.py --validate-prerequisites"
         ]
       },
       {
-        "step": 2,
-        "action": "validate_dependencies",
-        "description": "Verify all ingredient dependencies are satisfied",
-        "checks": [
-          "Docker and Docker Compose are available",
-          "All required images can be pulled",
-          "Network configurations are valid",
-          "Monitoring tools are accessible"
+        "step_id": "STEP_2",
+        "action": "check_cache",
+        "cache_key": "core_infrastructure_cache",
+        "description": "Check for existing core infrastructure cache",
+        "exact_commands": [
+          "python3 src/services/infrastructure/core.py --check-cache",
+          "ls -la /opt/ai-q/cache/core_infrastructure/"
         ]
       },
       {
-        "step": 3,
-        "action": "execute_sub_recipes",
-        "description": "Execute sub-recipes in sequential order with caching",
-        "sub_recipes": [
-          "01-01-docker-environment.json",
-          "01-02-system-monitoring.json",
-          "01-03-logging-infrastructure.json",
-          "01-04-load-balancing.json",
-          "01-05-service-discovery.json",
-          "01-06-message-queue.json",
-          "01-07-cache-layer.json",
-          "01-08-backup-infrastructure.json",
-          "01-09-security-hardening.json",
-          "01-10-performance-optimization.json",
-          "01-11-disaster-recovery.json",
-          "01-12-documentation-and-handover.json"
+        "step_id": "STEP_3",
+        "action": "execute_task",
+        "task": "DOCKER_ENVIRONMENT_TASK",
+        "description": "Execute Docker environment setup task",
+        "exact_commands": [
+          "mkdir -p /opt/ai-q/{data,config,logs,backups,cache}",
+          "chmod 755 /opt/ai-q",
+          "docker network create ai-q-network --subnet=172.20.0.0/16",
+          "docker network create ai-q-monitoring --subnet=172.21.0.0/16",
+          "python3 src/services/infrastructure/docker_orchestrator.py --setup-environment"
         ]
       },
       {
-        "step": 4,
+        "step_id": "STEP_4",
+        "action": "gather_ingredients",
+        "ingredients": ["MONITORING_SETUP_TASK", "MONITORING_SETUP_SKILL", "MONITORING_TOOL"],
+        "description": "Gather monitoring setup ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/infrastructure/monitoring.py --gather-ingredients",
+          "docker pull prom/prometheus:v2.45.0",
+          "docker pull grafana/grafana:10.0.0"
+        ]
+      },
+      {
+        "step_id": "STEP_5",
+        "action": "execute_task",
+        "task": "MONITORING_SETUP_TASK",
+        "description": "Execute monitoring setup task",
+        "exact_commands": [
+          "docker run -d --name prometheus --network ai-q-monitoring -p 9090:9090 -v /opt/ai-q/config/prometheus:/etc/prometheus prom/prometheus:v2.45.0",
+          "docker run -d --name grafana --network ai-q-monitoring -p 3000:3000 -v /opt/ai-q/data/grafana:/var/lib/grafana grafana/grafana:10.0.0",
+          "python3 src/services/infrastructure/monitoring.py --setup-dashboards"
+        ]
+      },
+      {
+        "step_id": "STEP_6",
+        "action": "gather_ingredients",
+        "ingredients": ["SECURITY_HARDENING_TASK", "SECURITY_HARDENING_SKILL"],
+        "description": "Gather security hardening ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/infrastructure/security.py --gather-ingredients",
+          "apt-get update && apt-get install -y ufw openssl"
+        ]
+      },
+      {
+        "step_id": "STEP_7",
+        "action": "execute_task",
+        "task": "SECURITY_HARDENING_TASK",
+        "description": "Execute security hardening task",
+        "exact_commands": [
+          "ufw allow 22/tcp",
+          "ufw allow 80/tcp",
+          "ufw allow 443/tcp",
+          "ufw enable",
+          "mkdir -p /opt/ai-q/config/ssl",
+          "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /opt/ai-q/config/ssl/nginx.key -out /opt/ai-q/config/ssl/nginx.crt -subj '/C=US/ST=State/L=City/O=Organization/CN=localhost'",
+          "python3 src/services/infrastructure/security.py --apply-hardening"
+        ]
+      },
+      {
+        "step_id": "STEP_8",
+        "action": "validate_results",
+        "validation": "core_infrastructure_validation",
+        "description": "Validate complete core infrastructure system",
+        "exact_commands": [
+          "docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'",
+          "curl -f http://localhost:9090/-/healthy",
+          "curl -f http://localhost:3000/api/health",
+          "ufw status verbose",
+          "python3 src/services/infrastructure/core.py --validate-system"
+        ]
+      },
+      {
+        "step_id": "STEP_9",
         "action": "cache_results",
-        "description": "Cache successful results for future use",
-        "cache_items": [
-          "Docker images and configurations",
-          "Monitoring setup and dashboards",
-          "Logging infrastructure",
-          "Security configurations",
-          "Performance optimizations"
+        "cache_key": "core_infrastructure_cache",
+        "description": "Cache core infrastructure configuration and setup",
+        "exact_commands": [
+          "python3 src/services/infrastructure/core.py --cache-results",
+          "tar -czf /opt/ai-q/cache/core_infrastructure_cache.tar.gz /opt/ai-q/config /opt/ai-q/data"
         ]
       }
     ],
     "caching_strategy": {
-      "ingredient_caching": "smart",
-      "result_caching": "aggressive",
-      "cache_validation": "content_hash",
-      "cache_ttl": 604800,
-      "cache_location": "local"
+      "cache_key": "core_infrastructure_cache",
+      "cache_duration": "persistent",
+      "cache_invalidation": "infrastructure_update",
+      "cache_validation": "core_infrastructure_validation",
+      "exact_cache_commands": [
+        "python3 src/services/infrastructure/core.py --cache-config",
+        "python3 src/services/infrastructure/core.py --cache-docker-images",
+        "python3 src/services/infrastructure/core.py --cache-monitoring-data"
+      ]
     }
   },
-  "execution_plan": [
-    "Execute sub-recipes in the exact order listed in the `sub_recipes` array.",
-    "Each sub-recipe must complete successfully before proceeding to the next.",
-    "Use kitchen system to gather ingredients with intelligent caching.",
-    "Verify all acceptance criteria are met for each sub-recipe before continuing.",
-    "Refer to the `README.json` in the `01-core-infrastructure/` directory for detailed information on each sub-recipe.",
-    "All documentation outputs must be in JSON format only - no markdown files allowed.",
-    "Ensure zero technical debt and comprehensive error handling throughout.",
-    "Cache successful results for improved performance on subsequent runs."
+  "implementation_steps": [
+    {
+      "task_id": "01-001",
+      "title": "Create Core Infrastructure Architecture",
+      "description": "Design and implement the core infrastructure architecture with exact specifications",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "exact_commands": [
+        "mkdir -p src/services/infrastructure",
+        "mkdir -p config/infrastructure",
+        "mkdir -p /opt/ai-q/{data,config,logs,backups,cache}",
+        "chmod 755 /opt/ai-q"
+      ],
+      "files_to_create": [
+        "src/services/infrastructure/__init__.py",
+        "src/services/infrastructure/core.py",
+        "src/services/infrastructure/docker_orchestrator.py",
+        "src/services/infrastructure/monitoring.py",
+        "src/services/infrastructure/security.py",
+        "config/infrastructure/core_config.json",
+        "config/infrastructure/docker_config.json",
+        "config/infrastructure/monitoring_config.json"
+      ],
+      "acceptance_criteria": [
+        "All directory structures created with correct permissions",
+        "Core infrastructure base classes defined with exact interfaces",
+        "Configuration system supports all infrastructure types with validation",
+        "Type definitions for all infrastructure operations with exact specifications",
+        "Manager class can handle multiple infrastructure providers with atomic operations"
+      ]
+    },
+    {
+      "task_id": "01-002",
+      "title": "Implement Docker Environment Setup",
+      "description": "Create production-ready Docker environment with exact configurations and health checks",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "exact_commands": [
+        "docker network create ai-q-network --subnet=172.20.0.0/16",
+        "docker network create ai-q-monitoring --subnet=172.21.0.0/16",
+        "docker network create ai-q-services --subnet=172.22.0.0/16"
+      ],
+      "files_to_create": [
+        "docker-compose.yml",
+        "docker-compose.override.yml",
+        "docker-compose.prod.yml",
+        "docker/nginx/nginx.conf",
+        "docker/nginx/default.conf",
+        "docker/nginx/ssl.conf"
+      ],
+      "acceptance_criteria": [
+        "Docker networks created with exact subnet configurations",
+        "Docker Compose files functional with health checks",
+        "Nginx configuration operational with SSL support",
+        "All services can communicate across networks",
+        "Health checks respond within 3 seconds"
+      ]
+    },
+    {
+      "task_id": "01-003",
+      "title": "Implement Monitoring Infrastructure",
+      "description": "Deploy Prometheus, Grafana, and alerting with exact configurations and dashboards",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "exact_commands": [
+        "docker run -d --name prometheus --network ai-q-monitoring -p 9090:9090 -v /opt/ai-q/config/prometheus:/etc/prometheus prom/prometheus:v2.45.0",
+        "docker run -d --name grafana --network ai-q-monitoring -p 3000:3000 -v /opt/ai-q/data/grafana:/var/lib/grafana grafana/grafana:10.0.0",
+        "docker run -d --name alertmanager --network ai-q-monitoring -p 9093:9093 -v /opt/ai-q/config/alertmanager:/etc/alertmanager prom/alertmanager:v0.25.0"
+      ],
+      "files_to_create": [
+        "config/prometheus/prometheus.yml",
+        "config/prometheus/rules/",
+        "config/grafana/dashboards/",
+        "config/grafana/provisioning/",
+        "config/alertmanager/alertmanager.yml"
+      ],
+      "acceptance_criteria": [
+        "Prometheus accessible at http://localhost:9090 with health check",
+        "Grafana accessible at http://localhost:3000 with admin/admin credentials",
+        "AlertManager accessible at http://localhost:9093",
+        "All monitoring targets showing as UP",
+        "Dashboard auto-refresh working at 30-second intervals"
+      ]
+    }
   ],
-  "sub_recipe_dependencies": {
-    "01-01-docker-environment.json": {
-      "dependencies": [],
-      "description": "Foundation Docker environment with Compose, networking, and orchestration",
-      "estimated_tasks": 25,
-      "duration": "3-4 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:create-docker-network:1.0.0",
-        "skill:run-docker-compose:1.0.0",
-        "tool:docker:24.0.0",
-        "tool:docker-compose:2.20.0"
-      ]
-    },
-    "01-02-system-monitoring.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Prometheus, Grafana, and comprehensive monitoring stack",
-      "estimated_tasks": 20,
-      "duration": "2-3 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "skill:configure-monitoring:1.0.0",
-        "tool:prometheus:2.45.0",
-        "tool:grafana:10.0.0",
-        "config:prometheus-config:1.0.0",
-        "config:grafana-dashboards:1.0.0"
-      ]
-    },
-    "01-03-logging-infrastructure.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "ELK stack with log aggregation and analysis",
-      "estimated_tasks": 18,
-      "duration": "2-3 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "skill:setup-logging:1.0.0",
-        "tool:elasticsearch:8.8.0",
-        "tool:logstash:8.8.0",
-        "tool:kibana:8.8.0"
-      ]
-    },
-    "01-04-load-balancing.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Nginx with advanced load balancing and SSL termination",
-      "estimated_tasks": 15,
-      "duration": "2 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:start-docker-service:1.0.0",
-        "tool:nginx:1.24.0",
-        "config:nginx-load-balancer:1.0.0"
-      ]
-    },
-    "01-05-service-discovery.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Consul for service discovery and configuration management",
-      "estimated_tasks": 12,
-      "duration": "1-2 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:start-docker-service:1.0.0",
-        "tool:consul:1.16.0",
-        "config:consul-config:1.0.0"
-      ]
-    },
-    "01-06-message-queue.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "RabbitMQ with clustering and high availability",
-      "estimated_tasks": 16,
-      "duration": "2-3 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:start-docker-service:1.0.0",
-        "tool:rabbitmq:3.12.0",
-        "config:rabbitmq-cluster:1.0.0"
-      ]
-    },
-    "01-07-cache-layer.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Redis cluster with persistence and high availability",
-      "estimated_tasks": 14,
-      "duration": "2 days",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:start-docker-service:1.0.0",
-        "tool:redis:7.2.0",
-        "config:redis-cluster:1.0.0"
-      ]
-    },
-    "01-08-backup-infrastructure.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Automated backup system with versioning and recovery",
-      "estimated_tasks": 12,
-      "duration": "1-2 days",
-      "pantry_ingredients": [
-        "task:create-backup-schedule:1.0.0",
-        "task:validate-backup:1.0.0",
-        "tool:restic:0.16.0",
-        "config:backup-policy:1.0.0"
-      ]
-    },
-    "01-09-security-hardening.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "Security hardening, firewall rules, and compliance measures",
-      "estimated_tasks": 18,
-      "duration": "2-3 days",
-      "pantry_ingredients": [
-        "task:configure-firewall:1.0.0",
-        "task:setup-ssl-certificates:1.0.0",
-        "tool:fail2ban:1.0.0",
-        "config:security-policy:1.0.0"
-      ]
-    },
-    "01-10-performance-optimization.json": {
-      "dependencies": ["01-01-docker-environment.json"],
-      "description": "System optimization, resource management, and performance tuning",
-      "estimated_tasks": 15,
-      "duration": "2 days",
-      "pantry_ingredients": [
-        "task:optimize-system-params:1.0.0",
-        "task:configure-resource-limits:1.0.0",
-        "tool:sysbench:1.0.0",
-        "config:performance-tuning:1.0.0"
-      ]
-    },
-    "01-11-disaster-recovery.json": {
-      "dependencies": ["01-08-backup-infrastructure.json"],
-      "description": "DR procedures, failover mechanisms, and business continuity",
-      "estimated_tasks": 10,
-      "duration": "1-2 days",
-      "pantry_ingredients": [
-        "task:test-failover:1.0.0",
-        "task:validate-recovery:1.0.0",
-        "config:dr-procedures:1.0.0"
-      ]
-    },
-    "01-12-documentation-and-handover.json": {
-      "dependencies": ["01-01-docker-environment.json", "01-02-system-monitoring.json"],
-      "description": "Comprehensive documentation and handover procedures",
-      "estimated_tasks": 10,
-      "duration": "1 day",
-      "pantry_ingredients": [
-        "task:generate-documentation:1.0.0",
-        "task:create-handover-report:1.0.0",
-        "config:documentation-template:1.0.0"
-      ]
-    }
-  },
-  "implementation_phases": {
-    "phase_1_foundation": {
-      "name": "Foundation Setup",
-      "sub_recipes": ["01-01-docker-environment.json"],
-      "duration": "3-4 days",
-      "description": "Basic infrastructure and container environment",
-      "pantry_ingredients": [
-        "task:pull-docker-image:1.0.0",
-        "task:create-docker-network:1.0.0",
-        "skill:run-docker-compose:1.0.0",
-        "tool:docker:24.0.0",
-        "tool:docker-compose:2.20.0"
-      ]
-    },
-    "phase_2_observability": {
-      "name": "Observability Stack",
-      "sub_recipes": ["01-02-system-monitoring.json", "01-03-logging-infrastructure.json"],
-      "duration": "4-6 days",
-      "description": "Monitoring and logging infrastructure",
-      "pantry_ingredients": [
-        "skill:configure-monitoring:1.0.0",
-        "skill:setup-logging:1.0.0",
-        "tool:prometheus:2.45.0",
-        "tool:grafana:10.0.0",
-        "tool:elasticsearch:8.8.0",
-        "config:prometheus-config:1.0.0",
-        "config:grafana-dashboards:1.0.0"
-      ]
-    },
-    "phase_3_core_services": {
-      "name": "Core Services",
-      "sub_recipes": ["01-04-load-balancing.json", "01-05-service-discovery.json", "01-06-message-queue.json", "01-07-cache-layer.json"],
-      "duration": "7-10 days",
-      "description": "Essential services for application support",
-      "pantry_ingredients": [
-        "task:start-docker-service:1.0.0",
-        "tool:nginx:1.24.0",
-        "tool:consul:1.16.0",
-        "tool:rabbitmq:3.12.0",
-        "tool:redis:7.2.0",
-        "config:nginx-load-balancer:1.0.0",
-        "config:consul-config:1.0.0",
-        "config:rabbitmq-cluster:1.0.0",
-        "config:redis-cluster:1.0.0"
-      ]
-    },
-    "phase_4_production_readiness": {
-      "name": "Production Readiness",
-      "sub_recipes": ["01-08-backup-infrastructure.json", "01-09-security-hardening.json", "01-10-performance-optimization.json"],
-      "duration": "5-8 days",
-      "description": "Production hardening and optimization",
-      "pantry_ingredients": [
-        "task:create-backup-schedule:1.0.0",
-        "task:configure-firewall:1.0.0",
-        "task:optimize-system-params:1.0.0",
-        "tool:restic:0.16.0",
-        "tool:fail2ban:1.0.0",
-        "tool:sysbench:1.0.0",
-        "config:backup-policy:1.0.0",
-        "config:security-policy:1.0.0",
-        "config:performance-tuning:1.0.0"
-      ]
-    },
-    "phase_5_completion": {
-      "name": "Documentation and Handover",
-      "sub_recipes": ["01-11-disaster-recovery.json", "01-12-documentation-and-handover.json"],
-      "duration": "2-3 days",
-      "description": "Final documentation and handover procedures",
-      "pantry_ingredients": [
-        "task:test-failover:1.0.0",
-        "task:generate-documentation:1.0.0",
-        "config:dr-procedures:1.0.0",
-        "config:documentation-template:1.0.0"
-      ]
-    }
-  },
-  "success_criteria": {
-    "functional_requirements": [
-      "All services running in Docker containers",
-      "Monitoring and alerting operational",
-      "Centralized logging functional",
-      "Load balancing working",
-      "Service discovery operational",
-      "Message queue functional",
-      "Caching layer operational",
-      "Backup system automated",
-      "Security measures implemented",
-      "Performance optimized",
-      "DR procedures documented",
-      "All tests passing"
+  "acceptance_criteria": [
+    "All Docker services start successfully with health checks passing",
+    "Monitoring dashboard accessible at http://localhost:3000 with admin/admin",
+    "Prometheus metrics collection operational at http://localhost:9090",
+    "Logging system functional with centralized collection in /opt/ai-q/logs",
+    "Security hardening applied with UFW firewall enabled",
+    "SSL certificates generated and configured for HTTPS",
+    "Performance benchmarks met (response time < 200ms for all services)",
+    "Backup system functional with automated daily scheduling",
+    "All components can be safely installed/uninstalled with atomic operations",
+    "Zero technical debt with complete documentation and validation"
+  ],
+  "deliverables": [
+    "Production-ready Docker environment with exact configurations",
+    "Comprehensive monitoring system with Prometheus, Grafana, and AlertManager",
+    "Centralized logging infrastructure with log rotation and retention",
+    "Security hardened system with firewall, SSL certificates, and access controls",
+    "Performance optimized infrastructure with caching and load balancing",
+    "Automated backup system with daily scheduling and retention policies",
+    "Complete documentation with troubleshooting guides and optimization tips",
+    "Validation scripts for all components with exact test procedures",
+    "Rollback procedures for safe deployment and recovery",
+    "API endpoints for infrastructure management and monitoring"
+  ],
+  "troubleshooting_guide": {
+    "common_issues": [
+      {
+        "issue": "Docker services fail to start",
+        "symptoms": "docker-compose up fails with network errors",
+        "diagnosis": "Check Docker network configuration and subnet conflicts",
+        "solution": "Remove existing networks and recreate: docker network prune && docker network create ai-q-network --subnet=172.20.0.0/16",
+        "prevention": "Always validate network configurations before deployment"
+      },
+      {
+        "issue": "Prometheus targets showing as DOWN",
+        "symptoms": "Targets in Prometheus UI showing red status",
+        "diagnosis": "Check target endpoints and network connectivity",
+        "solution": "Verify target URLs and network access: curl -f http://target:port/health",
+        "prevention": "Implement proper health checks and monitoring"
+      },
+      {
+        "issue": "Grafana login fails",
+        "symptoms": "Cannot login with admin/admin credentials",
+        "diagnosis": "Check Grafana container logs and data persistence",
+        "solution": "Reset Grafana admin password: docker exec grafana grafana-cli admin reset-admin-password newpassword",
+        "prevention": "Use environment variables for secure credential management"
+      }
     ],
-    "performance_requirements": [
-      "99.9% uptime target",
-      "Response time < 100ms for core services",
-      "Resource utilization < 80%",
-      "Backup completion < 4 hours",
-      "Recovery time < 2 hours",
-      "Cache hit rate > 80% for frequently used ingredients"
-    ],
-    "security_requirements": [
-      "All services encrypted in transit",
-      "Access controls implemented",
-      "Audit logging enabled",
-      "Vulnerability scanning passed",
-      "Compliance requirements met"
-    ],
-    "quality_requirements": [
-      "Zero technical debt",
-      "All documentation in JSON format",
-      "No markdown files in project",
-      "Comprehensive error handling",
-      "Atomic, exact recipes throughout",
-      "Kitchen system integration complete"
+    "performance_optimization": [
+      {
+        "optimization": "Docker resource limits",
+        "description": "Set memory and CPU limits for containers",
+        "implementation": "Add resources section to docker-compose.yml with exact limits",
+        "expected_improvement": "20-30% better resource utilization"
+      },
+      {
+        "optimization": "Prometheus retention optimization",
+        "description": "Configure data retention and compression",
+        "implementation": "Set --storage.tsdb.retention.time=15d in Prometheus config",
+        "expected_improvement": "50% reduction in storage usage"
+      },
+      {
+        "optimization": "Log rotation and compression",
+        "description": "Implement log rotation with compression",
+        "implementation": "Configure logrotate with daily rotation and gzip compression",
+        "expected_improvement": "70% reduction in log storage"
+      }
     ]
   },
-  "verification_checklist": [
-    "All sub-recipes executed successfully",
-    "All acceptance criteria met",
-    "All services operational and healthy",
-    "Performance benchmarks achieved",
-    "Security requirements satisfied",
-    "Documentation complete and in JSON format",
-    "No markdown files present",
-    "Zero technical debt",
-    "All tests passing",
-    "Handover procedures documented",
-    "Kitchen system integration verified",
-    "Caching system operational"
-  ],
-  "next_steps": {
-    "next_recipe": "02-storage-systems-recipe.json",
-    "dependencies": ["01-core-infrastructure-recipe.json"],
-    "estimated_start": "After successful completion of core infrastructure",
-    "kitchen_system_ready": true
+  "performance_benchmarks": {
+    "response_time_targets": {
+      "docker_service_start": "< 30 seconds",
+      "prometheus_query": "< 100ms",
+      "grafana_dashboard_load": "< 2 seconds",
+      "health_check_response": "< 3 seconds",
+      "backup_completion": "< 10 minutes"
+    },
+    "resource_utilization_targets": {
+      "cpu_usage": "< 70% under normal load",
+      "memory_usage": "< 80% of allocated",
+      "disk_usage": "< 85% of available space",
+      "network_throughput": "> 100 Mbps sustained"
+    },
+    "availability_targets": {
+      "uptime": "> 99.9%",
+      "mean_time_to_recovery": "< 5 minutes",
+      "backup_success_rate": "> 99.5%",
+      "monitoring_uptime": "> 99.99%"
+    }
   }
 } 

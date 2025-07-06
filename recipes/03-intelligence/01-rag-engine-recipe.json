@@ -1,10 +1,10 @@
 {
   "metadata": {
     "title": "RAG Engine Recipe",
-    "version": "1.0.0",
+    "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
-    "purpose": "Implement comprehensive RAG (Retrieval-Augmented Generation) engine with semantic search, vector embeddings, and context retrieval for AI-Q Knowledge Library System",
+    "purpose": "Implement comprehensive RAG (Retrieval-Augmented Generation) engine with exact specifications, vector embeddings, and context retrieval for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "intelligence",
     "priority": "HIGH",
@@ -20,19 +20,23 @@
   },
   "recipe_overview": {
     "name": "RAG Engine System",
-    "description": "Implement production-ready RAG engine with semantic search, vector embeddings, context retrieval, and knowledge augmentation",
+    "description": "Implement production-ready RAG engine with exact specifications, vector embeddings, context retrieval, and knowledge augmentation",
     "prerequisites": [
-      "15-video-audio-processing-recipe.json completed",
-      "Python 3.9+ and Node.js 18+ installed",
-      "Vector databases and embedding models available"
+      "02-ai-services-master-recipe.json completed",
+      "Python 3.10+ with pip installed",
+      "PostgreSQL 15+ with pgvector extension",
+      "Redis 7+ for caching",
+      "Minimum 16GB RAM, 8 CPU cores",
+      "100GB free disk space for vector storage",
+      "NVIDIA GPU with CUDA 11.8+ (optional for GPU acceleration)"
     ],
     "target_outcome": "Complete RAG engine system with advanced semantic search and knowledge retrieval capabilities",
     "success_criteria": [
-      "Semantic search with vector embeddings",
-      "Context retrieval and augmentation",
-      "Knowledge base integration",
-      "Multi-modal RAG capabilities",
-      "Real-time knowledge updates",
+      "Semantic search with vector embeddings achieving >90% accuracy",
+      "Context retrieval and augmentation with exact relevance scoring",
+      "Knowledge base integration with real-time updates",
+      "Multi-modal RAG capabilities for text, images, and documents",
+      "Real-time knowledge updates with atomic operations",
       "All components can be safely installed/uninstalled"
     ]
   },
@@ -40,81 +44,129 @@
     "tasks": [
       {
         "task_id": "RAG_ARCHITECTURE_TASK",
-        "name": "RAG Engine Architecture",
-        "description": "Design and implement core RAG engine architecture",
+        "name": "RAG Engine Architecture Setup",
+        "description": "Design and implement core RAG engine architecture with exact specifications",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["system_architecture", "rag_design", "unified_management"]
+        "skills_required": ["system_architecture", "rag_design", "unified_management"],
+        "exact_commands": [
+          "mkdir -p src/services/rag/{core,embeddings,vector_db,retrieval,augmentation}",
+          "mkdir -p config/rag/{embeddings,vector_db,retrieval}",
+          "mkdir -p /opt/ai-q/data/{vectors,embeddings,indexes}",
+          "chmod 755 /opt/ai-q/data"
+        ]
       },
       {
         "task_id": "EMBEDDING_SYSTEM_TASK",
         "name": "Embedding System Implementation",
-        "description": "Create comprehensive embedding system with multiple models",
+        "description": "Create comprehensive embedding system with exact model configurations",
         "estimated_time": "60 minutes",
         "dependencies": ["RAG_ARCHITECTURE_TASK"],
-        "skills_required": ["embedding_models", "multi_modal_processing", "vector_operations"]
+        "skills_required": ["embedding_models", "multi_modal_processing", "vector_operations"],
+        "exact_commands": [
+          "pip install sentence-transformers torch transformers",
+          "python3 -c \"from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); print('Embedding model loaded successfully')\"",
+          "python3 src/services/rag/embeddings/engine.py --validate-models"
+        ]
       },
       {
         "task_id": "VECTOR_DATABASE_TASK",
         "name": "Vector Database Integration",
-        "description": "Create vector database integration with multiple backends",
+        "description": "Setup vector database with exact configurations and optimizations",
         "estimated_time": "60 minutes",
         "dependencies": ["EMBEDDING_SYSTEM_TASK"],
-        "skills_required": ["vector_databases", "database_integration", "backend_management"]
-      },
-      {
-        "task_id": "RETRIEVAL_SYSTEM_TASK",
-        "name": "Retrieval System Implementation",
-        "description": "Create semantic retrieval system with advanced search",
-        "estimated_time": "60 minutes",
-        "dependencies": ["VECTOR_DATABASE_TASK"],
-        "skills_required": ["semantic_search", "retrieval_strategies", "ranking_algorithms"]
+        "skills_required": ["vector_databases", "database_integration", "backend_management"],
+        "exact_commands": [
+          "docker run -d --name postgres-vector --network ai-q-network -p 5432:5432 -e POSTGRES_PASSWORD=vectorpass -e POSTGRES_DB=vectordb ankane/pgvector:latest",
+          "sleep 30",
+          "psql -h localhost -U postgres -d vectordb -c 'CREATE EXTENSION IF NOT EXISTS vector;'",
+          "python3 src/services/rag/vector_db/manager.py --setup-database"
+        ]
       }
     ],
     "skills": [
       {
         "skill_id": "SEMANTIC_SEARCH_SKILL",
         "name": "Semantic Search",
-        "description": "Implement semantic search capabilities",
+        "description": "Implement semantic search capabilities with exact algorithms",
         "tools": ["embedding_engine", "similarity_computation", "vector_search"],
-        "validation": "semantic_search_validation"
+        "validation": "semantic_search_validation",
+        "exact_validation_commands": [
+          "python3 src/services/rag/core.py --test-semantic-search",
+          "curl -f http://localhost:8000/api/v1/search?query=test",
+          "python3 -c \"from src.services.rag.retrieval import SemanticSearch; search = SemanticSearch(); assert search.test_query('test query') > 0.8\""
+        ]
       },
       {
         "skill_id": "VECTOR_EMBEDDINGS_SKILL",
         "name": "Vector Embeddings",
-        "description": "Generate and manage vector embeddings",
+        "description": "Generate and manage vector embeddings with exact specifications",
         "tools": ["embedding_models", "vector_processor", "embedding_optimizer"],
-        "validation": "vector_embeddings_validation"
+        "validation": "vector_embeddings_validation",
+        "exact_validation_commands": [
+          "python3 src/services/rag/embeddings/engine.py --validate-embeddings",
+          "python3 -c \"from src.services.rag.embeddings import EmbeddingEngine; engine = EmbeddingEngine(); assert len(engine.embed('test')) == 384\"",
+          "ls -la /opt/ai-q/data/embeddings/ | wc -l"
+        ]
       },
       {
         "skill_id": "KNOWLEDGE_RETRIEVAL_SKILL",
         "name": "Knowledge Retrieval",
-        "description": "Retrieve and augment knowledge from various sources",
+        "description": "Retrieve and augment knowledge with exact relevance scoring",
         "tools": ["retrieval_engine", "context_analyzer", "knowledge_integrator"],
-        "validation": "knowledge_retrieval_validation"
+        "validation": "knowledge_retrieval_validation",
+        "exact_validation_commands": [
+          "python3 src/services/rag/retrieval/engine.py --test-retrieval",
+          "curl -f http://localhost:8000/api/v1/retrieve?query=test",
+          "python3 -c \"from src.services.rag.retrieval import RetrievalEngine; engine = RetrievalEngine(); results = engine.retrieve('test query', k=5); assert len(results) == 5\""
+        ]
       }
     ],
     "tools": [
       {
         "tool_id": "RAG_ENGINE_TOOL",
         "name": "RAG Engine",
-        "description": "Core RAG engine with unified interface",
+        "description": "Core RAG engine with unified interface and exact specifications",
         "file_path": "src/services/rag/core.py",
-        "config": "config/rag/rag_config.json"
+        "config": "config/rag/rag_config.json",
+        "exact_config_spec": {
+          "embedding_model": "all-MiniLM-L6-v2",
+          "vector_dimension": 384,
+          "similarity_threshold": 0.8,
+          "max_context_length": 4096,
+          "retrieval_top_k": 5,
+          "cache_embeddings": true
+        }
       },
       {
         "tool_id": "EMBEDDING_ENGINE_TOOL",
         "name": "Embedding Engine",
-        "description": "Multi-modal embedding generation and management",
+        "description": "Multi-modal embedding generation with exact model specifications",
         "file_path": "src/services/rag/embeddings/engine.py",
-        "config": "config/rag/embeddings_config.json"
+        "config": "config/rag/embeddings_config.json",
+        "exact_config_spec": {
+          "text_model": "all-MiniLM-L6-v2",
+          "image_model": "clip-ViT-B-32",
+          "batch_size": 32,
+          "device": "auto",
+          "normalize_embeddings": true
+        }
       },
       {
         "tool_id": "VECTOR_DB_MANAGER_TOOL",
         "name": "Vector Database Manager",
-        "description": "Manage multiple vector database backends",
+        "description": "Manage vector database with exact configurations",
         "file_path": "src/services/rag/vector_db/manager.py",
-        "config": "config/rag/vector_db_config.json"
+        "config": "config/rag/vector_db_config.json",
+        "exact_config_spec": {
+          "database_type": "postgresql",
+          "host": "localhost",
+          "port": 5432,
+          "database": "vectordb",
+          "username": "postgres",
+          "password": "vectorpass",
+          "vector_extension": "pgvector"
+        }
       }
     ],
     "configs": [
@@ -123,21 +175,57 @@
         "name": "RAG Configuration",
         "description": "Configuration for RAG engine system",
         "file_path": "config/rag/rag_config.json",
-        "schema": "rag_config_schema"
+        "schema": "rag_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "embedding_model": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
+            "vector_dimension": {"type": "integer", "minimum": 128, "maximum": 4096},
+            "similarity_threshold": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "max_context_length": {"type": "integer", "minimum": 512, "maximum": 8192},
+            "retrieval_top_k": {"type": "integer", "minimum": 1, "maximum": 50},
+            "cache_embeddings": {"type": "boolean"}
+          },
+          "required": ["embedding_model", "vector_dimension", "similarity_threshold", "max_context_length", "retrieval_top_k", "cache_embeddings"]
+        }
       },
       {
         "config_id": "EMBEDDINGS_CONFIG",
         "name": "Embeddings Configuration",
         "description": "Configuration for embedding models and processing",
         "file_path": "config/rag/embeddings_config.json",
-        "schema": "embeddings_config_schema"
+        "schema": "embeddings_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "text_model": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
+            "image_model": {"type": "string", "pattern": "^[a-zA-Z0-9_-]+$"},
+            "batch_size": {"type": "integer", "minimum": 1, "maximum": 128},
+            "device": {"type": "string", "enum": ["auto", "cpu", "cuda"]},
+            "normalize_embeddings": {"type": "boolean"}
+          },
+          "required": ["text_model", "image_model", "batch_size", "device", "normalize_embeddings"]
+        }
       },
       {
         "config_id": "VECTOR_DB_CONFIG",
         "name": "Vector Database Configuration",
         "description": "Configuration for vector database backends",
         "file_path": "config/rag/vector_db_config.json",
-        "schema": "vector_db_config_schema"
+        "schema": "vector_db_config_schema",
+        "exact_schema": {
+          "type": "object",
+          "properties": {
+            "database_type": {"type": "string", "enum": ["postgresql", "pinecone", "weaviate"]},
+            "host": {"type": "string", "format": "hostname"},
+            "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+            "database": {"type": "string", "pattern": "^[a-zA-Z0-9_]+$"},
+            "username": {"type": "string", "pattern": "^[a-zA-Z0-9_]+$"},
+            "password": {"type": "string", "minLength": 8},
+            "vector_extension": {"type": "string", "pattern": "^[a-zA-Z0-9_]+$"}
+          },
+          "required": ["database_type", "host", "port", "database", "username", "password", "vector_extension"]
+        }
       }
     ]
   },
@@ -147,135 +235,111 @@
         "step_id": "STEP_1",
         "action": "gather_ingredients",
         "ingredients": ["RAG_ARCHITECTURE_TASK", "SEMANTIC_SEARCH_SKILL", "RAG_ENGINE_TOOL"],
-        "description": "Gather RAG architecture ingredients from pantry"
+        "description": "Gather RAG architecture ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/rag/core.py --gather-ingredients",
+          "python3 src/services/rag/core.py --validate-prerequisites"
+        ]
       },
       {
         "step_id": "STEP_2",
         "action": "check_cache",
         "cache_key": "rag_engine_cache",
-        "description": "Check for existing RAG engine cache"
+        "description": "Check for existing RAG engine cache",
+        "exact_commands": [
+          "python3 src/services/rag/core.py --check-cache",
+          "ls -la /opt/ai-q/cache/rag_engine/"
+        ]
       },
       {
         "step_id": "STEP_3",
         "action": "execute_task",
         "task": "RAG_ARCHITECTURE_TASK",
-        "description": "Execute RAG architecture task"
+        "description": "Execute RAG architecture task",
+        "exact_commands": [
+          "mkdir -p src/services/rag/{core,embeddings,vector_db,retrieval,augmentation}",
+          "mkdir -p config/rag/{embeddings,vector_db,retrieval}",
+          "mkdir -p /opt/ai-q/data/{vectors,embeddings,indexes}",
+          "chmod 755 /opt/ai-q/data",
+          "python3 src/services/rag/core.py --setup-architecture"
+        ]
       },
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
         "ingredients": ["EMBEDDING_SYSTEM_TASK", "VECTOR_EMBEDDINGS_SKILL", "EMBEDDING_ENGINE_TOOL"],
-        "description": "Gather embedding system ingredients from pantry"
+        "description": "Gather embedding system ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/rag/embeddings/engine.py --gather-ingredients",
+          "pip install sentence-transformers torch transformers"
+        ]
       },
       {
         "step_id": "STEP_5",
         "action": "execute_task",
         "task": "EMBEDDING_SYSTEM_TASK",
-        "description": "Execute embedding system task"
+        "description": "Execute embedding system task",
+        "exact_commands": [
+          "python3 -c \"from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); print('Embedding model loaded successfully')\"",
+          "python3 src/services/rag/embeddings/engine.py --setup-models",
+          "python3 src/services/rag/embeddings/engine.py --validate-models"
+        ]
       },
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
         "ingredients": ["VECTOR_DATABASE_TASK", "KNOWLEDGE_RETRIEVAL_SKILL", "VECTOR_DB_MANAGER_TOOL"],
-        "description": "Gather vector database ingredients from pantry"
+        "description": "Gather vector database ingredients from pantry",
+        "exact_commands": [
+          "python3 src/services/rag/vector_db/manager.py --gather-ingredients",
+          "docker pull ankane/pgvector:latest"
+        ]
       },
       {
         "step_id": "STEP_7",
         "action": "execute_task",
         "task": "VECTOR_DATABASE_TASK",
-        "description": "Execute vector database task"
+        "description": "Execute vector database task",
+        "exact_commands": [
+          "docker run -d --name postgres-vector --network ai-q-network -p 5432:5432 -e POSTGRES_PASSWORD=vectorpass -e POSTGRES_DB=vectordb ankane/pgvector:latest",
+          "sleep 30",
+          "psql -h localhost -U postgres -d vectordb -c 'CREATE EXTENSION IF NOT EXISTS vector;'",
+          "python3 src/services/rag/vector_db/manager.py --setup-database",
+          "python3 src/services/rag/vector_db/manager.py --validate-connection"
+        ]
       },
       {
         "step_id": "STEP_8",
-        "action": "gather_ingredients",
-        "ingredients": ["RETRIEVAL_SYSTEM_TASK", "SEMANTIC_SEARCH_SKILL"],
-        "description": "Gather retrieval system ingredients from pantry"
+        "action": "validate_results",
+        "validation": "rag_engine_validation",
+        "description": "Validate complete RAG engine system",
+        "exact_commands": [
+          "python3 src/services/rag/core.py --validate-system",
+          "python3 src/services/rag/embeddings/engine.py --test-embeddings",
+          "python3 src/services/rag/vector_db/manager.py --test-connection",
+          "curl -f http://localhost:8000/api/v1/health"
+        ]
       },
       {
         "step_id": "STEP_9",
-        "action": "execute_task",
-        "task": "RETRIEVAL_SYSTEM_TASK",
-        "description": "Execute retrieval system task"
-      },
-      {
-        "step_id": "STEP_10",
-        "action": "validate_results",
-        "validation": "rag_engine_validation",
-        "description": "Validate complete RAG engine system"
-      },
-      {
-        "step_id": "STEP_11",
         "action": "cache_results",
         "cache_key": "rag_engine_cache",
-        "description": "Cache RAG engine configuration and models"
+        "description": "Cache RAG engine configuration and models",
+        "exact_commands": [
+          "python3 src/services/rag/core.py --cache-results",
+          "tar -czf /opt/ai-q/cache/rag_engine_cache.tar.gz /opt/ai-q/data/embeddings /opt/ai-q/data/vectors"
+        ]
       }
     ],
     "caching_strategy": {
       "cache_key": "rag_engine_cache",
       "cache_duration": "persistent",
       "cache_invalidation": "model_update",
-      "cache_validation": "rag_engine_validation"
-    }
-  },
-  "rag_engine_architecture": {
-    "embedding_system": {
-      "purpose": "Vector embeddings and semantic representation",
-      "features": [
-        "Multi-modal embeddings (text, image, audio)",
-        "Embedding model management",
-        "Vector similarity computation",
-        "Embedding optimization"
-      ],
-      "modular_components": [
-        "embedding-engine",
-        "model-manager",
-        "similarity-computer",
-        "optimizer"
-      ]
-    },
-    "retrieval_system": {
-      "purpose": "Semantic retrieval and search",
-      "features": [
-        "Semantic search across knowledge base",
-        "Hybrid search (semantic + keyword)",
-        "Context-aware retrieval",
-        "Multi-vector search"
-      ],
-      "modular_components": [
-        "retrieval-engine",
-        "search-optimizer",
-        "context-analyzer",
-        "multi-vector-searcher"
-      ]
-    },
-    "generation_system": {
-      "purpose": "Knowledge-augmented generation",
-      "features": [
-        "Context-aware text generation",
-        "Multi-modal content generation",
-        "Knowledge synthesis",
-        "Citation and attribution"
-      ],
-      "modular_components": [
-        "generation-engine",
-        "context-integrator",
-        "synthesis-engine",
-        "citation-manager"
-      ]
-    },
-    "knowledge_base": {
-      "purpose": "Knowledge base management and integration",
-      "features": [
-        "Dynamic knowledge updates",
-        "Knowledge graph integration",
-        "Source tracking and validation",
-        "Knowledge versioning"
-      ],
-      "modular_components": [
-        "knowledge-manager",
-        "graph-integrator",
-        "source-tracker",
-        "version-controller"
+      "cache_validation": "rag_engine_validation",
+      "exact_cache_commands": [
+        "python3 src/services/rag/core.py --cache-config",
+        "python3 src/services/rag/embeddings/engine.py --cache-models",
+        "python3 src/services/rag/vector_db/manager.py --cache-indexes"
       ]
     }
   },
@@ -283,441 +347,176 @@
     {
       "task_id": "16-001",
       "title": "Create RAG Engine Architecture",
-      "description": "Design and implement the core RAG engine architecture with unified management",
+      "description": "Design and implement the core RAG engine architecture with exact specifications",
       "estimated_time": "60 minutes",
       "estimated_tokens": 3000,
-      "commands": [
-        "mkdir -p src/services/rag",
-        "mkdir -p src/services/rag/embeddings",
-        "mkdir -p src/services/rag/retrieval",
-        "mkdir -p src/services/rag/generation",
-        "mkdir -p src/services/rag/knowledge",
-        "mkdir -p src/services/rag/common"
+      "exact_commands": [
+        "mkdir -p src/services/rag/{core,embeddings,vector_db,retrieval,augmentation}",
+        "mkdir -p config/rag/{embeddings,vector_db,retrieval}",
+        "mkdir -p /opt/ai-q/data/{vectors,embeddings,indexes}",
+        "chmod 755 /opt/ai-q/data"
       ],
       "files_to_create": [
         "src/services/rag/__init__.py",
         "src/services/rag/core.py",
-        "src/services/rag/manager.py",
-        "src/services/rag/config.py",
-        "src/services/rag/types.py"
+        "src/services/rag/embeddings/__init__.py",
+        "src/services/rag/embeddings/engine.py",
+        "src/services/rag/vector_db/__init__.py",
+        "src/services/rag/vector_db/manager.py",
+        "src/services/rag/retrieval/__init__.py",
+        "src/services/rag/retrieval/engine.py",
+        "config/rag/rag_config.json",
+        "config/rag/embeddings_config.json",
+        "config/rag/vector_db_config.json"
       ],
       "acceptance_criteria": [
-        "RAG engine base classes defined with unified interface",
-        "Configuration system supports all RAG components",
-        "Type definitions for all RAG operations",
-        "Manager class can handle multiple RAG processors"
+        "All directory structures created with correct permissions",
+        "RAG engine base classes defined with exact interfaces",
+        "Configuration system supports all RAG components with validation",
+        "Type definitions for all RAG operations with exact specifications",
+        "Manager class can handle multiple RAG providers with atomic operations"
       ]
     },
     {
       "task_id": "16-002",
       "title": "Implement Embedding System",
-      "description": "Create comprehensive embedding system with multiple models and modalities",
+      "description": "Create comprehensive embedding system with exact model configurations",
       "estimated_time": "60 minutes",
       "estimated_tokens": 3000,
-      "commands": [
+      "exact_commands": [
         "pip install sentence-transformers torch transformers",
-        "mkdir -p src/services/rag/embeddings/models",
-        "mkdir -p src/services/rag/embeddings/processors"
+        "python3 -c \"from sentence_transformers import SentenceTransformer; model = SentenceTransformer('all-MiniLM-L6-v2'); print('Model loaded')\"",
+        "python3 src/services/rag/embeddings/engine.py --setup-models"
       ],
       "files_to_create": [
-        "src/services/rag/embeddings/__init__.py",
         "src/services/rag/embeddings/engine.py",
-        "src/services/rag/embeddings/models/__init__.py",
-        "src/services/rag/embeddings/models/text.py",
-        "src/services/rag/embeddings/models/image.py",
-        "src/services/rag/embeddings/models/audio.py",
-        "src/services/rag/embeddings/processors/__init__.py",
-        "src/services/rag/embeddings/processors/chunker.py",
-        "src/services/rag/embeddings/processors/normalizer.py"
+        "src/services/rag/embeddings/models.py",
+        "src/services/rag/embeddings/processor.py",
+        "config/rag/embeddings_config.json"
       ],
       "acceptance_criteria": [
-        "Text embedding models working",
-        "Image embedding models functional",
-        "Audio embedding models operational",
-        "Multi-modal embedding support"
+        "Sentence transformers installed and functional",
+        "Default embedding model (all-MiniLM-L6-v2) loaded successfully",
+        "Embedding generation working with 384-dimensional vectors",
+        "Batch processing operational with configurable batch sizes",
+        "GPU acceleration working (if available) with automatic device detection"
       ]
     },
     {
       "task_id": "16-003",
       "title": "Implement Vector Database",
-      "description": "Create vector database integration with multiple backends",
+      "description": "Setup vector database with exact configurations and optimizations",
       "estimated_time": "60 minutes",
       "estimated_tokens": 3000,
-      "commands": [
-        "pip install chromadb faiss-cpu pinecone-client",
-        "mkdir -p src/services/rag/vector_db",
-        "mkdir -p src/services/rag/vector_db/backends"
+      "exact_commands": [
+        "docker run -d --name postgres-vector --network ai-q-network -p 5432:5432 -e POSTGRES_PASSWORD=vectorpass -e POSTGRES_DB=vectordb ankane/pgvector:latest",
+        "sleep 30",
+        "psql -h localhost -U postgres -d vectordb -c 'CREATE EXTENSION IF NOT EXISTS vector;'",
+        "python3 src/services/rag/vector_db/manager.py --setup-database"
       ],
       "files_to_create": [
-        "src/services/rag/vector_db/__init__.py",
         "src/services/rag/vector_db/manager.py",
-        "src/services/rag/vector_db/backends/__init__.py",
-        "src/services/rag/vector_db/backends/chroma.py",
-        "src/services/rag/vector_db/backends/faiss.py",
-        "src/services/rag/vector_db/backends/pinecone.py",
-        "src/services/rag/vector_db/backends/weaviate.py"
+        "src/services/rag/vector_db/postgresql.py",
+        "src/services/rag/vector_db/schema.sql",
+        "config/rag/vector_db_config.json"
       ],
       "acceptance_criteria": [
-        "ChromaDB integration working",
-        "FAISS integration functional",
-        "Pinecone integration operational",
-        "Weaviate integration working"
-      ]
-    },
-    {
-      "task_id": "16-004",
-      "title": "Implement Retrieval System",
-      "description": "Create semantic retrieval system with advanced search capabilities",
-      "estimated_time": "60 minutes",
-      "estimated_tokens": 3000,
-      "commands": [
-        "mkdir -p src/services/rag/retrieval/strategies",
-        "mkdir -p src/services/rag/retrieval/rankers"
-      ],
-      "files_to_create": [
-        "src/services/rag/retrieval/__init__.py",
-        "src/services/rag/retrieval/engine.py",
-        "src/services/rag/retrieval/strategies/__init__.py",
-        "src/services/rag/retrieval/strategies/semantic.py",
-        "src/services/rag/retrieval/strategies/hybrid.py",
-        "src/services/rag/retrieval/strategies/multi_modal.py",
-        "src/services/rag/retrieval/rankers/__init__.py",
-        "src/services/rag/retrieval/rankers/relevance.py",
-        "src/services/rag/retrieval/rankers/diversity.py"
-      ],
-      "acceptance_criteria": [
-        "Semantic retrieval working",
-        "Hybrid search functional",
-        "Multi-modal retrieval operational",
-        "Advanced ranking algorithms"
-      ]
-    },
-    {
-      "task_id": "16-005",
-      "title": "Implement Generation System",
-      "description": "Create knowledge-augmented generation system",
-      "estimated_time": "60 minutes",
-      "estimated_tokens": 3000,
-      "commands": [
-        "pip install openai anthropic",
-        "mkdir -p src/services/rag/generation/models",
-        "mkdir -p src/services/rag/generation/processors"
-      ],
-      "files_to_create": [
-        "src/services/rag/generation/__init__.py",
-        "src/services/rag/generation/engine.py",
-        "src/services/rag/generation/models/__init__.py",
-        "src/services/rag/generation/models/openai.py",
-        "src/services/rag/generation/models/anthropic.py",
-        "src/services/rag/generation/models/local.py",
-        "src/services/rag/generation/processors/__init__.py",
-        "src/services/rag/generation/processors/context.py",
-        "src/services/rag/generation/processors/prompt.py"
-      ],
-      "acceptance_criteria": [
-        "OpenAI integration working",
-        "Anthropic integration functional",
-        "Local model integration operational",
-        "Context-aware generation"
-      ]
-    },
-    {
-      "task_id": "16-006",
-      "title": "Implement Knowledge Base Integration",
-      "description": "Create knowledge base integration and management system",
-      "estimated_time": "60 minutes",
-      "estimated_tokens": 3000,
-      "commands": [
-        "mkdir -p src/services/rag/knowledge/processors",
-        "mkdir -p src/services/rag/knowledge/validators"
-      ],
-      "files_to_create": [
-        "src/services/rag/knowledge/__init__.py",
-        "src/services/rag/knowledge/manager.py",
-        "src/services/rag/knowledge/processors/__init__.py",
-        "src/services/rag/knowledge/processors/ingestion.py",
-        "src/services/rag/knowledge/processors/indexing.py",
-        "src/services/rag/knowledge/processors/updating.py",
-        "src/services/rag/knowledge/validators/__init__.py",
-        "src/services/rag/knowledge/validators/quality.py",
-        "src/services/rag/knowledge/validators/consistency.py"
-      ],
-      "acceptance_criteria": [
-        "Knowledge ingestion working",
-        "Knowledge indexing functional",
-        "Knowledge updating operational",
-        "Knowledge validation working"
-      ]
-    },
-    {
-      "task_id": "16-007",
-      "title": "Implement RAG API",
-      "description": "Create comprehensive API for RAG operations",
-      "estimated_time": "60 minutes",
-      "estimated_tokens": 3000,
-      "commands": [
-        "mkdir -p src/api/routes/rag",
-        "mkdir -p tests/rag"
-      ],
-      "files_to_create": [
-        "src/api/routes/rag/__init__.py",
-        "src/api/routes/rag/search.py",
-        "src/api/routes/rag/generate.py",
-        "src/api/routes/rag/knowledge.py",
-        "src/api/routes/rag/embeddings.py",
-        "tests/rag/test_search.py",
-        "tests/rag/test_generation.py",
-        "tests/rag/test_knowledge.py"
-      ],
-      "acceptance_criteria": [
-        "Search API endpoints working",
-        "Generation API functional",
-        "Knowledge API operational",
-        "Embeddings API working"
-      ]
-    },
-    {
-      "task_id": "16-008",
-      "title": "Implement RAG Analytics",
-      "description": "Create RAG analytics and insights generation",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/analytics"
-      ],
-      "files_to_create": [
-        "src/services/rag/analytics/__init__.py",
-        "src/services/rag/analytics/insights.py",
-        "src/services/rag/analytics/patterns.py",
-        "src/services/rag/analytics/trends.py",
-        "src/services/rag/analytics/reports.py"
-      ],
-      "acceptance_criteria": [
-        "RAG insights generation working",
-        "Pattern recognition functional",
-        "Trend analysis operational",
-        "Analytics reporting"
-      ]
-    },
-    {
-      "task_id": "16-009",
-      "title": "Implement RAG Quality Assessment",
-      "description": "Create RAG quality assessment and validation system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/quality"
-      ],
-      "files_to_create": [
-        "src/services/rag/quality/__init__.py",
-        "src/services/rag/quality/assessor.py",
-        "src/services/rag/quality/validator.py",
-        "src/services/rag/quality/metrics.py",
-        "src/services/rag/quality/scorer.py"
-      ],
-      "acceptance_criteria": [
-        "RAG quality assessment working",
-        "Quality validation functional",
-        "Quality metrics calculation",
-        "Quality scoring system"
-      ]
-    },
-    {
-      "task_id": "16-010",
-      "title": "Implement RAG Caching",
-      "description": "Create intelligent caching for RAG operations",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/caching"
-      ],
-      "files_to_create": [
-        "src/services/rag/caching/__init__.py",
-        "src/services/rag/caching/manager.py",
-        "src/services/rag/caching/strategies.py",
-        "src/services/rag/caching/invalidation.py"
-      ],
-      "acceptance_criteria": [
-        "RAG caching working",
-        "Cache strategies functional",
-        "Cache invalidation operational",
-        "Cache performance optimization"
-      ]
-    },
-    {
-      "task_id": "16-011",
-      "title": "Implement RAG Testing",
-      "description": "Create comprehensive testing framework for RAG system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p tests/rag/integration",
-        "mkdir -p tests/rag/performance"
-      ],
-      "files_to_create": [
-        "tests/rag/integration/test_rag_integration.py",
-        "tests/rag/performance/test_rag_performance.py",
-        "tests/rag/conftest.py",
-        "tests/rag/test_data/",
-        "config/testing/rag_test_config.json"
-      ],
-      "acceptance_criteria": [
-        "Integration tests for RAG system",
-        "Performance benchmarks working",
-        "Test data and fixtures available",
-        "Automated RAG validation"
-      ]
-    },
-    {
-      "task_id": "16-012",
-      "title": "Implement RAG Monitoring",
-      "description": "Create monitoring and analytics for RAG system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/monitoring"
-      ],
-      "files_to_create": [
-        "src/services/rag/monitoring/__init__.py",
-        "src/services/rag/monitoring/metrics.py",
-        "src/services/rag/monitoring/analytics.py",
-        "src/services/rag/monitoring/dashboard.py"
-      ],
-      "acceptance_criteria": [
-        "RAG metrics collection",
-        "Analytics and reporting working",
-        "Monitoring dashboard functional",
-        "Performance tracking operational"
-      ]
-    },
-    {
-      "task_id": "16-013",
-      "title": "Implement RAG Documentation",
-      "description": "Create comprehensive documentation for RAG system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p docs/rag",
-        "mkdir -p examples/rag"
-      ],
-      "files_to_create": [
-        "docs/rag/README.md",
-        "docs/rag/embeddings.md",
-        "docs/rag/retrieval.md",
-        "docs/rag/generation.md",
-        "docs/rag/knowledge.md",
-        "examples/rag/embedding_examples.py",
-        "examples/rag/retrieval_examples.py",
-        "examples/rag/generation_examples.py"
-      ],
-      "acceptance_criteria": [
-        "Complete RAG documentation",
-        "API usage examples",
-        "Processing pipeline guide",
-        "Troubleshooting documentation"
-      ]
-    },
-    {
-      "task_id": "16-014",
-      "title": "Implement RAG Optimization",
-      "description": "Create performance optimizations for RAG system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/optimization"
-      ],
-      "files_to_create": [
-        "src/services/rag/optimization/__init__.py",
-        "src/services/rag/optimization/caching.py",
-        "src/services/rag/optimization/batching.py",
-        "src/services/rag/optimization/parallel.py"
-      ],
-      "acceptance_criteria": [
-        "RAG optimization working",
-        "Batch processing functional",
-        "Parallel processing operational",
-        "Performance monitoring"
-      ]
-    },
-    {
-      "task_id": "16-015",
-      "title": "Implement RAG Security",
-      "description": "Create security features for RAG system",
-      "estimated_time": "45 minutes",
-      "estimated_tokens": 2500,
-      "commands": [
-        "mkdir -p src/services/rag/security"
-      ],
-      "files_to_create": [
-        "src/services/rag/security/__init__.py",
-        "src/services/rag/security/sanitizer.py",
-        "src/services/rag/security/encryption.py",
-        "src/services/rag/security/access_control.py"
-      ],
-      "acceptance_criteria": [
-        "RAG sanitization working",
-        "RAG encryption functional",
-        "Access control operational",
-        "Security compliance"
+        "PostgreSQL with pgvector extension running on port 5432",
+        "Vector extension created and functional",
+        "Database connection established with authentication",
+        "Vector storage tables created with proper indexing",
+        "Connection pooling configured for optimal performance"
       ]
     }
   ],
-  "configuration": {
-    "environment_variables": {
-      "OPENAI_API_KEY": "your-openai-api-key",
-      "ANTHROPIC_API_KEY": "your-anthropic-api-key",
-      "PINECONE_API_KEY": "your-pinecone-api-key",
-      "RAG_CACHE_TTL": "3600",
-      "RAG_MAX_TOKENS": "4000",
-      "RAG_EMBEDDING_MODEL": "text-embedding-ada-002"
+  "acceptance_criteria": [
+    "RAG engine architecture implemented with exact specifications",
+    "Embedding system operational with all-MiniLM-L6-v2 model",
+    "Vector database running with pgvector extension on PostgreSQL",
+    "Semantic search achieving >90% accuracy on test queries",
+    "Context retrieval working with exact relevance scoring",
+    "Knowledge base integration functional with real-time updates",
+    "Multi-modal RAG capabilities operational for text and images",
+    "API endpoints responding with correct search results",
+    "All components can be safely installed/uninstalled",
+    "Zero technical debt with complete documentation and validation"
+  ],
+  "deliverables": [
+    "Complete RAG engine architecture with exact specifications",
+    "Embedding system with all-MiniLM-L6-v2 model and GPU support",
+    "Vector database with PostgreSQL and pgvector extension",
+    "Semantic search engine with >90% accuracy",
+    "Context retrieval system with relevance scoring",
+    "Knowledge base integration with real-time updates",
+    "Multi-modal RAG capabilities for text and images",
+    "REST API with comprehensive search endpoints",
+    "Performance benchmarking tools with exact measurements",
+    "Complete documentation with troubleshooting guides"
+  ],
+  "troubleshooting_guide": {
+    "common_issues": [
+      {
+        "issue": "Embedding model fails to load",
+        "symptoms": "SentenceTransformer initialization fails",
+        "diagnosis": "Check model download and memory availability",
+        "solution": "Clear cache and reinstall: pip uninstall sentence-transformers && pip install sentence-transformers",
+        "prevention": "Ensure sufficient disk space and memory for model loading"
+      },
+      {
+        "issue": "Vector database connection fails",
+        "symptoms": "PostgreSQL connection timeout or authentication errors",
+        "diagnosis": "Check database container status and network connectivity",
+        "solution": "Restart container and verify network: docker restart postgres-vector && docker network ls",
+        "prevention": "Use Docker networks and validate container health checks"
+      },
+      {
+        "issue": "Search results have low relevance",
+        "symptoms": "Semantic search returns irrelevant results",
+        "diagnosis": "Check embedding model quality and similarity threshold",
+        "solution": "Adjust similarity threshold and retrain embeddings",
+        "prevention": "Use high-quality embedding models and proper preprocessing"
+      }
+    ],
+    "performance_optimization": [
+      {
+        "optimization": "Embedding caching",
+        "description": "Cache frequently used embeddings in memory",
+        "implementation": "Enable embedding cache in configuration",
+        "expected_improvement": "50-80% faster search for repeated queries"
+      },
+      {
+        "optimization": "Vector indexing",
+        "description": "Create optimized indexes for vector similarity search",
+        "implementation": "Use HNSW or IVFFlat indexes in pgvector",
+        "expected_improvement": "10-100x faster similarity search"
+      },
+      {
+        "optimization": "Batch processing",
+        "description": "Process embeddings in batches for efficiency",
+        "implementation": "Configure optimal batch size in embedding config",
+        "expected_improvement": "2-5x faster embedding generation"
+      }
+    ]
+  },
+  "performance_benchmarks": {
+    "response_time_targets": {
+      "embedding_generation": "< 100ms per text",
+      "vector_search": "< 50ms for top-5 results",
+      "context_retrieval": "< 200ms for full context",
+      "api_response": "< 500ms end-to-end",
+      "batch_processing": "< 1s for 100 texts"
     },
-    "supported_models": {
-      "text_embeddings": ["text-embedding-ada-002", "all-MiniLM-L6-v2", "all-mpnet-base-v2"],
-      "image_embeddings": ["clip-vit-base-patch32", "clip-vit-large-patch14"],
-      "generation": ["gpt-4", "gpt-3.5-turbo", "claude-3-sonnet", "claude-3-opus"]
+    "accuracy_targets": {
+      "semantic_search_relevance": "> 90% precision@5",
+      "context_retrieval_quality": "> 85% relevance score",
+      "embedding_quality": "> 95% similarity accuracy",
+      "multi_modal_alignment": "> 80% cross-modal relevance"
+    },
+    "resource_utilization_targets": {
+      "cpu_usage": "< 70% during search operations",
+      "memory_usage": "< 80% of available RAM",
+      "gpu_utilization": "> 80% during embedding generation (if GPU available)",
+      "disk_usage": "< 85% of available space"
     }
-  },
-  "validation_and_testing": {
-    "unit_tests": [
-      "Test embedding generation accuracy",
-      "Test retrieval precision and recall",
-      "Test generation quality and relevance",
-      "Test knowledge base integration",
-      "Test multi-modal capabilities"
-    ],
-    "integration_tests": [
-      "Test end-to-end RAG pipeline",
-      "Test real-time knowledge updates",
-      "Test multi-modal RAG",
-      "Test error handling and fallbacks"
-    ],
-    "performance_tests": [
-      "Embedding generation speed tests",
-      "Retrieval response time tests",
-      "Generation latency tests",
-      "Memory usage optimization"
-    ]
-  },
-  "deployment_instructions": {
-    "prerequisites": [
-      "Python 3.9+ with required packages",
-      "Vector database (Weaviate (default), ChromaDB, FAISS, or Pinecone)",
-      "LLM API access (OpenAI, Anthropic)",
-      "Sufficient storage for embeddings and knowledge base"
-    ],
-    "installation_steps": [
-      "1. Clone the repository and navigate to the project directory",
-      "2. Copy configuration templates and update with your API keys",
-      "3. Install Python dependencies: pip install -r requirements.txt",
-      "4. Set up vector database: python scripts/setup_vector_db.py",
-      "5. Download embedding models: python scripts/download_models.py",
-      "6. Run RAG tests: python -m pytest tests/rag/"
-    ],
-    "verification": [
-      "Test embedding generation with sample text",
-      "Verify retrieval functionality with test queries",
-      "Test generation with retrieved context",
-      "Confirm knowledge base integration"
-    ]
   }
 }
