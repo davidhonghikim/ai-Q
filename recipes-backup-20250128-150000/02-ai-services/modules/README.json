@@ -1,0 +1,42 @@
+{
+  "index_metadata": {
+    "index_id": "02-AI-SERVICES-SUB-RECIPE-INDEX",
+    "title": "Index of AI Services Sub-Recipes",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "description": "This index lists all the modular sub-recipes for deploying and configuring local AI services."
+  },
+  "sub_recipes": [
+    {
+      "id": "01-hardware-profiler",
+      "title": "Hardware and OS Profiler Module",
+      "path": "01-hardware-profiler.json"
+    },
+    {
+      "id": "02-ollama-setup",
+      "title": "Ollama Service Setup",
+      "path": "02-ollama-setup.json"
+    },
+    {
+      "id": "03-open-webui-setup",
+      "title": "Open WebUI Service Setup",
+      "path": "03-open-webui-setup.json"
+    },
+    {
+      "id": "04-model-management",
+      "title": "LLM Model Management",
+      "path": "04-model-management.json"
+    },
+    {
+      "id": "05-vllm-setup",
+      "title": "vLLM Service Setup (Optional)",
+      "path": "05-vllm-setup.json"
+    },
+    {
+      "id": "06-anything-llm-setup",
+      "title": "AnythingLLM Setup (Optional)",
+      "path": "06-anything-llm-setup.json"
+    }
+  ]
+} 

@@ -399,11 +399,11 @@
         "mkdir -p examples/text"
       ],
       "files_to_create": [
-        "docs/text/README.md",
-        "docs/text/ocr.md",
-        "docs/text/nlp.md",
-        "docs/text/summarization.md",
-        "docs/text/translation.md",
+        "docs/text/README.json",
+        "docs/text/ocr.json",
+        "docs/text/nlp.json",
+        "docs/text/summarization.json",
+        "docs/text/translation.json",
         "examples/text/ocr_examples.py",
         "examples/text/nlp_examples.py",
         "examples/text/summarization_examples.py"

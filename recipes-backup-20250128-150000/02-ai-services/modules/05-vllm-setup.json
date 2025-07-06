@@ -1,0 +1,40 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-SERVICE-VLLM-SETUP-005",
+    "title": "vLLM Service Setup (Optional)",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "expert",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Deploys the vLLM service using Docker. This provides a high-throughput, OpenAI-compatible server for LLM inference, available as an optional alternative to Ollama for users with suitable hardware (NVIDIA GPUs).",
+    "technology_stack": {
+      "llm_server": "vLLM",
+      "orchestration": "Docker Compose"
+    },
+    "deliverables": [
+      "A running vLLM Docker container.",
+      "A Docker Compose file for vLLM.",
+      "Configuration to enable vLLM as the active inference engine."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "40-005",
+      "title": "Deploy vLLM Container",
+      "description": "Create and configure a docker-compose.yml file to run the official vLLM image. This service will only be enabled if the user selects it and the hardware profiler detects a compatible NVIDIA GPU.",
+      "dependencies": ["40-001"],
+      "estimated_time": "25 minutes",
+      "files_to_create": [
+        "docker/compose/vllm.yml"
+      ],
+      "acceptance_criteria": [
+        "The vllm.yml Docker Compose file is created.",
+        "The container can be started if enabled in the configuration.",
+        "The vLLM server is accessible on its API port when running."
+      ]
+    }
+  ]
+} 

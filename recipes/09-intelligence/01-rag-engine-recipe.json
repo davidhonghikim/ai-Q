@@ -412,11 +412,11 @@
         "mkdir -p examples/rag"
       ],
       "files_to_create": [
-        "docs/rag/README.md",
-        "docs/rag/embeddings.md",
-        "docs/rag/retrieval.md",
-        "docs/rag/generation.md",
-        "docs/rag/knowledge.md",
+        "docs/rag/README.json",
+        "docs/rag/embeddings.json",
+        "docs/rag/retrieval.json",
+        "docs/rag/generation.json",
+        "docs/rag/knowledge.json",
         "examples/rag/embedding_examples.py",
         "examples/rag/retrieval_examples.py",
         "examples/rag/generation_examples.py"

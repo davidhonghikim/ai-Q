@@ -1,0 +1,455 @@
+{
+  "metadata": {
+    "sub_recipe_id": "01-01-docker-environment",
+    "title": "Docker Environment Setup - Complete Implementation",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-27T15:30:00Z",
+    "purpose": "Exact step-by-step Docker environment implementation with zero ambiguity",
+    "total_tasks": 25,
+    "estimated_duration": "3-4 days",
+    "complexity": "Advanced",
+    "dependencies": [],
+    "target_os": ["Ubuntu 22.04 LTS", "Windows 11", "macOS 14+"]
+  },
+  "prerequisites": {
+    "system_requirements": {
+      "cpu": "Minimum 4 cores, Recommended 8+ cores",
+      "ram": "Minimum 8GB, Recommended 16GB+",
+      "storage": "Minimum 50GB free space, Recommended 100GB+",
+      "network": "Stable internet connection for image downloads"
+    },
+    "software_requirements": {
+      "operating_system": "Ubuntu 22.04 LTS (primary), Windows 11, macOS 14+",
+      "package_manager": "apt (Ubuntu), winget (Windows), brew (macOS)",
+      "git": "Version 2.34.0 or higher",
+      "curl": "Latest version"
+    }
+  },
+  "task_01_install_docker_engine": {
+    "task_id": "01-01-01",
+    "title": "Install Docker Engine",
+    "description": "Install Docker Engine with exact commands and versions",
+    "estimated_duration": "30 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "01-01-01-01",
+        "title": "Update system packages",
+        "description": "Update all system packages to latest versions",
+        "commands": {
+          "ubuntu": [
+            "sudo apt update",
+            "sudo apt upgrade -y",
+            "sudo apt autoremove -y"
+          ],
+          "windows": [
+            "winget upgrade --all"
+          ],
+          "macos": [
+            "brew update",
+            "brew upgrade"
+          ]
+        },
+        "verification": "Check package manager shows no pending updates",
+        "expected_output": "Package lists updated successfully"
+      },
+      {
+        "step_id": "01-01-01-02",
+        "title": "Install required packages",
+        "description": "Install packages required for Docker installation",
+        "commands": {
+          "ubuntu": [
+            "sudo apt install -y apt-transport-https ca-certificates curl gnupg lsb-release"
+          ],
+          "windows": [
+            "winget install Docker.DockerDesktop"
+          ],
+          "macos": [
+            "brew install --cask docker"
+          ]
+        },
+        "verification": "Verify packages installed successfully",
+        "expected_output": "Packages installed without errors"
+      },
+      {
+        "step_id": "01-01-01-03",
+        "title": "Add Docker GPG key (Ubuntu only)",
+        "description": "Add Docker's official GPG key for package verification",
+        "commands": {
+          "ubuntu": [
+            "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg"
+          ]
+        },
+        "verification": "Check GPG key exists",
+        "expected_output": "No error messages, key file created"
+      },
+      {
+        "step_id": "01-01-01-04",
+        "title": "Add Docker repository (Ubuntu only)",
+        "description": "Add Docker's official repository to package sources",
+        "commands": {
+          "ubuntu": [
+            "echo \"deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null"
+          ]
+        },
+        "verification": "Check repository file exists",
+        "expected_output": "Repository file created successfully"
+      },
+      {
+        "step_id": "01-01-01-05",
+        "title": "Install Docker Engine (Ubuntu only)",
+        "description": "Install Docker Engine from official repository",
+        "commands": {
+          "ubuntu": [
+            "sudo apt update",
+            "sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+          ]
+        },
+        "verification": "Check Docker installation",
+        "expected_output": "Docker installed successfully"
+      }
+    ],
+    "verification_commands": [
+      "docker --version",
+      "docker-compose --version",
+      "docker run hello-world"
+    ],
+    "expected_versions": {
+      "docker": "24.0.0 or higher",
+      "docker_compose": "2.20.0 or higher"
+    }
+  },
+  "task_02_configure_docker_daemon": {
+    "task_id": "01-01-02",
+    "title": "Configure Docker Daemon",
+    "description": "Configure Docker daemon with optimal settings for production",
+    "estimated_duration": "20 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "01-01-02-01",
+        "title": "Create Docker daemon configuration directory",
+        "description": "Create directory for Docker daemon configuration",
+        "commands": {
+          "ubuntu": [
+            "sudo mkdir -p /etc/docker"
+          ],
+          "windows": [
+            "New-Item -ItemType Directory -Path \"$env:ProgramData\\Docker\\config\" -Force"
+          ],
+          "macos": [
+            "sudo mkdir -p /etc/docker"
+          ]
+        },
+        "verification": "Check directory exists",
+        "expected_output": "Directory created successfully"
+      },
+      {
+        "step_id": "01-01-02-02",
+        "title": "Create daemon.json configuration file",
+        "description": "Create Docker daemon configuration with specific settings",
+        "config_file": {
+          "ubuntu": "/etc/docker/daemon.json",
+          "windows": "$env:ProgramData\\Docker\\config\\daemon.json",
+          "macos": "/etc/docker/daemon.json"
+        },
+        "config_content": {
+          "log-driver": "json-file",
+          "log-opts": {
+            "max-size": "10m",
+            "max-file": "3"
+          },
+          "storage-driver": "overlay2",
+          "storage-opts": [
+            "overlay2.override_kernel_check=true"
+          ],
+          "default-ulimits": {
+            "nofile": {
+              "Hard": 64000,
+              "Name": "nofile",
+              "Soft": 64000
+            }
+          },
+          "max-concurrent-downloads": 10,
+          "max-concurrent-uploads": 5,
+          "experimental": false,
+          "metrics-addr": "127.0.0.1:9323",
+          "live-restore": true
+        },
+        "commands": {
+          "ubuntu": [
+            "sudo tee /etc/docker/daemon.json << 'EOF'\n{\n  \"log-driver\": \"json-file\",\n  \"log-opts\": {\n    \"max-size\": \"10m\",\n    \"max-file\": \"3\"\n  },\n  \"storage-driver\": \"overlay2\",\n  \"storage-opts\": [\n    \"overlay2.override_kernel_check=true\"\n  ],\n  \"default-ulimits\": {\n    \"nofile\": {\n      \"Hard\": 64000,\n      \"Name\": \"nofile\",\n      \"Soft\": 64000\n    }\n  },\n  \"max-concurrent-downloads\": 10,\n  \"max-concurrent-uploads\": 5,\n  \"experimental\": false,\n  \"metrics-addr\": \"127.0.0.1:9323\",\n  \"live-restore\": true\n}\nEOF"
+          ],
+          "windows": [
+            "New-Item -ItemType File -Path \"$env:ProgramData\\Docker\\config\\daemon.json\" -Force",
+            "Set-Content -Path \"$env:ProgramData\\Docker\\config\\daemon.json\" -Value @'\n{\n  \"log-driver\": \"json-file\",\n  \"log-opts\": {\n    \"max-size\": \"10m\",\n    \"max-file\": \"3\"\n  },\n  \"storage-driver\": \"overlay2\",\n  \"storage-opts\": [\n    \"overlay2.override_kernel_check=true\"\n  ],\n  \"default-ulimits\": {\n    \"nofile\": {\n      \"Hard\": 64000,\n      \"Name\": \"nofile\",\n      \"Soft\": 64000\n    }\n  },\n  \"max-concurrent-downloads\": 10,\n  \"max-concurrent-uploads\": 5,\n  \"experimental\": false,\n  \"metrics-addr\": \"127.0.0.1:9323\",\n  \"live-restore\": true\n}\n'@"
+          ],
+          "macos": [
+            "sudo tee /etc/docker/daemon.json << 'EOF'\n{\n  \"log-driver\": \"json-file\",\n  \"log-opts\": {\n    \"max-size\": \"10m\",\n    \"max-file\": \"3\"\n  },\n  \"storage-driver\": \"overlay2\",\n  \"storage-opts\": [\n    \"overlay2.override_kernel_check=true\"\n  ],\n  \"default-ulimits\": {\n    \"nofile\": {\n      \"Hard\": 64000,\n      \"Name\": \"nofile\",\n      \"Soft\": 64000\n    }\n  },\n  \"max-concurrent-downloads\": 10,\n  \"max-concurrent-uploads\": 5,\n  \"experimental\": false,\n  \"metrics-addr\": \"127.0.0.1:9323\",\n  \"live-restore\": true\n}\nEOF"
+          ]
+        },
+        "verification": "Check configuration file exists and has correct content",
+        "expected_output": "Configuration file created with specified content"
+      },
+      {
+        "step_id": "01-01-02-03",
+        "title": "Restart Docker daemon",
+        "description": "Restart Docker daemon to apply new configuration",
+        "commands": {
+          "ubuntu": [
+            "sudo systemctl restart docker"
+          ],
+          "windows": [
+            "Restart-Service docker"
+          ],
+          "macos": [
+            "sudo launchctl unload /Library/LaunchDaemons/com.docker.docker.plist",
+            "sudo launchctl load /Library/LaunchDaemons/com.docker.docker.plist"
+          ]
+        },
+        "verification": "Check Docker daemon is running",
+        "expected_output": "Docker daemon restarted successfully"
+      }
+    ],
+    "verification_commands": [
+      "docker info",
+      "docker system info"
+    ],
+    "expected_outputs": {
+      "log_driver": "json-file",
+      "storage_driver": "overlay2",
+      "max_concurrent_downloads": 10
+    }
+  },
+  "task_03_setup_docker_networking": {
+    "task_id": "01-01-03",
+    "title": "Setup Docker Networking",
+    "description": "Configure Docker networking with custom networks and bridge configuration",
+    "estimated_duration": "30 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "01-01-03-01",
+        "title": "Create custom Docker networks",
+        "description": "Create specific networks for different service tiers",
+        "commands": [
+          "docker network create --driver bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 ai-q-frontend",
+          "docker network create --driver bridge --subnet=172.21.0.0/16 --gateway=172.21.0.1 ai-q-backend",
+          "docker network create --driver bridge --subnet=172.22.0.0/16 --gateway=172.22.0.1 ai-q-database",
+          "docker network create --driver bridge --subnet=172.23.0.0/16 --gateway=172.23.0.1 ai-q-monitoring",
+          "docker network create --driver bridge --subnet=172.24.0.0/16 --gateway=172.24.0.1 ai-q-storage"
+        ],
+        "verification": "Check networks created successfully",
+        "expected_output": "All networks created without errors"
+      },
+      {
+        "step_id": "01-01-03-02",
+        "title": "Configure network security",
+        "description": "Configure network security and isolation",
+        "commands": [
+          "docker network inspect ai-q-frontend",
+          "docker network inspect ai-q-backend",
+          "docker network inspect ai-q-database",
+          "docker network inspect ai-q-monitoring",
+          "docker network inspect ai-q-storage"
+        ],
+        "verification": "Verify network configurations",
+        "expected_output": "All networks show correct subnet and gateway configurations"
+      }
+    ],
+    "verification_commands": [
+      "docker network ls",
+      "docker network inspect ai-q-frontend"
+    ],
+    "expected_networks": [
+      "ai-q-frontend",
+      "ai-q-backend", 
+      "ai-q-database",
+      "ai-q-monitoring",
+      "ai-q-storage"
+    ]
+  },
+  "task_04_configure_docker_compose": {
+    "task_id": "01-01-04",
+    "title": "Configure Docker Compose",
+    "description": "Setup Docker Compose with version 2.20+ and proper configuration",
+    "estimated_duration": "20 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "01-01-04-01",
+        "title": "Verify Docker Compose installation",
+        "description": "Check Docker Compose version and functionality",
+        "commands": [
+          "docker-compose --version",
+          "docker compose version"
+        ],
+        "verification": "Check version is 2.20.0 or higher",
+        "expected_output": "Docker Compose version 2.20.0 or higher"
+      },
+      {
+        "step_id": "01-01-04-02",
+        "title": "Create Docker Compose configuration directory",
+        "description": "Create directory structure for Docker Compose files",
+        "commands": [
+          "mkdir -p /opt/ai-q/docker/compose",
+          "mkdir -p /opt/ai-q/docker/compose/environments",
+          "mkdir -p /opt/ai-q/docker/compose/services",
+          "mkdir -p /opt/ai-q/docker/compose/networks",
+          "mkdir -p /opt/ai-q/docker/compose/volumes"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All directories created successfully"
+      }
+    ],
+    "verification_commands": [
+      "docker-compose --version",
+      "ls -la /opt/ai-q/docker/compose/"
+    ],
+    "expected_outputs": {
+      "compose_version": "2.20.0 or higher",
+      "directories": "All compose directories exist"
+    }
+  },
+  "task_05_setup_volume_management": {
+    "task_id": "01-01-05",
+    "title": "Setup Volume Management",
+    "description": "Configure Docker volumes for persistent data storage",
+    "estimated_duration": "25 minutes",
+    "critical": true,
+    "steps": [
+      {
+        "step_id": "01-01-05-01",
+        "title": "Create volume directories",
+        "description": "Create directories for persistent data storage",
+        "commands": [
+          "sudo mkdir -p /opt/ai-q/data/postgresql",
+          "sudo mkdir -p /opt/ai-q/data/redis",
+          "sudo mkdir -p /opt/ai-q/data/elasticsearch",
+          "sudo mkdir -p /opt/ai-q/data/minio",
+          "sudo mkdir -p /opt/ai-q/data/neo4j",
+          "sudo mkdir -p /opt/ai-q/data/weaviate",
+          "sudo mkdir -p /opt/ai-q/data/prometheus",
+          "sudo mkdir -p /opt/ai-q/data/grafana",
+          "sudo mkdir -p /opt/ai-q/data/logs",
+          "sudo mkdir -p /opt/ai-q/data/backups"
+        ],
+        "verification": "Check directories created",
+        "expected_output": "All directories created successfully"
+      },
+      {
+        "step_id": "01-01-05-02",
+        "title": "Set proper permissions",
+        "description": "Set correct permissions for data directories",
+        "commands": [
+          "sudo chown -R 1000:1000 /opt/ai-q/data/postgresql",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/redis",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/elasticsearch",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/minio",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/neo4j",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/weaviate",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/prometheus",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/grafana",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/logs",
+          "sudo chown -R 1000:1000 /opt/ai-q/data/backups"
+        ],
+        "verification": "Check permissions set correctly",
+        "expected_output": "All directories have correct ownership"
+      },
+      {
+        "step_id": "01-01-05-03",
+        "title": "Set directory permissions",
+        "description": "Set proper file permissions for data directories",
+        "commands": [
+          "sudo chmod 755 /opt/ai-q/data/postgresql",
+          "sudo chmod 755 /opt/ai-q/data/redis",
+          "sudo chmod 755 /opt/ai-q/data/elasticsearch",
+          "sudo chmod 755 /opt/ai-q/data/minio",
+          "sudo chmod 755 /opt/ai-q/data/neo4j",
+          "sudo chmod 755 /opt/ai-q/data/weaviate",
+          "sudo chmod 755 /opt/ai-q/data/prometheus",
+          "sudo chmod 755 /opt/ai-q/data/grafana",
+          "sudo chmod 755 /opt/ai-q/data/logs",
+          "sudo chmod 755 /opt/ai-q/data/backups"
+        ],
+        "verification": "Check permissions set correctly",
+        "expected_output": "All directories have 755 permissions"
+      }
+    ],
+    "verification_commands": [
+      "ls -la /opt/ai-q/data/",
+      "docker volume ls"
+    ],
+    "expected_outputs": {
+      "directories": "All data directories exist with correct permissions",
+      "ownership": "All directories owned by user 1000:1000"
+    }
+  },
+  "verification_and_testing": {
+    "comprehensive_test": {
+      "title": "Complete Docker Environment Verification",
+      "description": "Run comprehensive tests to verify all Docker components",
+      "test_commands": [
+        "docker --version",
+        "docker-compose --version",
+        "docker info",
+        "docker network ls",
+        "docker volume ls",
+        "docker run --rm hello-world",
+        "docker system df",
+        "docker stats --no-stream"
+      ],
+      "expected_results": {
+        "docker_version": "24.0.0 or higher",
+        "compose_version": "2.20.0 or higher",
+        "networks": "5 custom networks present",
+        "volumes": "No errors in volume listing",
+        "hello_world": "Hello from Docker! message displayed",
+        "system_df": "Shows disk usage information",
+        "stats": "Shows container statistics (empty if no containers running)"
+      }
+    }
+  },
+  "troubleshooting": {
+    "common_issues": [
+      {
+        "issue": "Docker daemon not starting",
+        "symptoms": "docker: Cannot connect to the Docker daemon",
+        "solution": "Check Docker service status: sudo systemctl status docker",
+        "commands": [
+          "sudo systemctl start docker",
+          "sudo systemctl enable docker"
+        ]
+      },
+      {
+        "issue": "Permission denied errors",
+        "symptoms": "Got permission denied while trying to connect to the Docker daemon socket",
+        "solution": "Add user to docker group",
+        "commands": [
+          "sudo usermod -aG docker $USER",
+          "newgrp docker"
+        ]
+      },
+      {
+        "issue": "Network creation fails",
+        "symptoms": "Error response from daemon: network with name already exists",
+        "solution": "Remove existing network and recreate",
+        "commands": [
+          "docker network rm ai-q-frontend",
+          "docker network create --driver bridge --subnet=172.20.0.0/16 --gateway=172.20.0.1 ai-q-frontend"
+        ]
+      }
+    ]
+  },
+  "next_steps": {
+    "next_sub_recipe": "01-02-system-monitoring",
+    "prerequisites_completed": [
+      "Docker Engine installed and configured",
+      "Docker Compose functional",
+      "Networks created",
+      "Volumes configured"
+    ],
+    "readiness_check": "All verification commands pass successfully"
+  }
+} 

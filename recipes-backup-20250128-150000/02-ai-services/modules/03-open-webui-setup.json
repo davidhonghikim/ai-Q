@@ -1,0 +1,43 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-SERVICE-OPEN-WEBUI-SETUP-003",
+    "title": "Open WebUI Service Setup",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "intermediate",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Deploys the Open WebUI service using Docker, providing a user-friendly interface for interacting with the Ollama backend. This is a default component.",
+    "technology_stack": {
+      "llm_ui": "Open WebUI",
+      "orchestration": "Docker Compose"
+    },
+    "deliverables": [
+      "A running Open WebUI Docker container.",
+      "A Docker Compose file that links Open WebUI to the Ollama service.",
+      "A web interface accessible to the user in their browser."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "40-003",
+      "title": "Deploy Open WebUI Container",
+      "description": "Create and configure a docker-compose.yml file to run the official Open WebUI image and connect it to the Ollama container.",
+      "dependencies": ["40-002"],
+      "estimated_time": "20 minutes",
+      "commands": [
+        "docker-compose -f docker/compose/open-webui.yml up -d"
+      ],
+      "files_to_create": [
+        "docker/compose/open-webui.yml"
+      ],
+      "acceptance_criteria": [
+        "The open-webui.yml Docker Compose file is created.",
+        "The Open WebUI container starts and successfully connects to the Ollama backend.",
+        "The web interface is accessible on its specified port (e.g., 8080)."
+      ]
+    }
+  ]
+} 

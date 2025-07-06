@@ -1,0 +1,44 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-SERVICE-HARDWARE-PROFILER-001",
+    "title": "Hardware and OS Profiler Module",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "intermediate",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "This recipe creates a system to detect the host's operating system, CPU, GPU (including model and VRAM), and available RAM. The collected data will inform which AI services and models can be run effectively, enabling auto-configuration and user recommendations.",
+    "technology_stack": {
+      "language": "Python"
+    },
+    "deliverables": [
+      "A script to detect OS, CPU, GPU, and RAM.",
+      "A JSON output file containing the hardware profile.",
+      "Integration with the main configuration system."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "40-001",
+      "title": "Create Hardware Profiling Scripts",
+      "description": "Develop Python scripts to gather detailed hardware and OS information.",
+      "estimated_time": "30 minutes",
+      "commands": [
+        "pip install psutil py-cpuinfo GPUtil"
+      ],
+      "files_to_create": [
+        "scripts/system/hardware_profiler.py",
+        "config/hardware_profile.json"
+      ],
+      "acceptance_criteria": [
+        "Script successfully detects the OS type and version.",
+        "Script identifies the CPU model and core count.",
+        "Script detects the GPU model and VRAM, if present.",
+        "Script accurately reports total and available system RAM.",
+        "All collected data is correctly written to 'config/hardware_profile.json'."
+      ]
+    }
+  ]
+} 

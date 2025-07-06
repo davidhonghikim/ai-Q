@@ -321,10 +321,10 @@
         "src/api/gateway/docs/openapi.py",
         "src/api/gateway/docs/swagger.py",
         "src/api/gateway/docs/redoc.py",
-        "docs/api/README.md",
-        "docs/api/rest_api.md",
-        "docs/api/graphql_api.md",
-        "docs/api/plugins.md"
+        "docs/api/README.json",
+        "docs/api/rest_api.json",
+        "docs/api/graphql_api.json",
+        "docs/api/plugins.json"
       ],
       "acceptance_criteria": [
         "OpenAPI specification generated",
@@ -462,11 +462,11 @@
         "mkdir -p examples/gateway"
       ],
       "files_to_create": [
-        "docs/gateway/README.md",
-        "docs/gateway/installation.md",
-        "docs/gateway/configuration.md",
-        "docs/gateway/plugins.md",
-        "docs/gateway/troubleshooting.md",
+        "docs/gateway/README.json",
+        "docs/gateway/installation.json",
+        "docs/gateway/configuration.json",
+        "docs/gateway/plugins.json",
+        "docs/gateway/troubleshooting.json",
         "examples/gateway/basic_usage.py",
         "examples/gateway/plugin_examples.py",
         "examples/gateway/middleware_examples.py"

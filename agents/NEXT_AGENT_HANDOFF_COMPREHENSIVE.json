@@ -6,7 +6,8 @@
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-01-28T12:30:00Z",
     "handoff_type": "comprehensive_project_continuation",
-    "priority": "critical"
+    "priority": "critical",
+    "critical_recipe_library_handoff": "agents/RECIPE_LIBRARY_CRITICAL_FIXES_HANDOFF.json"
   },
   "agent_introduction_template": {
     "mandatory_introduction": "I am [AGENT_NAME], a specialized AI coding assistant focused on [SPECIALIZATION]. My current role is to continue the ai-Q project development, review the previous agent's work for errors, provide comprehensive analysis and recommendations, and complete all remaining recipes.",

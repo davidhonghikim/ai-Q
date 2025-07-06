@@ -383,11 +383,11 @@
         "mkdir -p examples/image"
       ],
       "files_to_create": [
-        "docs/image/README.md",
-        "docs/image/vision.md",
-        "docs/image/face.md",
-        "docs/image/enhancement.md",
-        "docs/image/metadata.md",
+        "docs/image/README.json",
+        "docs/image/vision.json",
+        "docs/image/face.json",
+        "docs/image/enhancement.json",
+        "docs/image/metadata.json",
         "examples/image/vision_examples.py",
         "examples/image/face_examples.py",
         "examples/image/enhancement_examples.py"

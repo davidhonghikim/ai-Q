@@ -1,0 +1,12 @@
+{
+  "purpose": "This directory is reserved for advanced user/admin/agentic interfaces, meshnet, robotics, IoT, and all future expansion modules. It is the slot for long-term plans, experimental technology, and advanced integrations that extend the core system.",
+  "usage": "Add new modules here for features that are not part of the core agentic bootstrapping, but are valuable for advanced users, future-proofing, or experimental development.",
+  "examples": [
+    "Meshnet and distributed agent interfaces",
+    "Robotics and hardware integration",
+    "IoT and sensor networks",
+    "Advanced admin dashboards",
+    "Agentic plug-in architectures",
+    "Long-term research and experimental tech"
+  ]
+} 

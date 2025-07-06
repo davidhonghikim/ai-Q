@@ -385,11 +385,11 @@
         "mkdir -p examples/semantic_search"
       ],
       "files_to_create": [
-        "docs/semantic_search/README.md",
-        "docs/semantic_search/query.md",
-        "docs/semantic_search/engine.md",
-        "docs/semantic_search/ranking.md",
-        "docs/semantic_search/discovery.md",
+        "docs/semantic_search/README.json",
+        "docs/semantic_search/query.json",
+        "docs/semantic_search/engine.json",
+        "docs/semantic_search/ranking.json",
+        "docs/semantic_search/discovery.json",
         "examples/semantic_search/query_examples.py",
         "examples/semantic_search/search_examples.py",
         "examples/semantic_search/ranking_examples.py"

@@ -1,0 +1,27 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "12-MESHNET-INTEGRATION-001",
+    "title": "Meshnet/Distributed Agent Integration",
+    "version": "0.1.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T15:00:00Z",
+    "description": "Placeholder for meshnet and distributed agent network integration."
+  },
+  "tasks": [
+    "Design meshnet communication protocol.",
+    "Implement distributed agent discovery.",
+    "Enable secure peer-to-peer messaging.",
+    "Integrate meshnet with agentic memory (RAG/DB)."
+  ],
+  "deliverables": [
+    "Meshnet protocol spec.",
+    "Agent discovery module.",
+    "Secure messaging system.",
+    "Integration test suite."
+  ],
+  "acceptance_criteria": [
+    "Agents can discover and communicate over meshnet.",
+    "All communication is secure and authenticated.",
+    "Meshnet integrates with agentic memory."
+  ]
+} 

@@ -385,11 +385,11 @@
         "mkdir -p examples/knowledge_graph"
       ],
       "files_to_create": [
-        "docs/knowledge_graph/README.md",
-        "docs/knowledge_graph/construction.md",
-        "docs/knowledge_graph/queries.md",
-        "docs/knowledge_graph/reasoning.md",
-        "docs/knowledge_graph/analytics.md",
+        "docs/knowledge_graph/README.json",
+        "docs/knowledge_graph/construction.json",
+        "docs/knowledge_graph/queries.json",
+        "docs/knowledge_graph/reasoning.json",
+        "docs/knowledge_graph/analytics.json",
         "examples/knowledge_graph/construction_examples.py",
         "examples/knowledge_graph/query_examples.py",
         "examples/knowledge_graph/reasoning_examples.py"

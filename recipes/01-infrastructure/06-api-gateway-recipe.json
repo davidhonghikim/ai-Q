@@ -1,0 +1,967 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "04-API-GATEWAY-COMPREHENSIVE",
+    "title": "Enterprise API Gateway - Unified REST/GraphQL Platform",
+    "version": "2.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-27T14:00:00Z",
+    "last_updated": "2025-07-05T23:55:00Z",
+    "estimated_tokens": 85000,
+    "estimated_execution_time": "6-8 hours",
+    "difficulty_level": "expert",
+    "total_tasks": 15,
+    "agent_autonomy_level": "95%",
+    "success_rate_target": "99%",
+    "compliance_standards": ["SOC 2", "ISO 27001", "GDPR"],
+    "architecture_tier": "enterprise-api",
+    "kitchen_system": {
+      "orchestrator": "chef",
+      "pantry_required": true,
+      "caching_enabled": true,
+      "cache_strategy": "aggressive"
+    }
+  },
+  "recipe_overview": {
+    "description": "Implement production-ready API Gateway with REST/GraphQL unified API, plugin architecture, and comprehensive middleware using the kitchen analogy system. This comprehensive recipe delivers a unified API gateway with REST and GraphQL support, extensible plugin architecture, comprehensive middleware stack, security hardening, performance optimization, and enterprise-grade features with atomic, reusable ingredients and intelligent caching.",
+    "technology_stack": {
+      "rest_api": "FastAPI with OpenAPI 3.0, automatic documentation, request validation",
+      "graphql_api": "Strawberry GraphQL with schema introspection, subscriptions, playground",
+      "plugin_system": "Dynamic plugin loading, lifecycle management, marketplace integration",
+      "middleware": "Authentication, rate limiting, CORS, security headers, monitoring",
+      "performance": "Response caching, compression, async handlers, load balancing",
+      "security": "JWT authentication, CORS protection, CSRF prevention, input validation",
+      "monitoring": "Request/response logging, metrics collection, health checks",
+      "kitchen_system": "Pantry ingredients, orchestrator agent, intelligent caching"
+    },
+    "deliverables": [
+      "Unified API Gateway with REST and GraphQL support",
+      "Extensible plugin architecture with marketplace",
+      "Comprehensive middleware stack for security and performance",
+      "API versioning system for backward compatibility",
+      "Performance optimization with caching and compression",
+      "Comprehensive testing framework with unit and integration tests",
+      "Complete documentation and operational runbooks",
+      "Kitchen system integration providing atomic, reusable ingredients"
+    ],
+    "success_criteria": [
+      "REST API with comprehensive endpoints and OpenAPI documentation",
+      "GraphQL API with schema introspection and playground",
+      "Plugin architecture supporting dynamic loading and lifecycle management",
+      "Rate limiting and throttling with configurable policies",
+      "Request/response transformation and validation",
+      "Security hardening with authentication and authorization",
+      "Performance optimization achieving sub-100ms response times",
+      "Kitchen system providing atomic, reusable API ingredients"
+    ],
+    "architectural_principles": [
+      "Unified API interface for multiple protocols",
+      "Extensible plugin architecture for customization",
+      "Security-first approach with comprehensive middleware",
+      "Performance optimization with caching and compression",
+      "Scalable architecture with horizontal scaling",
+      "Comprehensive monitoring and observability",
+      "Kitchen analogy system for atomic, reusable ingredients"
+    ]
+  },
+  "pantry_ingredients": {
+    "required_tasks": [
+      {
+        "ingredient_id": "task:setup-api-gateway:1.0.0",
+        "purpose": "Setup enterprise API gateway infrastructure",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-rest-api:1.0.0",
+        "purpose": "Deploy REST API with FastAPI framework",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-graphql-api:1.0.0",
+        "purpose": "Deploy GraphQL API with Strawberry framework",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:setup-plugin-system:1.0.0",
+        "purpose": "Setup extensible plugin architecture",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:configure-middleware:1.0.0",
+        "purpose": "Configure comprehensive middleware stack",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:setup-security:1.0.0",
+        "purpose": "Setup security hardening and authentication",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:optimize-performance:1.0.0",
+        "purpose": "Optimize API performance and caching",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "task:setup-testing:1.0.0",
+        "purpose": "Setup comprehensive testing framework",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_skills": [
+      {
+        "ingredient_id": "skill:manage-api-gateway:1.0.0",
+        "purpose": "Manage enterprise API gateway systems",
+        "usage_count": 20,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:configure-rest-api:1.0.0",
+        "purpose": "Configure REST APIs with FastAPI",
+        "usage_count": 15,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:configure-graphql:1.0.0",
+        "purpose": "Configure GraphQL APIs with Strawberry",
+        "usage_count": 12,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:manage-plugins:1.0.0",
+        "purpose": "Manage plugin architecture and lifecycle",
+        "usage_count": 10,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:configure-middleware:1.0.0",
+        "purpose": "Configure API middleware and security",
+        "usage_count": 12,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:optimize-api-performance:1.0.0",
+        "purpose": "Optimize API performance and caching",
+        "usage_count": 10,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_tools": [
+      {
+        "ingredient_id": "tool:fastapi:0.100.0",
+        "purpose": "FastAPI for REST API framework",
+        "usage_count": 3,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:strawberry-graphql:0.200.0",
+        "purpose": "Strawberry for GraphQL framework",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:uvicorn:0.23.0",
+        "purpose": "Uvicorn ASGI server",
+        "usage_count": 2,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:redis:7.2.0",
+        "purpose": "Redis for API caching",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:jwt:2.8.0",
+        "purpose": "JWT for authentication",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:prometheus:2.45.0",
+        "purpose": "Prometheus for API metrics",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:pytest:7.4.0",
+        "purpose": "Pytest for API testing",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_configs": [
+      {
+        "ingredient_id": "config:api-gateway-config:1.0.0",
+        "purpose": "API Gateway configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:rest-api-config:1.0.0",
+        "purpose": "REST API configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:graphql-config:1.0.0",
+        "purpose": "GraphQL API configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:plugin-config:1.0.0",
+        "purpose": "Plugin system configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:middleware-config:1.0.0",
+        "purpose": "Middleware configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:security-config:1.0.0",
+        "purpose": "Security configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step": 1,
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with aggressive caching",
+        "ingredients": [
+          "task:setup-api-gateway:1.0.0",
+          "task:deploy-rest-api:1.0.0",
+          "task:deploy-graphql-api:1.0.0",
+          "task:setup-plugin-system:1.0.0",
+          "task:configure-middleware:1.0.0",
+          "task:setup-security:1.0.0",
+          "task:optimize-performance:1.0.0",
+          "task:setup-testing:1.0.0",
+          "skill:manage-api-gateway:1.0.0",
+          "skill:configure-rest-api:1.0.0",
+          "skill:configure-graphql:1.0.0",
+          "skill:manage-plugins:1.0.0",
+          "skill:configure-middleware:1.0.0",
+          "skill:optimize-api-performance:1.0.0",
+          "tool:fastapi:0.100.0",
+          "tool:strawberry-graphql:0.200.0",
+          "tool:uvicorn:0.23.0",
+          "tool:redis:7.2.0",
+          "tool:jwt:2.8.0",
+          "tool:prometheus:2.45.0",
+          "tool:pytest:7.4.0",
+          "config:api-gateway-config:1.0.0",
+          "config:rest-api-config:1.0.0",
+          "config:graphql-config:1.0.0",
+          "config:plugin-config:1.0.0",
+          "config:middleware-config:1.0.0",
+          "config:security-config:1.0.0"
+        ]
+      },
+      {
+        "step": 2,
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "Core infrastructure is operational",
+          "Storage systems are available",
+          "Database systems are running",
+          "Authentication system is configured",
+          "Network connectivity is established"
+        ]
+      },
+      {
+        "step": 3,
+        "action": "execute_api_deployment",
+        "description": "Execute API gateway deployment with all components",
+        "sub_steps": [
+          "Deploy REST API with FastAPI framework",
+          "Deploy GraphQL API with Strawberry framework",
+          "Setup extensible plugin architecture",
+          "Configure comprehensive middleware stack",
+          "Setup security hardening and authentication",
+          "Optimize performance with caching",
+          "Setup comprehensive testing framework"
+        ]
+      },
+      {
+        "step": 4,
+        "action": "cache_results",
+        "description": "Cache successful deployment results for future use",
+        "cache_items": [
+          "API gateway configurations",
+          "REST and GraphQL API settings",
+          "Plugin system configurations",
+          "Middleware configurations",
+          "Security policies and authentication",
+          "Performance optimization settings",
+          "Testing framework configurations"
+        ]
+      }
+    ],
+    "caching_strategy": {
+      "ingredient_caching": "aggressive",
+      "result_caching": "aggressive",
+      "cache_validation": "content_hash",
+      "cache_ttl": 604800,
+      "cache_location": "local"
+    }
+  },
+  "api_gateway_architecture": {
+    "rest_api": {
+      "purpose": "RESTful API with comprehensive endpoints",
+      "features": [
+        "CRUD operations for all resources",
+        "File upload/download endpoints",
+        "Search and filtering capabilities",
+        "Batch operations support",
+        "OpenAPI 3.0 documentation",
+        "Automatic request validation"
+      ],
+      "modular_components": [
+        "rest-api-core",
+        "rest-api-routes",
+        "rest-api-validators",
+        "rest-api-documentation"
+      ],
+      "pantry_ingredients": [
+        "task:deploy-rest-api:1.0.0",
+        "skill:configure-rest-api:1.0.0",
+        "tool:fastapi:0.100.0",
+        "tool:uvicorn:0.23.0",
+        "config:rest-api-config:1.0.0"
+      ]
+    },
+    "graphql_api": {
+      "purpose": "GraphQL API with flexible querying",
+      "features": [
+        "Schema definition and introspection",
+        "Query and mutation resolvers",
+        "Subscription support",
+        "GraphQL playground",
+        "Type safety and validation",
+        "Performance optimization"
+      ],
+      "modular_components": [
+        "graphql-schema",
+        "graphql-resolvers",
+        "graphql-subscriptions",
+        "graphql-playground"
+      ],
+      "pantry_ingredients": [
+        "task:deploy-graphql-api:1.0.0",
+        "skill:configure-graphql:1.0.0",
+        "tool:strawberry-graphql:0.200.0",
+        "config:graphql-config:1.0.0"
+      ]
+    },
+    "plugin_system": {
+      "purpose": "Extensible plugin architecture",
+      "features": [
+        "Dynamic plugin loading",
+        "Plugin lifecycle management",
+        "Plugin configuration",
+        "Plugin marketplace",
+        "Version compatibility",
+        "Security isolation"
+      ],
+      "modular_components": [
+        "plugin-manager",
+        "plugin-loader",
+        "plugin-registry",
+        "plugin-marketplace"
+      ],
+      "pantry_ingredients": [
+        "task:setup-plugin-system:1.0.0",
+        "skill:manage-plugins:1.0.0",
+        "config:plugin-config:1.0.0"
+      ]
+    },
+    "middleware": {
+      "purpose": "Comprehensive middleware stack",
+      "features": [
+        "Authentication and authorization",
+        "Rate limiting and throttling",
+        "Request/response transformation",
+        "Logging and monitoring",
+        "CORS and security headers",
+        "Error handling and validation"
+      ],
+      "modular_components": [
+        "auth-middleware",
+        "rate-limit-middleware",
+        "transform-middleware",
+        "monitoring-middleware"
+      ],
+      "pantry_ingredients": [
+        "task:configure-middleware:1.0.0",
+        "skill:configure-middleware:1.0.0",
+        "tool:jwt:2.8.0",
+        "tool:redis:7.2.0",
+        "config:middleware-config:1.0.0"
+      ]
+    }
+  },
+  "implementation_steps": [
+    {
+      "task_id": "04-001",
+      "title": "Create API Gateway Core Architecture",
+      "description": "Design and implement the core API Gateway architecture with unified management using pantry ingredients",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "kitchen_system": {
+        "pantry_ingredients_used": [
+          "task:setup-api-gateway:1.0.0",
+          "skill:manage-api-gateway:1.0.0",
+          "config:api-gateway-config:1.0.0"
+        ],
+        "caching_benefits": [
+          "API Gateway core configuration cached",
+          "Architecture templates cached",
+          "Base classes and interfaces cached"
+        ]
+      },
+      "commands": [
+        "# Use pantry ingredient to create API Gateway core",
+        "task:create-api-gateway-core:1.0.0 --config=config:api-gateway-config:1.0.0",
+        "",
+        "mkdir -p src/api/gateway",
+        "mkdir -p src/api/gateway/rest",
+        "mkdir -p src/api/gateway/graphql",
+        "mkdir -p src/api/gateway/plugins",
+        "mkdir -p src/api/gateway/middleware",
+        "mkdir -p src/api/gateway/common"
+      ],
+      "files_to_create": [
+        "src/api/gateway/__init__.py",
+        "src/api/gateway/core.py",
+        "src/api/gateway/manager.py",
+        "src/api/gateway/config.py",
+        "src/api/gateway/types.py"
+      ],
+      "acceptance_criteria": [
+        "API Gateway base classes defined with unified interface",
+        "Configuration system supports all API types",
+        "Type definitions for all API operations",
+        "Manager class can handle multiple API providers",
+        "Kitchen system integration providing atomic, reusable ingredients"
+      ]
+    },
+    {
+      "task_id": "04-002",
+      "title": "Implement REST API Core",
+      "description": "Create comprehensive REST API with FastAPI framework using pantry ingredients",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "kitchen_system": {
+        "pantry_ingredients_used": [
+          "task:deploy-rest-api:1.0.0",
+          "skill:configure-rest-api:1.0.0",
+          "tool:fastapi:0.100.0",
+          "tool:uvicorn:0.23.0",
+          "config:rest-api-config:1.0.0"
+        ],
+        "caching_benefits": [
+          "REST API configuration cached",
+          "FastAPI application templates cached",
+          "Route definitions and schemas cached"
+        ]
+      },
+      "commands": [
+        "# Use pantry ingredient to deploy REST API",
+        "task:deploy-rest-api:1.0.0 --config=config:rest-api-config:1.0.0",
+        "",
+        "pip install fastapi uvicorn",
+        "mkdir -p src/api/gateway/rest/routes",
+        "mkdir -p src/api/gateway/rest/schemas",
+        "mkdir -p src/api/gateway/rest/validators"
+      ],
+      "files_to_create": [
+        "src/api/gateway/rest/__init__.py",
+        "src/api/gateway/rest/app.py",
+        "src/api/gateway/rest/routes/__init__.py",
+        "src/api/gateway/rest/routes/knowledge.py",
+        "src/api/gateway/rest/routes/storage.py",
+        "src/api/gateway/rest/routes/search.py",
+        "src/api/gateway/rest/schemas/__init__.py",
+        "src/api/gateway/rest/schemas/knowledge.py",
+        "src/api/gateway/rest/schemas/storage.py",
+        "src/api/gateway/rest/validators/__init__.py"
+      ],
+      "acceptance_criteria": [
+        "FastAPI application with proper structure",
+        "REST routes for all major resources",
+        "Request/response schemas defined",
+        "Input validation working",
+        "OpenAPI documentation generated",
+        "Kitchen system providing atomic, reusable REST ingredients"
+      ]
+    },
+    {
+      "task_id": "04-003",
+      "title": "Implement GraphQL API",
+      "description": "Create GraphQL API with Strawberry framework",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "pip install strawberry-graphql",
+        "mkdir -p src/api/gateway/graphql/schema",
+        "mkdir -p src/api/gateway/graphql/resolvers",
+        "mkdir -p src/api/gateway/graphql/types"
+      ],
+      "files_to_create": [
+        "src/api/gateway/graphql/__init__.py",
+        "src/api/gateway/graphql/app.py",
+        "src/api/gateway/graphql/schema/__init__.py",
+        "src/api/gateway/graphql/schema/knowledge.py",
+        "src/api/gateway/graphql/schema/storage.py",
+        "src/api/gateway/graphql/resolvers/__init__.py",
+        "src/api/gateway/graphql/resolvers/knowledge.py",
+        "src/api/gateway/graphql/resolvers/storage.py",
+        "src/api/gateway/graphql/types/__init__.py"
+      ],
+      "acceptance_criteria": [
+        "GraphQL schema defined with all types",
+        "Query and mutation resolvers working",
+        "GraphQL playground accessible",
+        "Schema introspection functional"
+      ]
+    },
+    {
+      "task_id": "04-004",
+      "title": "Implement Plugin System",
+      "description": "Create extensible plugin architecture for API Gateway",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/api/gateway/plugins/manager",
+        "mkdir -p src/api/gateway/plugins/registry",
+        "mkdir -p src/api/gateway/plugins/examples"
+      ],
+      "files_to_create": [
+        "src/api/gateway/plugins/__init__.py",
+        "src/api/gateway/plugins/manager/__init__.py",
+        "src/api/gateway/plugins/manager/loader.py",
+        "src/api/gateway/plugins/manager/lifecycle.py",
+        "src/api/gateway/plugins/registry/__init__.py",
+        "src/api/gateway/plugins/registry/registry.py",
+        "src/api/gateway/plugins/registry/marketplace.py",
+        "src/api/gateway/plugins/examples/__init__.py",
+        "src/api/gateway/plugins/examples/rate_limit_plugin.py",
+        "src/api/gateway/plugins/examples/cache_plugin.py"
+      ],
+      "acceptance_criteria": [
+        "Plugin manager can load/unload plugins",
+        "Plugin lifecycle management working",
+        "Plugin registry and marketplace functional",
+        "Example plugins demonstrate capabilities"
+      ]
+    },
+    {
+      "task_id": "04-005",
+      "title": "Implement Authentication Middleware",
+      "description": "Create comprehensive authentication and authorization middleware",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "pip install python-jose[cryptography] passlib[bcrypt]",
+        "mkdir -p src/api/gateway/middleware/auth"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/auth/__init__.py",
+        "src/api/gateway/middleware/auth/authentication.py",
+        "src/api/gateway/middleware/auth/authorization.py",
+        "src/api/gateway/middleware/auth/jwt_handler.py",
+        "src/api/gateway/middleware/auth/oauth_handler.py",
+        "src/api/gateway/middleware/auth/rbac.py"
+      ],
+      "acceptance_criteria": [
+        "JWT token authentication working",
+        "OAuth2 integration functional",
+        "Role-based access control operational",
+        "Permission checking middleware"
+      ]
+    },
+    {
+      "task_id": "04-006",
+      "title": "Implement Rate Limiting Middleware",
+      "description": "Create rate limiting and throttling middleware",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "pip install slowapi",
+        "mkdir -p src/api/gateway/middleware/rate_limit"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/rate_limit/__init__.py",
+        "src/api/gateway/middleware/rate_limit/limiter.py",
+        "src/api/gateway/middleware/rate_limit/throttler.py",
+        "src/api/gateway/middleware/rate_limit/config.py"
+      ],
+      "acceptance_criteria": [
+        "Rate limiting by IP address working",
+        "Rate limiting by user ID functional",
+        "Throttling for specific endpoints",
+        "Rate limit headers in responses"
+      ]
+    },
+    {
+      "task_id": "04-007",
+      "title": "Implement Request/Response Transformation",
+      "description": "Create middleware for request/response transformation",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/middleware/transform"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/transform/__init__.py",
+        "src/api/gateway/middleware/transform/request.py",
+        "src/api/gateway/middleware/transform/response.py",
+        "src/api/gateway/middleware/transform/headers.py",
+        "src/api/gateway/middleware/transform/body.py"
+      ],
+      "acceptance_criteria": [
+        "Request transformation working",
+        "Response transformation functional",
+        "Header modification capabilities",
+        "Body transformation support"
+      ]
+    },
+    {
+      "task_id": "04-008",
+      "title": "Implement Logging and Monitoring",
+      "description": "Create comprehensive logging and monitoring middleware",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "pip install structlog prometheus-client",
+        "mkdir -p src/api/gateway/middleware/monitoring"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/monitoring/__init__.py",
+        "src/api/gateway/middleware/monitoring/logging.py",
+        "src/api/gateway/middleware/monitoring/metrics.py",
+        "src/api/gateway/middleware/monitoring/tracing.py",
+        "src/api/gateway/middleware/monitoring/health.py"
+      ],
+      "acceptance_criteria": [
+        "Structured logging for all requests",
+        "Prometheus metrics collection",
+        "Request tracing capabilities",
+        "Health check endpoints"
+      ]
+    },
+    {
+      "task_id": "04-009",
+      "title": "Create API Documentation System",
+      "description": "Implement comprehensive API documentation with OpenAPI/Swagger",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/api",
+        "mkdir -p src/api/gateway/docs"
+      ],
+      "files_to_create": [
+        "src/api/gateway/docs/__init__.py",
+        "src/api/gateway/docs/openapi.py",
+        "src/api/gateway/docs/swagger.py",
+        "src/api/gateway/docs/redoc.py",
+        "docs/api/README.md",
+        "docs/api/rest_api.md",
+        "docs/api/graphql_api.md",
+        "docs/api/plugins.md"
+      ],
+      "acceptance_criteria": [
+        "OpenAPI specification generated",
+        "Swagger UI accessible",
+        "ReDoc documentation available",
+        "Comprehensive API guides"
+      ]
+    },
+    {
+      "task_id": "04-010",
+      "title": "Implement Error Handling and Validation",
+      "description": "Create comprehensive error handling and validation system",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/errors",
+        "mkdir -p src/api/gateway/validation"
+      ],
+      "files_to_create": [
+        "src/api/gateway/errors/__init__.py",
+        "src/api/gateway/errors/handlers.py",
+        "src/api/gateway/errors/exceptions.py",
+        "src/api/gateway/validation/__init__.py",
+        "src/api/gateway/validation/schemas.py",
+        "src/api/gateway/validation/validators.py"
+      ],
+      "acceptance_criteria": [
+        "Global error handling middleware",
+        "Custom exception classes defined",
+        "Request validation working",
+        "Error response standardization"
+      ]
+    },
+    {
+      "task_id": "04-011",
+      "title": "Implement CORS and Security Headers",
+      "description": "Create CORS and security headers middleware",
+      "estimated_time": "30 minutes",
+      "estimated_tokens": 2000,
+      "commands": [
+        "mkdir -p src/api/gateway/middleware/security"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/security/__init__.py",
+        "src/api/gateway/middleware/security/cors.py",
+        "src/api/gateway/middleware/security/headers.py",
+        "src/api/gateway/middleware/security/csrf.py"
+      ],
+      "acceptance_criteria": [
+        "CORS configuration working",
+        "Security headers applied",
+        "CSRF protection functional",
+        "Cross-origin requests handled"
+      ]
+    },
+    {
+      "task_id": "04-012",
+      "title": "Implement API Versioning",
+      "description": "Create API versioning system for backward compatibility",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/versioning"
+      ],
+      "files_to_create": [
+        "src/api/gateway/versioning/__init__.py",
+        "src/api/gateway/versioning/manager.py",
+        "src/api/gateway/versioning/routes.py",
+        "src/api/gateway/versioning/schemas.py"
+      ],
+      "acceptance_criteria": [
+        "API versioning by URL path",
+        "Version-specific schemas",
+        "Backward compatibility support",
+        "Version deprecation handling"
+      ]
+    },
+    {
+      "task_id": "04-013",
+      "title": "Implement API Testing Framework",
+      "description": "Create comprehensive testing framework for API Gateway",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p tests/api/gateway",
+        "mkdir -p tests/api/gateway/rest",
+        "mkdir -p tests/api/gateway/graphql"
+      ],
+      "files_to_create": [
+        "tests/api/gateway/__init__.py",
+        "tests/api/gateway/test_gateway.py",
+        "tests/api/gateway/rest/__init__.py",
+        "tests/api/gateway/rest/test_routes.py",
+        "tests/api/gateway/graphql/__init__.py",
+        "tests/api/gateway/graphql/test_schema.py",
+        "tests/api/gateway/conftest.py"
+      ],
+      "acceptance_criteria": [
+        "Unit tests for all API components",
+        "Integration tests for REST endpoints",
+        "GraphQL schema tests",
+        "Test fixtures and utilities"
+      ]
+    },
+    {
+      "task_id": "04-014",
+      "title": "Implement API Performance Optimization",
+      "description": "Create performance optimizations for API Gateway",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/optimization"
+      ],
+      "files_to_create": [
+        "src/api/gateway/optimization/__init__.py",
+        "src/api/gateway/optimization/caching.py",
+        "src/api/gateway/optimization/compression.py",
+        "src/api/gateway/optimization/async_handlers.py"
+      ],
+      "acceptance_criteria": [
+        "Response caching working",
+        "Gzip compression enabled",
+        "Async request handling",
+        "Performance monitoring"
+      ]
+    },
+    {
+      "task_id": "04-015",
+      "title": "Create API Gateway Documentation",
+      "description": "Comprehensive documentation for API Gateway usage and configuration",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/gateway",
+        "mkdir -p examples/gateway"
+      ],
+      "files_to_create": [
+        "docs/gateway/README.md",
+        "docs/gateway/installation.md",
+        "docs/gateway/configuration.md",
+        "docs/gateway/plugins.md",
+        "docs/gateway/troubleshooting.md",
+        "examples/gateway/basic_usage.py",
+        "examples/gateway/plugin_examples.py",
+        "examples/gateway/middleware_examples.py"
+      ],
+      "acceptance_criteria": [
+        "Complete installation and setup guides",
+        "Plugin development documentation",
+        "Middleware configuration guide",
+        "Troubleshooting guide with common issues"
+      ]
+    }
+  ],
+  "configuration": {
+    "environment_variables": {
+      "API_HOST": "0.0.0.0",
+      "API_PORT": "8000",
+      "API_WORKERS": "4",
+      "API_RELOAD": "true",
+      "API_LOG_LEVEL": "info",
+      "CORS_ORIGINS": "http://localhost:3000,http://localhost:8080",
+      "RATE_LIMIT_REQUESTS": "100",
+      "RATE_LIMIT_WINDOW": "60",
+      "JWT_SECRET_KEY": "your-jwt-secret-key",
+      "JWT_ALGORITHM": "HS256",
+      "JWT_EXPIRATION": "3600"
+    },
+    "docker_compose": {
+      "api_gateway_service": {
+        "build": ".",
+        "ports": ["8000:8000"],
+        "environment": [
+          "API_HOST=${API_HOST}",
+          "API_PORT=${API_PORT}",
+          "API_WORKERS=${API_WORKERS}"
+        ],
+        "volumes": ["./src:/app/src"],
+        "command": "uvicorn src.api.gateway.rest.app:app --host ${API_HOST} --port ${API_PORT} --workers ${API_WORKERS} --reload"
+      }
+    },
+    "kitchen_system": {
+      "caching_strategy": "aggressive",
+      "cache_ttl": 604800,
+      "cache_validation": "content_hash",
+      "cache_location": "local"
+    }
+  },
+  "validation_and_testing": {
+    "unit_tests": [
+      "Test API Gateway initialization",
+      "Test REST endpoint routing",
+      "Test GraphQL schema validation",
+      "Test middleware execution",
+      "Test plugin loading",
+      "Test kitchen system integration"
+    ],
+    "integration_tests": [
+      "Test end-to-end API requests",
+      "Test authentication flow",
+      "Test rate limiting",
+      "Test error handling",
+      "Test caching functionality"
+    ],
+    "performance_tests": [
+      "API response time tests",
+      "Concurrent request handling",
+      "Memory usage optimization",
+      "Throughput testing",
+      "Cache performance testing"
+    ]
+  },
+  "deployment_instructions": {
+    "prerequisites": [
+      "Python 3.9+ with required packages",
+      "Docker and Docker Compose installed",
+      "Database and storage systems running",
+      "Authentication system configured",
+      "Kitchen system operational"
+    ],
+    "installation_steps": [
+      "1. Use kitchen system to gather all required pantry ingredients",
+      "2. Validate all ingredient dependencies are satisfied",
+      "3. Clone the repository and navigate to the project directory",
+      "4. Copy configuration templates and update with your settings",
+      "5. Install Python dependencies: pip install -r requirements.txt",
+      "6. Start API Gateway: uvicorn src.api.gateway.rest.app:app --reload",
+      "7. Run API tests: python -m pytest tests/api/gateway/",
+      "8. Access API documentation at http://localhost:8000/docs",
+      "9. Cache successful deployment results for future use"
+    ],
+    "verification": [
+      "Check API Gateway at http://localhost:8000",
+      "Verify REST API documentation at http://localhost:8000/docs",
+      "Test GraphQL playground at http://localhost:8000/graphql",
+      "Confirm health check endpoint at http://localhost:8000/health",
+      "Verify kitchen system integration and caching"
+    ]
+  },
+  "success_criteria": {
+    "functional_requirements": [
+      "REST API with comprehensive endpoints and OpenAPI documentation",
+      "GraphQL API with schema introspection and playground",
+      "Plugin architecture supporting dynamic loading and lifecycle management",
+      "Rate limiting and throttling with configurable policies",
+      "Request/response transformation and validation",
+      "Security hardening with authentication and authorization",
+      "Performance optimization achieving sub-100ms response times",
+      "Kitchen system providing atomic, reusable API ingredients"
+    ],
+    "performance_requirements": [
+      "API response times under 100ms for simple operations",
+      "Concurrent request handling supporting 1000+ requests/second",
+      "Memory usage optimized with efficient caching",
+      "Throughput exceeding 10MB/s for file operations",
+      "Cache hit rate > 80% for frequently accessed data"
+    ],
+    "security_requirements": [
+      "JWT authentication with secure token management",
+      "CORS protection with configurable origins",
+      "CSRF prevention for state-changing operations",
+      "Input validation and sanitization",
+      "Rate limiting to prevent abuse",
+      "Security headers and HTTPS enforcement"
+    ],
+    "quality_requirements": [
+      "Zero technical debt in API configurations",
+      "All documentation in JSON format only",
+      "No markdown files in project",
+      "Comprehensive error handling and logging",
+      "Atomic, exact recipes throughout",
+      "Kitchen system integration complete"
+    ]
+  },
+  "next_steps": {
+    "next_recipe": "07-authentication-security-recipe.json",
+    "dependencies": ["06-api-gateway-recipe.json"],
+    "estimated_start": "After successful completion of API gateway",
+    "kitchen_system_ready": true
+  }
+}

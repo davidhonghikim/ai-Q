@@ -145,7 +145,7 @@
           "monitoring/minio/dashboards.json - Grafana dashboards",
           "scripts/minio/health-check.sh - Health monitoring script",
           "config/minio/backup-policies.yaml - Backup configuration",
-          "docs/minio/cluster-architecture.md - Architecture documentation"
+          "docs/minio/cluster-architecture.json - Architecture documentation"
         ],
         "files_modified": [
           "docker-compose.yml - MinIO cluster services",

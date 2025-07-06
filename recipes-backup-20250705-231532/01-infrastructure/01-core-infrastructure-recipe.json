@@ -1,0 +1,211 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-CORE-INFRASTRUCTURE-MASTER",
+    "title": "Core Infrastructure Recipe - Master Orchestration",
+    "version": "3.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T13:30:00Z",
+    "difficulty_level": "expert",
+    "architecture_tier": "enterprise-foundation",
+    "description": "This is a master recipe that orchestrates the complete core infrastructure implementation. It coordinates all sub-recipes to create a production-ready infrastructure foundation with Docker environment, monitoring, logging, load balancing, service discovery, message queues, caching, backup, security, performance optimization, disaster recovery, and comprehensive documentation.",
+    "is_master_recipe": true
+  },
+  "recipe_overview": {
+    "description": "Complete core infrastructure implementation featuring Docker environment, comprehensive monitoring, centralized logging, load balancing, service discovery, message queues, distributed caching, automated backup, security hardening, performance optimization, disaster recovery, and comprehensive documentation. This master recipe orchestrates all sub-recipes to create a production-ready infrastructure foundation.",
+    "sub_recipe_directory": "01-core-infrastructure/",
+    "sub_recipes": [
+      "01-01-docker-environment.json",
+      "01-02-system-monitoring.json",
+      "01-03-logging-infrastructure.json",
+      "01-04-load-balancing.json",
+      "01-05-service-discovery.json",
+      "01-06-message-queue.json",
+      "01-07-cache-layer.json",
+      "01-08-backup-infrastructure.json",
+      "01-09-security-hardening.json",
+      "01-10-performance-optimization.json",
+      "01-11-disaster-recovery.json",
+      "01-12-documentation-and-handover.json"
+    ],
+    "total_sub_recipes": 12,
+    "total_tasks": 180,
+    "estimated_duration": "3-4 weeks",
+    "complexity": "Advanced",
+    "dependencies": []
+  },
+  "execution_plan": [
+    "Execute sub-recipes in the exact order listed in the `sub_recipes` array.",
+    "Each sub-recipe must complete successfully before proceeding to the next.",
+    "Verify all acceptance criteria are met for each sub-recipe before continuing.",
+    "Refer to the `README.json` in the `01-core-infrastructure/` directory for detailed information on each sub-recipe.",
+    "All documentation outputs must be in JSON format only - no markdown files allowed.",
+    "Ensure zero technical debt and comprehensive error handling throughout."
+  ],
+  "sub_recipe_dependencies": {
+    "01-01-docker-environment.json": {
+      "dependencies": [],
+      "description": "Foundation Docker environment with Compose, networking, and orchestration",
+      "estimated_tasks": 25,
+      "duration": "3-4 days"
+    },
+    "01-02-system-monitoring.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Prometheus, Grafana, and comprehensive monitoring stack",
+      "estimated_tasks": 20,
+      "duration": "2-3 days"
+    },
+    "01-03-logging-infrastructure.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "ELK stack with log aggregation and analysis",
+      "estimated_tasks": 18,
+      "duration": "2-3 days"
+    },
+    "01-04-load-balancing.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Nginx with advanced load balancing and SSL termination",
+      "estimated_tasks": 15,
+      "duration": "2 days"
+    },
+    "01-05-service-discovery.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Consul for service discovery and configuration management",
+      "estimated_tasks": 12,
+      "duration": "1-2 days"
+    },
+    "01-06-message-queue.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "RabbitMQ with clustering and high availability",
+      "estimated_tasks": 16,
+      "duration": "2-3 days"
+    },
+    "01-07-cache-layer.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Redis cluster with persistence and high availability",
+      "estimated_tasks": 14,
+      "duration": "2 days"
+    },
+    "01-08-backup-infrastructure.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Automated backup system with versioning and recovery",
+      "estimated_tasks": 12,
+      "duration": "1-2 days"
+    },
+    "01-09-security-hardening.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Security hardening, firewall rules, and compliance measures",
+      "estimated_tasks": 18,
+      "duration": "2-3 days"
+    },
+    "01-10-performance-optimization.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "System optimization, resource management, and performance tuning",
+      "estimated_tasks": 15,
+      "duration": "2 days"
+    },
+    "01-11-disaster-recovery.json": {
+      "dependencies": ["01-08-backup-infrastructure.json"],
+      "description": "DR procedures, failover mechanisms, and business continuity",
+      "estimated_tasks": 10,
+      "duration": "1-2 days"
+    },
+    "01-12-documentation-and-handover.json": {
+      "dependencies": ["01-01-docker-environment.json", "01-02-system-monitoring.json"],
+      "description": "Comprehensive documentation and handover procedures",
+      "estimated_tasks": 10,
+      "duration": "1 day"
+    }
+  },
+  "implementation_phases": {
+    "phase_1_foundation": {
+      "name": "Foundation Setup",
+      "sub_recipes": ["01-01-docker-environment.json"],
+      "duration": "3-4 days",
+      "description": "Basic infrastructure and container environment"
+    },
+    "phase_2_observability": {
+      "name": "Observability Stack",
+      "sub_recipes": ["01-02-system-monitoring.json", "01-03-logging-infrastructure.json"],
+      "duration": "4-6 days",
+      "description": "Monitoring and logging infrastructure"
+    },
+    "phase_3_core_services": {
+      "name": "Core Services",
+      "sub_recipes": ["01-04-load-balancing.json", "01-05-service-discovery.json", "01-06-message-queue.json", "01-07-cache-layer.json"],
+      "duration": "7-10 days",
+      "description": "Essential services for application support"
+    },
+    "phase_4_production_readiness": {
+      "name": "Production Readiness",
+      "sub_recipes": ["01-08-backup-infrastructure.json", "01-09-security-hardening.json", "01-10-performance-optimization.json"],
+      "duration": "5-8 days",
+      "description": "Production hardening and optimization"
+    },
+    "phase_5_completion": {
+      "name": "Documentation and Handover",
+      "sub_recipes": ["01-11-disaster-recovery.json", "01-12-documentation-and-handover.json"],
+      "duration": "2-3 days",
+      "description": "Final documentation and handover procedures"
+    }
+  },
+  "success_criteria": {
+    "functional_requirements": [
+      "All services running in Docker containers",
+      "Monitoring and alerting operational",
+      "Centralized logging functional",
+      "Load balancing working",
+      "Service discovery operational",
+      "Message queue functional",
+      "Caching layer operational",
+      "Backup system automated",
+      "Security measures implemented",
+      "Performance optimized",
+      "DR procedures documented",
+      "All tests passing"
+    ],
+    "performance_requirements": [
+      "99.9% uptime target",
+      "Response time < 100ms for core services",
+      "Resource utilization < 80%",
+      "Backup completion < 4 hours",
+      "Recovery time < 2 hours"
+    ],
+    "security_requirements": [
+      "All services encrypted in transit",
+      "Access controls implemented",
+      "Audit logging enabled",
+      "Vulnerability scanning passed",
+      "Compliance requirements met"
+    ],
+    "quality_requirements": [
+      "Zero technical debt",
+      "All documentation in JSON format",
+      "No markdown files in project",
+      "Comprehensive error handling",
+      "Atomic, exact recipes throughout"
+    ]
+  },
+  "verification_checklist": [
+    "All sub-recipes executed successfully",
+    "All acceptance criteria met",
+    "All services operational and healthy",
+    "Performance benchmarks achieved",
+    "Security requirements satisfied",
+    "Documentation complete and in JSON format",
+    "No markdown files present",
+    "Zero technical debt",
+    "All tests passing",
+    "Handover procedures documented"
+  ],
+  "next_steps": {
+    "next_recipe": "02-storage-systems-recipe.json",
+    "prerequisites_completed": [
+      "Core infrastructure fully implemented",
+      "All sub-recipes completed successfully",
+      "Documentation and handover completed",
+      "System verified and tested",
+      "Zero technical debt achieved"
+    ],
+    "readiness_check": "All verification checklist items completed successfully",
+    "completion_status": "01-core-infrastructure recipe fully implemented and ready for next phase"
+  }
+} 

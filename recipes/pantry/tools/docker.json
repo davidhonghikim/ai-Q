@@ -1,0 +1,100 @@
+{
+  "id": "tool:docker:24.0.0",
+  "type": "tool",
+  "name": "Docker Engine",
+  "version": "24.0.0",
+  "description": "Docker containerization platform for building, shipping, and running applications",
+  "atomic_steps": [
+    {
+      "step_id": "TOOL-01",
+      "command": "docker --version",
+      "description": "Verify Docker is installed and accessible",
+      "expected_output": "Docker version 24\\.0\\.0",
+      "error_handling": "If Docker not found, provide installation instructions"
+    },
+    {
+      "step_id": "TOOL-02",
+      "command": "docker info",
+      "description": "Check Docker daemon status and system information",
+      "expected_output": "Server Version: 24\\.0\\.0",
+      "error_handling": "If daemon not running, provide startup instructions"
+    }
+  ],
+  "inputs": {
+    "command": {
+      "type": "string",
+      "required": true,
+      "description": "Docker command to execute"
+    },
+    "args": {
+      "type": "string",
+      "required": false,
+      "description": "Additional arguments for the Docker command"
+    }
+  },
+  "outputs": {
+    "exit_code": {
+      "type": "number",
+      "description": "Exit code of the Docker command"
+    },
+    "stdout": {
+      "type": "string",
+      "description": "Standard output from the Docker command"
+    },
+    "stderr": {
+      "type": "string",
+      "description": "Standard error from the Docker command"
+    }
+  },
+  "dependencies": [],
+  "tags": [
+    "container",
+    "virtualization",
+    "deployment",
+    "infrastructure"
+  ],
+  "author": "Docker Inc.",
+  "last_updated": "2025-07-05T23:55:00Z",
+  "signature": "sha256:ghi789jkl012...",
+  "validation": {
+    "pre_execution": [
+      "Check if Docker binary exists in PATH",
+      "Verify Docker daemon is running",
+      "Check user has sufficient permissions"
+    ],
+    "post_execution": [
+      "Verify command executed successfully",
+      "Check for any error messages in stderr"
+    ]
+  },
+  "installation": {
+    "platforms": {
+      "linux": "apt-get install docker.io",
+      "macos": "brew install docker",
+      "windows": "Download from docker.com"
+    },
+    "requirements": [
+      "64-bit operating system",
+      "4GB RAM minimum",
+      "20GB free disk space"
+    ]
+  },
+  "capabilities": [
+    "container management",
+    "image operations",
+    "network management",
+    "volume management",
+    "build automation"
+  ],
+  "example_usage": {
+    "inputs": {
+      "command": "run",
+      "args": "-d -p 8080:80 nginx:latest"
+    },
+    "expected_outputs": {
+      "exit_code": 0,
+      "stdout": "container_id",
+      "stderr": ""
+    }
+  }
+} 

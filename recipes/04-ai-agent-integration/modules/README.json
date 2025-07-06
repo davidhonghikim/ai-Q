@@ -1,0 +1,42 @@
+{
+  "index_metadata": {
+    "index_id": "03-AI-AGENT-INTEGRATION-SUB-RECIPE-INDEX",
+    "title": "Index of AI Agent Integration Sub-Recipes",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "description": "This index lists all the modular sub-recipes for integrating various AI agent tools and services."
+  },
+  "sub_recipes": [
+    {
+      "id": "01-module-manager",
+      "title": "AI Agent Module Manager",
+      "path": "01-module-manager.json"
+    },
+    {
+      "id": "02-ra-aid-integration",
+      "title": "RA.Aid Integration Module",
+      "path": "02-ra-aid-integration.json"
+    },
+    {
+      "id": "03-browser-use-integration",
+      "title": "Browser-Use Integration Module",
+      "path": "03-browser-use-integration.json"
+    },
+    {
+      "id": "04-archivebox-integration",
+      "title": "ArchiveBox Integration Module",
+      "path": "04-archivebox-integration.json"
+    },
+    {
+      "id": "05-aider-integration",
+      "title": "Aider Integration Module",
+      "path": "05-aider-integration.json"
+    },
+    {
+      "id": "06-self-hosted-llm-integration",
+      "title": "Self-Hosted LLM Integration (Ollama)",
+      "path": "06-self-hosted-llm-integration.json"
+    }
+  ]
+} 

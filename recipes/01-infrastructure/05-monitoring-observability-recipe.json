@@ -1,0 +1,815 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "05-MONITORING-OBSERVABILITY-COMPREHENSIVE",
+    "title": "Comprehensive System Monitoring and Observability Stack",
+    "version": "2.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T13:30:00Z",
+    "last_updated": "2025-07-05T23:55:00Z",
+    "estimated_tokens": 12000,
+    "estimated_execution_time": "4-5 hours",
+    "difficulty_level": "expert",
+    "total_tasks": 1,
+    "agent_autonomy_level": "95%",
+    "success_rate_target": "99%",
+    "compliance_standards": ["SOC 2", "ISO 27001", "GDPR"],
+    "architecture_tier": "enterprise-observability",
+    "kitchen_system": {
+      "orchestrator": "chef",
+      "pantry_required": true,
+      "caching_enabled": true,
+      "cache_strategy": "aggressive"
+    }
+  },
+  "recipe_overview": {
+    "description": "Implement a comprehensive monitoring and observability stack for the entire ai-Q system including infrastructure, applications, databases, AI/ML services, and self-hosted services using the kitchen analogy system. This recipe delivers Prometheus for metrics collection, Grafana for visualization, Alertmanager for alerting, cAdvisor for container monitoring, Loki for log aggregation, and Jaeger for distributed tracing with atomic, reusable ingredients and intelligent caching.",
+    "technology_stack": {
+      "metrics_collection": "Prometheus, cAdvisor, Node Exporter",
+      "visualization": "Grafana",
+      "alerting": "Alertmanager",
+      "logging": "Loki, Promtail",
+      "tracing": "Jaeger",
+      "exporters": "PostgreSQL, Redis, Neo4j, Elasticsearch, Weaviate, MinIO",
+      "kitchen_system": "Pantry ingredients, orchestrator agent, intelligent caching"
+    },
+    "deliverables": [
+      "Centralized Prometheus server with comprehensive metrics collection",
+      "Grafana instance with pre-built dashboards for all system components",
+      "Alertmanager with multi-channel notification routing",
+      "Container and system resource monitoring with cAdvisor",
+      "Log aggregation and search capabilities with Loki",
+      "Distributed tracing for application performance monitoring with Jaeger",
+      "Kitchen system integration providing atomic, reusable monitoring ingredients"
+    ],
+    "success_criteria": [
+      "All monitoring services operational with 99.99% uptime",
+      "Metrics collection from all system components",
+      "Real-time dashboards with sub-3-second response times",
+      "Alert notifications delivered within 30 seconds",
+      "Log aggregation and search functional",
+      "Distributed tracing operational",
+      "Kitchen system providing atomic, reusable monitoring ingredients"
+    ],
+    "architectural_principles": [
+      "Centralized metrics collection and storage",
+      "Real-time visualization and alerting",
+      "Comprehensive log aggregation and search",
+      "Distributed tracing for performance monitoring",
+      "Security-first approach with authentication",
+      "Scalable architecture with horizontal scaling",
+      "Kitchen analogy system for atomic, reusable ingredients"
+    ]
+  },
+  "pantry_ingredients": {
+    "required_tasks": [
+      {
+        "ingredient_id": "task:setup-monitoring:1.0.0",
+        "purpose": "Setup comprehensive monitoring and observability stack",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-prometheus:1.0.0",
+        "purpose": "Deploy Prometheus metrics collection server",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-grafana:1.0.0",
+        "purpose": "Deploy Grafana visualization platform",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-alertmanager:1.0.0",
+        "purpose": "Deploy Alertmanager for alert routing",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-cadvisor:1.0.0",
+        "purpose": "Deploy cAdvisor for container monitoring",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-loki:1.0.0",
+        "purpose": "Deploy Loki for log aggregation",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-jaeger:1.0.0",
+        "purpose": "Deploy Jaeger for distributed tracing",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:configure-dashboards:1.0.0",
+        "purpose": "Configure Grafana dashboards and datasources",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:configure-alerts:1.0.0",
+        "purpose": "Configure alerting rules and notifications",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_skills": [
+      {
+        "ingredient_id": "skill:manage-monitoring:1.0.0",
+        "purpose": "Manage monitoring and observability systems",
+        "usage_count": 15,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:configure-prometheus:1.0.0",
+        "purpose": "Configure Prometheus metrics collection",
+        "usage_count": 10,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:configure-grafana:1.0.0",
+        "purpose": "Configure Grafana dashboards and datasources",
+        "usage_count": 12,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:configure-alerting:1.0.0",
+        "purpose": "Configure alerting rules and notifications",
+        "usage_count": 8,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:manage-logs:1.0.0",
+        "purpose": "Manage log aggregation and search",
+        "usage_count": 8,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:manage-tracing:1.0.0",
+        "purpose": "Manage distributed tracing systems",
+        "usage_count": 6,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_tools": [
+      {
+        "ingredient_id": "tool:prometheus:2.48.0",
+        "purpose": "Prometheus metrics collection server",
+        "usage_count": 3,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:grafana:10.2.0",
+        "purpose": "Grafana visualization platform",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:alertmanager:0.26.0",
+        "purpose": "Alertmanager for alert routing",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:cadvisor:0.47.2",
+        "purpose": "cAdvisor for container monitoring",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:loki:2.9.0",
+        "purpose": "Loki for log aggregation",
+        "usage_count": 2,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:jaeger:1.48.0",
+        "purpose": "Jaeger for distributed tracing",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:node-exporter:1.6.0",
+        "purpose": "Node Exporter for system metrics",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_configs": [
+      {
+        "ingredient_id": "config:monitoring-config:1.0.0",
+        "purpose": "Monitoring stack configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:prometheus-config:1.0.0",
+        "purpose": "Prometheus configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:grafana-config:1.0.0",
+        "purpose": "Grafana configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:alertmanager-config:1.0.0",
+        "purpose": "Alertmanager configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:loki-config:1.0.0",
+        "purpose": "Loki configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:jaeger-config:1.0.0",
+        "purpose": "Jaeger configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step": 1,
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with aggressive caching",
+        "ingredients": [
+          "task:setup-monitoring:1.0.0",
+          "task:deploy-prometheus:1.0.0",
+          "task:deploy-grafana:1.0.0",
+          "task:deploy-alertmanager:1.0.0",
+          "task:deploy-cadvisor:1.0.0",
+          "task:deploy-loki:1.0.0",
+          "task:deploy-jaeger:1.0.0",
+          "task:configure-dashboards:1.0.0",
+          "task:configure-alerts:1.0.0",
+          "skill:manage-monitoring:1.0.0",
+          "skill:configure-prometheus:1.0.0",
+          "skill:configure-grafana:1.0.0",
+          "skill:configure-alerting:1.0.0",
+          "skill:manage-logs:1.0.0",
+          "skill:manage-tracing:1.0.0",
+          "tool:prometheus:2.48.0",
+          "tool:grafana:10.2.0",
+          "tool:alertmanager:0.26.0",
+          "tool:cadvisor:0.47.2",
+          "tool:loki:2.9.0",
+          "tool:jaeger:1.48.0",
+          "tool:node-exporter:1.6.0",
+          "config:monitoring-config:1.0.0",
+          "config:prometheus-config:1.0.0",
+          "config:grafana-config:1.0.0",
+          "config:alertmanager-config:1.0.0",
+          "config:loki-config:1.0.0",
+          "config:jaeger-config:1.0.0"
+        ]
+      },
+      {
+        "step": 2,
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "All ai-Q services running and accessible",
+          "Network connectivity between monitoring components",
+          "Storage available for monitoring data",
+          "SSL certificates available for secure communication",
+          "Notification channels configured (Slack, email)"
+        ]
+      },
+      {
+        "step": 3,
+        "action": "execute_monitoring_deployment",
+        "description": "Execute monitoring stack deployment with all components",
+        "sub_steps": [
+          "Deploy Prometheus metrics collection server",
+          "Deploy Grafana visualization platform",
+          "Deploy Alertmanager for alert routing",
+          "Deploy cAdvisor for container monitoring",
+          "Deploy Loki for log aggregation",
+          "Deploy Jaeger for distributed tracing",
+          "Configure dashboards and datasources",
+          "Configure alerting rules and notifications"
+        ]
+      },
+      {
+        "step": 4,
+        "action": "cache_results",
+        "description": "Cache successful deployment results for future use",
+        "cache_items": [
+          "Monitoring stack configurations",
+          "Dashboard configurations and templates",
+          "Alerting rules and notification settings",
+          "Prometheus targets and scrape configurations",
+          "Grafana datasource configurations",
+          "Loki and Jaeger configurations"
+        ]
+      }
+    ],
+    "caching_strategy": {
+      "ingredient_caching": "aggressive",
+      "result_caching": "aggressive",
+      "cache_validation": "content_hash",
+      "cache_ttl": 604800,
+      "cache_location": "local"
+    }
+  },
+  "tasks": [
+    {
+      "id": "05-monitoring-observability-001",
+      "title": "Comprehensive System Monitoring and Observability Implementation",
+      "description": "Implement a comprehensive monitoring and observability stack for the entire ai-Q system including infrastructure, applications, databases, AI/ML services, and self-hosted services using the kitchen analogy system. This recipe delivers Prometheus for metrics collection, Grafana for visualization, Alertmanager for alerting, cAdvisor for container monitoring, Loki for log aggregation, and Jaeger for distributed tracing with atomic, reusable ingredients and intelligent caching.",
+      "category": "observability",
+      "estimated_tokens": 12000,
+      "estimated_duration": "4-5 hours",
+      "difficulty_level": "expert",
+      "kitchen_system": {
+        "pantry_ingredients_used": [
+          "task:setup-monitoring:1.0.0",
+          "task:deploy-prometheus:1.0.0",
+          "task:deploy-grafana:1.0.0",
+          "task:deploy-alertmanager:1.0.0",
+          "task:deploy-cadvisor:1.0.0",
+          "task:deploy-loki:1.0.0",
+          "task:deploy-jaeger:1.0.0",
+          "task:configure-dashboards:1.0.0",
+          "task:configure-alerts:1.0.0",
+          "skill:manage-monitoring:1.0.0",
+          "skill:configure-prometheus:1.0.0",
+          "skill:configure-grafana:1.0.0",
+          "skill:configure-alerting:1.0.0",
+          "skill:manage-logs:1.0.0",
+          "skill:manage-tracing:1.0.0",
+          "tool:prometheus:2.48.0",
+          "tool:grafana:10.2.0",
+          "tool:alertmanager:0.26.0",
+          "tool:cadvisor:0.47.2",
+          "tool:loki:2.9.0",
+          "tool:jaeger:1.48.0",
+          "tool:node-exporter:1.6.0",
+          "config:monitoring-config:1.0.0",
+          "config:prometheus-config:1.0.0",
+          "config:grafana-config:1.0.0",
+          "config:alertmanager-config:1.0.0",
+          "config:loki-config:1.0.0",
+          "config:jaeger-config:1.0.0"
+        ],
+        "caching_benefits": [
+          "Monitoring configurations cached",
+          "Dashboard templates cached",
+          "Alerting rules cached",
+          "Prometheus targets cached",
+          "Grafana datasources cached"
+        ]
+      },
+      "prerequisites": {
+        "knowledge_required": ["Prometheus Query Language (PromQL)", "Grafana dashboard creation", "Alertmanager configuration", "Docker monitoring", "System metrics", "Kitchen analogy system"],
+        "tools_required": ["Prometheus", "Grafana", "Alertmanager", "cAdvisor", "Node Exporter", "Docker", "Pantry system"],
+        "environment_setup": ["All ai-Q services running and accessible", "Network connectivity between monitoring components", "Kitchen system operational"]
+      },
+      "inputs": {
+        "files_to_read": [
+          "docker/compose/unified.yml",
+          "config/dynamic/dynamic-config.json",
+          "config/network/ip-config.json"
+        ],
+        "pantry_ingredients": [
+          "task:setup-monitoring:1.0.0",
+          "task:deploy-prometheus:1.0.0",
+          "task:deploy-grafana:1.0.0",
+          "task:deploy-alertmanager:1.0.0",
+          "task:deploy-cadvisor:1.0.0",
+          "task:deploy-loki:1.0.0",
+          "task:deploy-jaeger:1.0.0",
+          "task:configure-dashboards:1.0.0",
+          "task:configure-alerts:1.0.0",
+          "skill:manage-monitoring:1.0.0",
+          "skill:configure-prometheus:1.0.0",
+          "skill:configure-grafana:1.0.0",
+          "skill:configure-alerting:1.0.0",
+          "skill:manage-logs:1.0.0",
+          "skill:manage-tracing:1.0.0",
+          "tool:prometheus:2.48.0",
+          "tool:grafana:10.2.0",
+          "tool:alertmanager:0.26.0",
+          "tool:cadvisor:0.47.2",
+          "tool:loki:2.9.0",
+          "tool:jaeger:1.48.0",
+          "tool:node-exporter:1.6.0",
+          "config:monitoring-config:1.0.0",
+          "config:prometheus-config:1.0.0",
+          "config:grafana-config:1.0.0",
+          "config:alertmanager-config:1.0.0",
+          "config:loki-config:1.0.0",
+          "config:jaeger-config:1.0.0"
+        ],
+        "config_dependencies": ["Network configuration", "Service endpoints", "Authentication credentials"],
+        "environment_variables": [
+          "PROMETHEUS_PORT",
+          "GRAFANA_PORT", 
+          "ALERTMANAGER_PORT",
+          "LOKI_PORT",
+          "JAEGER_PORT",
+          "SLACK_WEBHOOK_URL",
+          "EMAIL_SMTP_SERVER"
+        ],
+        "external_services": ["Slack", "Email", "PagerDuty"]
+      },
+      "outputs": {
+        "files_created": [
+          "docker/compose/monitoring.yml - Monitoring stack services",
+          "config/prometheus/prometheus.yml - Prometheus configuration",
+          "config/prometheus/rules/system.rules.yml - System alerting rules",
+          "config/prometheus/rules/ai-ml.rules.yml - AI/ML service alerting rules",
+          "config/alertmanager/config.yml - Alertmanager notification routing",
+          "config/grafana/dashboards/system-overview.json - System overview dashboard",
+          "config/grafana/dashboards/ai-ml-services.json - AI/ML services dashboard",
+          "config/grafana/dashboards/databases.json - Database performance dashboard",
+          "config/grafana/dashboards/containers.json - Container resource dashboard",
+          "config/grafana/dashboards/network.json - Network traffic dashboard",
+          "config/grafana/datasources/prometheus.yml - Prometheus datasource",
+          "config/grafana/datasources/loki.yml - Loki datasource",
+          "config/loki/loki-config.yml - Loki configuration",
+          "config/jaeger/jaeger-config.yml - Jaeger configuration",
+          "scripts/monitoring-setup.sh - Automated monitoring setup script",
+          "scripts/monitoring-health-check.sh - Monitoring health check script",
+          "docs/monitoring/architecture.json - Monitoring architecture documentation"
+        ],
+        "files_modified": [
+          "docker/compose/unified.yml - Add monitoring services",
+          "config/dynamic/dynamic-config.json - Add monitoring ports"
+        ],
+        "api_endpoints": [
+          "GET /monitoring/health - Overall monitoring stack health",
+          "GET /monitoring/metrics - System metrics summary",
+          "GET /monitoring/alerts - Active alerts status",
+          "POST /monitoring/alert-test - Test alert delivery"
+        ],
+        "configuration_updates": ["Monitoring ports", "Alert thresholds", "Dashboard configurations"],
+        "cached_results": [
+          "Monitoring stack configurations",
+          "Dashboard configurations and templates",
+          "Alerting rules and notification settings",
+          "Prometheus targets and scrape configurations",
+          "Grafana datasource configurations",
+          "Loki and Jaeger configurations"
+        ]
+      },
+      "dependencies": {
+        "required_tasks": ["01-core-infrastructure", "02-unified-docker-system"],
+        "optional_tasks": ["03-storage-systems", "04-database-setup"],
+        "blocked_tasks": [],
+        "pantry_dependencies": [
+          "task:setup-monitoring:1.0.0",
+          "task:deploy-prometheus:1.0.0",
+          "task:deploy-grafana:1.0.0",
+          "task:deploy-alertmanager:1.0.0",
+          "task:deploy-cadvisor:1.0.0",
+          "task:deploy-loki:1.0.0",
+          "task:deploy-jaeger:1.0.0",
+          "task:configure-dashboards:1.0.0",
+          "task:configure-alerts:1.0.0",
+          "skill:manage-monitoring:1.0.0",
+          "skill:configure-prometheus:1.0.0",
+          "skill:configure-grafana:1.0.0",
+          "skill:configure-alerting:1.0.0",
+          "skill:manage-logs:1.0.0",
+          "skill:manage-tracing:1.0.0",
+          "tool:prometheus:2.48.0",
+          "tool:grafana:10.2.0",
+          "tool:alertmanager:0.26.0",
+          "tool:cadvisor:0.47.2",
+          "tool:loki:2.9.0",
+          "tool:jaeger:1.48.0",
+          "tool:node-exporter:1.6.0",
+          "config:monitoring-config:1.0.0",
+          "config:prometheus-config:1.0.0",
+          "config:grafana-config:1.0.0",
+          "config:alertmanager-config:1.0.0",
+          "config:loki-config:1.0.0",
+          "config:jaeger-config:1.0.0"
+        ]
+      },
+      "detailed_instructions": {
+        "overview": "This task implements a comprehensive monitoring and observability stack that provides complete visibility into the ai-Q system using the kitchen analogy system. The stack includes metrics collection (Prometheus), visualization (Grafana), alerting (Alertmanager), container monitoring (cAdvisor), log aggregation (Loki), and distributed tracing (Jaeger). All components are integrated with pre-built dashboards and alerting rules for proactive system management with atomic, reusable ingredients and intelligent caching.",
+        "kitchen_execution_flow": [
+          {
+            "step": 1,
+            "action": "gather_ingredients",
+            "description": "Load all required pantry ingredients with aggressive caching",
+            "ingredients": [
+              "task:setup-monitoring:1.0.0",
+              "task:deploy-prometheus:1.0.0",
+              "task:deploy-grafana:1.0.0",
+              "task:deploy-alertmanager:1.0.0",
+              "task:deploy-cadvisor:1.0.0",
+              "task:deploy-loki:1.0.0",
+              "task:deploy-jaeger:1.0.0",
+              "task:configure-dashboards:1.0.0",
+              "task:configure-alerts:1.0.0",
+              "skill:manage-monitoring:1.0.0",
+              "skill:configure-prometheus:1.0.0",
+              "skill:configure-grafana:1.0.0",
+              "skill:configure-alerting:1.0.0",
+              "skill:manage-logs:1.0.0",
+              "skill:manage-tracing:1.0.0",
+              "tool:prometheus:2.48.0",
+              "tool:grafana:10.2.0",
+              "tool:alertmanager:0.26.0",
+              "tool:cadvisor:0.47.2",
+              "tool:loki:2.9.0",
+              "tool:jaeger:1.48.0",
+              "tool:node-exporter:1.6.0",
+              "config:monitoring-config:1.0.0",
+              "config:prometheus-config:1.0.0",
+              "config:grafana-config:1.0.0",
+              "config:alertmanager-config:1.0.0",
+              "config:loki-config:1.0.0",
+              "config:jaeger-config:1.0.0"
+            ]
+          },
+          {
+            "step": 2,
+            "action": "validate_dependencies",
+            "description": "Verify all ingredient dependencies are satisfied",
+            "checks": [
+              "All ai-Q services running and accessible",
+              "Network connectivity between monitoring components",
+              "Storage available for monitoring data",
+              "SSL certificates available for secure communication",
+              "Notification channels configured (Slack, email)"
+            ]
+          },
+          {
+            "step": 3,
+            "action": "execute_monitoring_deployment",
+            "description": "Execute monitoring stack deployment with all components",
+            "sub_steps": [
+              "Deploy Prometheus metrics collection server",
+              "Deploy Grafana visualization platform",
+              "Deploy Alertmanager for alert routing",
+              "Deploy cAdvisor for container monitoring",
+              "Deploy Loki for log aggregation",
+              "Deploy Jaeger for distributed tracing",
+              "Configure dashboards and datasources",
+              "Configure alerting rules and notifications"
+            ]
+          },
+          {
+            "step": 4,
+            "action": "cache_results",
+            "description": "Cache successful deployment results for future use",
+            "cache_items": [
+              "Monitoring stack configurations",
+              "Dashboard configurations and templates",
+              "Alerting rules and notification settings",
+              "Prometheus targets and scrape configurations",
+              "Grafana datasource configurations",
+              "Loki and Jaeger configurations"
+            ]
+          }
+        ],
+        "step_by_step_guide": [
+          {
+            "step": 1,
+            "title": "Create Monitoring Stack Docker Compose",
+            "description": "Create a comprehensive Docker Compose file for all monitoring services using pantry ingredients",
+            "kitchen_commands": [
+              "# Use pantry ingredient to create monitoring compose file",
+              "task:create-monitoring-compose:1.0.0 --config=config/monitoring-config:1.0.0",
+              "",
+              "# Create monitoring compose file",
+              "cat > docker/compose/monitoring.yml << 'EOF'",
+              "name: ai-q-monitoring",
+              "",
+              "services:",
+              "  # Prometheus Metrics Collection",
+              "  prometheus:",
+              "    image: prom/prometheus:v2.48.0",
+              "    container_name: ai-q-prometheus",
+              "    command:",
+              "      - '--config.file=/etc/prometheus/prometheus.yml'",
+              "      - '--storage.tsdb.path=/prometheus'",
+              "      - '--web.console.libraries=/etc/prometheus/console_libraries'",
+              "      - '--web.console.templates=/etc/prometheus/consoles'",
+              "      - '--storage.tsdb.retention.time=30d'",
+              "      - '--web.enable-lifecycle'",
+              "    volumes:",
+              "      - ai-q-prometheus-data:/prometheus",
+              "      - ../../config/prometheus:/etc/prometheus",
+              "    ports:",
+              "      - \"${PROMETHEUS_PORT:-9090}:9090\"",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"wget --no-verbose --tries=1 --spider http://localhost:9090/-/healthy || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "  # Grafana Visualization",
+              "  grafana:",
+              "    image: grafana/grafana:10.2.0",
+              "    container_name: ai-q-grafana",
+              "    environment:",
+              "      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}",
+              "      - GF_INSTALL_PLUGINS=grafana-clock-panel,grafana-simple-json-datasource",
+              "    volumes:",
+              "      - ai-q-grafana-data:/var/lib/grafana",
+              "      - ../../config/grafana/provisioning:/etc/grafana/provisioning",
+              "    ports:",
+              "      - \"${GRAFANA_PORT:-3001}:3000\"",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"curl -f http://localhost:3000/api/health || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "  # Alertmanager Alerting",
+              "  alertmanager:",
+              "    image: prom/alertmanager:v0.26.0",
+              "    container_name: ai-q-alertmanager",
+              "    command:",
+              "      - '--config.file=/etc/alertmanager/config.yml'",
+              "      - '--storage.path=/alertmanager'",
+              "    volumes:",
+              "      - ai-q-alertmanager-data:/alertmanager",
+              "      - ../../config/alertmanager:/etc/alertmanager",
+              "    ports:",
+              "      - \"${ALERTMANAGER_PORT:-9093}:9093\"",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"wget --no-verbose --tries=1 --spider http://localhost:9093/-/healthy || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "  # cAdvisor Container Monitoring",
+              "  cadvisor:",
+              "    image: gcr.io/cadvisor/cadvisor:v0.47.2",
+              "    container_name: ai-q-cadvisor",
+              "    privileged: true",
+              "    ports:",
+              "      - \"${CADVISOR_PORT:-8081}:8080\"",
+              "    volumes:",
+              "      - /:/rootfs:ro",
+              "      - /var/run:/var/run:ro",
+              "      - /sys:/sys:ro",
+              "      - /var/lib/docker/:/var/lib/docker:ro",
+              "      - /dev/disk/:/dev/disk:ro",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"curl -f http://localhost:8080/healthz || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "  # Loki Log Aggregation",
+              "  loki:",
+              "    image: grafana/loki:2.9.0",
+              "    container_name: ai-q-loki",
+              "    command: -config.file=/etc/loki/local-config.yaml",
+              "    volumes:",
+              "      - ai-q-loki-data:/loki",
+              "      - ../../config/loki:/etc/loki",
+              "    ports:",
+              "      - \"${LOKI_PORT:-3100}:3100\"",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"curl -f http://localhost:3100/ready || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "  # Jaeger Distributed Tracing",
+              "  jaeger:",
+              "    image: jaegertracing/all-in-one:1.48.0",
+              "    container_name: ai-q-jaeger",
+              "    environment:",
+              "      - COLLECTOR_OTLP_ENABLED=true",
+              "    volumes:",
+              "      - ../../config/jaeger:/etc/jaeger",
+              "    ports:",
+              "      - \"${JAEGER_PORT:-16686}:16686\"",
+              "      - \"14268:14268\"",
+              "      - \"14250:14250\"",
+              "    networks:",
+              "      - ai-q-network",
+              "    restart: unless-stopped",
+              "    healthcheck:",
+              "      test: [\"CMD-SHELL\", \"curl -f http://localhost:16686/api/services || exit 1\"]",
+              "      interval: 30s",
+              "      timeout: 10s",
+              "      retries: 3",
+              "",
+              "volumes:",
+              "  ai-q-prometheus-data:",
+              "  ai-q-grafana-data:",
+              "  ai-q-alertmanager-data:",
+              "  ai-q-loki-data:",
+              "",
+              "networks:",
+              "  ai-q-network:",
+              "    external: true",
+              "EOF"
+            ],
+            "expected_output": "Comprehensive monitoring Docker Compose file created with all services",
+            "troubleshooting": "Verify all image versions are available and network configuration is correct",
+            "caching_benefit": "Monitoring compose configuration cached for reuse"
+          }
+        ]
+      },
+      "acceptance_criteria": {
+        "functional_requirements": [
+          "All monitoring services (Prometheus, Grafana, Alertmanager, cAdvisor, Loki, Jaeger) are running and healthy",
+          "Prometheus is collecting metrics from all system components including databases, AI/ML services, and infrastructure",
+          "Grafana dashboards are displaying system metrics, container resources, and service health",
+          "Alertmanager is configured with notification channels and can send test alerts",
+          "Log aggregation is working with Loki and Promtail collecting container and system logs",
+          "Distributed tracing is available through Jaeger for application performance monitoring",
+          "Kitchen system integration providing atomic, reusable monitoring ingredients"
+        ],
+        "performance_requirements": [
+          "Prometheus metrics collection completes within 15 seconds",
+          "Grafana dashboard queries respond within 3 seconds",
+          "Alert notifications are delivered within 30 seconds",
+          "Log search queries in Grafana complete within 5 seconds",
+          "System resource overhead from monitoring is less than 10%",
+          "Cache hit rate > 80% for frequently accessed monitoring data"
+        ],
+        "security_requirements": [
+          "All monitoring endpoints are secured with authentication",
+          "Sensitive metrics and logs are properly filtered",
+          "Alert notifications are encrypted in transit",
+          "Access to monitoring dashboards is role-based",
+          "Audit logging is enabled for all monitoring operations"
+        ],
+        "integration_requirements": [
+          "Monitoring stack integrates with existing ai-Q services",
+          "Custom metrics are exposed by all application components",
+          "Health checks are implemented for all monitored services",
+          "Monitoring data is persisted across container restarts",
+          "Backup and restore procedures are available for monitoring data",
+          "Kitchen system providing atomic, reusable monitoring ingredients"
+        ],
+        "code_quality_requirements": [
+          "All configuration files properly validated and formatted",
+          "Deployment scripts include comprehensive error handling",
+          "Documentation complete with architecture diagrams",
+          "Automated testing covering all deployment scenarios",
+          "Configuration management follows infrastructure-as-code principles"
+        ]
+      }
+    }
+  ],
+  "global_configuration": {
+    "monitoring_ports": {
+      "prometheus": 9090,
+      "grafana": 3001,
+      "alertmanager": 9093,
+      "cadvisor": 8081,
+      "loki": 3100,
+      "jaeger": 16686
+    },
+    "retention_policies": {
+      "prometheus_metrics": "30d",
+      "grafana_dashboards": "permanent",
+      "alertmanager_alerts": "7d",
+      "loki_logs": "30d",
+      "jaeger_traces": "7d"
+    },
+    "alerting_configuration": {
+      "slack_channel": "#ai-q-alerts",
+      "email_recipients": ["admin@ai-q.local"],
+      "critical_escalation": "PagerDuty",
+      "alert_grouping": true,
+      "repeat_interval": "1h"
+    },
+    "kitchen_system": {
+      "caching_strategy": "aggressive",
+      "cache_ttl": 604800,
+      "cache_validation": "content_hash",
+      "cache_location": "local"
+    }
+  }
+} 

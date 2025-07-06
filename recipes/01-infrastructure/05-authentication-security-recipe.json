@@ -434,11 +434,11 @@
         "mkdir -p examples/security"
       ],
       "files_to_create": [
-        "docs/security/README.md",
-        "docs/security/authentication.md",
-        "docs/security/authorization.md",
-        "docs/security/encryption.md",
-        "docs/security/monitoring.md",
+        "docs/security/README.json",
+        "docs/security/authentication.json",
+        "docs/security/authorization.json",
+        "docs/security/encryption.json",
+        "docs/security/monitoring.json",
         "examples/security/auth_examples.py",
         "examples/security/encryption_examples.py",
         "examples/security/rbac_examples.py"

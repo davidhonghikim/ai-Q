@@ -445,12 +445,12 @@
         "mkdir -p examples/web-dashboard"
       ],
       "files_to_create": [
-        "docs/web-dashboard/README.md",
-        "docs/web-dashboard/architecture.md",
-        "docs/web-dashboard/components.md",
-        "docs/web-dashboard/api.md",
-        "docs/web-dashboard/deployment.md",
-        "examples/web-dashboard/usage.md"
+        "docs/web-dashboard/README.json",
+        "docs/web-dashboard/architecture.json",
+        "docs/web-dashboard/components.json",
+        "docs/web-dashboard/api.json",
+        "docs/web-dashboard/deployment.json",
+        "examples/web-dashboard/usage.json"
       ],
       "acceptance_criteria": [
         "Complete documentation created",

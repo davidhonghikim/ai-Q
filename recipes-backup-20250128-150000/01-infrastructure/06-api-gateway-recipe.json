@@ -1,0 +1,553 @@
+{
+  "metadata": {
+    "title": "API Gateway Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-01-27T14:00:00Z",
+    "purpose": "Implement unified API Gateway with REST/GraphQL support and plugin architecture for AI-Q Knowledge Library System",
+    "estimated_tokens": 85000,
+    "category": "infrastructure",
+    "priority": "HIGH",
+    "recipe_id": "04-api-gateway"
+  },
+  "recipe_overview": {
+    "name": "API Gateway Implementation",
+    "description": "Implement production-ready API Gateway with REST/GraphQL unified API, plugin architecture, and comprehensive middleware",
+    "prerequisites": [
+      "01-core-infrastructure-recipe.json completed",
+      "02-storage-systems-recipe.json completed",
+      "03-database-setup-recipe.json completed",
+      "Python 3.9+ and Node.js 18+ installed"
+    ],
+    "target_outcome": "Complete API Gateway with unified endpoints, plugin system, and production-ready features",
+    "success_criteria": [
+      "REST API with comprehensive endpoints",
+      "GraphQL API with schema and resolvers",
+      "Plugin architecture for extensibility",
+      "Rate limiting and throttling",
+      "Request/response transformation",
+      "All components can be safely installed/uninstalled"
+    ]
+  },
+  "api_gateway_architecture": {
+    "rest_api": {
+      "purpose": "RESTful API with comprehensive endpoints",
+      "features": [
+        "CRUD operations for all resources",
+        "File upload/download endpoints",
+        "Search and filtering capabilities",
+        "Batch operations support"
+      ],
+      "modular_components": [
+        "rest-api-core",
+        "rest-api-routes",
+        "rest-api-validators",
+        "rest-api-documentation"
+      ]
+    },
+    "graphql_api": {
+      "purpose": "GraphQL API with flexible querying",
+      "features": [
+        "Schema definition and introspection",
+        "Query and mutation resolvers",
+        "Subscription support",
+        "GraphQL playground"
+      ],
+      "modular_components": [
+        "graphql-schema",
+        "graphql-resolvers",
+        "graphql-subscriptions",
+        "graphql-playground"
+      ]
+    },
+    "plugin_system": {
+      "purpose": "Extensible plugin architecture",
+      "features": [
+        "Dynamic plugin loading",
+        "Plugin lifecycle management",
+        "Plugin configuration",
+        "Plugin marketplace"
+      ],
+      "modular_components": [
+        "plugin-manager",
+        "plugin-loader",
+        "plugin-registry",
+        "plugin-marketplace"
+      ]
+    },
+    "middleware": {
+      "purpose": "Comprehensive middleware stack",
+      "features": [
+        "Authentication and authorization",
+        "Rate limiting and throttling",
+        "Request/response transformation",
+        "Logging and monitoring"
+      ],
+      "modular_components": [
+        "auth-middleware",
+        "rate-limit-middleware",
+        "transform-middleware",
+        "monitoring-middleware"
+      ]
+    }
+  },
+  "implementation_steps": [
+    {
+      "task_id": "04-001",
+      "title": "Create API Gateway Core Architecture",
+      "description": "Design and implement the core API Gateway architecture with unified management",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/api/gateway",
+        "mkdir -p src/api/gateway/rest",
+        "mkdir -p src/api/gateway/graphql",
+        "mkdir -p src/api/gateway/plugins",
+        "mkdir -p src/api/gateway/middleware",
+        "mkdir -p src/api/gateway/common"
+      ],
+      "files_to_create": [
+        "src/api/gateway/__init__.py",
+        "src/api/gateway/core.py",
+        "src/api/gateway/manager.py",
+        "src/api/gateway/config.py",
+        "src/api/gateway/types.py"
+      ],
+      "acceptance_criteria": [
+        "API Gateway base classes defined with unified interface",
+        "Configuration system supports all API types",
+        "Type definitions for all API operations",
+        "Manager class can handle multiple API providers"
+      ]
+    },
+    {
+      "task_id": "04-002",
+      "title": "Implement REST API Core",
+      "description": "Create comprehensive REST API with FastAPI framework",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "pip install fastapi uvicorn",
+        "mkdir -p src/api/gateway/rest/routes",
+        "mkdir -p src/api/gateway/rest/schemas",
+        "mkdir -p src/api/gateway/rest/validators"
+      ],
+      "files_to_create": [
+        "src/api/gateway/rest/__init__.py",
+        "src/api/gateway/rest/app.py",
+        "src/api/gateway/rest/routes/__init__.py",
+        "src/api/gateway/rest/routes/knowledge.py",
+        "src/api/gateway/rest/routes/storage.py",
+        "src/api/gateway/rest/routes/search.py",
+        "src/api/gateway/rest/schemas/__init__.py",
+        "src/api/gateway/rest/schemas/knowledge.py",
+        "src/api/gateway/rest/schemas/storage.py",
+        "src/api/gateway/rest/validators/__init__.py"
+      ],
+      "acceptance_criteria": [
+        "FastAPI application with proper structure",
+        "REST routes for all major resources",
+        "Request/response schemas defined",
+        "Input validation working"
+      ]
+    },
+    {
+      "task_id": "04-003",
+      "title": "Implement GraphQL API",
+      "description": "Create GraphQL API with Strawberry framework",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "pip install strawberry-graphql",
+        "mkdir -p src/api/gateway/graphql/schema",
+        "mkdir -p src/api/gateway/graphql/resolvers",
+        "mkdir -p src/api/gateway/graphql/types"
+      ],
+      "files_to_create": [
+        "src/api/gateway/graphql/__init__.py",
+        "src/api/gateway/graphql/app.py",
+        "src/api/gateway/graphql/schema/__init__.py",
+        "src/api/gateway/graphql/schema/knowledge.py",
+        "src/api/gateway/graphql/schema/storage.py",
+        "src/api/gateway/graphql/resolvers/__init__.py",
+        "src/api/gateway/graphql/resolvers/knowledge.py",
+        "src/api/gateway/graphql/resolvers/storage.py",
+        "src/api/gateway/graphql/types/__init__.py"
+      ],
+      "acceptance_criteria": [
+        "GraphQL schema defined with all types",
+        "Query and mutation resolvers working",
+        "GraphQL playground accessible",
+        "Schema introspection functional"
+      ]
+    },
+    {
+      "task_id": "04-004",
+      "title": "Implement Plugin System",
+      "description": "Create extensible plugin architecture for API Gateway",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "mkdir -p src/api/gateway/plugins/manager",
+        "mkdir -p src/api/gateway/plugins/registry",
+        "mkdir -p src/api/gateway/plugins/examples"
+      ],
+      "files_to_create": [
+        "src/api/gateway/plugins/__init__.py",
+        "src/api/gateway/plugins/manager/__init__.py",
+        "src/api/gateway/plugins/manager/loader.py",
+        "src/api/gateway/plugins/manager/lifecycle.py",
+        "src/api/gateway/plugins/registry/__init__.py",
+        "src/api/gateway/plugins/registry/registry.py",
+        "src/api/gateway/plugins/registry/marketplace.py",
+        "src/api/gateway/plugins/examples/__init__.py",
+        "src/api/gateway/plugins/examples/rate_limit_plugin.py",
+        "src/api/gateway/plugins/examples/cache_plugin.py"
+      ],
+      "acceptance_criteria": [
+        "Plugin manager can load/unload plugins",
+        "Plugin lifecycle management working",
+        "Plugin registry and marketplace functional",
+        "Example plugins demonstrate capabilities"
+      ]
+    },
+    {
+      "task_id": "04-005",
+      "title": "Implement Authentication Middleware",
+      "description": "Create comprehensive authentication and authorization middleware",
+      "estimated_time": "60 minutes",
+      "estimated_tokens": 3000,
+      "commands": [
+        "pip install python-jose[cryptography] passlib[bcrypt]",
+        "mkdir -p src/api/gateway/middleware/auth"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/auth/__init__.py",
+        "src/api/gateway/middleware/auth/authentication.py",
+        "src/api/gateway/middleware/auth/authorization.py",
+        "src/api/gateway/middleware/auth/jwt_handler.py",
+        "src/api/gateway/middleware/auth/oauth_handler.py",
+        "src/api/gateway/middleware/auth/rbac.py"
+      ],
+      "acceptance_criteria": [
+        "JWT token authentication working",
+        "OAuth2 integration functional",
+        "Role-based access control operational",
+        "Permission checking middleware"
+      ]
+    },
+    {
+      "task_id": "04-006",
+      "title": "Implement Rate Limiting Middleware",
+      "description": "Create rate limiting and throttling middleware",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "pip install slowapi",
+        "mkdir -p src/api/gateway/middleware/rate_limit"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/rate_limit/__init__.py",
+        "src/api/gateway/middleware/rate_limit/limiter.py",
+        "src/api/gateway/middleware/rate_limit/throttler.py",
+        "src/api/gateway/middleware/rate_limit/config.py"
+      ],
+      "acceptance_criteria": [
+        "Rate limiting by IP address working",
+        "Rate limiting by user ID functional",
+        "Throttling for specific endpoints",
+        "Rate limit headers in responses"
+      ]
+    },
+    {
+      "task_id": "04-007",
+      "title": "Implement Request/Response Transformation",
+      "description": "Create middleware for request/response transformation",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/middleware/transform"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/transform/__init__.py",
+        "src/api/gateway/middleware/transform/request.py",
+        "src/api/gateway/middleware/transform/response.py",
+        "src/api/gateway/middleware/transform/headers.py",
+        "src/api/gateway/middleware/transform/body.py"
+      ],
+      "acceptance_criteria": [
+        "Request transformation working",
+        "Response transformation functional",
+        "Header modification capabilities",
+        "Body transformation support"
+      ]
+    },
+    {
+      "task_id": "04-008",
+      "title": "Implement Logging and Monitoring",
+      "description": "Create comprehensive logging and monitoring middleware",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "pip install structlog prometheus-client",
+        "mkdir -p src/api/gateway/middleware/monitoring"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/monitoring/__init__.py",
+        "src/api/gateway/middleware/monitoring/logging.py",
+        "src/api/gateway/middleware/monitoring/metrics.py",
+        "src/api/gateway/middleware/monitoring/tracing.py",
+        "src/api/gateway/middleware/monitoring/health.py"
+      ],
+      "acceptance_criteria": [
+        "Structured logging for all requests",
+        "Prometheus metrics collection",
+        "Request tracing capabilities",
+        "Health check endpoints"
+      ]
+    },
+    {
+      "task_id": "04-009",
+      "title": "Create API Documentation System",
+      "description": "Implement comprehensive API documentation with OpenAPI/Swagger",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/api",
+        "mkdir -p src/api/gateway/docs"
+      ],
+      "files_to_create": [
+        "src/api/gateway/docs/__init__.py",
+        "src/api/gateway/docs/openapi.py",
+        "src/api/gateway/docs/swagger.py",
+        "src/api/gateway/docs/redoc.py",
+        "docs/api/README.md",
+        "docs/api/rest_api.md",
+        "docs/api/graphql_api.md",
+        "docs/api/plugins.md"
+      ],
+      "acceptance_criteria": [
+        "OpenAPI specification generated",
+        "Swagger UI accessible",
+        "ReDoc documentation available",
+        "Comprehensive API guides"
+      ]
+    },
+    {
+      "task_id": "04-010",
+      "title": "Implement Error Handling and Validation",
+      "description": "Create comprehensive error handling and validation system",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/errors",
+        "mkdir -p src/api/gateway/validation"
+      ],
+      "files_to_create": [
+        "src/api/gateway/errors/__init__.py",
+        "src/api/gateway/errors/handlers.py",
+        "src/api/gateway/errors/exceptions.py",
+        "src/api/gateway/validation/__init__.py",
+        "src/api/gateway/validation/schemas.py",
+        "src/api/gateway/validation/validators.py"
+      ],
+      "acceptance_criteria": [
+        "Global error handling middleware",
+        "Custom exception classes defined",
+        "Request validation working",
+        "Error response standardization"
+      ]
+    },
+    {
+      "task_id": "04-011",
+      "title": "Implement CORS and Security Headers",
+      "description": "Create CORS and security headers middleware",
+      "estimated_time": "30 minutes",
+      "estimated_tokens": 2000,
+      "commands": [
+        "mkdir -p src/api/gateway/middleware/security"
+      ],
+      "files_to_create": [
+        "src/api/gateway/middleware/security/__init__.py",
+        "src/api/gateway/middleware/security/cors.py",
+        "src/api/gateway/middleware/security/headers.py",
+        "src/api/gateway/middleware/security/csrf.py"
+      ],
+      "acceptance_criteria": [
+        "CORS configuration working",
+        "Security headers applied",
+        "CSRF protection functional",
+        "Cross-origin requests handled"
+      ]
+    },
+    {
+      "task_id": "04-012",
+      "title": "Implement API Versioning",
+      "description": "Create API versioning system for backward compatibility",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/versioning"
+      ],
+      "files_to_create": [
+        "src/api/gateway/versioning/__init__.py",
+        "src/api/gateway/versioning/manager.py",
+        "src/api/gateway/versioning/routes.py",
+        "src/api/gateway/versioning/schemas.py"
+      ],
+      "acceptance_criteria": [
+        "API versioning by URL path",
+        "Version-specific schemas",
+        "Backward compatibility support",
+        "Version deprecation handling"
+      ]
+    },
+    {
+      "task_id": "04-013",
+      "title": "Implement API Testing Framework",
+      "description": "Create comprehensive testing framework for API Gateway",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p tests/api/gateway",
+        "mkdir -p tests/api/gateway/rest",
+        "mkdir -p tests/api/gateway/graphql"
+      ],
+      "files_to_create": [
+        "tests/api/gateway/__init__.py",
+        "tests/api/gateway/test_gateway.py",
+        "tests/api/gateway/rest/__init__.py",
+        "tests/api/gateway/rest/test_routes.py",
+        "tests/api/gateway/graphql/__init__.py",
+        "tests/api/gateway/graphql/test_schema.py",
+        "tests/api/gateway/conftest.py"
+      ],
+      "acceptance_criteria": [
+        "Unit tests for all API components",
+        "Integration tests for REST endpoints",
+        "GraphQL schema tests",
+        "Test fixtures and utilities"
+      ]
+    },
+    {
+      "task_id": "04-014",
+      "title": "Implement API Performance Optimization",
+      "description": "Create performance optimizations for API Gateway",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/api/gateway/optimization"
+      ],
+      "files_to_create": [
+        "src/api/gateway/optimization/__init__.py",
+        "src/api/gateway/optimization/caching.py",
+        "src/api/gateway/optimization/compression.py",
+        "src/api/gateway/optimization/async_handlers.py"
+      ],
+      "acceptance_criteria": [
+        "Response caching working",
+        "Gzip compression enabled",
+        "Async request handling",
+        "Performance monitoring"
+      ]
+    },
+    {
+      "task_id": "04-015",
+      "title": "Create API Gateway Documentation",
+      "description": "Comprehensive documentation for API Gateway usage and configuration",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p docs/gateway",
+        "mkdir -p examples/gateway"
+      ],
+      "files_to_create": [
+        "docs/gateway/README.md",
+        "docs/gateway/installation.md",
+        "docs/gateway/configuration.md",
+        "docs/gateway/plugins.md",
+        "docs/gateway/troubleshooting.md",
+        "examples/gateway/basic_usage.py",
+        "examples/gateway/plugin_examples.py",
+        "examples/gateway/middleware_examples.py"
+      ],
+      "acceptance_criteria": [
+        "Complete installation and setup guides",
+        "Plugin development documentation",
+        "Middleware configuration guide",
+        "Troubleshooting guide with common issues"
+      ]
+    }
+  ],
+  "configuration": {
+    "environment_variables": {
+      "API_HOST": "0.0.0.0",
+      "API_PORT": "8000",
+      "API_WORKERS": "4",
+      "API_RELOAD": "true",
+      "API_LOG_LEVEL": "info",
+      "CORS_ORIGINS": "http://localhost:3000,http://localhost:8080",
+      "RATE_LIMIT_REQUESTS": "100",
+      "RATE_LIMIT_WINDOW": "60",
+      "JWT_SECRET_KEY": "your-jwt-secret-key",
+      "JWT_ALGORITHM": "HS256",
+      "JWT_EXPIRATION": "3600"
+    },
+    "docker_compose": {
+      "api_gateway_service": {
+        "build": ".",
+        "ports": ["8000:8000"],
+        "environment": [
+          "API_HOST=${API_HOST}",
+          "API_PORT=${API_PORT}",
+          "API_WORKERS=${API_WORKERS}"
+        ],
+        "volumes": ["./src:/app/src"],
+        "command": "uvicorn src.api.gateway.rest.app:app --host ${API_HOST} --port ${API_PORT} --workers ${API_WORKERS} --reload"
+      }
+    }
+  },
+  "validation_and_testing": {
+    "unit_tests": [
+      "Test API Gateway initialization",
+      "Test REST endpoint routing",
+      "Test GraphQL schema validation",
+      "Test middleware execution",
+      "Test plugin loading"
+    ],
+    "integration_tests": [
+      "Test end-to-end API requests",
+      "Test authentication flow",
+      "Test rate limiting",
+      "Test error handling"
+    ],
+    "performance_tests": [
+      "API response time tests",
+      "Concurrent request handling",
+      "Memory usage optimization",
+      "Throughput testing"
+    ]
+  },
+  "deployment_instructions": {
+    "prerequisites": [
+      "Python 3.9+ with required packages",
+      "Docker and Docker Compose installed",
+      "Database and storage systems running",
+      "Authentication system configured"
+    ],
+    "installation_steps": [
+      "1. Clone the repository and navigate to the project directory",
+      "2. Copy configuration templates and update with your settings",
+      "3. Install Python dependencies: pip install -r requirements.txt",
+      "4. Start API Gateway: uvicorn src.api.gateway.rest.app:app --reload",
+      "5. Run API tests: python -m pytest tests/api/gateway/",
+      "6. Access API documentation at http://localhost:8000/docs"
+    ],
+    "verification": [
+      "Check API Gateway at http://localhost:8000",
+      "Verify REST API documentation at http://localhost:8000/docs",
+      "Test GraphQL playground at http://localhost:8000/graphql",
+      "Confirm health check endpoint at http://localhost:8000/health"
+    ]
+  }
+}

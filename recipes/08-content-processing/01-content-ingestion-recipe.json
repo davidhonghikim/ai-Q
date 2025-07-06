@@ -422,10 +422,10 @@
         "mkdir -p examples/content"
       ],
       "files_to_create": [
-        "docs/content/README.md",
-        "docs/content/upload.md",
-        "docs/content/processing.md",
-        "docs/content/api.md",
+        "docs/content/README.json",
+        "docs/content/upload.json",
+        "docs/content/processing.json",
+        "docs/content/api.json",
         "examples/content/upload_examples.py",
         "examples/content/processing_examples.py",
         "examples/content/api_examples.py"

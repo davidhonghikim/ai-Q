@@ -1,0 +1,17 @@
+{
+  "recipe_index": [
+    { "order": 1, "dir": "01-infrastructure", "description": "Core infrastructure, Docker, storage, monitoring, API gateway, authentication" },
+    { "order": 2, "dir": "02-ai-services", "description": "Ollama, OpenWebUI, vLLM, AnythingLLM, hardware profiling, etc." },
+    { "order": 3, "dir": "03-intelligence", "description": "RAG engine, semantic search, advanced AI/ML intelligence" },
+    { "order": 4, "dir": "04-ai-agent-integration", "description": "MCP server, multi-agent, tool registry, group chat, agent memory, collaborative features" },
+    { "order": 5, "dir": "04-interface", "description": "Web dashboard, agent console, feedback UI" },
+    { "order": 6, "dir": "05-development-automation", "description": "Code generation, CI/CD, dev tools" },
+    { "order": 7, "dir": "06-content-processing", "description": "Content ingestion, text/image/video/audio processing" },
+    { "order": 8, "dir": "07-content-creation-workflows", "description": "Content creation pipelines and automation" },
+    { "order": 9, "dir": "08-research-automation", "description": "Automated research tools and workflows" },
+    { "order": 10, "dir": "09-knowledge-synthesis", "description": "Knowledge graph, synthesis, and aggregation" },
+    { "order": 11, "dir": "10-collaboration-platform", "description": "Collaboration tools, shared workspaces, team features" },
+    { "order": 12, "dir": "12-advanced-interfaces", "description": "Advanced user/admin/agentic interfaces, meshnet, robotics, IoT, and all future expansion modules. This is the slot for long-term plans, experimental tech, and advanced integrations." },
+    { "order": 13, "dir": "13-deployment", "description": "Production deployment, packaging, off-grid, etc." }
+  ]
+} 

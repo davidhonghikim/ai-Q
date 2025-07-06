@@ -1,0 +1,498 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "03-AI-AGENT-INTEGRATION-ENHANCED",
+    "title": "Enhanced AI Agent Integration with MCP and Multi-Agent Support",
+    "version": "4.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T15:00:00Z",
+    "last_updated": "2025-07-05T23:55:00Z",
+    "difficulty_level": "expert",
+    "architecture_tier": "ai-integration",
+    "description": "Comprehensive AI agent integration system with MCP server support, multi-agent coordination, model chaining, and group chat capabilities using the kitchen analogy system for atomic, reusable ingredients and intelligent caching.",
+    "is_master_recipe": true,
+    "kitchen_system": {
+      "orchestrator": "chef",
+      "pantry_required": true,
+      "caching_enabled": true,
+      "cache_strategy": "smart"
+    },
+    "critical_features": [
+      "MCP server implementation",
+      "Multi-agent coordination system",
+      "Model chaining capabilities",
+      "Group chat functionality",
+      "Collaborative teamwork features"
+    ]
+  },
+  "recipe_overview": {
+    "description": "Implement a comprehensive AI agent integration system that supports Model Context Protocol (MCP) servers, enables multiple AI agents to work together collaboratively, provides model chaining capabilities, and includes group chat functionality for team-based AI collaboration using the kitchen analogy system.",
+    "technology_stack": {
+      "primary_language": "TypeScript",
+      "runtime": "Node.js",
+      "protocol": "Model Context Protocol (MCP)",
+      "communication": "WebSocket, HTTP/2",
+      "database": "PostgreSQL, Redis",
+      "message_queue": "RabbitMQ",
+      "kitchen_system": "Pantry ingredients, orchestrator agent, intelligent caching"
+    },
+    "sub_recipe_directory": "modules/",
+    "sub_recipes": [
+      "01-mcp-server-framework.json",
+      "02-multi-agent-coordination.json",
+      "03-model-chaining-system.json",
+      "04-group-chat-platform.json",
+      "05-agent-tool-registry.json",
+      "06-collaborative-workflows.json"
+    ]
+  },
+  "pantry_ingredients": {
+    "required_tasks": [
+      {
+        "ingredient_id": "task:setup-mcp-server:1.0.0",
+        "purpose": "Setup MCP server framework and protocol",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:configure-agent-coordination:1.0.0",
+        "purpose": "Configure multi-agent coordination system",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:setup-model-chaining:1.0.0",
+        "purpose": "Setup model chaining capabilities",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:deploy-group-chat:1.0.0",
+        "purpose": "Deploy group chat platform",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "task:register-agent-tools:1.0.0",
+        "purpose": "Register agent tools in registry",
+        "usage_count": 5,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:setup-collaborative-workflows:1.0.0",
+        "purpose": "Setup collaborative workflow engine",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      }
+    ],
+    "required_skills": [
+      {
+        "ingredient_id": "skill:manage-mcp-protocol:1.0.0",
+        "purpose": "Manage MCP protocol communication",
+        "usage_count": 10,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:coordinate-agents:1.0.0",
+        "purpose": "Coordinate multiple AI agents",
+        "usage_count": 15,
+        "caching_benefit": "low"
+      },
+      {
+        "ingredient_id": "skill:chain-models:1.0.0",
+        "purpose": "Chain multiple AI models together",
+        "usage_count": 8,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:manage-group-chat:1.0.0",
+        "purpose": "Manage group chat functionality",
+        "usage_count": 12,
+        "caching_benefit": "low"
+      }
+    ],
+    "required_tools": [
+      {
+        "ingredient_id": "tool:nodejs:18.0.0",
+        "purpose": "Node.js runtime for TypeScript",
+        "usage_count": 20,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:typescript:5.0.0",
+        "purpose": "TypeScript compiler",
+        "usage_count": 15,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:postgresql:15.0",
+        "purpose": "PostgreSQL database",
+        "usage_count": 5,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:redis:7.2.0",
+        "purpose": "Redis cache",
+        "usage_count": 8,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:rabbitmq:3.12.0",
+        "purpose": "RabbitMQ message queue",
+        "usage_count": 3,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:websocket-server:1.0.0",
+        "purpose": "WebSocket server for real-time communication",
+        "usage_count": 5,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_configs": [
+      {
+        "ingredient_id": "config:mcp-server-config:1.0.0",
+        "purpose": "MCP server configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:agent-coordination-config:1.0.0",
+        "purpose": "Multi-agent coordination configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:model-chaining-config:1.0.0",
+        "purpose": "Model chaining configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:group-chat-config:1.0.0",
+        "purpose": "Group chat platform configuration",
+        "usage_count": 1,
+        "caching_benefit": "medium"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step": 1,
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with smart caching",
+        "ingredients": [
+          "task:setup-mcp-server:1.0.0",
+          "task:configure-agent-coordination:1.0.0",
+          "task:setup-model-chaining:1.0.0",
+          "task:deploy-group-chat:1.0.0",
+          "task:register-agent-tools:1.0.0",
+          "task:setup-collaborative-workflows:1.0.0",
+          "skill:manage-mcp-protocol:1.0.0",
+          "skill:coordinate-agents:1.0.0",
+          "skill:chain-models:1.0.0",
+          "skill:manage-group-chat:1.0.0",
+          "tool:nodejs:18.0.0",
+          "tool:typescript:5.0.0",
+          "tool:postgresql:15.0",
+          "tool:redis:7.2.0",
+          "tool:rabbitmq:3.12.0",
+          "tool:websocket-server:1.0.0",
+          "config:mcp-server-config:1.0.0",
+          "config:agent-coordination-config:1.0.0",
+          "config:model-chaining-config:1.0.0",
+          "config:group-chat-config:1.0.0"
+        ]
+      },
+      {
+        "step": 2,
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "Node.js and TypeScript are available",
+          "PostgreSQL and Redis are accessible",
+          "RabbitMQ message queue is operational",
+          "WebSocket server can be started",
+          "All required configurations are valid"
+        ]
+      },
+      {
+        "step": 3,
+        "action": "execute_sub_recipes",
+        "description": "Execute sub-recipes in sequential order with caching",
+        "sub_recipes": [
+          "01-mcp-server-framework.json",
+          "02-multi-agent-coordination.json",
+          "03-model-chaining-system.json",
+          "04-group-chat-platform.json",
+          "05-agent-tool-registry.json",
+          "06-collaborative-workflows.json"
+        ]
+      },
+      {
+        "step": 4,
+        "action": "cache_results",
+        "description": "Cache successful results for future use",
+        "cache_items": [
+          "MCP server configurations",
+          "Agent coordination settings",
+          "Model chaining pipelines",
+          "Group chat configurations",
+          "Tool registry entries"
+        ]
+      }
+    ],
+    "caching_strategy": {
+      "ingredient_caching": "smart",
+      "result_caching": "aggressive",
+      "cache_validation": "content_hash",
+      "cache_ttl": 604800,
+      "cache_location": "local"
+    }
+  },
+  "mcp_server_implementation": {
+    "description": "Model Context Protocol server implementation for tool integration",
+    "components": [
+      "MCP server framework with protocol translation",
+      "Tool registry and discovery system",
+      "Security and authentication layer",
+      "Error handling and logging infrastructure",
+      "Protocol version management"
+    ],
+    "integration_points": [
+      "AI agent integration recipe",
+      "API gateway",
+      "Authentication system",
+      "External tool providers"
+    ],
+    "protocol_features": [
+      "Tool listing and discovery",
+      "Tool execution with context",
+      "Resource management",
+      "Streaming responses",
+      "Error propagation"
+    ],
+    "pantry_ingredients": [
+      "task:setup-mcp-server:1.0.0",
+      "skill:manage-mcp-protocol:1.0.0",
+      "config:mcp-server-config:1.0.0"
+    ]
+  },
+  "multi_agent_collaboration": {
+    "description": "Enable multiple AI agents to work together collaboratively",
+    "components": [
+      "Agent coordination system",
+      "Task distribution and load balancing",
+      "Shared context management",
+      "Conflict resolution mechanisms",
+      "Performance monitoring and optimization"
+    ],
+    "features": [
+      "Group chat functionality",
+      "Model chaining capabilities",
+      "Collaborative task execution",
+      "Shared knowledge base",
+      "Real-time communication"
+    ],
+    "coordination_patterns": [
+      "Master-slave coordination",
+      "Peer-to-peer collaboration",
+      "Hierarchical task delegation",
+      "Swarm intelligence patterns"
+    ],
+    "pantry_ingredients": [
+      "task:configure-agent-coordination:1.0.0",
+      "skill:coordinate-agents:1.0.0",
+      "config:agent-coordination-config:1.0.0"
+    ]
+  },
+  "model_chaining_system": {
+    "description": "Enable sequential processing through multiple AI models",
+    "components": [
+      "Model pipeline orchestration",
+      "Context passing between models",
+      "Output validation and quality control",
+      "Fallback mechanisms",
+      "Performance optimization"
+    ],
+    "chaining_patterns": [
+      "Sequential processing",
+      "Parallel processing",
+      "Conditional branching",
+      "Feedback loops",
+      "Error recovery"
+    ],
+    "pantry_ingredients": [
+      "task:setup-model-chaining:1.0.0",
+      "skill:chain-models:1.0.0",
+      "config:model-chaining-config:1.0.0"
+    ]
+  },
+  "group_chat_platform": {
+    "description": "Enable multiple agents to participate in collaborative conversations",
+    "components": [
+      "Real-time messaging system",
+      "Agent role management",
+      "Conversation threading",
+      "Context preservation",
+      "Moderation and governance"
+    ],
+    "features": [
+      "Multi-agent conversations",
+      "Role-based permissions",
+      "Conversation history",
+      "Context sharing",
+      "Moderation tools"
+    ],
+    "pantry_ingredients": [
+      "task:deploy-group-chat:1.0.0",
+      "skill:manage-group-chat:1.0.0",
+      "config:group-chat-config:1.0.0"
+    ]
+  },
+  "execution_plan": [
+    "Step 1: Use kitchen system to gather all required pantry ingredients",
+    "Step 2: Validate all dependencies and configurations",
+    "Step 3: Implement MCP server framework with tool registry",
+    "Step 4: Build multi-agent coordination system",
+    "Step 5: Create model chaining capabilities",
+    "Step 6: Develop group chat platform",
+    "Step 7: Integrate agent tool registry",
+    "Step 8: Implement collaborative workflows",
+    "Step 9: Test all integration points",
+    "Step 10: Validate system performance",
+    "Step 11: Cache successful results for future use"
+  ],
+  "deliverables": {
+    "core_system": [
+      "MCP server implementation with full protocol support",
+      "Multi-agent coordination framework",
+      "Model chaining orchestration system",
+      "Group chat platform with real-time communication"
+    ],
+    "integration_components": [
+      "Agent tool registry and discovery system",
+      "Collaborative workflow engine",
+      "Performance monitoring dashboard",
+      "Security and authentication layer"
+    ],
+    "documentation": [
+      "MCP server API documentation",
+      "Multi-agent coordination guide",
+      "Model chaining configuration guide",
+      "Group chat platform user manual"
+    ],
+    "cached_results": [
+      "MCP server configurations",
+      "Agent coordination settings",
+      "Model chaining pipelines",
+      "Group chat configurations",
+      "Tool registry entries"
+    ]
+  },
+  "acceptance_criteria": {
+    "mcp_server": [
+      "MCP server successfully handles tool discovery requests",
+      "Tool execution works with proper context passing",
+      "Error handling and logging function correctly",
+      "Security authentication prevents unauthorized access",
+      "Kitchen system integration provides atomic, reusable ingredients"
+    ],
+    "multi_agent": [
+      "Multiple agents can coordinate on shared tasks",
+      "Load balancing distributes work efficiently",
+      "Conflict resolution prevents deadlocks",
+      "Performance monitoring provides real-time metrics",
+      "Caching system improves coordination performance"
+    ],
+    "model_chaining": [
+      "Sequential model processing works correctly",
+      "Context is properly passed between models",
+      "Fallback mechanisms handle model failures",
+      "Performance optimization reduces latency",
+      "Cached model configurations improve startup time"
+    ],
+    "group_chat": [
+      "Multiple agents can participate in conversations",
+      "Real-time messaging works without delays",
+      "Role-based permissions function correctly",
+      "Conversation history is preserved and searchable",
+      "Cached chat configurations improve performance"
+    ]
+  },
+  "dependencies": {
+    "infrastructure": [
+      "01-core-infrastructure-recipe.json",
+      "02-unified-docker-system-recipe.json",
+      "06-api-gateway-recipe.json",
+      "07-authentication-security-recipe.json"
+    ],
+    "external_services": [
+      "PostgreSQL database",
+      "Redis cache",
+      "RabbitMQ message queue",
+      "WebSocket server"
+    ],
+    "pantry_dependencies": [
+      "tool:nodejs:18.0.0",
+      "tool:typescript:5.0.0",
+      "tool:postgresql:15.0",
+      "tool:redis:7.2.0",
+      "tool:rabbitmq:3.12.0",
+      "tool:websocket-server:1.0.0"
+    ]
+  },
+  "testing_requirements": {
+    "unit_tests": [
+      "MCP server protocol compliance tests",
+      "Multi-agent coordination logic tests",
+      "Model chaining pipeline tests",
+      "Group chat functionality tests",
+      "Kitchen system integration tests"
+    ],
+    "integration_tests": [
+      "End-to-end agent collaboration tests",
+      "Tool integration and execution tests",
+      "Performance and scalability tests",
+      "Security and authentication tests",
+      "Caching system validation tests"
+    ],
+    "load_tests": [
+      "Multiple concurrent agent sessions",
+      "High-volume message processing",
+      "Model chaining performance under load",
+      "Group chat scalability tests",
+      "Cache performance under load"
+    ]
+  },
+  "security_considerations": {
+    "authentication": [
+      "Agent identity verification",
+      "Tool access control",
+      "Conversation privacy",
+      "Data encryption in transit and at rest"
+    ],
+    "authorization": [
+      "Role-based access control",
+      "Tool execution permissions",
+      "Conversation moderation rights",
+      "System administration privileges"
+    ]
+  },
+  "performance_requirements": {
+    "response_times": [
+      "MCP tool discovery: < 100ms",
+      "Tool execution: < 500ms",
+      "Agent coordination: < 200ms",
+      "Group chat messages: < 50ms",
+      "Cache hit rate: > 80%"
+    ],
+    "scalability": [
+      "Support 100+ concurrent agents",
+      "Handle 1000+ concurrent conversations",
+      "Process 10000+ messages per minute",
+      "Maintain performance under load",
+      "Cache performance scales with usage"
+    ]
+  }
+} 

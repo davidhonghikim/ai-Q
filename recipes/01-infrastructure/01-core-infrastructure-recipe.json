@@ -1,0 +1,504 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-CORE-INFRASTRUCTURE-MASTER",
+    "title": "Core Infrastructure Recipe - Master Orchestration",
+    "version": "4.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-28T13:30:00Z",
+    "last_updated": "2025-07-05T23:55:00Z",
+    "difficulty_level": "expert",
+    "architecture_tier": "enterprise-foundation",
+    "description": "This is a master recipe that orchestrates the complete core infrastructure implementation using the kitchen analogy system. It coordinates all sub-recipes to create a production-ready infrastructure foundation with Docker environment, monitoring, logging, load balancing, service discovery, message queues, caching, backup, security, performance optimization, disaster recovery, and comprehensive documentation.",
+    "is_master_recipe": true,
+    "kitchen_system": {
+      "orchestrator": "chef",
+      "pantry_required": true,
+      "caching_enabled": true,
+      "cache_strategy": "smart"
+    }
+  },
+  "recipe_overview": {
+    "description": "Complete core infrastructure implementation featuring Docker environment, comprehensive monitoring, centralized logging, load balancing, service discovery, message queues, distributed caching, automated backup, security hardening, performance optimization, disaster recovery, and comprehensive documentation. This master recipe orchestrates all sub-recipes using the kitchen analogy system for atomic, reusable ingredients and intelligent caching.",
+    "sub_recipe_directory": "01-core-infrastructure/",
+    "sub_recipes": [
+      "01-01-docker-environment.json",
+      "01-02-system-monitoring.json",
+      "01-03-logging-infrastructure.json",
+      "01-04-load-balancing.json",
+      "01-05-service-discovery.json",
+      "01-06-message-queue.json",
+      "01-07-cache-layer.json",
+      "01-08-backup-infrastructure.json",
+      "01-09-security-hardening.json",
+      "01-10-performance-optimization.json",
+      "01-11-disaster-recovery.json",
+      "01-12-documentation-and-handover.json"
+    ],
+    "total_sub_recipes": 12,
+    "total_tasks": 180,
+    "estimated_duration": "3-4 weeks",
+    "complexity": "Advanced",
+    "dependencies": []
+  },
+  "pantry_ingredients": {
+    "required_tasks": [
+      {
+        "ingredient_id": "task:pull-docker-image:1.0.0",
+        "purpose": "Pull Docker images for all services",
+        "usage_count": 15,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "task:create-docker-network:1.0.0",
+        "purpose": "Create Docker networks for service isolation",
+        "usage_count": 8,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "task:validate-docker-compose:1.0.0",
+        "purpose": "Validate Docker Compose configurations",
+        "usage_count": 12,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "task:start-docker-service:1.0.0",
+        "purpose": "Start Docker services with health checks",
+        "usage_count": 20,
+        "caching_benefit": "low"
+      }
+    ],
+    "required_skills": [
+      {
+        "ingredient_id": "skill:run-docker-compose:1.0.0",
+        "purpose": "Execute Docker Compose operations",
+        "usage_count": 25,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "skill:configure-monitoring:1.0.0",
+        "purpose": "Configure monitoring and alerting",
+        "usage_count": 10,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "skill:setup-logging:1.0.0",
+        "purpose": "Setup centralized logging infrastructure",
+        "usage_count": 8,
+        "caching_benefit": "high"
+      }
+    ],
+    "required_tools": [
+      {
+        "ingredient_id": "tool:docker:24.0.0",
+        "purpose": "Docker container platform",
+        "usage_count": 50,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:docker-compose:2.20.0",
+        "purpose": "Docker Compose orchestration",
+        "usage_count": 30,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "tool:prometheus:2.45.0",
+        "purpose": "Monitoring and alerting",
+        "usage_count": 5,
+        "caching_benefit": "medium"
+      },
+      {
+        "ingredient_id": "tool:grafana:10.0.0",
+        "purpose": "Visualization and dashboards",
+        "usage_count": 3,
+        "caching_benefit": "medium"
+      }
+    ],
+    "required_configs": [
+      {
+        "ingredient_id": "config:docker-compose-base:1.0.0",
+        "purpose": "Base Docker Compose configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:prometheus-config:1.0.0",
+        "purpose": "Prometheus monitoring configuration",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      },
+      {
+        "ingredient_id": "config:grafana-dashboards:1.0.0",
+        "purpose": "Grafana dashboard configurations",
+        "usage_count": 1,
+        "caching_benefit": "high"
+      }
+    ]
+  },
+  "kitchen_execution": {
+    "orchestrator_steps": [
+      {
+        "step": 1,
+        "action": "gather_ingredients",
+        "description": "Load all required pantry ingredients with caching",
+        "ingredients": [
+          "task:pull-docker-image:1.0.0",
+          "task:create-docker-network:1.0.0",
+          "task:validate-docker-compose:1.0.0",
+          "task:start-docker-service:1.0.0",
+          "skill:run-docker-compose:1.0.0",
+          "skill:configure-monitoring:1.0.0",
+          "skill:setup-logging:1.0.0",
+          "tool:docker:24.0.0",
+          "tool:docker-compose:2.20.0",
+          "tool:prometheus:2.45.0",
+          "tool:grafana:10.0.0",
+          "config:docker-compose-base:1.0.0",
+          "config:prometheus-config:1.0.0",
+          "config:grafana-dashboards:1.0.0"
+        ]
+      },
+      {
+        "step": 2,
+        "action": "validate_dependencies",
+        "description": "Verify all ingredient dependencies are satisfied",
+        "checks": [
+          "Docker and Docker Compose are available",
+          "All required images can be pulled",
+          "Network configurations are valid",
+          "Monitoring tools are accessible"
+        ]
+      },
+      {
+        "step": 3,
+        "action": "execute_sub_recipes",
+        "description": "Execute sub-recipes in sequential order with caching",
+        "sub_recipes": [
+          "01-01-docker-environment.json",
+          "01-02-system-monitoring.json",
+          "01-03-logging-infrastructure.json",
+          "01-04-load-balancing.json",
+          "01-05-service-discovery.json",
+          "01-06-message-queue.json",
+          "01-07-cache-layer.json",
+          "01-08-backup-infrastructure.json",
+          "01-09-security-hardening.json",
+          "01-10-performance-optimization.json",
+          "01-11-disaster-recovery.json",
+          "01-12-documentation-and-handover.json"
+        ]
+      },
+      {
+        "step": 4,
+        "action": "cache_results",
+        "description": "Cache successful results for future use",
+        "cache_items": [
+          "Docker images and configurations",
+          "Monitoring setup and dashboards",
+          "Logging infrastructure",
+          "Security configurations",
+          "Performance optimizations"
+        ]
+      }
+    ],
+    "caching_strategy": {
+      "ingredient_caching": "smart",
+      "result_caching": "aggressive",
+      "cache_validation": "content_hash",
+      "cache_ttl": 604800,
+      "cache_location": "local"
+    }
+  },
+  "execution_plan": [
+    "Execute sub-recipes in the exact order listed in the `sub_recipes` array.",
+    "Each sub-recipe must complete successfully before proceeding to the next.",
+    "Use kitchen system to gather ingredients with intelligent caching.",
+    "Verify all acceptance criteria are met for each sub-recipe before continuing.",
+    "Refer to the `README.json` in the `01-core-infrastructure/` directory for detailed information on each sub-recipe.",
+    "All documentation outputs must be in JSON format only - no markdown files allowed.",
+    "Ensure zero technical debt and comprehensive error handling throughout.",
+    "Cache successful results for improved performance on subsequent runs."
+  ],
+  "sub_recipe_dependencies": {
+    "01-01-docker-environment.json": {
+      "dependencies": [],
+      "description": "Foundation Docker environment with Compose, networking, and orchestration",
+      "estimated_tasks": 25,
+      "duration": "3-4 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:create-docker-network:1.0.0",
+        "skill:run-docker-compose:1.0.0",
+        "tool:docker:24.0.0",
+        "tool:docker-compose:2.20.0"
+      ]
+    },
+    "01-02-system-monitoring.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Prometheus, Grafana, and comprehensive monitoring stack",
+      "estimated_tasks": 20,
+      "duration": "2-3 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "skill:configure-monitoring:1.0.0",
+        "tool:prometheus:2.45.0",
+        "tool:grafana:10.0.0",
+        "config:prometheus-config:1.0.0",
+        "config:grafana-dashboards:1.0.0"
+      ]
+    },
+    "01-03-logging-infrastructure.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "ELK stack with log aggregation and analysis",
+      "estimated_tasks": 18,
+      "duration": "2-3 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "skill:setup-logging:1.0.0",
+        "tool:elasticsearch:8.8.0",
+        "tool:logstash:8.8.0",
+        "tool:kibana:8.8.0"
+      ]
+    },
+    "01-04-load-balancing.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Nginx with advanced load balancing and SSL termination",
+      "estimated_tasks": 15,
+      "duration": "2 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:start-docker-service:1.0.0",
+        "tool:nginx:1.24.0",
+        "config:nginx-load-balancer:1.0.0"
+      ]
+    },
+    "01-05-service-discovery.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Consul for service discovery and configuration management",
+      "estimated_tasks": 12,
+      "duration": "1-2 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:start-docker-service:1.0.0",
+        "tool:consul:1.16.0",
+        "config:consul-config:1.0.0"
+      ]
+    },
+    "01-06-message-queue.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "RabbitMQ with clustering and high availability",
+      "estimated_tasks": 16,
+      "duration": "2-3 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:start-docker-service:1.0.0",
+        "tool:rabbitmq:3.12.0",
+        "config:rabbitmq-cluster:1.0.0"
+      ]
+    },
+    "01-07-cache-layer.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Redis cluster with persistence and high availability",
+      "estimated_tasks": 14,
+      "duration": "2 days",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:start-docker-service:1.0.0",
+        "tool:redis:7.2.0",
+        "config:redis-cluster:1.0.0"
+      ]
+    },
+    "01-08-backup-infrastructure.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Automated backup system with versioning and recovery",
+      "estimated_tasks": 12,
+      "duration": "1-2 days",
+      "pantry_ingredients": [
+        "task:create-backup-schedule:1.0.0",
+        "task:validate-backup:1.0.0",
+        "tool:restic:0.16.0",
+        "config:backup-policy:1.0.0"
+      ]
+    },
+    "01-09-security-hardening.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "Security hardening, firewall rules, and compliance measures",
+      "estimated_tasks": 18,
+      "duration": "2-3 days",
+      "pantry_ingredients": [
+        "task:configure-firewall:1.0.0",
+        "task:setup-ssl-certificates:1.0.0",
+        "tool:fail2ban:1.0.0",
+        "config:security-policy:1.0.0"
+      ]
+    },
+    "01-10-performance-optimization.json": {
+      "dependencies": ["01-01-docker-environment.json"],
+      "description": "System optimization, resource management, and performance tuning",
+      "estimated_tasks": 15,
+      "duration": "2 days",
+      "pantry_ingredients": [
+        "task:optimize-system-params:1.0.0",
+        "task:configure-resource-limits:1.0.0",
+        "tool:sysbench:1.0.0",
+        "config:performance-tuning:1.0.0"
+      ]
+    },
+    "01-11-disaster-recovery.json": {
+      "dependencies": ["01-08-backup-infrastructure.json"],
+      "description": "DR procedures, failover mechanisms, and business continuity",
+      "estimated_tasks": 10,
+      "duration": "1-2 days",
+      "pantry_ingredients": [
+        "task:test-failover:1.0.0",
+        "task:validate-recovery:1.0.0",
+        "config:dr-procedures:1.0.0"
+      ]
+    },
+    "01-12-documentation-and-handover.json": {
+      "dependencies": ["01-01-docker-environment.json", "01-02-system-monitoring.json"],
+      "description": "Comprehensive documentation and handover procedures",
+      "estimated_tasks": 10,
+      "duration": "1 day",
+      "pantry_ingredients": [
+        "task:generate-documentation:1.0.0",
+        "task:create-handover-report:1.0.0",
+        "config:documentation-template:1.0.0"
+      ]
+    }
+  },
+  "implementation_phases": {
+    "phase_1_foundation": {
+      "name": "Foundation Setup",
+      "sub_recipes": ["01-01-docker-environment.json"],
+      "duration": "3-4 days",
+      "description": "Basic infrastructure and container environment",
+      "pantry_ingredients": [
+        "task:pull-docker-image:1.0.0",
+        "task:create-docker-network:1.0.0",
+        "skill:run-docker-compose:1.0.0",
+        "tool:docker:24.0.0",
+        "tool:docker-compose:2.20.0"
+      ]
+    },
+    "phase_2_observability": {
+      "name": "Observability Stack",
+      "sub_recipes": ["01-02-system-monitoring.json", "01-03-logging-infrastructure.json"],
+      "duration": "4-6 days",
+      "description": "Monitoring and logging infrastructure",
+      "pantry_ingredients": [
+        "skill:configure-monitoring:1.0.0",
+        "skill:setup-logging:1.0.0",
+        "tool:prometheus:2.45.0",
+        "tool:grafana:10.0.0",
+        "tool:elasticsearch:8.8.0",
+        "config:prometheus-config:1.0.0",
+        "config:grafana-dashboards:1.0.0"
+      ]
+    },
+    "phase_3_core_services": {
+      "name": "Core Services",
+      "sub_recipes": ["01-04-load-balancing.json", "01-05-service-discovery.json", "01-06-message-queue.json", "01-07-cache-layer.json"],
+      "duration": "7-10 days",
+      "description": "Essential services for application support",
+      "pantry_ingredients": [
+        "task:start-docker-service:1.0.0",
+        "tool:nginx:1.24.0",
+        "tool:consul:1.16.0",
+        "tool:rabbitmq:3.12.0",
+        "tool:redis:7.2.0",
+        "config:nginx-load-balancer:1.0.0",
+        "config:consul-config:1.0.0",
+        "config:rabbitmq-cluster:1.0.0",
+        "config:redis-cluster:1.0.0"
+      ]
+    },
+    "phase_4_production_readiness": {
+      "name": "Production Readiness",
+      "sub_recipes": ["01-08-backup-infrastructure.json", "01-09-security-hardening.json", "01-10-performance-optimization.json"],
+      "duration": "5-8 days",
+      "description": "Production hardening and optimization",
+      "pantry_ingredients": [
+        "task:create-backup-schedule:1.0.0",
+        "task:configure-firewall:1.0.0",
+        "task:optimize-system-params:1.0.0",
+        "tool:restic:0.16.0",
+        "tool:fail2ban:1.0.0",
+        "tool:sysbench:1.0.0",
+        "config:backup-policy:1.0.0",
+        "config:security-policy:1.0.0",
+        "config:performance-tuning:1.0.0"
+      ]
+    },
+    "phase_5_completion": {
+      "name": "Documentation and Handover",
+      "sub_recipes": ["01-11-disaster-recovery.json", "01-12-documentation-and-handover.json"],
+      "duration": "2-3 days",
+      "description": "Final documentation and handover procedures",
+      "pantry_ingredients": [
+        "task:test-failover:1.0.0",
+        "task:generate-documentation:1.0.0",
+        "config:dr-procedures:1.0.0",
+        "config:documentation-template:1.0.0"
+      ]
+    }
+  },
+  "success_criteria": {
+    "functional_requirements": [
+      "All services running in Docker containers",
+      "Monitoring and alerting operational",
+      "Centralized logging functional",
+      "Load balancing working",
+      "Service discovery operational",
+      "Message queue functional",
+      "Caching layer operational",
+      "Backup system automated",
+      "Security measures implemented",
+      "Performance optimized",
+      "DR procedures documented",
+      "All tests passing"
+    ],
+    "performance_requirements": [
+      "99.9% uptime target",
+      "Response time < 100ms for core services",
+      "Resource utilization < 80%",
+      "Backup completion < 4 hours",
+      "Recovery time < 2 hours",
+      "Cache hit rate > 80% for frequently used ingredients"
+    ],
+    "security_requirements": [
+      "All services encrypted in transit",
+      "Access controls implemented",
+      "Audit logging enabled",
+      "Vulnerability scanning passed",
+      "Compliance requirements met"
+    ],
+    "quality_requirements": [
+      "Zero technical debt",
+      "All documentation in JSON format",
+      "No markdown files in project",
+      "Comprehensive error handling",
+      "Atomic, exact recipes throughout",
+      "Kitchen system integration complete"
+    ]
+  },
+  "verification_checklist": [
+    "All sub-recipes executed successfully",
+    "All acceptance criteria met",
+    "All services operational and healthy",
+    "Performance benchmarks achieved",
+    "Security requirements satisfied",
+    "Documentation complete and in JSON format",
+    "No markdown files present",
+    "Zero technical debt",
+    "All tests passing",
+    "Handover procedures documented",
+    "Kitchen system integration verified",
+    "Caching system operational"
+  ],
+  "next_steps": {
+    "next_recipe": "02-storage-systems-recipe.json",
+    "dependencies": ["01-core-infrastructure-recipe.json"],
+    "estimated_start": "After successful completion of core infrastructure",
+    "kitchen_system_ready": true
+  }
+} 

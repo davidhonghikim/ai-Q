@@ -62,7 +62,7 @@
           "scripts/postgresql/failover-test.sh - Failover testing automation",
           "scripts/postgresql/backup-restore.sh - Backup and recovery procedures",
           "monitoring/postgresql/dashboards.json - Grafana dashboards",
-          "docs/postgresql/cluster-architecture.md - Architecture documentation"
+          "docs/postgresql/cluster-architecture.json - Architecture documentation"
         ],
         "files_modified": [
           "docker-compose.yml - PostgreSQL cluster services",
@@ -101,8 +101,8 @@
               "TOTAL_RAM=$(free -g | awk 'NR==2{print $2}')",
               "POSTGRES_SHARED_BUFFERS=$((TOTAL_RAM / 4))",
               "POSTGRES_EFFECTIVE_CACHE_SIZE=$((TOTAL_RAM * 3 / 4))",
-              "echo \\"Shared buffers: ${POSTGRES_SHARED_BUFFERS}GB\\"",
-              "echo \\"Effective cache size: ${POSTGRES_EFFECTIVE_CACHE_SIZE}GB\\"",
+              "echo \"Shared buffers: ${POSTGRES_SHARED_BUFFERS}GB\"",
+              "echo \"Effective cache size: ${POSTGRES_EFFECTIVE_CACHE_SIZE}GB\"",
               "# Verify storage requirements",
               "df -h | grep -E '(postgres|database)' | awk '{print $1, $2, $4}'"
             ],
@@ -139,7 +139,7 @@
               "# Wait for master to be ready",
               "sleep 30",
               "# Initialize database and users",
-              "docker exec postgresql-master psql -U postgres -c \\"CREATE USER replicator REPLICATION LOGIN ENCRYPTED PASSWORD 'replication_password';\\""
+              "docker exec postgresql-master psql -U postgres -c \"CREATE USER replicator REPLICATION LOGIN ENCRYPTED PASSWORD 'replication_password';\""
             ],
             "expected_output": "PostgreSQL master node deployed and accessible with replication user created",
             "troubleshooting": "Check PostgreSQL logs for configuration errors and network connectivity"
@@ -161,7 +161,7 @@
               "docker-compose -f docker-compose.postgresql.yml up -d postgresql-slave",
               "# Verify replication status",
               "sleep 30",
-              "docker exec postgresql-master psql -U postgres -c \\"SELECT client_addr, state, sync_state FROM pg_stat_replication;\\""
+              "docker exec postgresql-master psql -U postgres -c \"SELECT client_addr, state, sync_state FROM pg_stat_replication;\""
             ],
             "expected_output": "PostgreSQL slave node deployed with active streaming replication",
             "troubleshooting": "Verify network connectivity and replication user permissions"
@@ -193,7 +193,7 @@
               "docker-compose -f docker-compose.postgresql.yml up -d pgbouncer",
               "# Test connection pooling",
               "sleep 15",
-              "psql -h localhost -p 6432 -U postgres -d ai_q_production -c \\"SELECT version();\\""
+              "psql -h localhost -p 6432 -U postgres -d ai_q_production -c \"SELECT version();\""
             ],
             "expected_output": "pgBouncer deployed and connection pooling working correctly",
             "troubleshooting": "Check pgBouncer logs for authentication and connection issues"

@@ -399,11 +399,11 @@
         "mkdir -p examples/media"
       ],
       "files_to_create": [
-        "docs/media/README.md",
-        "docs/media/video.md",
-        "docs/media/audio.md",
-        "docs/media/transcription.md",
-        "docs/media/enhancement.md",
+        "docs/media/README.json",
+        "docs/media/video.json",
+        "docs/media/audio.json",
+        "docs/media/transcription.json",
+        "docs/media/enhancement.json",
         "examples/media/video_examples.py",
         "examples/media/audio_examples.py",
         "examples/media/transcription_examples.py"

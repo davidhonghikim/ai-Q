@@ -464,12 +464,12 @@
         "mkdir -p examples/mobile-app"
       ],
       "files_to_create": [
-        "docs/mobile-app/README.md",
-        "docs/mobile-app/architecture.md",
-        "docs/mobile-app/components.md",
-        "docs/mobile-app/api.md",
-        "docs/mobile-app/deployment.md",
-        "examples/mobile-app/usage.md"
+        "docs/mobile-app/README.json",
+        "docs/mobile-app/architecture.json",
+        "docs/mobile-app/components.json",
+        "docs/mobile-app/api.json",
+        "docs/mobile-app/deployment.json",
+        "examples/mobile-app/usage.json"
       ],
       "acceptance_criteria": [
         "Complete documentation created",
