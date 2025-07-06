@@ -1,0 +1,52 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-AGENT-MODULE-MANAGER-001",
+    "title": "AI Agent Module Manager",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "last_updated": "2025-07-05T00:00:00Z",
+    "difficulty_level": "advanced",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Build a central module manager for AI agent components with install/uninstall capabilities. This forms the foundation for the AI agent ecosystem.",
+    "technology_stack": {
+      "language": "TypeScript",
+      "runtime": "Node.js"
+    },
+    "deliverables": [
+      "A module manager that can install/uninstall AI agent components",
+      "Dependency resolution and conflict detection",
+      "Rollback capability on installation failure"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "36-001",
+      "title": "Create AI Agent Module Manager",
+      "description": "Build central module manager for AI agent components with install/uninstall capabilities",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "mkdir -p src/modules/ai-agents/manager",
+        "mkdir -p src/modules/ai-agents/ra-aid",
+        "mkdir -p src/modules/ai-agents/browser-use",
+        "mkdir -p src/modules/ai-agents/archivebox",
+        "mkdir -p src/modules/ai-agents/aider"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/manager/module-manager.ts",
+        "src/modules/ai-agents/manager/installer.ts",
+        "src/modules/ai-agents/manager/validator.ts",
+        "src/modules/ai-agents/manager/types.ts"
+      ],
+      "acceptance_criteria": [
+        "Module manager can install/uninstall AI agent components",
+        "Dependency resolution works correctly",
+        "Conflict detection prevents incompatible combinations",
+        "Rollback capability on installation failure"
+      ]
+    }
+  ]
+} 

@@ -1,0 +1,53 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "02-AI-AGENT-BROWSER-USE-INTEGRATION-003",
+    "title": "Browser-Use Integration Module",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "last_updated": "2025-07-05T00:00:00Z",
+    "difficulty_level": "advanced",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Integrate Browser-Use for web automation and enhanced UI capabilities.",
+    "technology_stack": {
+      "language": "TypeScript, JavaScript"
+    },
+    "deliverables": [
+      "Web scraping functionality",
+      "An operational automation engine",
+      "Integrated UI enhancements"
+    ]
+  },
+  "tasks": [
+    {
+      "id": "36-003",
+      "title": "Browser-Use Integration Module",
+      "description": "Integrate Browser-Use for web automation and enhanced UI capabilities",
+      "estimated_time": "45 minutes",
+      "estimated_tokens": 2500,
+      "commands": [
+        "cd src/modules/ai-agents/browser-use",
+        "git clone https://github.com/browser-use/browser-use.git core",
+        "git clone https://github.com/browser-use/web-ui.git ui",
+        "cp -r core/* ./browser-use-core/",
+        "cp -r ui/* ./web-ui/",
+        "rm -rf core ui"
+      ],
+      "files_to_create": [
+        "src/modules/ai-agents/browser-use/browser-use-module.ts",
+        "src/modules/ai-agents/browser-use/web-scraper.ts",
+        "src/modules/ai-agents/browser-use/automation-engine.ts",
+        "src/modules/ai-agents/browser-use/ui-enhancement.ts",
+        "src/modules/ai-agents/browser-use/module-manifest.json"
+      ],
+      "acceptance_criteria": [
+        "Web scraping functionality working",
+        "Automation engine operational",
+        "UI enhancements integrated",
+        "Module can be safely installed/uninstalled"
+      ]
+    }
+  ]
+} 
