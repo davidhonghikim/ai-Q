@@ -22,11 +22,11 @@
       "name": "Local Network (Default)",
       "description": "Local network deployment with 192.168.1.x for remote access",
       "bind_address": "0.0.0.0",
-      "external_address": "192.168.1.100",
+      "external_address": "192.168.1.180",
       "subnet": "192.168.1.0/24",
       "gateway": "192.168.1.1",
       "dns": ["192.168.1.1", "8.8.8.8"],
-      "base_url": "http://192.168.1.100"
+      "base_url": "http://192.168.1.180"
     },
     "docker_network": {
       "name": "Docker Internal Network",
@@ -182,8 +182,8 @@
   "environment_variables": {
     "AIQ_NETWORK_PROFILE": "local_network",
     "AIQ_BIND_ADDRESS": "0.0.0.0",
-    "AIQ_EXTERNAL_ADDRESS": "192.168.1.100",
-    "AIQ_BASE_URL": "http://192.168.1.100",
+    "AIQ_EXTERNAL_ADDRESS": "192.168.1.180",
+    "AIQ_BASE_URL": "http://192.168.1.180",
     "AIQ_SUBNET": "192.168.1.0/24",
     "AIQ_GATEWAY": "192.168.1.1"
   },
@@ -191,9 +191,9 @@
     "template": "{base_url}:{port}",
     "examples": {
       "openwebui_localhost": "http://localhost:3000",
-      "openwebui_local_network": "http://192.168.1.100:3000",
+      "openwebui_local_network": "http://192.168.1.180:3000",
       "ollama_localhost": "http://localhost:11000",
-      "ollama_local_network": "http://192.168.1.100:11000"
+      "ollama_local_network": "http://192.168.1.180:11000"
     }
   },
   "validation_rules": {

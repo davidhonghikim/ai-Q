@@ -12,7 +12,7 @@ services:
       - /opt/ai-q/data/openwebui/data:/app/backend/data
       - /opt/ai-q/data/openwebui/config:/app/backend/config
     environment:
-      - OLLAMA_BASE_URL=http://${AIQ_EXTERNAL_ADDRESS:-192.168.1.100}:${OLLAMA_PORT:-11000}
+      - OLLAMA_BASE_URL=http://${AIQ_EXTERNAL_ADDRESS:-192.168.1.180}:${OLLAMA_PORT:-11000}
       - WEBUI_SECRET_KEY=your-super-secret-openwebui-key-change-in-production
       - DEFAULT_MODELS=gemma3:2b,codellama:7b
       - DEFAULT_USER_ROLE=admin

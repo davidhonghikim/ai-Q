@@ -22,7 +22,7 @@
       "name": "Local Network (Default)",
       "description": "Local network deployment with 192.168.1.x for remote access",
       "bind_address": "0.0.0.0",
-      "external_address": "192.168.1.100",
+      "external_address": "192.168.1.180",
       "subnet": "192.168.1.0/24",
       "gateway": "192.168.1.1",
       "dns": ["192.168.1.1", "8.8.8.8"],
@@ -64,7 +64,7 @@
     "frontend_services": {
       "network_type": "local_network",
       "bind_address": "0.0.0.0",
-      "external_address": "192.168.1.100"
+      "external_address": "192.168.1.180"
     },
     "backend_services": {
       "network_type": "docker_network",
@@ -74,7 +74,7 @@
     "ai_ml_services": {
       "network_type": "local_network",
       "bind_address": "0.0.0.0",
-      "external_address": "192.168.1.100"
+      "external_address": "192.168.1.180"
     },
     "storage_services": {
       "network_type": "docker_network",
@@ -85,7 +85,7 @@
   "environment_variables": {
     "AIQ_NETWORK_PROFILE": "local_network",
     "AIQ_BIND_ADDRESS": "0.0.0.0",
-    "AIQ_EXTERNAL_ADDRESS": "192.168.1.100",
+    "AIQ_EXTERNAL_ADDRESS": "192.168.1.180",
     "AIQ_SUBNET": "192.168.1.0/24",
     "AIQ_GATEWAY": "192.168.1.1",
     "AIQ_DNS_PRIMARY": "192.168.1.1",
