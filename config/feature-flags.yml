@@ -54,4 +54,14 @@ performance:
 integrations:
   openai_enabled: false
   huggingface_enabled: false
-  external_apis: false 
+  external_apis: false
+
+# Enables or disables the comprehensive monitoring stack (Prometheus, Grafana)
+monitoring_stack:
+  enabled: true
+  description: "Enables the Prometheus and Grafana monitoring stack for observing system metrics."
+
+# Enables or disables the AnythingLLM RAG and Agent Management UI
+anything_llm:
+  enabled: false
+  description: "Enables the AnythingLLM service, providing an all-in-one interface for RAG, AI agents, and vector DB management." 
