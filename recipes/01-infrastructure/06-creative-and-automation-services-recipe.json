@@ -1,0 +1,29 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "06-CREATIVE-AUTOMATION-MASTER",
+    "title": "Creative & Automation Services (Master Recipe)",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "expert",
+    "architecture_tier": "infrastructure-services",
+    "description": "This is a master recipe that orchestrates the deployment of optional creative and automation services. It is composed of multiple, modular sub-recipes, each handling a specific tool like Automatic1111, ComfyUI, n8n, and Penpot. Each sub-recipe is designed to be hardware-aware and support remote connections.",
+    "is_master_recipe": true
+  },
+  "recipe_overview": {
+    "description": "Deploys an optional suite of creative and automation tools. Each service's deployment is conditional on user configuration and, where applicable, hardware profiling (e.g., for GPU-intensive tasks).",
+    "sub_recipe_directory": "modules/",
+    "sub_recipes": [
+      "01-automatic1111-setup.json",
+      "02-comfyui-setup.json",
+      "03-n8n-setup.json",
+      "04-penpot-setup.json"
+    ]
+  },
+  "execution_plan": [
+    "1. Read the central configuration to determine which creative and automation services are enabled by the user.",
+    "2. For each enabled service, execute the corresponding sub-recipe.",
+    "3. Each sub-recipe will perform its own hardware compatibility check before proceeding with a local installation.",
+    "4. Refer to the `README.json` in the `06-creative-and-automation-services/` directory for details on each sub-recipe."
+  ]
+} 
