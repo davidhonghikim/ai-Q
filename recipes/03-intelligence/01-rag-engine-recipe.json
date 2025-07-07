@@ -3,7 +3,7 @@
     "title": "RAG Engine Recipe",
     "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-01-27T14:00:00Z",
+    "last_updated": "2025-07-06T01:18:00Z",
     "purpose": "Implement comprehensive RAG (Retrieval-Augmented Generation) engine with exact specifications, vector embeddings, and context retrieval for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "intelligence",
