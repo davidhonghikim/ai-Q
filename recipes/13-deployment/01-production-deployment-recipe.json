@@ -3,7 +3,7 @@
     "title": "Production Deployment Recipe",
     "version": "1.0.0",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-01-27T14:00:00Z",
+    "last_updated": "2025-07-06T12:58:00Z",
     "purpose": "Implement comprehensive production deployment with enterprise deployment, scaling, and monitoring for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "deployment",
