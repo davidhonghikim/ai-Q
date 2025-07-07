@@ -16,7 +16,12 @@
       "pantry_category": "research_automation",
       "cooking_time": "360 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["web_scraping", "academic_integration", "source_validation", "synthesis_engine"],
+      "kitchen_tools": [
+        "web_scraping",
+        "academic_integration",
+        "source_validation",
+        "synthesis_engine"
+      ],
       "cache_strategy": "research_automation_cache",
       "orchestrator_priority": "high"
     }
@@ -66,7 +71,11 @@
         "description": "Establish comprehensive web scraping infrastructure",
         "estimated_time": "75 minutes",
         "dependencies": [],
-        "skills_required": ["web_scraping", "proxy_management", "content_extraction"]
+        "skills_required": [
+          "web_scraping",
+          "proxy_management",
+          "content_extraction"
+        ]
       },
       {
         "task_id": "ACADEMIC_INTEGRATION_TASK",
@@ -74,23 +83,40 @@
         "description": "Integrate major academic databases and APIs",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["api_integration", "academic_databases", "authentication"]
+        "skills_required": [
+          "api_integration",
+          "academic_databases",
+          "authentication"
+        ]
       },
       {
         "task_id": "SOURCE_VALIDATION_TASK",
         "name": "Source Validation System",
         "description": "Implement comprehensive source validation",
         "estimated_time": "90 minutes",
-        "dependencies": ["WEB_SCRAPING_TASK", "ACADEMIC_INTEGRATION_TASK"],
-        "skills_required": ["credibility_scoring", "fact_checking", "cross_referencing"]
+        "dependencies": [
+          "WEB_SCRAPING_TASK",
+          "ACADEMIC_INTEGRATION_TASK"
+        ],
+        "skills_required": [
+          "credibility_scoring",
+          "fact_checking",
+          "cross_referencing"
+        ]
       },
       {
         "task_id": "SYNTHESIS_ENGINE_TASK",
         "name": "Intelligent Synthesis Engine",
         "description": "Create advanced content synthesis engine",
         "estimated_time": "90 minutes",
-        "dependencies": ["SOURCE_VALIDATION_TASK"],
-        "skills_required": ["nlp_processing", "summarization", "knowledge_graphs"]
+        "dependencies": [
+          "SOURCE_VALIDATION_TASK"
+        ],
+        "skills_required": [
+          "nlp_processing",
+          "summarization",
+          "knowledge_graphs"
+        ]
       }
     ],
     "skills": [
@@ -98,21 +124,35 @@
         "skill_id": "WEB_SCRAPING_SKILL",
         "name": "Web Scraping",
         "description": "Scrape and extract content from web sources",
-        "tools": ["scrapy", "selenium", "playwright", "beautifulsoup"],
+        "tools": [
+          "scrapy",
+          "selenium",
+          "playwright",
+          "beautifulsoup"
+        ],
         "validation": "web_scraping_validation"
       },
       {
         "skill_id": "ACADEMIC_INTEGRATION_SKILL",
         "name": "Academic Integration",
         "description": "Integrate with academic databases and APIs",
-        "tools": ["pubmed_api", "arxiv_api", "ieee_api", "google_scholar"],
+        "tools": [
+          "pubmed_api",
+          "arxiv_api",
+          "ieee_api",
+          "google_scholar"
+        ],
         "validation": "academic_integration_validation"
       },
       {
         "skill_id": "SOURCE_VALIDATION_SKILL",
         "name": "Source Validation",
         "description": "Validate and assess source credibility",
-        "tools": ["credibility_scorer", "fact_checker", "cross_referencer"],
+        "tools": [
+          "credibility_scorer",
+          "fact_checker",
+          "cross_referencer"
+        ],
         "validation": "source_validation_validation"
       }
     ],
@@ -168,7 +208,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["WEB_SCRAPING_TASK", "WEB_SCRAPING_SKILL", "RESEARCH_AUTOMATION_TOOL"],
+        "ingredients": [
+          "WEB_SCRAPING_TASK",
+          "WEB_SCRAPING_SKILL",
+          "RESEARCH_AUTOMATION_TOOL"
+        ],
         "description": "Gather research automation architecture ingredients from pantry"
       },
       {
@@ -186,7 +230,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["ACADEMIC_INTEGRATION_TASK", "ACADEMIC_INTEGRATION_SKILL", "WEB_SCRAPING_TOOL"],
+        "ingredients": [
+          "ACADEMIC_INTEGRATION_TASK",
+          "ACADEMIC_INTEGRATION_SKILL",
+          "WEB_SCRAPING_TOOL"
+        ],
         "description": "Gather academic integration ingredients from pantry"
       },
       {
@@ -198,7 +246,10 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["SOURCE_VALIDATION_TASK", "SOURCE_VALIDATION_SKILL"],
+        "ingredients": [
+          "SOURCE_VALIDATION_TASK",
+          "SOURCE_VALIDATION_SKILL"
+        ],
         "description": "Gather source validation ingredients from pantry"
       },
       {
@@ -210,7 +261,11 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["SYNTHESIS_ENGINE_TASK", "SOURCE_VALIDATION_SKILL", "SYNTHESIS_ENGINE_TOOL"],
+        "ingredients": [
+          "SYNTHESIS_ENGINE_TASK",
+          "SOURCE_VALIDATION_SKILL",
+          "SYNTHESIS_ENGINE_TOOL"
+        ],
         "description": "Gather synthesis engine ingredients from pantry"
       },
       {
@@ -294,7 +349,10 @@
       "description": "Implement comprehensive source validation with credibility scoring, fact-checking algorithms, and cross-referencing capabilities.",
       "estimated_time": "90 minutes",
       "estimated_tokens": 2400,
-      "dependencies": ["08-001", "08-002"],
+      "dependencies": [
+        "08-001",
+        "08-002"
+      ],
       "category": "validation",
       "priority": "high"
     },
@@ -304,7 +362,9 @@
       "description": "Create advanced content synthesis engine with NLP, summarization, relationship extraction, and knowledge graph construction.",
       "estimated_time": "90 minutes",
       "estimated_tokens": 2400,
-      "dependencies": ["08-003"],
+      "dependencies": [
+        "08-003"
+      ],
       "category": "synthesis",
       "priority": "high"
     },
@@ -314,7 +374,9 @@
       "description": "Implement automated literature review system with gap analysis, trend identification, and research direction recommendations.",
       "estimated_time": "75 minutes",
       "estimated_tokens": 2100,
-      "dependencies": ["08-004"],
+      "dependencies": [
+        "08-004"
+      ],
       "category": "analysis",
       "priority": "high"
     },
@@ -324,7 +386,9 @@
       "description": "Build dynamic knowledge graph system with relationship mapping, entity extraction, and semantic reasoning capabilities.",
       "estimated_time": "60 minutes",
       "estimated_tokens": 1900,
-      "dependencies": ["08-004"],
+      "dependencies": [
+        "08-004"
+      ],
       "category": "knowledge",
       "priority": "medium"
     },
@@ -334,7 +398,9 @@
       "description": "Create automated archiving system with metadata preservation, version control, and intelligent storage optimization.",
       "estimated_time": "60 minutes",
       "estimated_tokens": 1800,
-      "dependencies": ["08-001"],
+      "dependencies": [
+        "08-001"
+      ],
       "category": "archiving",
       "priority": "medium"
     },
@@ -344,7 +410,9 @@
       "description": "Implement automated research workflows with scheduling, task management, and progress tracking capabilities.",
       "estimated_time": "45 minutes",
       "estimated_tokens": 1600,
-      "dependencies": ["08-005"],
+      "dependencies": [
+        "08-005"
+      ],
       "category": "automation",
       "priority": "medium"
     },
@@ -354,7 +422,9 @@
       "description": "Develop comprehensive citation management with bibliography generation, format standardization, and reference tracking.",
       "estimated_time": "45 minutes",
       "estimated_tokens": 1600,
-      "dependencies": ["08-002"],
+      "dependencies": [
+        "08-002"
+      ],
       "category": "management",
       "priority": "medium"
     },
@@ -364,7 +434,9 @@
       "description": "Create research analytics dashboard with trend analysis, productivity metrics, and research insights visualization.",
       "estimated_time": "45 minutes",
       "estimated_tokens": 1600,
-      "dependencies": ["08-008"],
+      "dependencies": [
+        "08-008"
+      ],
       "category": "analytics",
       "priority": "low"
     }
@@ -383,7 +455,11 @@
   ],
   "configuration": {
     "scraping_settings": {
-      "engines": ["scrapy", "selenium", "playwright"],
+      "engines": [
+        "scrapy",
+        "selenium",
+        "playwright"
+      ],
       "concurrent_requests": 16,
       "download_delay": 1,
       "user_agent_rotation": true,
@@ -450,5 +526,34 @@
       "python manage.py test research_automation",
       "celery -A research_automation inspect active"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Research-Automation-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

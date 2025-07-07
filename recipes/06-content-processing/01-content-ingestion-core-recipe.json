@@ -12,7 +12,11 @@
     "total_tasks": 5,
     "agent_autonomy_level": "95%",
     "success_rate_target": "99%",
-    "compliance_standards": ["SOC 2", "ISO 27001", "GDPR"],
+    "compliance_standards": [
+      "SOC 2",
+      "ISO 27001",
+      "GDPR"
+    ],
     "architecture_tier": "enterprise-content-processing",
     "description": "Core content ingestion system with exact specifications, atomic tasks, and zero technical debt",
     "is_master_recipe": false,
@@ -20,7 +24,12 @@
       "pantry_category": "content_processing",
       "cooking_time": "300 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["content_architecture", "upload_system", "format_support", "validation_engine"],
+      "kitchen_tools": [
+        "content_architecture",
+        "upload_system",
+        "format_support",
+        "validation_engine"
+      ],
       "cache_strategy": "content_ingestion_core_cache",
       "orchestrator_priority": "high"
     }
@@ -53,7 +62,11 @@
         "description": "Design and implement core content ingestion architecture with exact specifications",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["system_architecture", "content_design", "unified_management"],
+        "skills_required": [
+          "system_architecture",
+          "content_design",
+          "unified_management"
+        ],
         "exact_commands": [
           "mkdir -p src/services/content",
           "mkdir -p src/services/content/ingestion",
@@ -69,8 +82,14 @@
         "name": "File Upload System Implementation",
         "description": "Create comprehensive file upload system with exact configurations",
         "estimated_time": "60 minutes",
-        "dependencies": ["CONTENT_ARCHITECTURE_TASK"],
-        "skills_required": ["upload_management", "chunk_processing", "progress_tracking"],
+        "dependencies": [
+          "CONTENT_ARCHITECTURE_TASK"
+        ],
+        "skills_required": [
+          "upload_management",
+          "chunk_processing",
+          "progress_tracking"
+        ],
         "exact_commands": [
           "mkdir -p src/services/content/ingestion/upload",
           "mkdir -p src/services/content/ingestion/chunks",
@@ -83,8 +102,14 @@
         "name": "Multi-Format Support Implementation",
         "description": "Implement support for multiple file formats with exact configurations",
         "estimated_time": "60 minutes",
-        "dependencies": ["UPLOAD_SYSTEM_TASK"],
-        "skills_required": ["format_detection", "file_processing", "library_integration"],
+        "dependencies": [
+          "UPLOAD_SYSTEM_TASK"
+        ],
+        "skills_required": [
+          "format_detection",
+          "file_processing",
+          "library_integration"
+        ],
         "exact_commands": [
           "pip install python-magic pillow PyPDF2 openpyxl",
           "mkdir -p src/services/content/ingestion/formats",
@@ -96,8 +121,14 @@
         "name": "Content Validation Engine Implementation",
         "description": "Create comprehensive content validation with exact configurations",
         "estimated_time": "60 minutes",
-        "dependencies": ["MULTI_FORMAT_TASK"],
-        "skills_required": ["content_validation", "sanitization", "virus_scanning"],
+        "dependencies": [
+          "MULTI_FORMAT_TASK"
+        ],
+        "skills_required": [
+          "content_validation",
+          "sanitization",
+          "virus_scanning"
+        ],
         "exact_commands": [
           "pip install python-magic bleach",
           "mkdir -p src/services/content/validation",
@@ -109,8 +140,14 @@
         "name": "Processing Pipeline Foundation",
         "description": "Create processing pipeline foundation with exact configurations",
         "estimated_time": "60 minutes",
-        "dependencies": ["VALIDATION_ENGINE_TASK"],
-        "skills_required": ["pipeline_architecture", "plugin_system", "orchestration"],
+        "dependencies": [
+          "VALIDATION_ENGINE_TASK"
+        ],
+        "skills_required": [
+          "pipeline_architecture",
+          "plugin_system",
+          "orchestration"
+        ],
         "exact_commands": [
           "mkdir -p src/services/content/processing",
           "mkdir -p src/services/content/processing/plugins",
@@ -124,7 +161,11 @@
         "skill_id": "CONTENT_ARCHITECTURE_SKILL",
         "name": "Content Architecture",
         "description": "Design and implement content processing architecture",
-        "tools": ["system_design", "architecture_patterns", "unified_interface"],
+        "tools": [
+          "system_design",
+          "architecture_patterns",
+          "unified_interface"
+        ],
         "validation": "content_architecture_validation",
         "exact_validation_commands": [
           "ls -la src/services/content/",
@@ -136,7 +177,11 @@
         "skill_id": "UPLOAD_MANAGEMENT_SKILL",
         "name": "Upload Management",
         "description": "Manage file uploads with chunking and progress tracking",
-        "tools": ["upload_engine", "chunk_processor", "progress_tracker"],
+        "tools": [
+          "upload_engine",
+          "chunk_processor",
+          "progress_tracker"
+        ],
         "validation": "upload_management_validation",
         "exact_validation_commands": [
           "ls -la src/services/content/ingestion/upload/",
@@ -148,7 +193,11 @@
         "skill_id": "FORMAT_DETECTION_SKILL",
         "name": "Format Detection",
         "description": "Detect and process multiple file formats",
-        "tools": ["format_detector", "file_processor", "library_manager"],
+        "tools": [
+          "format_detector",
+          "file_processor",
+          "library_manager"
+        ],
         "validation": "format_detection_validation",
         "exact_validation_commands": [
           "ls -la src/services/content/ingestion/formats/",
@@ -166,7 +215,16 @@
         "config": "config/content/core_config.json",
         "exact_config_spec": {
           "max_file_size": "100MB",
-          "supported_formats": ["txt", "pdf", "doc", "docx", "jpg", "png", "mp4", "mp3"],
+          "supported_formats": [
+            "txt",
+            "pdf",
+            "doc",
+            "docx",
+            "jpg",
+            "png",
+            "mp4",
+            "mp3"
+          ],
           "upload_chunk_size": "1MB",
           "validation_enabled": true,
           "virus_scan_enabled": true
@@ -192,11 +250,46 @@
         "file_path": "src/services/content/ingestion/formats/detector.py",
         "config": "config/content/formats_config.json",
         "exact_config_spec": {
-          "text_formats": ["txt", "md", "rst", "html", "xml", "json", "csv"],
-          "document_formats": ["pdf", "doc", "docx", "odt", "rtf"],
-          "image_formats": ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp"],
-          "video_formats": ["mp4", "avi", "mov", "wmv", "flv", "webm"],
-          "audio_formats": ["mp3", "wav", "flac", "aac", "ogg"]
+          "text_formats": [
+            "txt",
+            "md",
+            "rst",
+            "html",
+            "xml",
+            "json",
+            "csv"
+          ],
+          "document_formats": [
+            "pdf",
+            "doc",
+            "docx",
+            "odt",
+            "rtf"
+          ],
+          "image_formats": [
+            "jpg",
+            "jpeg",
+            "png",
+            "gif",
+            "bmp",
+            "tiff",
+            "webp"
+          ],
+          "video_formats": [
+            "mp4",
+            "avi",
+            "mov",
+            "wmv",
+            "flv",
+            "webm"
+          ],
+          "audio_formats": [
+            "mp3",
+            "wav",
+            "flac",
+            "aac",
+            "ogg"
+          ]
         }
       }
     ],
@@ -210,13 +303,34 @@
         "exact_schema": {
           "type": "object",
           "properties": {
-            "max_file_size": {"type": "string", "pattern": "^[0-9]+MB$"},
-            "supported_formats": {"type": "array", "items": {"type": "string"}},
-            "upload_chunk_size": {"type": "string", "pattern": "^[0-9]+MB$"},
-            "validation_enabled": {"type": "boolean"},
-            "virus_scan_enabled": {"type": "boolean"}
+            "max_file_size": {
+              "type": "string",
+              "pattern": "^[0-9]+MB$"
+            },
+            "supported_formats": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "upload_chunk_size": {
+              "type": "string",
+              "pattern": "^[0-9]+MB$"
+            },
+            "validation_enabled": {
+              "type": "boolean"
+            },
+            "virus_scan_enabled": {
+              "type": "boolean"
+            }
           },
-          "required": ["max_file_size", "supported_formats", "upload_chunk_size", "validation_enabled", "virus_scan_enabled"]
+          "required": [
+            "max_file_size",
+            "supported_formats",
+            "upload_chunk_size",
+            "validation_enabled",
+            "virus_scan_enabled"
+          ]
         }
       },
       {
@@ -228,12 +342,31 @@
         "exact_schema": {
           "type": "object",
           "properties": {
-            "max_concurrent_uploads": {"type": "integer", "minimum": 1, "maximum": 100},
-            "chunk_timeout": {"type": "integer", "minimum": 60, "maximum": 3600},
-            "progress_update_interval": {"type": "integer", "minimum": 1, "maximum": 60},
-            "resumable_uploads": {"type": "boolean"}
+            "max_concurrent_uploads": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "chunk_timeout": {
+              "type": "integer",
+              "minimum": 60,
+              "maximum": 3600
+            },
+            "progress_update_interval": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 60
+            },
+            "resumable_uploads": {
+              "type": "boolean"
+            }
           },
-          "required": ["max_concurrent_uploads", "chunk_timeout", "progress_update_interval", "resumable_uploads"]
+          "required": [
+            "max_concurrent_uploads",
+            "chunk_timeout",
+            "progress_update_interval",
+            "resumable_uploads"
+          ]
         }
       }
     ]
@@ -243,7 +376,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["CONTENT_ARCHITECTURE_TASK", "CONTENT_ARCHITECTURE_SKILL", "CONTENT_CORE_TOOL"],
+        "ingredients": [
+          "CONTENT_ARCHITECTURE_TASK",
+          "CONTENT_ARCHITECTURE_SKILL",
+          "CONTENT_CORE_TOOL"
+        ],
         "description": "Gather content architecture ingredients from pantry"
       },
       {
@@ -261,7 +398,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["UPLOAD_SYSTEM_TASK", "UPLOAD_MANAGEMENT_SKILL", "UPLOAD_MANAGER_TOOL"],
+        "ingredients": [
+          "UPLOAD_SYSTEM_TASK",
+          "UPLOAD_MANAGEMENT_SKILL",
+          "UPLOAD_MANAGER_TOOL"
+        ],
         "description": "Gather upload system ingredients from pantry"
       },
       {
@@ -273,7 +414,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["MULTI_FORMAT_TASK", "FORMAT_DETECTION_SKILL", "FORMAT_DETECTOR_TOOL"],
+        "ingredients": [
+          "MULTI_FORMAT_TASK",
+          "FORMAT_DETECTION_SKILL",
+          "FORMAT_DETECTOR_TOOL"
+        ],
         "description": "Gather multi-format support ingredients from pantry"
       },
       {
@@ -285,7 +430,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["VALIDATION_ENGINE_TASK", "CONTENT_ARCHITECTURE_SKILL"],
+        "ingredients": [
+          "VALIDATION_ENGINE_TASK",
+          "CONTENT_ARCHITECTURE_SKILL"
+        ],
         "description": "Gather validation engine ingredients from pantry"
       },
       {
@@ -297,7 +445,10 @@
       {
         "step_id": "STEP_10",
         "action": "gather_ingredients",
-        "ingredients": ["PIPELINE_FOUNDATION_TASK", "UPLOAD_MANAGEMENT_SKILL"],
+        "ingredients": [
+          "PIPELINE_FOUNDATION_TASK",
+          "UPLOAD_MANAGEMENT_SKILL"
+        ],
         "description": "Gather pipeline foundation ingredients from pantry"
       },
       {
@@ -483,5 +634,34 @@
         "All integration points have exact test procedures"
       ]
     }
-  }
-} 
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Content-Ingestion-Core-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
+}

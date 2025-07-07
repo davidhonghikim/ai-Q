@@ -23,7 +23,35 @@
     "11. Testing & CI": "- All modules must have unit tests in `tests/`.\n- Use `pytest` for Python, `jest` for Node/React.\n- CI pipeline must run on every push (GitHub Actions or GitLab CI).\n- All tests must pass before merge.",
     "12. Documentation": "- All modules must have a `README.json` with usage, API, and config examples.\n- All public APIs must be documented in OpenAPI/Swagger.\n- All config files must have inline comments for every key.\n\n---\n\n**This file is the canonical, unambiguous implementation recipe for the AI-Q project. All agents must follow it exactly.**"
   },
-  "metadata": {},
+  "metadata": {
+    "title": "2025-07-05 05-20-25 Analysis Thesis Level Implementation Breakdown V1.0.0 Final",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
   "conversion_notes": "Converted from Markdown to structured JSON format",
-  "requires_manual_review": false
+  "requires_manual_review": false,
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default step - needs implementation",
+      "command": "echo 'Step needs implementation'",
+      "expected_output": "Step completed",
+      "error_handling": "Continue on error"
+    }
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  }
 }

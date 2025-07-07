@@ -15,7 +15,12 @@
       "pantry_category": "backup_recovery",
       "cooking_time": "360 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["backup_strategy", "recovery_procedures", "disaster_recovery", "data_protection"],
+      "kitchen_tools": [
+        "backup_strategy",
+        "recovery_procedures",
+        "disaster_recovery",
+        "data_protection"
+      ],
       "cache_strategy": "backup_recovery_cache",
       "orchestrator_priority": "critical"
     }
@@ -63,31 +68,53 @@
         "description": "Implement comprehensive backup strategy",
         "estimated_time": "90 minutes",
         "dependencies": [],
-        "skills_required": ["backup_planning", "storage_management", "scheduling"]
+        "skills_required": [
+          "backup_planning",
+          "storage_management",
+          "scheduling"
+        ]
       },
       {
         "task_id": "RECOVERY_PROCEDURES_TASK",
         "name": "Recovery Procedures Setup",
         "description": "Set up automated recovery procedures",
         "estimated_time": "90 minutes",
-        "dependencies": ["BACKUP_STRATEGY_TASK"],
-        "skills_required": ["recovery_automation", "testing", "validation"]
+        "dependencies": [
+          "BACKUP_STRATEGY_TASK"
+        ],
+        "skills_required": [
+          "recovery_automation",
+          "testing",
+          "validation"
+        ]
       },
       {
         "task_id": "DISASTER_RECOVERY_TASK",
         "name": "Disaster Recovery Implementation",
         "description": "Implement disaster recovery procedures",
         "estimated_time": "90 minutes",
-        "dependencies": ["RECOVERY_PROCEDURES_TASK"],
-        "skills_required": ["disaster_recovery", "infrastructure", "automation"]
+        "dependencies": [
+          "RECOVERY_PROCEDURES_TASK"
+        ],
+        "skills_required": [
+          "disaster_recovery",
+          "infrastructure",
+          "automation"
+        ]
       },
       {
         "task_id": "MONITORING_ALERTING_TASK",
         "name": "Backup Monitoring and Alerting",
         "description": "Set up backup monitoring and alerting",
         "estimated_time": "90 minutes",
-        "dependencies": ["DISASTER_RECOVERY_TASK"],
-        "skills_required": ["monitoring", "alerting", "reporting"]
+        "dependencies": [
+          "DISASTER_RECOVERY_TASK"
+        ],
+        "skills_required": [
+          "monitoring",
+          "alerting",
+          "reporting"
+        ]
       }
     ],
     "skills": [
@@ -95,21 +122,33 @@
         "skill_id": "BACKUP_STRATEGY_SKILL",
         "name": "Backup Strategy",
         "description": "Plan and implement backup strategies",
-        "tools": ["borg", "restic", "duplicity"],
+        "tools": [
+          "borg",
+          "restic",
+          "duplicity"
+        ],
         "validation": "backup_strategy_validation"
       },
       {
         "skill_id": "RECOVERY_PROCEDURES_SKILL",
         "name": "Recovery Procedures",
         "description": "Automate recovery procedures",
-        "tools": ["ansible", "terraform", "docker"],
+        "tools": [
+          "ansible",
+          "terraform",
+          "docker"
+        ],
         "validation": "recovery_procedures_validation"
       },
       {
         "skill_id": "DISASTER_RECOVERY_SKILL",
         "name": "Disaster Recovery",
         "description": "Implement disaster recovery",
-        "tools": ["kubernetes", "terraform", "ansible"],
+        "tools": [
+          "kubernetes",
+          "terraform",
+          "ansible"
+        ],
         "validation": "disaster_recovery_validation"
       }
     ],
@@ -165,7 +204,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["BACKUP_STRATEGY_TASK", "BACKUP_STRATEGY_SKILL", "BACKUP_TOOL"],
+        "ingredients": [
+          "BACKUP_STRATEGY_TASK",
+          "BACKUP_STRATEGY_SKILL",
+          "BACKUP_TOOL"
+        ],
         "description": "Gather backup strategy ingredients from pantry"
       },
       {
@@ -183,7 +226,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["RECOVERY_PROCEDURES_TASK", "RECOVERY_PROCEDURES_SKILL", "RECOVERY_TOOL"],
+        "ingredients": [
+          "RECOVERY_PROCEDURES_TASK",
+          "RECOVERY_PROCEDURES_SKILL",
+          "RECOVERY_TOOL"
+        ],
         "description": "Gather recovery procedures ingredients from pantry"
       },
       {
@@ -195,7 +242,10 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["DISASTER_RECOVERY_TASK", "DISASTER_RECOVERY_SKILL"],
+        "ingredients": [
+          "DISASTER_RECOVERY_TASK",
+          "DISASTER_RECOVERY_SKILL"
+        ],
         "description": "Gather disaster recovery ingredients from pantry"
       },
       {
@@ -207,7 +257,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["MONITORING_ALERTING_TASK", "MONITORING_TOOL"],
+        "ingredients": [
+          "MONITORING_ALERTING_TASK",
+          "MONITORING_TOOL"
+        ],
         "description": "Gather monitoring ingredients from pantry"
       },
       {
@@ -265,7 +318,9 @@
       "title": "Recovery Procedures Setup",
       "description": "Set up automated recovery procedures with Ansible",
       "estimated_time": "90 minutes",
-      "dependencies": ["BR-001"],
+      "dependencies": [
+        "BR-001"
+      ],
       "exact_commands": [
         "pip install ansible",
         "mkdir -p playbooks",
@@ -277,7 +332,9 @@
       "title": "Disaster Recovery Implementation",
       "description": "Implement disaster recovery with Terraform and Kubernetes",
       "estimated_time": "90 minutes",
-      "dependencies": ["BR-002"],
+      "dependencies": [
+        "BR-002"
+      ],
       "exact_commands": [
         "curl -fsSL https://get.docker.com | sh",
         "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
@@ -288,7 +345,9 @@
       "title": "Backup Monitoring and Alerting",
       "description": "Set up backup monitoring with Prometheus and Grafana",
       "estimated_time": "90 minutes",
-      "dependencies": ["BR-003"],
+      "dependencies": [
+        "BR-003"
+      ],
       "exact_commands": [
         "docker run -d -p 9090:9090 prom/prometheus",
         "docker run -d -p 3000:3000 grafana/grafana",
@@ -300,7 +359,9 @@
       "title": "Automated Testing Setup",
       "description": "Set up automated backup and recovery testing",
       "estimated_time": "60 minutes",
-      "dependencies": ["BR-004"],
+      "dependencies": [
+        "BR-004"
+      ],
       "exact_commands": [
         "mkdir -p tests",
         "touch tests/backup_test.py",
@@ -319,5 +380,34 @@
     "Compliance requirements met",
     "Business continuity procedures documented",
     "Recovery testing automated and validated"
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Backup-Recovery-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
   ]
-} 
+}

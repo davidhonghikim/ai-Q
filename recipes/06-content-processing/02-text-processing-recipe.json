@@ -1,6 +1,6 @@
 {
   "recipe_metadata": {
-    "recipe_id": "06-02-TEXT-PROCESSING",
+    "recipe_id": "13-text-processing",
     "title": "Text Processing System - Universal Digital Twin System",
     "version": "5.0.0",
     "last_updated": "2025-07-06T16:10:00Z",
@@ -9,12 +9,16 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "13-text-processing",
     "kitchen_system": {
       "pantry_category": "content_processing",
       "cooking_time": "240 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["ocr_processing", "nlp_engine", "text_summarization", "translation"],
+      "kitchen_tools": [
+        "ocr_processing",
+        "nlp_engine",
+        "text_summarization",
+        "translation"
+      ],
       "cache_strategy": "text_processing_cache",
       "orchestrator_priority": "high"
     }
@@ -45,31 +49,53 @@
         "description": "Design and implement core text processing architecture",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["text_architecture", "system_design", "unified_management"]
+        "skills_required": [
+          "text_architecture",
+          "system_design",
+          "unified_management"
+        ]
       },
       {
         "task_id": "OCR_SYSTEM_TASK",
         "name": "OCR System Implementation",
         "description": "Create comprehensive OCR system",
         "estimated_time": "60 minutes",
-        "dependencies": ["TEXT_ARCHITECTURE_TASK"],
-        "skills_required": ["ocr_processing", "image_preprocessing", "text_extraction"]
+        "dependencies": [
+          "TEXT_ARCHITECTURE_TASK"
+        ],
+        "skills_required": [
+          "ocr_processing",
+          "image_preprocessing",
+          "text_extraction"
+        ]
       },
       {
         "task_id": "NLP_ENGINE_TASK",
         "name": "NLP Engine Implementation",
         "description": "Create comprehensive NLP engine",
         "estimated_time": "60 minutes",
-        "dependencies": ["OCR_SYSTEM_TASK"],
-        "skills_required": ["nlp_processing", "entity_extraction", "sentiment_analysis"]
+        "dependencies": [
+          "OCR_SYSTEM_TASK"
+        ],
+        "skills_required": [
+          "nlp_processing",
+          "entity_extraction",
+          "sentiment_analysis"
+        ]
       },
       {
         "task_id": "TEXT_SUMMARIZATION_TASK",
         "name": "Text Summarization Implementation",
         "description": "Create text summarization with multiple methods",
         "estimated_time": "60 minutes",
-        "dependencies": ["NLP_ENGINE_TASK"],
-        "skills_required": ["text_summarization", "key_phrase_extraction", "summary_generation"]
+        "dependencies": [
+          "NLP_ENGINE_TASK"
+        ],
+        "skills_required": [
+          "text_summarization",
+          "key_phrase_extraction",
+          "summary_generation"
+        ]
       }
     ],
     "skills": [
@@ -77,21 +103,33 @@
         "skill_id": "OCR_PROCESSING_SKILL",
         "name": "OCR Processing",
         "description": "Extract text from images and documents",
-        "tools": ["ocr_engine", "layout_analyzer", "text_extractor"],
+        "tools": [
+          "ocr_engine",
+          "layout_analyzer",
+          "text_extractor"
+        ],
         "validation": "ocr_processing_validation"
       },
       {
         "skill_id": "NLP_ENGINE_SKILL",
         "name": "NLP Engine",
         "description": "Process and analyze natural language",
-        "tools": ["nlp_processor", "entity_extractor", "sentiment_analyzer"],
+        "tools": [
+          "nlp_processor",
+          "entity_extractor",
+          "sentiment_analyzer"
+        ],
         "validation": "nlp_engine_validation"
       },
       {
         "skill_id": "TEXT_SUMMARIZATION_SKILL",
         "name": "Text Summarization",
         "description": "Summarize and extract key information",
-        "tools": ["summarizer", "key_phrase_extractor", "summary_generator"],
+        "tools": [
+          "summarizer",
+          "key_phrase_extractor",
+          "summary_generator"
+        ],
         "validation": "text_summarization_validation"
       }
     ],
@@ -147,7 +185,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["TEXT_ARCHITECTURE_TASK", "OCR_PROCESSING_SKILL", "TEXT_PROCESSING_TOOL"],
+        "ingredients": [
+          "TEXT_ARCHITECTURE_TASK",
+          "OCR_PROCESSING_SKILL",
+          "TEXT_PROCESSING_TOOL"
+        ],
         "description": "Gather text processing architecture ingredients from pantry"
       },
       {
@@ -165,7 +207,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["OCR_SYSTEM_TASK", "NLP_ENGINE_SKILL", "OCR_ENGINE_TOOL"],
+        "ingredients": [
+          "OCR_SYSTEM_TASK",
+          "NLP_ENGINE_SKILL",
+          "OCR_ENGINE_TOOL"
+        ],
         "description": "Gather OCR system ingredients from pantry"
       },
       {
@@ -177,7 +223,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["NLP_ENGINE_TASK", "TEXT_SUMMARIZATION_SKILL", "NLP_ENGINE_TOOL"],
+        "ingredients": [
+          "NLP_ENGINE_TASK",
+          "TEXT_SUMMARIZATION_SKILL",
+          "NLP_ENGINE_TOOL"
+        ],
         "description": "Gather NLP engine ingredients from pantry"
       },
       {
@@ -189,7 +239,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["TEXT_SUMMARIZATION_TASK", "TEXT_SUMMARIZATION_SKILL"],
+        "ingredients": [
+          "TEXT_SUMMARIZATION_TASK",
+          "TEXT_SUMMARIZATION_SKILL"
+        ],
         "description": "Gather text summarization ingredients from pantry"
       },
       {
@@ -660,9 +713,44 @@
       "TEXT_PROCESSING_WORKERS": "4"
     },
     "supported_languages": {
-      "ocr": ["en", "es", "fr", "de", "it", "pt", "ru", "zh", "ja", "ko"],
-      "translation": ["en", "es", "fr", "de", "it", "pt", "ru", "zh", "ja", "ko", "ar", "hi"],
-      "nlp": ["en", "es", "fr", "de", "it", "pt", "ru", "zh", "ja", "ko"]
+      "ocr": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "ru",
+        "zh",
+        "ja",
+        "ko"
+      ],
+      "translation": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "ru",
+        "zh",
+        "ja",
+        "ko",
+        "ar",
+        "hi"
+      ],
+      "nlp": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "it",
+        "pt",
+        "ru",
+        "zh",
+        "ja",
+        "ko"
+      ]
     }
   },
   "validation_and_testing": {
@@ -707,5 +795,34 @@
       "Test text summarization",
       "Confirm translation functionality"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "02-Text-Processing-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

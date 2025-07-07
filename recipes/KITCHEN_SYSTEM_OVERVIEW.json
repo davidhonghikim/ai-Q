@@ -5,7 +5,9 @@
     "created_by": "Claude Sonnet 4",
     "creation_date": "2025-07-06T00:02:57Z",
     "purpose": "Comprehensive guide to the kitchen analogy system for atomic, modular recipe execution",
-    "system_type": "Pantry-based ingredient management with intelligent caching"
+    "system_type": "Pantry-based ingredient management with intelligent caching",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
   },
   "system_overview": {
     "description": "The kitchen analogy system provides atomic, reusable ingredients and intelligent caching for optimal recipe execution",
@@ -267,18 +269,40 @@
     "common_issues": {
       "cache_misses": {
         "symptoms": "Slow performance, repeated downloads",
-        "causes": ["Invalid cache entries", "Expired TTL", "Network issues"],
-        "solutions": ["Clear cache", "Adjust TTL", "Check network connectivity"]
+        "causes": [
+          "Invalid cache entries",
+          "Expired TTL",
+          "Network issues"
+        ],
+        "solutions": [
+          "Clear cache",
+          "Adjust TTL",
+          "Check network connectivity"
+        ]
       },
       "dependency_conflicts": {
         "symptoms": "Recipe execution failures",
-        "causes": ["Version incompatibilities", "Missing dependencies"],
-        "solutions": ["Update ingredient versions", "Install missing dependencies"]
+        "causes": [
+          "Version incompatibilities",
+          "Missing dependencies"
+        ],
+        "solutions": [
+          "Update ingredient versions",
+          "Install missing dependencies"
+        ]
       },
       "validation_failures": {
         "symptoms": "Ingredient rejection",
-        "causes": ["Corrupted cache", "Invalid signatures", "Tampered files"],
-        "solutions": ["Clear cache", "Re-download ingredients", "Verify sources"]
+        "causes": [
+          "Corrupted cache",
+          "Invalid signatures",
+          "Tampered files"
+        ],
+        "solutions": [
+          "Clear cache",
+          "Re-download ingredients",
+          "Verify sources"
+        ]
       }
     },
     "debugging_tools": {
@@ -303,5 +327,28 @@
       "Comprehensive audit trail",
       "Modular, maintainable architecture"
     ]
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default step - needs implementation",
+      "command": "echo 'Step needs implementation'",
+      "expected_output": "Step completed",
+      "error_handling": "Continue on error"
+    }
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
   }
-} 
+}

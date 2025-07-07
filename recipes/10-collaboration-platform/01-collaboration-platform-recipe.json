@@ -16,7 +16,12 @@
       "pantry_category": "collaboration_platform",
       "cooking_time": "420 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["real_time_communication", "collaborative_editing", "version_control", "team_management"],
+      "kitchen_tools": [
+        "real_time_communication",
+        "collaborative_editing",
+        "version_control",
+        "team_management"
+      ],
       "cache_strategy": "collaboration_platform_cache",
       "orchestrator_priority": "high"
     }
@@ -66,31 +71,53 @@
         "description": "Establish WebSocket-based real-time communication infrastructure",
         "estimated_time": "45 minutes",
         "dependencies": [],
-        "skills_required": ["websocket", "socket_io", "redis_pubsub"]
+        "skills_required": [
+          "websocket",
+          "socket_io",
+          "redis_pubsub"
+        ]
       },
       {
         "task_id": "COLLABORATIVE_EDITING_TASK",
         "name": "Collaborative Document Editor Implementation",
         "description": "Implement operational transform-based collaborative editor",
         "estimated_time": "90 minutes",
-        "dependencies": ["REAL_TIME_COMMUNICATION_TASK"],
-        "skills_required": ["operational_transform", "conflict_resolution", "real_time_sync"]
+        "dependencies": [
+          "REAL_TIME_COMMUNICATION_TASK"
+        ],
+        "skills_required": [
+          "operational_transform",
+          "conflict_resolution",
+          "real_time_sync"
+        ]
       },
       {
         "task_id": "VERSION_CONTROL_TASK",
         "name": "Version Control Integration",
         "description": "Integrate Git-based version control with collaborative editing",
         "estimated_time": "60 minutes",
-        "dependencies": ["COLLABORATIVE_EDITING_TASK"],
-        "skills_required": ["git_integration", "version_control", "merge_strategies"]
+        "dependencies": [
+          "COLLABORATIVE_EDITING_TASK"
+        ],
+        "skills_required": [
+          "git_integration",
+          "version_control",
+          "merge_strategies"
+        ]
       },
       {
         "task_id": "TEAM_MANAGEMENT_TASK",
         "name": "Team Management System",
         "description": "Implement comprehensive team management",
         "estimated_time": "75 minutes",
-        "dependencies": ["REAL_TIME_COMMUNICATION_TASK"],
-        "skills_required": ["user_management", "role_based_access", "activity_tracking"]
+        "dependencies": [
+          "REAL_TIME_COMMUNICATION_TASK"
+        ],
+        "skills_required": [
+          "user_management",
+          "role_based_access",
+          "activity_tracking"
+        ]
       }
     ],
     "skills": [
@@ -98,21 +125,33 @@
         "skill_id": "REAL_TIME_COMMUNICATION_SKILL",
         "name": "Real-Time Communication",
         "description": "Handle real-time communication and synchronization",
-        "tools": ["websocket", "socket_io", "redis_pubsub"],
+        "tools": [
+          "websocket",
+          "socket_io",
+          "redis_pubsub"
+        ],
         "validation": "real_time_communication_validation"
       },
       {
         "skill_id": "COLLABORATIVE_EDITING_SKILL",
         "name": "Collaborative Editing",
         "description": "Enable collaborative document editing",
-        "tools": ["operational_transform", "crdt", "conflict_resolution"],
+        "tools": [
+          "operational_transform",
+          "crdt",
+          "conflict_resolution"
+        ],
         "validation": "collaborative_editing_validation"
       },
       {
         "skill_id": "TEAM_MANAGEMENT_SKILL",
         "name": "Team Management",
         "description": "Manage teams and user permissions",
-        "tools": ["user_management", "role_based_access", "project_management"],
+        "tools": [
+          "user_management",
+          "role_based_access",
+          "project_management"
+        ],
         "validation": "team_management_validation"
       }
     ],
@@ -168,7 +207,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["REAL_TIME_COMMUNICATION_TASK", "REAL_TIME_COMMUNICATION_SKILL", "COLLABORATION_PLATFORM_TOOL"],
+        "ingredients": [
+          "REAL_TIME_COMMUNICATION_TASK",
+          "REAL_TIME_COMMUNICATION_SKILL",
+          "COLLABORATION_PLATFORM_TOOL"
+        ],
         "description": "Gather collaboration platform architecture ingredients from pantry"
       },
       {
@@ -186,7 +229,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["COLLABORATIVE_EDITING_TASK", "COLLABORATIVE_EDITING_SKILL", "REAL_TIME_COMMUNICATION_TOOL"],
+        "ingredients": [
+          "COLLABORATIVE_EDITING_TASK",
+          "COLLABORATIVE_EDITING_SKILL",
+          "REAL_TIME_COMMUNICATION_TOOL"
+        ],
         "description": "Gather collaborative editing ingredients from pantry"
       },
       {
@@ -198,7 +245,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["VERSION_CONTROL_TASK", "TEAM_MANAGEMENT_SKILL", "COLLABORATIVE_EDITING_TOOL"],
+        "ingredients": [
+          "VERSION_CONTROL_TASK",
+          "TEAM_MANAGEMENT_SKILL",
+          "COLLABORATIVE_EDITING_TOOL"
+        ],
         "description": "Gather version control ingredients from pantry"
       },
       {
@@ -210,7 +261,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["TEAM_MANAGEMENT_TASK", "TEAM_MANAGEMENT_SKILL"],
+        "ingredients": [
+          "TEAM_MANAGEMENT_TASK",
+          "TEAM_MANAGEMENT_SKILL"
+        ],
         "description": "Gather team management ingredients from pantry"
       },
       {
@@ -284,7 +338,9 @@
       "description": "Implement operational transform-based collaborative document editor with conflict resolution, cursor tracking, and real-time synchronization.",
       "estimated_time": "90 minutes",
       "estimated_tokens": 2200,
-      "dependencies": ["11-001"],
+      "dependencies": [
+        "11-001"
+      ],
       "category": "core_feature",
       "priority": "critical"
     },
@@ -294,7 +350,9 @@
       "description": "Integrate Git-based version control with collaborative editing, automatic commits, branch management, and merge conflict resolution.",
       "estimated_time": "60 minutes",
       "estimated_tokens": 1900,
-      "dependencies": ["11-002"],
+      "dependencies": [
+        "11-002"
+      ],
       "category": "integration",
       "priority": "high"
     },
@@ -304,7 +362,9 @@
       "description": "Implement comprehensive team management with user roles, permissions, project assignments, and activity tracking.",
       "estimated_time": "75 minutes",
       "estimated_tokens": 2000,
-      "dependencies": ["11-001"],
+      "dependencies": [
+        "11-001"
+      ],
       "category": "management",
       "priority": "high"
     },
@@ -314,7 +374,9 @@
       "description": "Create Kanban boards, task tracking, milestone management, and project timeline visualization tools.",
       "estimated_time": "60 minutes",
       "estimated_tokens": 1800,
-      "dependencies": ["11-004"],
+      "dependencies": [
+        "11-004"
+      ],
       "category": "management",
       "priority": "medium"
     },
@@ -324,7 +386,9 @@
       "description": "Implement chat, video conferencing, screen sharing, and notification systems for team communication.",
       "estimated_time": "90 minutes",
       "estimated_tokens": 2100,
-      "dependencies": ["11-001"],
+      "dependencies": [
+        "11-001"
+      ],
       "category": "communication",
       "priority": "medium"
     },
@@ -334,7 +398,9 @@
       "description": "Implement user presence indicators, activity monitoring, and real-time status updates for collaboration awareness.",
       "estimated_time": "45 minutes",
       "estimated_tokens": 1600,
-      "dependencies": ["11-001"],
+      "dependencies": [
+        "11-001"
+      ],
       "category": "tracking",
       "priority": "medium"
     },
@@ -344,7 +410,9 @@
       "description": "Implement advanced conflict resolution algorithms with automatic merge strategies and manual conflict resolution tools.",
       "estimated_time": "75 minutes",
       "estimated_tokens": 2000,
-      "dependencies": ["11-002"],
+      "dependencies": [
+        "11-002"
+      ],
       "category": "core_feature",
       "priority": "high"
     },
@@ -354,7 +422,9 @@
       "description": "Create mobile-responsive collaboration interface with touch-optimized controls and offline capability.",
       "estimated_time": "60 minutes",
       "estimated_tokens": 1800,
-      "dependencies": ["11-002"],
+      "dependencies": [
+        "11-002"
+      ],
       "category": "interface",
       "priority": "medium"
     },
@@ -364,7 +434,9 @@
       "description": "Develop comprehensive REST API endpoints for third-party integrations and create detailed API documentation.",
       "estimated_time": "45 minutes",
       "estimated_tokens": 1600,
-      "dependencies": ["11-004"],
+      "dependencies": [
+        "11-004"
+      ],
       "category": "integration",
       "priority": "medium"
     }
@@ -384,7 +456,10 @@
   "configuration": {
     "websocket_settings": {
       "port": 3001,
-      "cors_origins": ["http://localhost:3000", "https://ai-q.local"],
+      "cors_origins": [
+        "http://localhost:3000",
+        "https://ai-q.local"
+      ],
       "heartbeat_interval": 30000,
       "connection_timeout": 60000
     },
@@ -440,5 +515,34 @@
       "curl -f http://localhost:3000/api/collaboration/status",
       "websocat ws://localhost:3001/socket.io/"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Collaboration-Platform-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

@@ -16,7 +16,12 @@
       "pantry_category": "quality_assurance",
       "cooking_time": "480 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["code_quality", "testing_frameworks", "security_scanning", "performance_monitoring"],
+      "kitchen_tools": [
+        "code_quality",
+        "testing_frameworks",
+        "security_scanning",
+        "performance_monitoring"
+      ],
       "cache_strategy": "quality_assurance_cache",
       "orchestrator_priority": "critical"
     }
@@ -65,31 +70,53 @@
         "description": "Set up comprehensive code quality analysis tools",
         "estimated_time": "90 minutes",
         "dependencies": [],
-        "skills_required": ["static_analysis", "code_review", "quality_metrics"]
+        "skills_required": [
+          "static_analysis",
+          "code_review",
+          "quality_metrics"
+        ]
       },
       {
         "task_id": "SECURITY_SCANNING_TASK",
         "name": "Security Vulnerability Scanning",
         "description": "Implement comprehensive security scanning",
         "estimated_time": "90 minutes",
-        "dependencies": ["CODE_QUALITY_TASK"],
-        "skills_required": ["security_analysis", "vulnerability_assessment", "compliance"]
+        "dependencies": [
+          "CODE_QUALITY_TASK"
+        ],
+        "skills_required": [
+          "security_analysis",
+          "vulnerability_assessment",
+          "compliance"
+        ]
       },
       {
         "task_id": "TESTING_FRAMEWORK_TASK",
         "name": "Automated Testing Framework",
         "description": "Set up comprehensive automated testing",
         "estimated_time": "90 minutes",
-        "dependencies": ["SECURITY_SCANNING_TASK"],
-        "skills_required": ["test_automation", "coverage_analysis", "ci_cd"]
+        "dependencies": [
+          "SECURITY_SCANNING_TASK"
+        ],
+        "skills_required": [
+          "test_automation",
+          "coverage_analysis",
+          "ci_cd"
+        ]
       },
       {
         "task_id": "PERFORMANCE_MONITORING_TASK",
         "name": "Performance Monitoring System",
         "description": "Implement performance monitoring and testing",
         "estimated_time": "90 minutes",
-        "dependencies": ["TESTING_FRAMEWORK_TASK"],
-        "skills_required": ["performance_testing", "monitoring", "optimization"]
+        "dependencies": [
+          "TESTING_FRAMEWORK_TASK"
+        ],
+        "skills_required": [
+          "performance_testing",
+          "monitoring",
+          "optimization"
+        ]
       }
     ],
     "skills": [
@@ -97,21 +124,36 @@
         "skill_id": "CODE_QUALITY_SKILL",
         "name": "Code Quality Analysis",
         "description": "Analyze code quality and provide recommendations",
-        "tools": ["sonarqube", "codeclimate", "eslint", "pylint"],
+        "tools": [
+          "sonarqube",
+          "codeclimate",
+          "eslint",
+          "pylint"
+        ],
         "validation": "code_quality_validation"
       },
       {
         "skill_id": "SECURITY_SCANNING_SKILL",
         "name": "Security Scanning",
         "description": "Scan for security vulnerabilities and compliance",
-        "tools": ["owasp_zap", "bandit", "snyk", "npm_audit"],
+        "tools": [
+          "owasp_zap",
+          "bandit",
+          "snyk",
+          "npm_audit"
+        ],
         "validation": "security_scanning_validation"
       },
       {
         "skill_id": "TESTING_AUTOMATION_SKILL",
         "name": "Testing Automation",
         "description": "Automate testing with high coverage",
-        "tools": ["jest", "pytest", "selenium", "playwright"],
+        "tools": [
+          "jest",
+          "pytest",
+          "selenium",
+          "playwright"
+        ],
         "validation": "testing_automation_validation"
       }
     ],
@@ -167,7 +209,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["CODE_QUALITY_TASK", "CODE_QUALITY_SKILL", "QUALITY_ASSURANCE_TOOL"],
+        "ingredients": [
+          "CODE_QUALITY_TASK",
+          "CODE_QUALITY_SKILL",
+          "QUALITY_ASSURANCE_TOOL"
+        ],
         "description": "Gather code quality analysis ingredients from pantry"
       },
       {
@@ -185,7 +231,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["SECURITY_SCANNING_TASK", "SECURITY_SCANNING_SKILL", "SECURITY_SCANNER_TOOL"],
+        "ingredients": [
+          "SECURITY_SCANNING_TASK",
+          "SECURITY_SCANNING_SKILL",
+          "SECURITY_SCANNER_TOOL"
+        ],
         "description": "Gather security scanning ingredients from pantry"
       },
       {
@@ -197,7 +247,10 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["TESTING_FRAMEWORK_TASK", "TESTING_AUTOMATION_SKILL"],
+        "ingredients": [
+          "TESTING_FRAMEWORK_TASK",
+          "TESTING_AUTOMATION_SKILL"
+        ],
         "description": "Gather testing framework ingredients from pantry"
       },
       {
@@ -209,7 +262,9 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["PERFORMANCE_MONITORING_TASK"],
+        "ingredients": [
+          "PERFORMANCE_MONITORING_TASK"
+        ],
         "description": "Gather performance monitoring ingredients from pantry"
       },
       {
@@ -473,5 +528,34 @@
       "documentation_completeness": "100%",
       "regulatory_standard_coverage": "100%"
     }
-  }
-} 
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Quality-Assurance-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
+}

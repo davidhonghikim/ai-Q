@@ -4,7 +4,9 @@
     "purpose": "Template showing how to maximize task detail and reduce agent ambiguity",
     "token_target": "8000-10000 tokens per task",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-07-04T05:16:22Z"
+    "last_updated": "2025-07-04T05:16:22Z",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z"
   },
   "task_template": {
     "id": "string (format: ##-[module]-[category]-[sequence])",
@@ -15,27 +17,57 @@
     "estimated_duration": "string (realistic time estimate)",
     "difficulty_level": "enum [beginner, intermediate, advanced, expert]",
     "prerequisites": {
-      "knowledge_required": ["array of technical concepts agent must understand"],
-      "tools_required": ["array of tools/packages that must be available"],
-      "environment_setup": ["array of environment conditions that must be met"]
+      "knowledge_required": [
+        "array of technical concepts agent must understand"
+      ],
+      "tools_required": [
+        "array of tools/packages that must be available"
+      ],
+      "environment_setup": [
+        "array of environment conditions that must be met"
+      ]
     },
     "inputs": {
-      "files_to_read": ["array of file paths that will be read for context"],
-      "config_dependencies": ["array of config files that must exist"],
-      "environment_variables": ["array of env vars that must be set"],
-      "external_services": ["array of external services that must be running"]
+      "files_to_read": [
+        "array of file paths that will be read for context"
+      ],
+      "config_dependencies": [
+        "array of config files that must exist"
+      ],
+      "environment_variables": [
+        "array of env vars that must be set"
+      ],
+      "external_services": [
+        "array of external services that must be running"
+      ]
     },
     "outputs": {
-      "files_created": ["array of new file paths with purpose descriptions"],
-      "files_modified": ["array of existing file paths that will be changed"],
-      "database_changes": ["array of database schema/data changes"],
-      "api_endpoints": ["array of new API endpoints with methods and paths"],
-      "configuration_updates": ["array of config changes required"]
+      "files_created": [
+        "array of new file paths with purpose descriptions"
+      ],
+      "files_modified": [
+        "array of existing file paths that will be changed"
+      ],
+      "database_changes": [
+        "array of database schema/data changes"
+      ],
+      "api_endpoints": [
+        "array of new API endpoints with methods and paths"
+      ],
+      "configuration_updates": [
+        "array of config changes required"
+      ]
     },
     "dependencies": {
-      "required_tasks": ["array of task IDs that MUST complete first"],
-      "optional_tasks": ["array of task IDs that should complete first but not required"],
-      "blocked_tasks": ["array of task IDs that cannot run until this completes"]
+      "required_tasks": [
+        "array of task IDs that MUST complete first"
+      ],
+      "optional_tasks": [
+        "array of task IDs that should complete first but not required"
+      ],
+      "blocked_tasks": [
+        "array of task IDs that cannot run until this completes"
+      ]
     },
     "detailed_instructions": {
       "overview": "string (comprehensive overview of what this task accomplishes)",
@@ -44,7 +76,9 @@
           "step": "number",
           "title": "string",
           "description": "string (detailed description)",
-          "commands": ["array of exact commands to run"],
+          "commands": [
+            "array of exact commands to run"
+          ],
           "expected_output": "string (what success looks like)",
           "troubleshooting": "string (common issues and solutions)"
         }
@@ -68,11 +102,21 @@
       ]
     },
     "acceptance_criteria": {
-      "functional_requirements": ["array of specific functional tests that must pass"],
-      "performance_requirements": ["array of performance benchmarks that must be met"],
-      "security_requirements": ["array of security validations that must pass"],
-      "integration_requirements": ["array of integration tests that must work"],
-      "code_quality_requirements": ["array of code quality standards that must be met"]
+      "functional_requirements": [
+        "array of specific functional tests that must pass"
+      ],
+      "performance_requirements": [
+        "array of performance benchmarks that must be met"
+      ],
+      "security_requirements": [
+        "array of security validations that must pass"
+      ],
+      "integration_requirements": [
+        "array of integration tests that must work"
+      ],
+      "code_quality_requirements": [
+        "array of code quality standards that must be met"
+      ]
     },
     "validation_framework": {
       "automated_tests": [
@@ -86,7 +130,9 @@
       "manual_verification": [
         {
           "verification_type": "string (visual, functional, etc)",
-          "steps": ["array of manual steps to verify"],
+          "steps": [
+            "array of manual steps to verify"
+          ],
           "expected_outcome": "string (what success looks like)"
         }
       ],
@@ -112,9 +158,15 @@
       "debugging_guide": [
         {
           "issue": "string (type of issue)",
-          "diagnostic_steps": ["array of steps to diagnose"],
-          "tools_to_use": ["array of debugging tools"],
-          "log_locations": ["array of log file paths to check"]
+          "diagnostic_steps": [
+            "array of steps to diagnose"
+          ],
+          "tools_to_use": [
+            "array of debugging tools"
+          ],
+          "log_locations": [
+            "array of log file paths to check"
+          ]
         }
       ],
       "escalation_criteria": [
@@ -126,40 +178,82 @@
     "context_information": {
       "business_rationale": "string (why this task is important)",
       "technical_rationale": "string (why this approach was chosen)",
-      "alternative_approaches": ["array of other ways this could be done"],
-      "future_considerations": ["array of future enhancements this enables"],
-      "risk_assessment": ["array of risks and mitigation strategies"]
+      "alternative_approaches": [
+        "array of other ways this could be done"
+      ],
+      "future_considerations": [
+        "array of future enhancements this enables"
+      ],
+      "risk_assessment": [
+        "array of risks and mitigation strategies"
+      ]
     },
     "documentation_requirements": {
-      "code_documentation": ["array of documentation that must be created/updated"],
-      "user_documentation": ["array of user-facing docs to update"],
-      "technical_documentation": ["array of technical specs to update"],
-      "api_documentation": ["array of API docs to update"]
+      "code_documentation": [
+        "array of documentation that must be created/updated"
+      ],
+      "user_documentation": [
+        "array of user-facing docs to update"
+      ],
+      "technical_documentation": [
+        "array of technical specs to update"
+      ],
+      "api_documentation": [
+        "array of API docs to update"
+      ]
     },
     "monitoring_and_observability": {
-      "metrics_to_track": ["array of metrics this task should generate"],
-      "logs_to_create": ["array of log events this task should produce"],
-      "alerts_to_configure": ["array of alerts that should be set up"],
-      "dashboards_to_update": ["array of monitoring dashboards to modify"]
+      "metrics_to_track": [
+        "array of metrics this task should generate"
+      ],
+      "logs_to_create": [
+        "array of log events this task should produce"
+      ],
+      "alerts_to_configure": [
+        "array of alerts that should be set up"
+      ],
+      "dashboards_to_update": [
+        "array of monitoring dashboards to modify"
+      ]
     },
     "security_considerations": {
       "threat_model": "string (security threats this task addresses)",
-      "security_controls": ["array of security measures implemented"],
-      "compliance_requirements": ["array of compliance standards addressed"],
-      "security_testing": ["array of security tests to perform"]
+      "security_controls": [
+        "array of security measures implemented"
+      ],
+      "compliance_requirements": [
+        "array of compliance standards addressed"
+      ],
+      "security_testing": [
+        "array of security tests to perform"
+      ]
     },
     "performance_considerations": {
-      "performance_targets": ["array of performance goals"],
+      "performance_targets": [
+        "array of performance goals"
+      ],
       "bottleneck_analysis": "string (potential performance bottlenecks)",
-      "optimization_opportunities": ["array of future optimization possibilities"],
-      "resource_requirements": ["array of CPU/memory/disk requirements"]
+      "optimization_opportunities": [
+        "array of future optimization possibilities"
+      ],
+      "resource_requirements": [
+        "array of CPU/memory/disk requirements"
+      ]
     },
     "agent_specific_guidance": {
       "agent_introduction_requirement": "MANDATORY: All agents must introduce themselves at the start of their first message with their name, specialization, and current role in the project",
-      "common_pitfalls": ["array of mistakes agents commonly make"],
-      "success_patterns": ["array of patterns that lead to success"],
-      "verification_checklist": ["array of items to verify before marking complete"],
-      "communication_requirements": ["array of status updates to provide"]
+      "common_pitfalls": [
+        "array of mistakes agents commonly make"
+      ],
+      "success_patterns": [
+        "array of patterns that lead to success"
+      ],
+      "verification_checklist": [
+        "array of items to verify before marking complete"
+      ],
+      "communication_requirements": [
+        "array of status updates to provide"
+      ]
     }
   },
   "example_comprehensive_task": {
@@ -171,20 +265,47 @@
     "estimated_duration": "4-6 hours",
     "difficulty_level": "intermediate",
     "prerequisites": {
-      "knowledge_required": ["Docker containers", "S3 API", "Python async programming", "Object storage concepts"],
-      "tools_required": ["Docker", "Python 3.10+", "pip", "git"],
-      "environment_setup": ["Docker daemon running", "Python virtual environment active", "Network access for Docker pulls"]
+      "knowledge_required": [
+        "Docker containers",
+        "S3 API",
+        "Python async programming",
+        "Object storage concepts"
+      ],
+      "tools_required": [
+        "Docker",
+        "Python 3.10+",
+        "pip",
+        "git"
+      ],
+      "environment_setup": [
+        "Docker daemon running",
+        "Python virtual environment active",
+        "Network access for Docker pulls"
+      ]
     },
     "inputs": {
-      "files_to_read": ["docker-compose.yml", "src/config/settings.py", "requirements.txt"],
-      "config_dependencies": ["config/system_config.json", "config/feature_flags.json"],
-      "environment_variables": ["MINIO_ROOT_USER", "MINIO_ROOT_PASSWORD", "MINIO_ENDPOINT"],
-      "external_services": ["None - Minio will be created as part of this task"]
+      "files_to_read": [
+        "docker-compose.yml",
+        "src/config/settings.py",
+        "requirements.txt"
+      ],
+      "config_dependencies": [
+        "config/system_config.json",
+        "config/feature_flags.json"
+      ],
+      "environment_variables": [
+        "MINIO_ROOT_USER",
+        "MINIO_ROOT_PASSWORD",
+        "MINIO_ENDPOINT"
+      ],
+      "external_services": [
+        "None - Minio will be created as part of this task"
+      ]
     },
     "outputs": {
       "files_created": [
         "src/services/storage.py - Complete Minio client implementation",
-        "src/models/storage.py - Pydantic models for storage operations", 
+        "src/models/storage.py - Pydantic models for storage operations",
         "tests/test_storage.py - Comprehensive test suite",
         "config/minio-config.json - Minio service configuration"
       ],
@@ -193,14 +314,20 @@
         "requirements.txt - Add minio dependencies",
         "src/config/settings.py - Add storage configuration"
       ],
-      "database_changes": ["None for this task"],
+      "database_changes": [
+        "None for this task"
+      ],
       "api_endpoints": [
         "POST /api/v1/storage/upload - File upload endpoint",
         "GET /api/v1/storage/download/{file_id} - File download endpoint",
         "DELETE /api/v1/storage/{file_id} - File deletion endpoint",
         "GET /api/v1/storage/metadata/{file_id} - File metadata endpoint"
       ],
-      "configuration_updates": ["Minio connection settings", "Bucket policies", "Security settings"]
+      "configuration_updates": [
+        "Minio connection settings",
+        "Bucket policies",
+        "Security settings"
+      ]
     },
     "detailed_instructions": {
       "overview": "This task creates a production-ready object storage layer using Minio that will serve as the foundation for all file operations in the Universal Digital Twin system. The implementation includes automatic bucket creation based on content type, metadata extraction and storage, encryption, and a complete Python API for all storage operations.",
@@ -261,5 +388,28 @@
         "File uploads validate file types and sizes"
       ]
     }
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default step - needs implementation",
+      "command": "echo 'Step needs implementation'",
+      "expected_output": "Step completed",
+      "error_handling": "Continue on error"
+    }
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
   }
-} 
+}

@@ -16,7 +16,12 @@
       "pantry_category": "monitoring_alerting",
       "cooking_time": "360 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["metrics_collection", "alert_management", "dashboard_creation", "incident_response"],
+      "kitchen_tools": [
+        "metrics_collection",
+        "alert_management",
+        "dashboard_creation",
+        "incident_response"
+      ],
       "cache_strategy": "monitoring_alerting_cache",
       "orchestrator_priority": "critical"
     }
@@ -64,31 +69,53 @@
         "description": "Set up comprehensive metrics collection system",
         "estimated_time": "90 minutes",
         "dependencies": [],
-        "skills_required": ["metrics_collection", "data_storage", "time_series"]
+        "skills_required": [
+          "metrics_collection",
+          "data_storage",
+          "time_series"
+        ]
       },
       {
         "task_id": "ALERT_MANAGEMENT_TASK",
         "name": "Alert Management System",
         "description": "Implement intelligent alerting with escalation",
         "estimated_time": "90 minutes",
-        "dependencies": ["METRICS_COLLECTION_TASK"],
-        "skills_required": ["alert_management", "escalation_policies", "notification"]
+        "dependencies": [
+          "METRICS_COLLECTION_TASK"
+        ],
+        "skills_required": [
+          "alert_management",
+          "escalation_policies",
+          "notification"
+        ]
       },
       {
         "task_id": "DASHBOARD_CREATION_TASK",
         "name": "Dashboard and Visualization",
         "description": "Create comprehensive monitoring dashboards",
         "estimated_time": "90 minutes",
-        "dependencies": ["ALERT_MANAGEMENT_TASK"],
-        "skills_required": ["dashboard_creation", "visualization", "ui_design"]
+        "dependencies": [
+          "ALERT_MANAGEMENT_TASK"
+        ],
+        "skills_required": [
+          "dashboard_creation",
+          "visualization",
+          "ui_design"
+        ]
       },
       {
         "task_id": "INCIDENT_RESPONSE_TASK",
         "name": "Incident Response Automation",
         "description": "Implement automated incident response workflows",
         "estimated_time": "90 minutes",
-        "dependencies": ["DASHBOARD_CREATION_TASK"],
-        "skills_required": ["incident_response", "automation", "runbooks"]
+        "dependencies": [
+          "DASHBOARD_CREATION_TASK"
+        ],
+        "skills_required": [
+          "incident_response",
+          "automation",
+          "runbooks"
+        ]
       }
     ],
     "skills": [
@@ -96,21 +123,33 @@
         "skill_id": "METRICS_COLLECTION_SKILL",
         "name": "Metrics Collection",
         "description": "Collect and store system metrics",
-        "tools": ["prometheus", "telegraf", "statsd"],
+        "tools": [
+          "prometheus",
+          "telegraf",
+          "statsd"
+        ],
         "validation": "metrics_collection_validation"
       },
       {
         "skill_id": "ALERT_MANAGEMENT_SKILL",
         "name": "Alert Management",
         "description": "Manage alerts and notifications",
-        "tools": ["alertmanager", "pagerduty", "slack"],
+        "tools": [
+          "alertmanager",
+          "pagerduty",
+          "slack"
+        ],
         "validation": "alert_management_validation"
       },
       {
         "skill_id": "DASHBOARD_CREATION_SKILL",
         "name": "Dashboard Creation",
         "description": "Create monitoring dashboards",
-        "tools": ["grafana", "kibana", "datadog"],
+        "tools": [
+          "grafana",
+          "kibana",
+          "datadog"
+        ],
         "validation": "dashboard_creation_validation"
       }
     ],
@@ -166,7 +205,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["METRICS_COLLECTION_TASK", "METRICS_COLLECTION_SKILL", "MONITORING_TOOL"],
+        "ingredients": [
+          "METRICS_COLLECTION_TASK",
+          "METRICS_COLLECTION_SKILL",
+          "MONITORING_TOOL"
+        ],
         "description": "Gather metrics collection ingredients from pantry"
       },
       {
@@ -184,7 +227,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["ALERT_MANAGEMENT_TASK", "ALERT_MANAGEMENT_SKILL", "ALERT_MANAGER_TOOL"],
+        "ingredients": [
+          "ALERT_MANAGEMENT_TASK",
+          "ALERT_MANAGEMENT_SKILL",
+          "ALERT_MANAGER_TOOL"
+        ],
         "description": "Gather alert management ingredients from pantry"
       },
       {
@@ -196,7 +243,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["DASHBOARD_CREATION_TASK", "DASHBOARD_CREATION_SKILL", "DASHBOARD_TOOL"],
+        "ingredients": [
+          "DASHBOARD_CREATION_TASK",
+          "DASHBOARD_CREATION_SKILL",
+          "DASHBOARD_TOOL"
+        ],
         "description": "Gather dashboard creation ingredients from pantry"
       },
       {
@@ -208,7 +259,9 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["INCIDENT_RESPONSE_TASK"],
+        "ingredients": [
+          "INCIDENT_RESPONSE_TASK"
+        ],
         "description": "Gather incident response ingredients from pantry"
       },
       {
@@ -461,5 +514,34 @@
       "storage_efficiency": "> 80% compression",
       "notification_delivery": "< 10 seconds"
     }
-  }
-} 
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Monitoring-Alerting-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
+}

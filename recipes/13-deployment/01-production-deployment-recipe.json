@@ -13,10 +13,16 @@
       "pantry_category": "deployment",
       "cooking_time": "300 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["infrastructure_as_code", "deployment_pipeline", "monitoring_system", "scaling_system"],
+      "kitchen_tools": [
+        "infrastructure_as_code",
+        "deployment_pipeline",
+        "monitoring_system",
+        "scaling_system"
+      ],
       "cache_strategy": "production_deployment_cache",
       "orchestrator_priority": "high"
-    }
+    },
+    "creation_timestamp": "2025-07-07T05:00:00Z"
   },
   "recipe_overview": {
     "name": "Production Deployment System",
@@ -44,31 +50,54 @@
         "description": "Design and implement infrastructure automation",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["terraform", "docker", "kubernetes", "infrastructure_automation"]
+        "skills_required": [
+          "terraform",
+          "docker",
+          "kubernetes",
+          "infrastructure_automation"
+        ]
       },
       {
         "task_id": "KUBERNETES_DEPLOYMENT_TASK",
         "name": "Kubernetes Deployment Implementation",
         "description": "Create comprehensive Kubernetes deployment",
         "estimated_time": "60 minutes",
-        "dependencies": ["INFRASTRUCTURE_AS_CODE_TASK"],
-        "skills_required": ["kubernetes", "container_orchestration", "service_mesh"]
+        "dependencies": [
+          "INFRASTRUCTURE_AS_CODE_TASK"
+        ],
+        "skills_required": [
+          "kubernetes",
+          "container_orchestration",
+          "service_mesh"
+        ]
       },
       {
         "task_id": "CI_CD_PIPELINE_TASK",
         "name": "CI/CD Pipeline Implementation",
         "description": "Create comprehensive CI/CD pipeline",
         "estimated_time": "60 minutes",
-        "dependencies": ["KUBERNETES_DEPLOYMENT_TASK"],
-        "skills_required": ["ci_cd", "automation", "deployment_strategies"]
+        "dependencies": [
+          "KUBERNETES_DEPLOYMENT_TASK"
+        ],
+        "skills_required": [
+          "ci_cd",
+          "automation",
+          "deployment_strategies"
+        ]
       },
       {
         "task_id": "LOAD_BALANCING_TASK",
         "name": "Load Balancing Implementation",
         "description": "Create load balancing and traffic management",
         "estimated_time": "60 minutes",
-        "dependencies": ["CI_CD_PIPELINE_TASK"],
-        "skills_required": ["load_balancing", "traffic_management", "ssl_termination"]
+        "dependencies": [
+          "CI_CD_PIPELINE_TASK"
+        ],
+        "skills_required": [
+          "load_balancing",
+          "traffic_management",
+          "ssl_termination"
+        ]
       }
     ],
     "skills": [
@@ -76,21 +105,34 @@
         "skill_id": "INFRASTRUCTURE_AS_CODE_SKILL",
         "name": "Infrastructure as Code",
         "description": "Automate infrastructure provisioning and management",
-        "tools": ["terraform", "docker", "kubernetes", "cloud_providers"],
+        "tools": [
+          "terraform",
+          "docker",
+          "kubernetes",
+          "cloud_providers"
+        ],
         "validation": "infrastructure_as_code_validation"
       },
       {
         "skill_id": "DEPLOYMENT_PIPELINE_SKILL",
         "name": "Deployment Pipeline",
         "description": "Manage CI/CD and deployment automation",
-        "tools": ["ci_cd_pipeline", "deployment_strategies", "rollback_manager"],
+        "tools": [
+          "ci_cd_pipeline",
+          "deployment_strategies",
+          "rollback_manager"
+        ],
         "validation": "deployment_pipeline_validation"
       },
       {
         "skill_id": "MONITORING_SYSTEM_SKILL",
         "name": "Monitoring System",
         "description": "Monitor and observe system performance",
-        "tools": ["apm_system", "infrastructure_monitor", "alert_manager"],
+        "tools": [
+          "apm_system",
+          "infrastructure_monitor",
+          "alert_manager"
+        ],
         "validation": "monitoring_system_validation"
       }
     ],
@@ -146,7 +188,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["INFRASTRUCTURE_AS_CODE_TASK", "INFRASTRUCTURE_AS_CODE_SKILL", "PRODUCTION_DEPLOYMENT_TOOL"],
+        "ingredients": [
+          "INFRASTRUCTURE_AS_CODE_TASK",
+          "INFRASTRUCTURE_AS_CODE_SKILL",
+          "PRODUCTION_DEPLOYMENT_TOOL"
+        ],
         "description": "Gather production deployment architecture ingredients from pantry"
       },
       {
@@ -164,7 +210,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["KUBERNETES_DEPLOYMENT_TASK", "DEPLOYMENT_PIPELINE_SKILL", "INFRASTRUCTURE_TOOL"],
+        "ingredients": [
+          "KUBERNETES_DEPLOYMENT_TASK",
+          "DEPLOYMENT_PIPELINE_SKILL",
+          "INFRASTRUCTURE_TOOL"
+        ],
         "description": "Gather Kubernetes deployment ingredients from pantry"
       },
       {
@@ -176,7 +226,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["CI_CD_PIPELINE_TASK", "MONITORING_SYSTEM_SKILL", "MONITORING_TOOL"],
+        "ingredients": [
+          "CI_CD_PIPELINE_TASK",
+          "MONITORING_SYSTEM_SKILL",
+          "MONITORING_TOOL"
+        ],
         "description": "Gather CI/CD pipeline ingredients from pantry"
       },
       {
@@ -188,7 +242,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["LOAD_BALANCING_TASK", "INFRASTRUCTURE_AS_CODE_SKILL"],
+        "ingredients": [
+          "LOAD_BALANCING_TASK",
+          "INFRASTRUCTURE_AS_CODE_SKILL"
+        ],
         "description": "Gather load balancing ingredients from pantry"
       },
       {
@@ -655,9 +712,23 @@
       "BACKUP_STORAGE": "s3://aiq-backups"
     },
     "supported_platforms": {
-      "cloud": ["aws", "gcp", "azure", "on-premise"],
-      "orchestration": ["kubernetes", "docker-swarm", "nomad"],
-      "monitoring": ["prometheus", "grafana", "datadog", "newrelic"]
+      "cloud": [
+        "aws",
+        "gcp",
+        "azure",
+        "on-premise"
+      ],
+      "orchestration": [
+        "kubernetes",
+        "docker-swarm",
+        "nomad"
+      ],
+      "monitoring": [
+        "prometheus",
+        "grafana",
+        "datadog",
+        "newrelic"
+      ]
     }
   },
   "validation_and_testing": {
@@ -703,5 +774,28 @@
       "Test scaling and load balancing",
       "Confirm backup and recovery procedures"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

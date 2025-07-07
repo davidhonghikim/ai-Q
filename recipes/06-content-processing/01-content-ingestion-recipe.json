@@ -1,6 +1,6 @@
 {
   "recipe_metadata": {
-    "recipe_id": "06-01-CONTENT-INGESTION",
+    "recipe_id": "12-content-ingestion",
     "title": "Content Ingestion System - Universal Digital Twin System",
     "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
@@ -10,12 +10,16 @@
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "12-content-ingestion",
     "kitchen_system": {
       "pantry_category": "content_processing",
       "cooking_time": "240 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["file_upload", "content_validation", "processing_pipeline", "metadata_extraction"],
+      "kitchen_tools": [
+        "file_upload",
+        "content_validation",
+        "processing_pipeline",
+        "metadata_extraction"
+      ],
       "cache_strategy": "content_ingestion_cache",
       "orchestrator_priority": "high"
     }
@@ -49,31 +53,53 @@
         "description": "Design and implement core content ingestion architecture",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["content_architecture", "system_design", "unified_management"]
+        "skills_required": [
+          "content_architecture",
+          "system_design",
+          "unified_management"
+        ]
       },
       {
         "task_id": "FILE_UPLOAD_TASK",
         "name": "File Upload System Implementation",
         "description": "Create comprehensive file upload system",
         "estimated_time": "60 minutes",
-        "dependencies": ["CONTENT_ARCHITECTURE_TASK"],
-        "skills_required": ["file_upload", "chunk_processing", "progress_tracking"]
+        "dependencies": [
+          "CONTENT_ARCHITECTURE_TASK"
+        ],
+        "skills_required": [
+          "file_upload",
+          "chunk_processing",
+          "progress_tracking"
+        ]
       },
       {
         "task_id": "MULTI_FORMAT_TASK",
         "name": "Multi-Format Support Implementation",
         "description": "Create support for multiple file formats",
         "estimated_time": "60 minutes",
-        "dependencies": ["FILE_UPLOAD_TASK"],
-        "skills_required": ["format_detection", "multi_format_processing", "content_types"]
+        "dependencies": [
+          "FILE_UPLOAD_TASK"
+        ],
+        "skills_required": [
+          "format_detection",
+          "multi_format_processing",
+          "content_types"
+        ]
       },
       {
         "task_id": "CONTENT_VALIDATION_TASK",
         "name": "Content Validation Implementation",
         "description": "Create comprehensive content validation system",
         "estimated_time": "60 minutes",
-        "dependencies": ["MULTI_FORMAT_TASK"],
-        "skills_required": ["content_validation", "sanitization", "virus_scanning"]
+        "dependencies": [
+          "MULTI_FORMAT_TASK"
+        ],
+        "skills_required": [
+          "content_validation",
+          "sanitization",
+          "virus_scanning"
+        ]
       }
     ],
     "skills": [
@@ -81,21 +107,33 @@
         "skill_id": "FILE_UPLOAD_SKILL",
         "name": "File Upload Management",
         "description": "Handle file uploads and processing",
-        "tools": ["upload_manager", "chunk_processor", "progress_tracker"],
+        "tools": [
+          "upload_manager",
+          "chunk_processor",
+          "progress_tracker"
+        ],
         "validation": "file_upload_validation"
       },
       {
         "skill_id": "CONTENT_VALIDATION_SKILL",
         "name": "Content Validation",
         "description": "Validate and sanitize content",
-        "tools": ["validation_engine", "sanitizer", "virus_scanner"],
+        "tools": [
+          "validation_engine",
+          "sanitizer",
+          "virus_scanner"
+        ],
         "validation": "content_validation_validation"
       },
       {
         "skill_id": "PROCESSING_PIPELINE_SKILL",
         "name": "Processing Pipeline",
         "description": "Manage content processing pipeline",
-        "tools": ["pipeline_manager", "processor_registry", "orchestrator"],
+        "tools": [
+          "pipeline_manager",
+          "processor_registry",
+          "orchestrator"
+        ],
         "validation": "processing_pipeline_validation"
       }
     ],
@@ -151,7 +189,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["CONTENT_ARCHITECTURE_TASK", "FILE_UPLOAD_SKILL", "CONTENT_INGESTION_TOOL"],
+        "ingredients": [
+          "CONTENT_ARCHITECTURE_TASK",
+          "FILE_UPLOAD_SKILL",
+          "CONTENT_INGESTION_TOOL"
+        ],
         "description": "Gather content ingestion architecture ingredients from pantry"
       },
       {
@@ -169,7 +211,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["FILE_UPLOAD_TASK", "CONTENT_VALIDATION_SKILL", "FILE_UPLOAD_TOOL"],
+        "ingredients": [
+          "FILE_UPLOAD_TASK",
+          "CONTENT_VALIDATION_SKILL",
+          "FILE_UPLOAD_TOOL"
+        ],
         "description": "Gather file upload ingredients from pantry"
       },
       {
@@ -181,7 +227,10 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["MULTI_FORMAT_TASK", "PROCESSING_PIPELINE_SKILL"],
+        "ingredients": [
+          "MULTI_FORMAT_TASK",
+          "PROCESSING_PIPELINE_SKILL"
+        ],
         "description": "Gather multi-format support ingredients from pantry"
       },
       {
@@ -193,7 +242,11 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["CONTENT_VALIDATION_TASK", "CONTENT_VALIDATION_SKILL", "CONTENT_VALIDATION_TOOL"],
+        "ingredients": [
+          "CONTENT_VALIDATION_TASK",
+          "CONTENT_VALIDATION_SKILL",
+          "CONTENT_VALIDATION_TOOL"
+        ],
         "description": "Gather content validation ingredients from pantry"
       },
       {
@@ -662,12 +715,53 @@
       "CONTENT_METADATA_EXTRACTION": "true"
     },
     "supported_formats": {
-      "text": ["txt", "md", "rst", "html", "xml", "json", "csv"],
-      "documents": ["pdf", "doc", "docx", "odt", "rtf"],
-      "images": ["jpg", "jpeg", "png", "gif", "bmp", "tiff", "webp"],
-      "videos": ["mp4", "avi", "mov", "wmv", "flv", "webm"],
-      "audio": ["mp3", "wav", "flac", "aac", "ogg"],
-      "archives": ["zip", "rar", "7z", "tar", "gz"]
+      "text": [
+        "txt",
+        "md",
+        "rst",
+        "html",
+        "xml",
+        "json",
+        "csv"
+      ],
+      "documents": [
+        "pdf",
+        "doc",
+        "docx",
+        "odt",
+        "rtf"
+      ],
+      "images": [
+        "jpg",
+        "jpeg",
+        "png",
+        "gif",
+        "bmp",
+        "tiff",
+        "webp"
+      ],
+      "videos": [
+        "mp4",
+        "avi",
+        "mov",
+        "wmv",
+        "flv",
+        "webm"
+      ],
+      "audio": [
+        "mp3",
+        "wav",
+        "flac",
+        "aac",
+        "ogg"
+      ],
+      "archives": [
+        "zip",
+        "rar",
+        "7z",
+        "tar",
+        "gz"
+      ]
     }
   },
   "validation_and_testing": {
@@ -749,7 +843,9 @@
       "title": "File Upload System",
       "description": "Implement comprehensive file upload system",
       "estimated_time": "60 minutes",
-      "dependencies": ["CI-001"],
+      "dependencies": [
+        "CI-001"
+      ],
       "exact_commands": [
         "pip install python-magic pillow",
         "mkdir -p src/services/content/ingestion/upload",
@@ -761,7 +857,9 @@
       "title": "Multi-Format Support",
       "description": "Implement support for multiple file formats",
       "estimated_time": "60 minutes",
-      "dependencies": ["CI-002"],
+      "dependencies": [
+        "CI-002"
+      ],
       "exact_commands": [
         "pip install PyPDF2 openpyxl",
         "mkdir -p src/services/content/ingestion/formats",
@@ -773,7 +871,9 @@
       "title": "Content Validation",
       "description": "Implement comprehensive content validation",
       "estimated_time": "60 minutes",
-      "dependencies": ["CI-003"],
+      "dependencies": [
+        "CI-003"
+      ],
       "exact_commands": [
         "pip install python-magic bleach",
         "mkdir -p src/services/content/validation",
@@ -785,7 +885,9 @@
       "title": "Processing Pipeline",
       "description": "Create content processing pipeline",
       "estimated_time": "60 minutes",
-      "dependencies": ["CI-004"],
+      "dependencies": [
+        "CI-004"
+      ],
       "exact_commands": [
         "mkdir -p src/services/content/processing",
         "mkdir -p src/services/content/processing/plugins",
@@ -804,5 +906,34 @@
     "Comprehensive testing framework",
     "Performance monitoring and optimization",
     "Complete documentation and examples"
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Content-Ingestion-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
   ]
 }

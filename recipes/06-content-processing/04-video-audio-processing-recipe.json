@@ -1,21 +1,24 @@
 {
   "recipe_metadata": {
-    "recipe_id": "06-04-VIDEO-AUDIO-PROCESSING",
+    "recipe_id": "15-video-audio-processing",
     "title": "Video/Audio Processing System - Universal Digital Twin System",
     "version": "5.0.0",
     "last_updated": "2025-07-06T16:10:00Z",
     "created_by": "Claude Sonnet 4",
-    "last_updated": "2025-07-06T16:10:00Z",
     "purpose": "Implement comprehensive video and audio processing system with transcription, scene detection, and audio analysis for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "content_processing",
     "priority": "HIGH",
-    "recipe_id": "15-video-audio-processing",
     "kitchen_system": {
       "pantry_category": "content_processing",
       "cooking_time": "240 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["video_processing", "audio_processing", "media_analysis", "transcription"],
+      "kitchen_tools": [
+        "video_processing",
+        "audio_processing",
+        "media_analysis",
+        "transcription"
+      ],
       "cache_strategy": "video_audio_processing_cache",
       "orchestrator_priority": "high"
     }
@@ -46,31 +49,53 @@
         "description": "Design and implement core media processing architecture",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["media_architecture", "system_design", "unified_management"]
+        "skills_required": [
+          "media_architecture",
+          "system_design",
+          "unified_management"
+        ]
       },
       {
         "task_id": "VIDEO_PROCESSING_TASK",
         "name": "Video Processing Engine Implementation",
         "description": "Create comprehensive video processing engine",
         "estimated_time": "60 minutes",
-        "dependencies": ["MEDIA_ARCHITECTURE_TASK"],
-        "skills_required": ["video_processing", "ffmpeg_integration", "scene_detection"]
+        "dependencies": [
+          "MEDIA_ARCHITECTURE_TASK"
+        ],
+        "skills_required": [
+          "video_processing",
+          "ffmpeg_integration",
+          "scene_detection"
+        ]
       },
       {
         "task_id": "AUDIO_PROCESSING_TASK",
         "name": "Audio Processing Engine Implementation",
         "description": "Create comprehensive audio processing engine",
         "estimated_time": "60 minutes",
-        "dependencies": ["VIDEO_PROCESSING_TASK"],
-        "skills_required": ["audio_processing", "speech_recognition", "feature_extraction"]
+        "dependencies": [
+          "VIDEO_PROCESSING_TASK"
+        ],
+        "skills_required": [
+          "audio_processing",
+          "speech_recognition",
+          "feature_extraction"
+        ]
       },
       {
         "task_id": "TRANSCRIPTION_TASK",
         "name": "Video Transcription Implementation",
         "description": "Create video transcription system with subtitle generation",
         "estimated_time": "60 minutes",
-        "dependencies": ["AUDIO_PROCESSING_TASK"],
-        "skills_required": ["transcription", "subtitle_generation", "audio_sync"]
+        "dependencies": [
+          "AUDIO_PROCESSING_TASK"
+        ],
+        "skills_required": [
+          "transcription",
+          "subtitle_generation",
+          "audio_sync"
+        ]
       }
     ],
     "skills": [
@@ -78,21 +103,33 @@
         "skill_id": "VIDEO_PROCESSING_SKILL",
         "name": "Video Processing",
         "description": "Process and analyze video content",
-        "tools": ["video_engine", "transcription_processor", "scene_detector"],
+        "tools": [
+          "video_engine",
+          "transcription_processor",
+          "scene_detector"
+        ],
         "validation": "video_processing_validation"
       },
       {
         "skill_id": "AUDIO_PROCESSING_SKILL",
         "name": "Audio Processing",
         "description": "Process and analyze audio content",
-        "tools": ["audio_engine", "speech_recognizer", "feature_extractor"],
+        "tools": [
+          "audio_engine",
+          "speech_recognizer",
+          "feature_extractor"
+        ],
         "validation": "audio_processing_validation"
       },
       {
         "skill_id": "TRANSCRIPTION_SKILL",
         "name": "Transcription",
         "description": "Transcribe audio and video content",
-        "tools": ["transcription_engine", "subtitle_generator", "audio_sync"],
+        "tools": [
+          "transcription_engine",
+          "subtitle_generator",
+          "audio_sync"
+        ],
         "validation": "transcription_validation"
       }
     ],
@@ -148,7 +185,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["MEDIA_ARCHITECTURE_TASK", "VIDEO_PROCESSING_SKILL", "MEDIA_PROCESSING_TOOL"],
+        "ingredients": [
+          "MEDIA_ARCHITECTURE_TASK",
+          "VIDEO_PROCESSING_SKILL",
+          "MEDIA_PROCESSING_TOOL"
+        ],
         "description": "Gather media processing architecture ingredients from pantry"
       },
       {
@@ -166,7 +207,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["VIDEO_PROCESSING_TASK", "AUDIO_PROCESSING_SKILL", "VIDEO_PROCESSING_TOOL"],
+        "ingredients": [
+          "VIDEO_PROCESSING_TASK",
+          "AUDIO_PROCESSING_SKILL",
+          "VIDEO_PROCESSING_TOOL"
+        ],
         "description": "Gather video processing ingredients from pantry"
       },
       {
@@ -178,7 +223,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["AUDIO_PROCESSING_TASK", "TRANSCRIPTION_SKILL", "AUDIO_PROCESSING_TOOL"],
+        "ingredients": [
+          "AUDIO_PROCESSING_TASK",
+          "TRANSCRIPTION_SKILL",
+          "AUDIO_PROCESSING_TOOL"
+        ],
         "description": "Gather audio processing ingredients from pantry"
       },
       {
@@ -190,7 +239,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["TRANSCRIPTION_TASK", "TRANSCRIPTION_SKILL"],
+        "ingredients": [
+          "TRANSCRIPTION_TASK",
+          "TRANSCRIPTION_SKILL"
+        ],
         "description": "Gather transcription ingredients from pantry"
       },
       {
@@ -661,9 +713,30 @@
       "MEDIA_PROCESSING_WORKERS": "4"
     },
     "supported_formats": {
-      "video": ["mp4", "avi", "mov", "mkv", "wmv", "flv", "webm"],
-      "audio": ["mp3", "wav", "flac", "aac", "ogg", "m4a"],
-      "output": ["mp4", "mp3", "wav", "srt", "vtt"]
+      "video": [
+        "mp4",
+        "avi",
+        "mov",
+        "mkv",
+        "wmv",
+        "flv",
+        "webm"
+      ],
+      "audio": [
+        "mp3",
+        "wav",
+        "flac",
+        "aac",
+        "ogg",
+        "m4a"
+      ],
+      "output": [
+        "mp4",
+        "mp3",
+        "wav",
+        "srt",
+        "vtt"
+      ]
     }
   },
   "validation_and_testing": {
@@ -708,5 +781,34 @@
       "Test scene detection features",
       "Confirm media enhancement capabilities"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "04-Video-Audio-Processing-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

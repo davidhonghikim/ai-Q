@@ -15,7 +15,12 @@
       "pantry_category": "deployment_automation",
       "cooking_time": "360 minutes",
       "complexity": "advanced",
-      "kitchen_tools": ["ci_cd_pipelines", "container_orchestration", "infrastructure_as_code", "release_management"],
+      "kitchen_tools": [
+        "ci_cd_pipelines",
+        "container_orchestration",
+        "infrastructure_as_code",
+        "release_management"
+      ],
       "cache_strategy": "deployment_automation_cache",
       "orchestrator_priority": "critical"
     }
@@ -62,31 +67,53 @@
         "description": "Implement automated CI/CD pipelines",
         "estimated_time": "90 minutes",
         "dependencies": [],
-        "skills_required": ["ci_cd", "pipeline_automation", "version_control"]
+        "skills_required": [
+          "ci_cd",
+          "pipeline_automation",
+          "version_control"
+        ]
       },
       {
         "task_id": "CONTAINER_ORCHESTRATION_TASK",
         "name": "Container Orchestration Setup",
         "description": "Set up container orchestration and deployment",
         "estimated_time": "90 minutes",
-        "dependencies": ["CI_CD_PIPELINES_TASK"],
-        "skills_required": ["kubernetes", "docker", "container_management"]
+        "dependencies": [
+          "CI_CD_PIPELINES_TASK"
+        ],
+        "skills_required": [
+          "kubernetes",
+          "docker",
+          "container_management"
+        ]
       },
       {
         "task_id": "INFRASTRUCTURE_AUTOMATION_TASK",
         "name": "Infrastructure as Code",
         "description": "Implement infrastructure as code automation",
         "estimated_time": "90 minutes",
-        "dependencies": ["CONTAINER_ORCHESTRATION_TASK"],
-        "skills_required": ["terraform", "ansible", "cloud_platforms"]
+        "dependencies": [
+          "CONTAINER_ORCHESTRATION_TASK"
+        ],
+        "skills_required": [
+          "terraform",
+          "ansible",
+          "cloud_platforms"
+        ]
       },
       {
         "task_id": "RELEASE_MANAGEMENT_TASK",
         "name": "Release Management",
         "description": "Set up automated release management",
         "estimated_time": "90 minutes",
-        "dependencies": ["INFRASTRUCTURE_AUTOMATION_TASK"],
-        "skills_required": ["release_management", "versioning", "deployment_strategies"]
+        "dependencies": [
+          "INFRASTRUCTURE_AUTOMATION_TASK"
+        ],
+        "skills_required": [
+          "release_management",
+          "versioning",
+          "deployment_strategies"
+        ]
       }
     ],
     "skills": [
@@ -94,21 +121,33 @@
         "skill_id": "CI_CD_SKILL",
         "name": "CI/CD Pipeline",
         "description": "Implement automated CI/CD pipelines",
-        "tools": ["github_actions", "gitlab_ci", "jenkins"],
+        "tools": [
+          "github_actions",
+          "gitlab_ci",
+          "jenkins"
+        ],
         "validation": "ci_cd_validation"
       },
       {
         "skill_id": "CONTAINER_ORCHESTRATION_SKILL",
         "name": "Container Orchestration",
         "description": "Manage container orchestration",
-        "tools": ["kubernetes", "docker_swarm", "aws_ecs"],
+        "tools": [
+          "kubernetes",
+          "docker_swarm",
+          "aws_ecs"
+        ],
         "validation": "container_orchestration_validation"
       },
       {
         "skill_id": "INFRASTRUCTURE_AUTOMATION_SKILL",
         "name": "Infrastructure Automation",
         "description": "Automate infrastructure deployment",
-        "tools": ["terraform", "ansible", "cloudformation"],
+        "tools": [
+          "terraform",
+          "ansible",
+          "cloudformation"
+        ],
         "validation": "infrastructure_automation_validation"
       }
     ],
@@ -164,7 +203,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["CI_CD_PIPELINES_TASK", "CI_CD_SKILL", "DEPLOYMENT_TOOL"],
+        "ingredients": [
+          "CI_CD_PIPELINES_TASK",
+          "CI_CD_SKILL",
+          "DEPLOYMENT_TOOL"
+        ],
         "description": "Gather CI/CD pipeline ingredients from pantry"
       },
       {
@@ -182,7 +225,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["CONTAINER_ORCHESTRATION_TASK", "CONTAINER_ORCHESTRATION_SKILL", "ORCHESTRATION_TOOL"],
+        "ingredients": [
+          "CONTAINER_ORCHESTRATION_TASK",
+          "CONTAINER_ORCHESTRATION_SKILL",
+          "ORCHESTRATION_TOOL"
+        ],
         "description": "Gather container orchestration ingredients from pantry"
       },
       {
@@ -194,7 +241,10 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["INFRASTRUCTURE_AUTOMATION_TASK", "INFRASTRUCTURE_AUTOMATION_SKILL"],
+        "ingredients": [
+          "INFRASTRUCTURE_AUTOMATION_TASK",
+          "INFRASTRUCTURE_AUTOMATION_SKILL"
+        ],
         "description": "Gather infrastructure automation ingredients from pantry"
       },
       {
@@ -206,7 +256,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["RELEASE_MANAGEMENT_TASK", "PIPELINE_TOOL"],
+        "ingredients": [
+          "RELEASE_MANAGEMENT_TASK",
+          "PIPELINE_TOOL"
+        ],
         "description": "Gather release management ingredients from pantry"
       },
       {
@@ -264,7 +317,9 @@
       "title": "Container Orchestration Setup",
       "description": "Set up Kubernetes and Docker orchestration",
       "estimated_time": "90 minutes",
-      "dependencies": ["DA-001"],
+      "dependencies": [
+        "DA-001"
+      ],
       "exact_commands": [
         "curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl",
         "docker run -d -p 8080:8080 jenkins/jenkins:lts"
@@ -275,7 +330,9 @@
       "title": "Infrastructure as Code",
       "description": "Implement Terraform and Ansible automation",
       "estimated_time": "90 minutes",
-      "dependencies": ["DA-002"],
+      "dependencies": [
+        "DA-002"
+      ],
       "exact_commands": [
         "curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -",
         "sudo apt-add-repository \"deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main\"",
@@ -287,7 +344,9 @@
       "title": "Release Management",
       "description": "Set up ArgoCD and Flux for GitOps",
       "estimated_time": "90 minutes",
-      "dependencies": ["DA-003"],
+      "dependencies": [
+        "DA-003"
+      ],
       "exact_commands": [
         "kubectl create namespace argocd",
         "kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml",
@@ -299,7 +358,9 @@
       "title": "Security Integration",
       "description": "Integrate security scanning in deployment pipeline",
       "estimated_time": "60 minutes",
-      "dependencies": ["DA-004"],
+      "dependencies": [
+        "DA-004"
+      ],
       "exact_commands": [
         "docker run -d -p 9000:9000 sonarqube:latest",
         "npm install --save-dev snyk",
@@ -318,5 +379,34 @@
     "Security scanning integrated in pipeline",
     "Performance monitoring during deployment",
     "Deployment analytics providing insights"
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Deployment-Automation-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
   ]
-} 
+}

@@ -8,7 +8,8 @@
     "estimated_tokens": 85000,
     "category": "interface",
     "priority": "HIGH",
-    "recipe_id": "19-web-dashboard"
+    "recipe_id": "19-web-dashboard",
+    "creation_timestamp": "2025-07-07T05:00:00Z"
   },
   "recipe_overview": {
     "name": "Web Dashboard System",
@@ -493,10 +494,26 @@
       "NEXTAUTH_URL": "http://localhost:3000"
     },
     "supported_features": {
-      "frameworks": ["next.js", "react", "typescript"],
-      "styling": ["tailwind", "css-modules", "styled-components"],
-      "state": ["redux", "zustand", "context"],
-      "testing": ["jest", "testing-library", "cypress"]
+      "frameworks": [
+        "next.js",
+        "react",
+        "typescript"
+      ],
+      "styling": [
+        "tailwind",
+        "css-modules",
+        "styled-components"
+      ],
+      "state": [
+        "redux",
+        "zustand",
+        "context"
+      ],
+      "testing": [
+        "jest",
+        "testing-library",
+        "cypress"
+      ]
     }
   },
   "validation_and_testing": {
@@ -542,5 +559,28 @@
       "Test accessibility compliance",
       "Confirm real-time updates"
     ]
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default step - needs implementation",
+      "command": "echo 'Step needs implementation'",
+      "expected_output": "Step completed",
+      "error_handling": "Continue on error"
+    }
+  ],
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
   }
 }

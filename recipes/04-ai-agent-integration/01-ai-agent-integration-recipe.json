@@ -14,7 +14,12 @@
       "pantry_category": "ai_agent_systems",
       "cooking_time": "240 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["mcp_protocol", "multi_agent", "model_chaining", "collaboration"],
+      "kitchen_tools": [
+        "mcp_protocol",
+        "multi_agent",
+        "model_chaining",
+        "collaboration"
+      ],
       "cache_strategy": "ai_agent_cache",
       "orchestrator_priority": "critical"
     },
@@ -56,7 +61,11 @@
         "description": "Setup MCP server framework and protocol with exact configurations",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["mcp_protocol", "server_framework", "protocol_implementation"],
+        "skills_required": [
+          "mcp_protocol",
+          "server_framework",
+          "protocol_implementation"
+        ],
         "exact_commands": [
           "mkdir -p /opt/ai-q/agents/{mcp,coordination,chaining,chat}",
           "mkdir -p /opt/ai-q/config/agents/{mcp,coordination}",
@@ -70,8 +79,14 @@
         "name": "Multi-Agent Coordination Setup",
         "description": "Configure multi-agent coordination system with exact specifications",
         "estimated_time": "60 minutes",
-        "dependencies": ["MCP_SERVER_SETUP_TASK"],
-        "skills_required": ["agent_coordination", "communication_protocols", "task_distribution"],
+        "dependencies": [
+          "MCP_SERVER_SETUP_TASK"
+        ],
+        "skills_required": [
+          "agent_coordination",
+          "communication_protocols",
+          "task_distribution"
+        ],
         "exact_commands": [
           "npm install @ai-agent/coordination",
           "npm install @ai-agent/communication",
@@ -84,8 +99,14 @@
         "name": "Model Chaining Implementation",
         "description": "Setup model chaining capabilities with exact configurations",
         "estimated_time": "60 minutes",
-        "dependencies": ["AGENT_COORDINATION_TASK"],
-        "skills_required": ["model_chaining", "pipeline_management", "workflow_orchestration"],
+        "dependencies": [
+          "AGENT_COORDINATION_TASK"
+        ],
+        "skills_required": [
+          "model_chaining",
+          "pipeline_management",
+          "workflow_orchestration"
+        ],
         "exact_commands": [
           "npm install @ai-agent/chaining",
           "npm install @ai-agent/pipeline",
@@ -99,7 +120,11 @@
         "skill_id": "MCP_PROTOCOL_SKILL",
         "name": "MCP Protocol Management",
         "description": "Manage MCP protocol communication with exact procedures",
-        "tools": ["mcp_sdk", "protocol_handlers", "message_routing"],
+        "tools": [
+          "mcp_sdk",
+          "protocol_handlers",
+          "message_routing"
+        ],
         "validation": "mcp_protocol_validation",
         "exact_validation_commands": [
           "node src/services/agents/mcp/server.js --health",
@@ -111,7 +136,11 @@
         "skill_id": "AGENT_COORDINATION_SKILL",
         "name": "Agent Coordination",
         "description": "Coordinate multiple AI agents with exact specifications",
-        "tools": ["coordination_engine", "task_scheduler", "resource_allocator"],
+        "tools": [
+          "coordination_engine",
+          "task_scheduler",
+          "resource_allocator"
+        ],
         "validation": "agent_coordination_validation",
         "exact_validation_commands": [
           "curl -f http://localhost:3001/api/v1/agents/list",
@@ -123,7 +152,11 @@
         "skill_id": "MODEL_CHAINING_SKILL",
         "name": "Model Chaining",
         "description": "Chain multiple AI models together with exact specifications",
-        "tools": ["chain_engine", "model_connector", "workflow_manager"],
+        "tools": [
+          "chain_engine",
+          "model_connector",
+          "workflow_manager"
+        ],
         "validation": "model_chaining_validation",
         "exact_validation_commands": [
           "curl -f http://localhost:3002/api/v1/chains/list",
@@ -186,13 +219,32 @@
         "exact_schema": {
           "type": "object",
           "properties": {
-            "mcp_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
-            "coordination_enabled": {"type": "boolean"},
-            "chaining_enabled": {"type": "boolean"},
-            "chat_enabled": {"type": "boolean"},
-            "max_agents": {"type": "integer", "minimum": 1, "maximum": 100}
+            "mcp_version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "coordination_enabled": {
+              "type": "boolean"
+            },
+            "chaining_enabled": {
+              "type": "boolean"
+            },
+            "chat_enabled": {
+              "type": "boolean"
+            },
+            "max_agents": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            }
           },
-          "required": ["mcp_version", "coordination_enabled", "chaining_enabled", "chat_enabled", "max_agents"]
+          "required": [
+            "mcp_version",
+            "coordination_enabled",
+            "chaining_enabled",
+            "chat_enabled",
+            "max_agents"
+          ]
         }
       },
       {
@@ -204,13 +256,36 @@
         "exact_schema": {
           "type": "object",
           "properties": {
-            "port": {"type": "integer", "minimum": 1024, "maximum": 65535},
-            "protocol_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
-            "max_connections": {"type": "integer", "minimum": 1, "maximum": 1000},
-            "timeout": {"type": "string", "pattern": "^[0-9]+s$"},
-            "heartbeat_interval": {"type": "string", "pattern": "^[0-9]+s$"}
+            "port": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535
+            },
+            "protocol_version": {
+              "type": "string",
+              "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+            },
+            "max_connections": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000
+            },
+            "timeout": {
+              "type": "string",
+              "pattern": "^[0-9]+s$"
+            },
+            "heartbeat_interval": {
+              "type": "string",
+              "pattern": "^[0-9]+s$"
+            }
           },
-          "required": ["port", "protocol_version", "max_connections", "timeout", "heartbeat_interval"]
+          "required": [
+            "port",
+            "protocol_version",
+            "max_connections",
+            "timeout",
+            "heartbeat_interval"
+          ]
         }
       },
       {
@@ -222,13 +297,34 @@
         "exact_schema": {
           "type": "object",
           "properties": {
-            "port": {"type": "integer", "minimum": 1024, "maximum": 65535},
-            "max_agents": {"type": "integer", "minimum": 1, "maximum": 100},
-            "task_timeout": {"type": "string", "pattern": "^[0-9]+s$"},
-            "load_balancing": {"type": "boolean"},
-            "failover_enabled": {"type": "boolean"}
+            "port": {
+              "type": "integer",
+              "minimum": 1024,
+              "maximum": 65535
+            },
+            "max_agents": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100
+            },
+            "task_timeout": {
+              "type": "string",
+              "pattern": "^[0-9]+s$"
+            },
+            "load_balancing": {
+              "type": "boolean"
+            },
+            "failover_enabled": {
+              "type": "boolean"
+            }
           },
-          "required": ["port", "max_agents", "task_timeout", "load_balancing", "failover_enabled"]
+          "required": [
+            "port",
+            "max_agents",
+            "task_timeout",
+            "load_balancing",
+            "failover_enabled"
+          ]
         }
       }
     ]
@@ -552,5 +648,34 @@
       "Maintain performance under load",
       "Cache performance scales with usage"
     ]
-  }
-} 
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "01-Ai-Agent-Integration-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
+}

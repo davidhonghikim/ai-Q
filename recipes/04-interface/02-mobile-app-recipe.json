@@ -1,21 +1,24 @@
 {
   "recipe_metadata": {
-    "recipe_id": "04-02-MOBILE-APP",
+    "recipe_id": "20-mobile-app",
     "title": "Mobile App System - Universal Digital Twin System",
     "version": "5.0.0",
-    "last_updated": "2025-01-30T22:35:00Z",
-    "created_by": "Claude Sonnet 4",
     "last_updated": "2025-01-27T14:00:00Z",
+    "created_by": "Claude Sonnet 4",
     "purpose": "Implement comprehensive mobile app with React Native for AI-Q Knowledge Library System",
     "estimated_tokens": 85000,
     "category": "interface",
     "priority": "HIGH",
-    "recipe_id": "20-mobile-app",
     "kitchen_system": {
       "pantry_category": "user_interfaces",
       "cooking_time": "240 minutes",
       "complexity": "expert",
-      "kitchen_tools": ["react_native", "mobile_ui", "native_features", "mobile_experience"],
+      "kitchen_tools": [
+        "react_native",
+        "mobile_ui",
+        "native_features",
+        "mobile_experience"
+      ],
       "cache_strategy": "mobile_app_cache",
       "orchestrator_priority": "high"
     }
@@ -46,31 +49,53 @@
         "description": "Design and implement core mobile app architecture",
         "estimated_time": "60 minutes",
         "dependencies": [],
-        "skills_required": ["react_native", "mobile_architecture", "cross_platform"]
+        "skills_required": [
+          "react_native",
+          "mobile_architecture",
+          "cross_platform"
+        ]
       },
       {
         "task_id": "MOBILE_UI_TASK",
         "name": "Mobile UI Components Implementation",
         "description": "Create mobile-optimized UI components",
         "estimated_time": "60 minutes",
-        "dependencies": ["MOBILE_ARCHITECTURE_TASK"],
-        "skills_required": ["mobile_ui", "touch_interactions", "responsive_design"]
+        "dependencies": [
+          "MOBILE_ARCHITECTURE_TASK"
+        ],
+        "skills_required": [
+          "mobile_ui",
+          "touch_interactions",
+          "responsive_design"
+        ]
       },
       {
         "task_id": "MOBILE_NAVIGATION_TASK",
         "name": "Mobile Navigation Implementation",
         "description": "Create mobile navigation with gesture support",
         "estimated_time": "60 minutes",
-        "dependencies": ["MOBILE_UI_TASK"],
-        "skills_required": ["mobile_navigation", "gesture_handling", "navigation_patterns"]
+        "dependencies": [
+          "MOBILE_UI_TASK"
+        ],
+        "skills_required": [
+          "mobile_navigation",
+          "gesture_handling",
+          "navigation_patterns"
+        ]
       },
       {
         "task_id": "MOBILE_SEARCH_TASK",
         "name": "Mobile Search Implementation",
         "description": "Create mobile-optimized search interface",
         "estimated_time": "60 minutes",
-        "dependencies": ["MOBILE_NAVIGATION_TASK"],
-        "skills_required": ["mobile_search", "voice_search", "search_optimization"]
+        "dependencies": [
+          "MOBILE_NAVIGATION_TASK"
+        ],
+        "skills_required": [
+          "mobile_search",
+          "voice_search",
+          "search_optimization"
+        ]
       }
     ],
     "skills": [
@@ -78,21 +103,33 @@
         "skill_id": "REACT_NATIVE_SKILL",
         "name": "React Native Development",
         "description": "Build cross-platform mobile applications",
-        "tools": ["react_native_cli", "typescript", "native_modules"],
+        "tools": [
+          "react_native_cli",
+          "typescript",
+          "native_modules"
+        ],
         "validation": "react_native_validation"
       },
       {
         "skill_id": "MOBILE_UI_SKILL",
         "name": "Mobile UI Development",
         "description": "Create mobile-optimized user interfaces",
-        "tools": ["mobile_components", "touch_handlers", "responsive_layouts"],
+        "tools": [
+          "mobile_components",
+          "touch_handlers",
+          "responsive_layouts"
+        ],
         "validation": "mobile_ui_validation"
       },
       {
         "skill_id": "NATIVE_FEATURES_SKILL",
         "name": "Native Features Integration",
         "description": "Integrate native mobile capabilities",
-        "tools": ["camera_module", "notifications", "offline_storage"],
+        "tools": [
+          "camera_module",
+          "notifications",
+          "offline_storage"
+        ],
         "validation": "native_features_validation"
       }
     ],
@@ -148,7 +185,11 @@
       {
         "step_id": "STEP_1",
         "action": "gather_ingredients",
-        "ingredients": ["MOBILE_ARCHITECTURE_TASK", "REACT_NATIVE_SKILL", "MOBILE_APP_TOOL"],
+        "ingredients": [
+          "MOBILE_ARCHITECTURE_TASK",
+          "REACT_NATIVE_SKILL",
+          "MOBILE_APP_TOOL"
+        ],
         "description": "Gather mobile app architecture ingredients from pantry"
       },
       {
@@ -166,7 +207,11 @@
       {
         "step_id": "STEP_4",
         "action": "gather_ingredients",
-        "ingredients": ["MOBILE_UI_TASK", "MOBILE_UI_SKILL", "MOBILE_UI_TOOL"],
+        "ingredients": [
+          "MOBILE_UI_TASK",
+          "MOBILE_UI_SKILL",
+          "MOBILE_UI_TOOL"
+        ],
         "description": "Gather mobile UI ingredients from pantry"
       },
       {
@@ -178,7 +223,11 @@
       {
         "step_id": "STEP_6",
         "action": "gather_ingredients",
-        "ingredients": ["MOBILE_NAVIGATION_TASK", "NATIVE_FEATURES_SKILL", "MOBILE_NAVIGATION_TOOL"],
+        "ingredients": [
+          "MOBILE_NAVIGATION_TASK",
+          "NATIVE_FEATURES_SKILL",
+          "MOBILE_NAVIGATION_TOOL"
+        ],
         "description": "Gather mobile navigation ingredients from pantry"
       },
       {
@@ -190,7 +239,10 @@
       {
         "step_id": "STEP_8",
         "action": "gather_ingredients",
-        "ingredients": ["MOBILE_SEARCH_TASK", "NATIVE_FEATURES_SKILL"],
+        "ingredients": [
+          "MOBILE_SEARCH_TASK",
+          "NATIVE_FEATURES_SKILL"
+        ],
         "description": "Gather mobile search ingredients from pantry"
       },
       {
@@ -678,9 +730,21 @@
       "PUSH_NOTIFICATION_KEY": "your-push-key"
     },
     "supported_platforms": {
-      "mobile": ["ios", "android"],
-      "features": ["camera", "location", "notifications", "offline"],
-      "testing": ["jest", "detox", "appium"]
+      "mobile": [
+        "ios",
+        "android"
+      ],
+      "features": [
+        "camera",
+        "location",
+        "notifications",
+        "offline"
+      ],
+      "testing": [
+        "jest",
+        "detox",
+        "appium"
+      ]
     }
   },
   "validation_and_testing": {
@@ -726,5 +790,34 @@
       "Test offline functionality",
       "Confirm app store readiness"
     ]
-  }
+  },
+  "inputs": {
+    "default_input": {
+      "type": "string",
+      "required": false,
+      "default": "default_value",
+      "description": "Default input parameter"
+    }
+  },
+  "outputs": {
+    "default_output": {
+      "type": "string",
+      "description": "Default output parameter"
+    }
+  },
+  "metadata": {
+    "title": "02-Mobile-App-Recipe",
+    "version": "1.0.0",
+    "creation_timestamp": "2025-07-07T05:00:00Z",
+    "last_updated": "2025-07-07T05:00:00Z"
+  },
+  "steps": [
+    {
+      "step_id": "STEP-01",
+      "description": "Default implementation step",
+      "command": "echo 'Recipe step needs implementation'",
+      "expected_output": "Step completed successfully",
+      "error_handling": "Continue on error"
+    }
+  ]
 }

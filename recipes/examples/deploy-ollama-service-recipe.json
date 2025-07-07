@@ -162,5 +162,13 @@
       "container_id": "abc123def456",
       "deployment_status": "success"
     }
+  },
+  "metadata": {
+    "title": "Untitled Recipe",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-07T14:50:23.607266Z",
+    "last_updated": "2025-07-07T14:50:23.607266Z",
+    "creation_timestamp": "2025-07-07T05:00:00Z"
   }
-} 
+}
