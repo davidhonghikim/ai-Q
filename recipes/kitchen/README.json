@@ -1,7 +1,7 @@
 {
   "title": "Kitchen & Orchestrator System Documentation",
   "version": "2.0.0",
-  "last_updated": "2025-07-05T23:55:00Z",
+      "last_updated": "2025-07-05T23:53:27Z",
   "purpose": "Defines the runtime environment and logic for orchestrating recipe execution using pantry ingredients with intelligent caching.",
   "orchestrator_agent": {
     "role": "Chef (user or node agent)",

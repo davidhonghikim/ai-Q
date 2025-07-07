@@ -1,0 +1,27 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "12-ROBOTICS-INTEGRATION-001",
+    "title": "Robotics and Hardware Integration",
+    "version": "0.1.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-05T23:44:00Z",
+    "description": "Placeholder for robotics and hardware interface integration."
+  },
+  "tasks": [
+    "Define robotics interface protocol.",
+    "Implement hardware abstraction layer.",
+    "Integrate robotics control with agentic system.",
+    "Test with simulated and real hardware."
+  ],
+  "deliverables": [
+    "Robotics protocol spec.",
+    "Hardware abstraction module.",
+    "Agentic robotics control interface.",
+    "Test suite for robotics integration."
+  ],
+  "acceptance_criteria": [
+    "Agents can control and receive feedback from hardware.",
+    "Hardware abstraction works across device types.",
+    "Robotics control integrates with agentic workflows."
+  ]
+} 

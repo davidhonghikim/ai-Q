@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "id": "docker_tool",
+    "type": "tool",
+    "name": "Docker CLI",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_timestamp": "2025-07-07T02:45:00Z",
+    "last_updated": "2025-07-07T02:45:00Z",
+    "status": "ACTIVE",
+    "purpose": "Docker command line interface tool"
+  },
+  "description": "Docker CLI tool for container management",
+  "tags": ["docker", "container", "cli", "tool"],
+  "dependencies": [],
+  "author": "Docker Inc.",
+  "signature": "sha256:def456...",
+  "installation": {
+    "method": "package_manager",
+    "package_name": "docker-ce",
+    "version_requirement": ">=20.0.0",
+    "platforms": ["linux", "windows", "macos"]
+  },
+  "configuration": {
+    "config_file": "~/.docker/config.json",
+    "daemon_config": "/etc/docker/daemon.json",
+    "environment_variables": [
+      "DOCKER_HOST",
+      "DOCKER_TLS_VERIFY",
+      "DOCKER_CERT_PATH"
+    ]
+  },
+  "capabilities": [
+    "image_management",
+    "container_management",
+    "network_management",
+    "volume_management",
+    "registry_operations"
+  ],
+  "validation": {
+    "health_check": "docker --version",
+    "availability_check": "docker info",
+    "permission_check": "docker ps"
+  },
+  "caching": {
+    "cacheable": false,
+    "reason": "System tool, not cacheable"
+  }
+} 

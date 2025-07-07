@@ -1,7 +1,7 @@
 {
   "title": "Pantry System Documentation",
   "version": "2.0.0",
-  "last_updated": "2025-07-05T23:55:00Z",
+      "last_updated": "2025-07-05T23:53:23Z",
   "purpose": "Central registry for all atomic, reusable ingredients (tasks, modules, skills, tools, configs) used in recipes with intelligent caching support.",
   "structure": {
     "tasks": "Atomic, single-purpose actions (e.g., pull docker image, run script)",

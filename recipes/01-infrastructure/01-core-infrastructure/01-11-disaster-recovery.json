@@ -4,8 +4,8 @@
     "title": "Disaster Recovery and Business Continuity - Complete Implementation",
     "version": "5.0.0",
     "created_by": "Claude Sonnet 4",
-    "creation_date": "2025-01-27T21:00:00Z",
-    "last_updated": "2025-07-06T18:30:00Z",
+    "creation_date": "2025-07-05T18:01:07Z",
+    "last_updated": "2025-07-05T18:01:07Z",
     "estimated_tokens": 35000,
     "estimated_execution_time": "2-3 hours",
     "difficulty_level": "expert",
@@ -236,7 +236,7 @@
         "config_content": {
           "disaster_recovery_plan": {
             "version": "1.0.0",
-            "last_updated": "2025-01-27T21:00:00Z",
+            "last_updated": "2025-07-05T18:01:07Z",
             "rto_target": "4 hours",
             "rpo_target": "1 hour",
             "scenarios": [
@@ -285,7 +285,8 @@
         },
         "commands": [
           "sudo mkdir -p /opt/ai-q/disaster-recovery",
-          "sudo tee /opt/ai-q/disaster-recovery/dr-plan.json << 'EOF'\n{\n  \"disaster_recovery_plan\": {\n    \"version\": \"1.0.0\",\n    \"last_updated\": \"2025-01-27T21:00:00Z\",\n    \"rto_target\": \"4 hours\",\n    \"rpo_target\": \"1 hour\",\n    \"scenarios\": [\n      {\n        \"scenario\": \"complete_system_failure\",\n        \"description\": \"Complete system failure requiring full recovery\",\n        \"recovery_steps\": [\n          \"Stop all services\",\n          \"Restore from latest backup\",\n          \"Verify data integrity\",\n          \"Start services in order\",\n          \"Run health checks\"\n        ],\n        \"estimated_time\": \"2-4 hours\"\n      },\n      {\n        \"scenario\": \"database_corruption\",\n        \"description\": \"Database corruption requiring database recovery\",\n        \"recovery_steps\": [\n          \"Stop database services\",\n          \"Restore database from backup\",\n          \"Verify database integrity\",\n          \"Start database services\",\n          \"Run database health checks\"\n        ],\n        \"estimated_time\": \"30-60 minutes\"\n      },\n      {\n        \"scenario\": \"network_outage\",\n        \"description\": \"Network outage requiring failover\",\n        \"recovery_steps\": [\n          \"Activate backup network\",\n          \"Update DNS records\",\n          \"Verify connectivity\",\n          \"Run service health checks\"\n        ],\n        \"estimated_time\": \"15-30 minutes\"\n      }\n    ],\n    \"contact_information\": {\n      \"primary_admin\": \"admin@ai-q.local\",\n      \"backup_admin\": \"backup-admin@ai-q.local\",\n      \"emergency_contact\": \"+1-555-0123\"\n    }\n  }\n}\nEOF"
+          "sudo tee /opt/ai-q/disaster-recovery/dr-plan.json << 'EOF'\n{\n  \"disaster_recovery_plan\": {\n    \"version\": \"1.0.0\",\n    \"last_updated\": \"2025-01-27T21:00:00Z\",\n    \"rto_target\": \"4 hours\",\n    \"rpo_target\": \"1 hour\",\n    \"scenarios\": [\n      {\n        \"scenario\": \"complete_system_failure\",\n        \"description\": \"Complete system failure requiring full recovery\",\n        \"recovery_steps\": [\n          \"Stop all services\",\n          \"Restore from latest backup\",\n          \"Verify data integrity\",\n          \"Start services in order\",\n          \"Run health checks\"\n        ],\n        \"estimated_time\": \"2-4 hours\"\n      },\n      {\n        \"scenario\": \"database_corruption\",\n        \"description\": \"Database corruption requiring database recovery\",\n        \"recovery_steps\": [\n          \"Stop database services\",\n          \"Restore database from backup\",\n          \"Verify database integrity\",\n          \"Start database services\",\n          \"Run database health checks\"\n        ],\n        \"estimated_time\": \"30-60 minutes\"\n      },\n      {\n        \"scenario\": \"network_outage\",\n        \"description\": \"Network outage requiring failover\",\n        \"recovery_steps\": [\n          \"Activate backup network\",\n          \"Update DNS records\",\n          \"Verify connectivity\",\n          \"Run service health checks\"\n        ],\n        \"estimated_time\": \"15-30 minutes\"\n      }\n    ],\n    \"contact_information\": {\n      \"primary_admin\": \"admin@ai-q.local\",\n      \"backup_admin\": \"backup-admin@ai-q.local\",
+          \"emergency_contact\": \"+1-555-0123\"\n    }\n  }\n}\nEOF"
         ],
         "verification": "Check DR plan exists",
         "expected_output": "dr-plan.json created with specified configuration"

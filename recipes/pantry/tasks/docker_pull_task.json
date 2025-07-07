@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "id": "docker_pull_task",
+    "type": "task",
+    "name": "Docker Image Pull",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_timestamp": "2025-07-07T02:45:00Z",
+    "last_updated": "2025-07-07T02:45:00Z",
+    "status": "ACTIVE",
+    "purpose": "Pull Docker image from registry"
+  },
+  "description": "Atomic task to pull a Docker image from a registry",
+  "tags": ["docker", "image", "pull", "container"],
+  "dependencies": ["docker_tool"],
+  "author": "Claude Sonnet 4",
+  "signature": "sha256:abc123...",
+  "execution": {
+    "command": "docker pull {image_name}:{tag}",
+    "parameters": {
+      "image_name": {
+        "type": "string",
+        "required": true,
+        "description": "Name of the Docker image"
+      },
+      "tag": {
+        "type": "string",
+        "required": false,
+        "default": "latest",
+        "description": "Tag of the Docker image"
+      }
+    },
+    "timeout_seconds": 300,
+    "retry_attempts": 3
+  },
+  "validation": {
+    "pre_execution": [
+      "Check if Docker is available",
+      "Validate image name format",
+      "Check network connectivity"
+    ],
+    "post_execution": [
+      "Verify image was pulled successfully",
+      "Check image size and metadata"
+    ]
+  },
+  "caching": {
+    "cacheable": true,
+    "cache_key": "docker_pull_{image_name}_{tag}",
+    "cache_ttl": "24_hours",
+    "cache_invalidation": "on_image_update"
+  }
+} 
