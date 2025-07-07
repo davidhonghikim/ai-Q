@@ -1,9 +1,9 @@
 {
   "version": "3.8",
-  "last_updated": "2025-01-27T22:30:00Z",
+  "last_updated": "2025-07-07T01:25:06Z",
   "created_by": "Claude Sonnet 4 - Sonnet 4",
   "converted_from": "E:\\kos\\ai-Q\\docker-compose.yml",
-  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "conversion_timestamp": "2025-07-05T04:52:18Z",
   "converter": "RobustYAMLToJSONConverter v1.0",
   "purpose": "Converted from YAML to JSON format for agent consumption",
   "services": {

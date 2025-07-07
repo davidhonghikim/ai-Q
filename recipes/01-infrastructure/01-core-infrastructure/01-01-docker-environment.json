@@ -16,6 +16,14 @@
     "architecture_tier": "enterprise-foundation",
     "description": "Complete Docker environment setup with exact specifications, atomic tasks, and zero technical debt",
     "is_master_recipe": false,
+    "dependencies": {
+      "prerequisites": [],
+      "required_services": ["docker", "docker-compose"],
+      "required_networks": ["ai-q-network", "ai-q-monitoring", "ai-q-services", "ai-q-storage"],
+      "required_volumes": ["ai-q-data", "ai-q-config", "ai-q-logs", "ai-q-backups", "ai-q-cache"],
+      "required_ports": [9323],
+      "required_files": ["/opt/ai-q/", "/opt/ai-q/docker/"]
+    },
     "kitchen_system": {
       "pantry_category": "docker_environment",
       "cooking_time": "180 minutes",

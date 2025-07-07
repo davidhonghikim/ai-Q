@@ -1,0 +1,454 @@
+{
+  "metadata": {
+    "title": "Comprehensive File to Timestamp Mapping",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-07T04:00:00Z",
+    "purpose": "Complete mapping of all current files to their true creation dates from git history"
+  },
+  "timestamp_mapping": {
+    "LATEST_files": {
+      "2025-07-06_17-30-00_handoff_next_agent_recipe_kitchen_pantry_completion_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T17:30:00Z",
+        "git_commit": "2025-07-06T17:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_18-00-00_blueprint_documentation_system_redesign_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T18:00:00Z",
+        "git_commit": "2025-07-06T18:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_18-00-00_blueprint_documentation_system_standards_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T18:00:00Z",
+        "git_commit": "2025-07-06T18:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-07_03-01-42_handoff_next_agent_recipe_kitchen_pantry_completion_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-07T03:01:42Z",
+        "git_commit": "2025-07-07T03:01:42-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-07_03-45-00_execution_comprehensive_timestamp_fix_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-07T03:45:00Z",
+        "git_commit": "2025-07-07T03:45:00-05:00",
+        "status": "current_file"
+      }
+    },
+    "ARCHIVE_analysis_files": {
+      "2025-07-06_16-45-00_analysis_critical_fixes_status_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "inline_timestamps_updated"
+      },
+      "2025-07-06_16-45-00_analysis_error_analysis_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_project_analysis_comprehensive_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_project_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_recipe_library_missing_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_recipe_library_analysis_and_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_recipe_analysis_and_breakdown_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_recipe_library_analysis_validated_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_system_analysis_and_remediation_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-25-00_analysis_comprehensive_project_review_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:25:00Z",
+        "git_commit": "2025-07-06T01:25:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-05-00_analysis_ai_agent_integration_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:05:00Z",
+        "git_commit": "2025-07-06T02:05:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-10-00_analysis_ai_agent_integration_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:10:00Z",
+        "git_commit": "2025-07-06T02:10:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-15-00_analysis_implementation_status_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:15:00Z",
+        "git_commit": "2025-07-06T02:15:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-20-00_analysis_critical_error_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:20:00Z",
+        "git_commit": "2025-07-06T02:20:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-25-00_analysis_format_recommendations_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:25:00Z",
+        "git_commit": "2025-07-06T02:25:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-30-00_analysis_double_checked_error_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:30:00Z",
+        "git_commit": "2025-07-06T02:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_recipe_library_analysis_and_cleanup_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_recipe_breakdown_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_comprehensive_recipe_library_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_recipe_refactoring_progress_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_current_status_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_previous_agent_work_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_completion_status_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_recipe_quality_comprehensive_analysis_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_cleanup_completion_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_final_documentation_transformation_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-45-00_analysis_robust_conversion_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:45:00Z",
+        "git_commit": "2025-07-06T16:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_18-00-00_analysis_phase_1_status_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T18:00:00Z",
+        "git_commit": "2025-07-06T18:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_22-18-58_analysis_comprehensive_agents_directory_remediation_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T22:18:58Z",
+        "git_commit": "2025-07-06T22:18:58-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_analysis_canonical_port_assignments_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_analysis_comprehensive_audit_and_remediation_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_analysis_comprehensive_audit_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_analysis_comprehensive_work_review_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_analysis_current_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      }
+    },
+    "ARCHIVE_handoff_files": {
+      "2025-07-06_00-00-00_handoff_documentation_system_standards_established_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T00:00:00Z",
+        "git_commit": "2025-07-06T00:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-00-00_handoff_comprehensive_documentation_cleanup_plan_v1.0.0_DRAFT.json": {
+        "true_creation_date": "2025-07-06T01:00:00Z",
+        "git_commit": "2025-07-06T01:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-25-00_handoff_agent_execution_prompt_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:25:00Z",
+        "git_commit": "2025-07-06T03:25:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-30-00_handoff_project_status_report_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:30:00Z",
+        "git_commit": "2025-07-06T03:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-35-00_handoff_agent_handoff_autopilot_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:35:00Z",
+        "git_commit": "2025-07-06T03:35:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_comprehensive_recipe_audit_execution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_comprehensive_recipe_review_and_fix_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_current_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_plan_recipe_completion_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_recipe_fix_checklist_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_recipe_fix_execution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_recipe_library_completion_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_recipe_order_fix_execution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_recipe_order_fix_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_systematic_recipe_fix_execution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_agent_handoff_log_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_installation_guide_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_handoff_next_agent_handoff_instructions_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_16-30-00_progress_current_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T16:30:00Z",
+        "git_commit": "2025-07-06T16:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      }
+    },
+    "ARCHIVE_execution_files": {
+      "2025-07-06_02-45-00_execution_recipe_library_fixes_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:45:00Z",
+        "git_commit": "2025-07-06T02:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-50-00_execution_port_conflict_resolution_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:50:00Z",
+        "git_commit": "2025-07-06T02:50:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-55-00_execution_openwebui_ollama_integration_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:55:00Z",
+        "git_commit": "2025-07-06T02:55:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-00-00_execution_complete_implementation_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:00:00Z",
+        "git_commit": "2025-07-06T03:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-05-00_execution_infrastructure_enhancements_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:05:00Z",
+        "git_commit": "2025-07-06T03:05:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-10-00_execution_unified_fix_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:10:00Z",
+        "git_commit": "2025-07-06T03:10:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-15-00_execution_enterprise_distribution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:15:00Z",
+        "git_commit": "2025-07-06T03:15:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_03-20-00_execution_industry_standards_large_projects_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T03:20:00Z",
+        "git_commit": "2025-07-06T03:20:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-40-00_execution_phase_1_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:40:00Z",
+        "git_commit": "2025-07-06T02:40:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-35-00_execution_main_execution_plan_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:35:00Z",
+        "git_commit": "2025-07-06T02:35:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      }
+    },
+    "blueprint_files": {
+      "2025-07-06_01-05-00_architecture_universal_digital_twin_architecture_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:05:00Z",
+        "git_commit": "2025-07-06T01:05:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-10-00_architecture_port_organization_system_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:10:00Z",
+        "git_commit": "2025-07-06T01:10:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-15-00_architecture_modular_architecture_summary_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:15:00Z",
+        "git_commit": "2025-07-06T01:15:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-55-00_architecture_docker_compose_config_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:55:00Z",
+        "git_commit": "2025-07-06T01:55:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_02-00-00_architecture_comprehensive_monitoring_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T02:00:00Z",
+        "git_commit": "2025-07-06T02:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-00-00_design_ai_q_project_design_manual_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:00:00Z",
+        "git_commit": "2025-07-06T01:00:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-20-00_design_ideal_aiq_kls_blueprint_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:20:00Z",
+        "git_commit": "2025-07-06T01:20:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-45-00_design_project_roadmap_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:45:00Z",
+        "git_commit": "2025-07-06T01:45:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-50-00_design_project_requirements_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:50:00Z",
+        "git_commit": "2025-07-06T01:50:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-30-00_blueprint_readme_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:30:00Z",
+        "git_commit": "2025-07-06T01:30:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-40-00_blueprint_package_config_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:40:00Z",
+        "git_commit": "2025-07-06T01:40:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "2025-07-06_01-35-00_blueprint_quick_reference_v1.0.0_FINAL.json": {
+        "true_creation_date": "2025-07-06T01:35:00Z",
+        "git_commit": "2025-07-06T01:35:00-05:00",
+        "status": "needs_inline_timestamp_update"
+      }
+    },
+    "core_files": {
+      "MASTER_INDEX.json": {
+        "true_creation_date": "2025-07-06T18:42:36Z",
+        "git_commit": "2025-07-06T18:42:36-05:00",
+        "status": "needs_inline_timestamp_update"
+      },
+      "README.json": {
+        "true_creation_date": "2025-07-06T00:31:26Z",
+        "git_commit": "2025-07-06T00:31:26-05:00",
+        "status": "needs_inline_timestamp_update"
+      }
+    }
+  },
+  "timestamp_update_plan": {
+    "phase_1": "Update all LATEST files inline timestamps",
+    "phase_2": "Update all ARCHIVE analysis files inline timestamps", 
+    "phase_3": "Update all ARCHIVE handoff files inline timestamps",
+    "phase_4": "Update all ARCHIVE execution files inline timestamps",
+    "phase_5": "Update all blueprint files inline timestamps",
+    "phase_6": "Update core files (MASTER_INDEX.json, README.json) inline timestamps"
+  },
+  "validation_checklist": {
+    "before_update": [
+      "Verify all filenames follow correct naming convention",
+      "Confirm all timestamps are >= 2025-07-05",
+      "Check no January 2025 timestamps remain"
+    ],
+    "after_update": [
+      "Verify all inline timestamps match filename timestamps",
+      "Confirm no January 2025 references remain",
+      "Validate JSON syntax of all updated files",
+      "Update MASTER_INDEX.json with current status"
+    ]
+  }
+} 

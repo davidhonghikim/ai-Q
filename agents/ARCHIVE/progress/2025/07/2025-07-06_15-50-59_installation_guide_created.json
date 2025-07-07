@@ -1,0 +1,172 @@
+{
+  "guide_metadata": {
+    "title": "Safe npm Installation Guide - Prevents Dependency Corruption",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T15:50:59Z",
+    "status": "ACTIVE",
+    "priority": "critical",
+    "purpose": "Prevent future npm installation issues and ensure reproducible builds"
+  },
+  "critical_lessons_learned": {
+    "what_causes_corruption": [
+      "Multiple failed installation attempts",
+      "Automatic dependency installation by Next.js during build",
+      "Large monolithic installations",
+      "Incomplete cleanup between attempts",
+      "Version conflicts and peer dependency issues"
+    ],
+    "what_prevents_corruption": [
+      "Complete cleanup before each attempt",
+      "Conservative package.json with minimal dependencies",
+      "Incremental installation in small batches",
+      "Verification after each batch",
+      "Avoiding automatic dependency installation triggers"
+    ]
+  },
+  "step_by_step_process": {
+    "phase_1_cleanup": {
+      "description": "Complete environment cleanup",
+      "commands": [
+        "nodejs-portable\\node-v20.11.0-win-x64\\npx.cmd rimraf node_modules",
+        "Remove-Item package-lock.json -ErrorAction SilentlyContinue",
+        "Remove-Item npm-debug.log* -ErrorAction SilentlyContinue",
+        "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd cache clean --force"
+      ],
+      "verification": "Test-Path node_modules returns False"
+    },
+    "phase_2_minimal_install": {
+      "description": "Install only essential packages",
+      "package_json_content": {
+        "dependencies": {
+          "next": "15.3.5",
+          "react": "18.2.0",
+          "react-dom": "18.2.0",
+          "typescript": "5.3.3"
+        },
+        "devDependencies": {
+          "@types/node": "20.10.5",
+          "@types/react": "18.2.45",
+          "@types/react-dom": "18.2.18"
+        }
+      },
+      "commands": [
+        "$env:NODE_ENV=\"production\"",
+        "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd install --legacy-peer-deps"
+      ],
+      "verification": "npm list --depth=0 shows only intended packages"
+    },
+    "phase_3_verification": {
+      "description": "Verify installation quality",
+      "commands": [
+        "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd audit",
+        "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd list --depth=0",
+        "$env:PATH = \"E:\\kos\\ai-Q\\nodejs-portable\\node-v20.11.0-win-x64;\" + $env:PATH",
+        "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd run build"
+      ],
+      "verification": "No vulnerabilities, no extraneous packages, build works"
+    },
+    "phase_4_incremental_addition": {
+      "description": "Add dependencies in controlled batches",
+      "batch_1_eslint": {
+        "packages": ["eslint@9.0.0", "eslint-config-next@15.3.5", "prettier@3.2.4"],
+        "verification": "ESLint works without corruption"
+      },
+      "batch_2_backend": {
+        "packages": ["express@4.18.2", "cors@2.8.5", "helmet@7.1.0"],
+        "verification": "Backend TypeScript errors resolved"
+      }
+    }
+  },
+  "common_issues_and_solutions": {
+    "extraneous_packages": {
+      "issue": "Packages installed that aren't in package.json",
+      "solution": "Remove with rimraf: npx rimraf node_modules/[package-name]",
+      "prevention": "Use conservative package.json, verify after each install"
+    },
+    "invalid_packages": {
+      "issue": "Package versions don't match package.json",
+      "solution": "Complete cleanup and reinstall",
+      "prevention": "Avoid automatic installation, use controlled batches"
+    },
+    "network_errors": {
+      "issue": "ECONNRESET, ETIMEDOUT during installation",
+      "solution": "Check network, try different registry, use --legacy-peer-deps",
+      "prevention": "Ensure stable network connection"
+    },
+    "build_failures": {
+      "issue": "Build fails due to missing dependencies",
+      "solution": "Install missing dependencies in batches",
+      "prevention": "Test build after each batch installation"
+    }
+  },
+  "quality_checklist": {
+    "before_installation": [
+      "Ensure clean environment (no node_modules)",
+      "Verify network connectivity",
+      "Check available disk space (2GB+)",
+      "Confirm Node.js portable is working"
+    ],
+    "after_installation": [
+      "No extraneous packages in npm list",
+      "No security vulnerabilities in npm audit",
+      "No deprecated direct dependencies",
+      "Build process works (with expected missing deps)",
+      "All intended packages are current versions"
+    ],
+    "after_each_batch": [
+      "Verify no new extraneous packages",
+      "Test build process still works",
+      "Check for any new errors",
+      "Document any warnings"
+    ]
+  },
+  "best_practices": {
+    "always_do": [
+      "Complete cleanup before installation",
+      "Use conservative package.json initially",
+      "Install in small, controlled batches",
+      "Verify after each step",
+      "Document the process",
+      "Use --legacy-peer-deps flag",
+      "Set NODE_ENV appropriately"
+    ],
+    "never_do": [
+      "Install all dependencies at once",
+      "Skip verification steps",
+      "Ignore extraneous packages",
+      "Use deprecated direct dependencies",
+      "Skip cleanup after failures",
+      "Allow automatic dependency installation"
+    ]
+  },
+  "troubleshooting_commands": {
+    "check_installation": "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd list --depth=0",
+    "check_security": "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd audit",
+    "clean_installation": "nodejs-portable\\node-v20.11.0-win-x64\\npx.cmd rimraf node_modules",
+    "test_build": "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd run build",
+    "check_versions": "nodejs-portable\\node-v20.11.0-win-x64\\npm.cmd outdated"
+  },
+  "success_indicators": {
+    "clean_installation": "Only intended packages in npm list",
+    "secure_installation": "npm audit shows 0 vulnerabilities",
+    "working_build": "npm run build completes successfully",
+    "proper_versions": "All packages are current, supported versions",
+    "no_corruption": "No extraneous or invalid packages"
+  },
+  "documentation_requirements": {
+    "update_after_installation": [
+      "agents/LATEST/progress_current.json",
+      "agents/LATEST/handoff_current.json",
+      "package.json (final working version)",
+      "Any new recipes or guides created"
+    ],
+    "record_information": [
+      "Installed packages and versions",
+      "Any warnings or acceptable issues",
+      "Lessons learned",
+      "Process improvements",
+      "Time taken for installation"
+    ]
+  }
+} 

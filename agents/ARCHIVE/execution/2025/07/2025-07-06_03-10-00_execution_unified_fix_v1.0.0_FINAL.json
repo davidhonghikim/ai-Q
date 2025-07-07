@@ -1,0 +1,268 @@
+{
+  "execution_plan_metadata": {
+    "title": "AI-Q Unified Container Setup - Execution Plan",
+    "version": "1.0.0", 
+    "created_date": "2025-01-30T15:45:00Z",
+    "document_type": "execution_plan",
+    "format": "json",
+    "purpose": "Comprehensive execution plan for completing unified container setup",
+    "priority": "critical"
+  },
+  "current_status_analysis": {
+    "overall_status": "incomplete_implementation",
+    "issues_identified": [
+      "Previous agent created unified Docker Compose but left incomplete implementation",
+      "Web dashboard not implemented in supervisor config",
+      "Service health checks failing (Redis, Elasticsearch, MinIO)",
+      "Missing proper configuration files",
+      "Container build issues"
+    ],
+    "completion_percentage": "40%"
+  },
+  "execution_phases": {
+    "phase_1": {
+      "title": "Cleanup and Fix Infrastructure Services",
+      "duration": "30 minutes",
+      "priority": "critical",
+      "tasks": [
+        {
+          "task_id": "phase1-task1",
+          "title": "Fix Redis Configuration",
+          "description": "Configure Redis for development environment",
+          "subtasks": [
+            "Remove password requirement for development",
+            "Update health check to work without authentication",
+            "Test Redis connectivity"
+          ],
+          "expected_outcome": "Redis service healthy and accessible"
+        },
+        {
+          "task_id": "phase1-task2",
+          "title": "Fix Elasticsearch Configuration",
+          "description": "Configure Elasticsearch for development environment",
+          "subtasks": [
+            "Disable security for development environment",
+            "Reduce memory requirements",
+            "Fix health check endpoint"
+          ],
+          "expected_outcome": "Elasticsearch service healthy and accessible"
+        },
+        {
+          "task_id": "phase1-task3",
+          "title": "Fix MinIO Configuration",
+          "description": "Configure MinIO object storage service",
+          "subtasks": [
+            "Ensure proper console port configuration",
+            "Fix health check endpoint",
+            "Test MinIO connectivity"
+          ],
+          "expected_outcome": "MinIO service healthy and accessible"
+        },
+        {
+          "task_id": "phase1-task4",
+          "title": "Create Missing Configuration Files",
+          "description": "Generate required configuration files",
+          "subtasks": [
+            "Prometheus configuration",
+            "Grafana provisioning",
+            "Supervisor configuration updates"
+          ],
+          "expected_outcome": "All configuration files present and properly configured"
+        }
+      ]
+    },
+    "phase_2": {
+      "title": "Implement Web Dashboard",
+      "duration": "45 minutes",
+      "priority": "high",
+      "tasks": [
+        {
+          "task_id": "phase2-task1",
+          "title": "Create Next.js Health Check Dashboard",
+          "description": "Implement comprehensive health monitoring dashboard",
+          "subtasks": [
+            "Service status monitoring",
+            "Individual service iframe integration",
+            "Real-time status updates",
+            "Service links and access points"
+          ],
+          "expected_outcome": "Functional web dashboard displaying all service statuses"
+        },
+        {
+          "task_id": "phase2-task2",
+          "title": "Update Supervisor Configuration",
+          "description": "Configure supervisor for web dashboard management",
+          "subtasks": [
+            "Proper web dashboard startup",
+            "Process management",
+            "Logging configuration"
+          ],
+          "expected_outcome": "Web dashboard properly managed by supervisor"
+        }
+      ]
+    },
+    "phase_3": {
+      "title": "Fix Application Container",
+      "duration": "30 minutes",
+      "priority": "high",
+      "tasks": [
+        {
+          "task_id": "phase3-task1",
+          "title": "Update Dockerfile.unified",
+          "description": "Fix container build issues",
+          "subtasks": [
+            "Fix Node.js installation",
+            "Proper dependency installation",
+            "Service startup scripts"
+          ],
+          "expected_outcome": "Container builds successfully without errors"
+        },
+        {
+          "task_id": "phase3-task2",
+          "title": "Create Health Check API",
+          "description": "Implement comprehensive health check API",
+          "subtasks": [
+            "Comprehensive service status endpoint",
+            "Individual service health checks",
+            "Response time monitoring"
+          ],
+          "expected_outcome": "API endpoints providing real-time service health information"
+        }
+      ]
+    },
+    "phase_4": {
+      "title": "Testing and Validation",
+      "duration": "15 minutes",
+      "priority": "medium",
+      "tasks": [
+        {
+          "task_id": "phase4-task1",
+          "title": "Service-by-service testing",
+          "description": "Test each service individually",
+          "validation_method": "automated_health_checks"
+        },
+        {
+          "task_id": "phase4-task2",
+          "title": "Integration testing",
+          "description": "Test service interactions",
+          "validation_method": "end_to_end_testing"
+        },
+        {
+          "task_id": "phase4-task3",
+          "title": "Dashboard functionality testing",
+          "description": "Validate web dashboard features",
+          "validation_method": "manual_testing"
+        },
+        {
+          "task_id": "phase4-task4",
+          "title": "Performance validation",
+          "description": "Verify system performance meets requirements",
+          "validation_method": "performance_benchmarking"
+        }
+      ]
+    }
+  },
+  "success_criteria": {
+    "infrastructure_health": [
+      "All infrastructure services healthy",
+      "Service health checks passing",
+      "Proper service discovery working"
+    ],
+    "web_dashboard": [
+      "Web dashboard accessible and functional",
+      "Health check dashboard with iframe integration",
+      "Real-time status updates working"
+    ],
+    "service_accessibility": [
+      "All services accessible via provided URLs",
+      "API endpoints responding correctly",
+      "Service authentication working"
+    ],
+    "monitoring_logging": [
+      "Proper logging and monitoring",
+      "Grafana dashboards functional",
+      "Prometheus metrics collection working"
+    ]
+  },
+  "timeline": {
+    "phase_1_duration": "30 minutes",
+    "phase_2_duration": "45 minutes",
+    "phase_3_duration": "30 minutes",
+    "phase_4_duration": "15 minutes",
+    "total_duration": "2 hours",
+    "estimated_completion": "2025-01-30T17:45:00Z"
+  },
+  "execution_log": {
+    "description": "Track execution progress and completion timestamps",
+    "log_entries": [
+      {
+        "milestone": "Started",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Execution not yet started"
+      },
+      {
+        "milestone": "Phase 1 Complete",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Infrastructure services fixes"
+      },
+      {
+        "milestone": "Phase 2 Complete",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Web dashboard implementation"
+      },
+      {
+        "milestone": "Phase 3 Complete",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Application container fixes"
+      },
+      {
+        "milestone": "Phase 4 Complete",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Testing and validation"
+      },
+      {
+        "milestone": "Final Validation",
+        "timestamp": null,
+        "status": "pending",
+        "notes": "Complete system validation"
+      }
+    ]
+  },
+  "risk_assessment": {
+    "high_risk_items": [
+      "Container build failures",
+      "Service dependency issues",
+      "Configuration file conflicts"
+    ],
+    "mitigation_strategies": [
+      "Incremental testing at each phase",
+      "Rollback procedures for each change",
+      "Backup configurations before modifications"
+    ]
+  },
+  "dependencies": {
+    "external_dependencies": [
+      "Docker Desktop running",
+      "Network connectivity for image downloads",
+      "Sufficient system resources"
+    ],
+    "internal_dependencies": [
+      "Configuration files properly organized",
+      "Docker Compose files valid",
+      "Service startup scripts executable"
+    ]
+  },
+  "completion_status": "This execution plan is ready for implementation to complete the unified container setup.",
+  "execution_plan": {
+    "plan_id": "UNIFIED_FIX_005",
+    "title": "Unified Fixes and System Integration Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T03:10:00Z"
+  }
+} 

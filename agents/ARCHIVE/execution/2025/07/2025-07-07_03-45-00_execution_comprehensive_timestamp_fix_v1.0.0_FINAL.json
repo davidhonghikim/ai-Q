@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "title": "Comprehensive Timestamp Fix Execution Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-07T03:45:00Z",
+    "status": "FINAL",
+    "purpose": "Fix all timestamp issues properly - filenames and inline timestamps simultaneously"
+  },
+  "execution_summary": {
+    "problem": "Files were moved without proper ISO timestamps and inline timestamps need updating",
+    "solution": "Comprehensive fix following established naming convention",
+    "naming_convention": "YYYY-MM-DD_HH-MM-SS_[document_type]_[description]_v[version]_[status].json",
+    "timestamp_standard": "ISO 8601 (YYYY-MM-DDTHH:MM:SSZ) UTC"
+  },
+  "phase_1_cleanup_mess": {
+    "duration": "30 minutes",
+    "tasks": [
+      {
+        "task": "Remove incorrectly named files",
+        "files": [
+          "ai-Q/agents/ARCHIVE/2025/07/06/README.json",
+          "ai-Q/agents/ARCHIVE/2025/07/06/NEXT_AGENT_EXECUTION_PROMPT.json", 
+          "ai-Q/agents/ARCHIVE/2025/07/06/NEXT_AGENT_BOOTSTRAP_DOCUMENTATION.json"
+        ],
+        "action": "Delete these files - they don't follow naming convention",
+        "status": "COMPLETED"
+      },
+      {
+        "task": "Remove duplicate planning documents",
+        "files": [
+          "ai-Q/agents/git-ref/proper_file_renaming_plan.json",
+          "ai-Q/agents/git-ref/organization_execution_plan.json"
+        ],
+        "action": "Already deleted - confirmed",
+        "status": "COMPLETED"
+      }
+    ]
+  },
+  "phase_2_proper_file_renaming": {
+    "duration": "2 hours",
+    "naming_convention": "YYYY-MM-DD_HH-MM-SS_[category]_[description]_v1.0.0_[status].json",
+    "files_to_rename": {
+      "analysis_files": [
+        {
+          "current": "ai-Q/agents/ARCHIVE/analysis/2025-07-06_16-45-00_analysis_critical_fixes_status_report_v1.0.0_FINAL.json",
+          "correct": "ai-Q/agents/ARCHIVE/analysis/2025-07-06_16-45-00_analysis_critical_fixes_status_report_v1.0.0_FINAL.json",
+          "git_date": "2025-07-06T16:45:00Z",
+          "status": "NO_CHANGE_NEEDED"
+        }
+      ],
+      "handoff_files": [
+        {
+          "current": "ai-Q/agents/ARCHIVE/handoff/2025-07-06_17-00-00_handoff_documentation_cleanup_complete_v1.0.0_FINAL.json",
+          "correct": "ai-Q/agents/ARCHIVE/handoff/2025-07-06_17-00-00_handoff_documentation_cleanup_complete_v1.0.0_FINAL.json",
+          "git_date": "2025-07-06T17:00:00Z",
+          "status": "NO_CHANGE_NEEDED"
+        }
+      ],
+      "execution_files": [
+        {
+          "current": "ai-Q/agents/ARCHIVE/execution/2025-07-06_02-45-00_execution_recipe_library_fixes_v1.0.0_FINAL.json",
+          "correct": "ai-Q/agents/ARCHIVE/execution/2025-07-06_02-45-00_execution_recipe_library_fixes_v1.0.0_FINAL.json",
+          "git_date": "2025-07-06T02:45:00Z",
+          "status": "NO_CHANGE_NEEDED"
+        }
+      ]
+    }
+  },
+  "phase_3_inline_timestamp_updates": {
+    "duration": "1 hour",
+    "description": "Update ALL inline timestamps simultaneously to match git creation dates",
+    "timestamp_mapping": {
+      "files_created_july_5": {
+        "git_date": "2025-07-05T17:26:23Z",
+        "files": [
+          "Most blueprint documents",
+          "Core handoff documents",
+          "Initial analysis documents"
+        ]
+      },
+      "files_created_july_6_early": {
+        "git_date": "2025-07-06T00:31:26Z",
+        "files": [
+          "Recipe library documents",
+          "Kitchen system documents"
+        ]
+      },
+      "files_created_july_6_mid": {
+        "git_date": "2025-07-06T02:37:53Z",
+        "files": [
+          "Documentation system redesign",
+          "Templates and schemas"
+        ]
+      },
+      "files_created_july_6_late": {
+        "git_date": "2025-07-06T18:42:36Z",
+        "files": [
+          "Latest handoff documents",
+          "Final status reports"
+        ]
+      }
+    },
+    "inline_fields_to_update": [
+      "creation_date",
+      "creation_timestamp", 
+      "last_updated",
+      "analysis_timestamp",
+      "handoff_timestamp",
+      "execution_timestamp",
+      "progress_timestamp"
+    ]
+  },
+  "phase_4_validation": {
+    "duration": "30 minutes",
+    "validation_checks": [
+      "All filenames follow YYYY-MM-DD_HH-MM-SS_[category]_[description]_v1.0.0_[status].json",
+      "All inline timestamps >= 2025-07-05T00:00:00Z",
+      "No January 2025 timestamps remain",
+      "All files in correct directories",
+      "MASTER_INDEX.json updated"
+    ]
+  },
+  "success_criteria": [
+    "Zero files with incorrect timestamps",
+    "All filenames follow established convention",
+    "All inline timestamps match git creation dates",
+    "Directory structure properly organized",
+    "No duplicate or conflicting documents"
+  ],
+  "critical_reminders": [
+    "DO NOT create multiple planning documents",
+    "Follow established naming convention exactly",
+    "Update ALL inline timestamps simultaneously",
+    "Use git history for true creation dates",
+    "Quality over speed - do it right the first time",
+    "NO AGENT NAMES IN FILENAMES"
+  ]
+} 
