@@ -1,0 +1,144 @@
+---
+handoff_id: "2025-07-07T02_00_00Z_timestamp_correction_handoff"
+from_agent: "Claude Sonnet 4"
+to_agent: "Next Agent"
+priority: "HIGH"
+status: "INCOMPLETE_WORK_REMAINING"
+created: "2025-07-07T02:00:00Z"
+
+## MISSION BRIEF
+Complete the systematic timestamp violation correction process for the ai-Q project. All files with January 2025 timestamps must be updated to reflect actual file creation/modification times from July 2025.
+
+## CRITICAL CONTEXT
+- Previous agent corrected 33+ files but work is incomplete
+- User requested handoff due to perceived deviation from proper execution standards
+- Quality over speed approach required - each file must be individually validated
+- All timestamps must use actual file properties, not arbitrary dates
+
+## WORK COMPLETED (33+ files)
+### Phase 1: Critical Files (8 files)
+- ai-Q/README.json, docker/DOCKER_CLEANUP_SUMMARY.json, docker/compose/docker-compose.json
+- prompts/agents/agent_workflow.json, prompts/system/core_rules.json
+- manual/README.json, recipes/00-RECIPE_INDEX.json
+- recipes/17-deployment-automation/01-deployment-automation-recipe.json
+
+### Phase 2-8: Recipe Files (25+ files)
+- recipes/16-scaling-optimization/, recipes/15-backup-recovery/, recipes/14-monitoring-alerting/
+- recipes/11-quality-assurance/, recipes/13-deployment/, recipes/12-advanced-interfaces/
+- recipes/10-interface/, recipes/09-knowledge-synthesis/, recipes/08-research-automation/
+- recipes/07-content-creation-workflows/, recipes/06-content-processing/
+- recipes/04-ai-agent-integration/, recipes/03-intelligence/, recipes/02-ai-services/
+- recipes/01-infrastructure/README.json
+
+## WORK REMAINING (PRIORITY ORDER)
+
+### 1. CRITICAL: Complete recipes/01-infrastructure/ subdirectories
+**MANDATORY - Process these first:**
+```
+recipes/01-infrastructure/01-core-infrastructure/
+recipes/01-infrastructure/02-docker-unified-infrastructure/
+recipes/01-infrastructure/03-storage-systems/
+recipes/01-infrastructure/04-database-setup/
+recipes/01-infrastructure/05-monitoring-observability/
+recipes/01-infrastructure/06-creative-and-automation-services/
+recipes/01-infrastructure/07-persistent-data-volumes/
+recipes/01-infrastructure/REFERENCE_MONOLITHIC/
+```
+
+### 2. HIGH: Process remaining recipe directories
+```
+recipes/kitchen/
+recipes/pantry/
+recipes/examples/
+```
+
+### 3. MEDIUM: Scan for any missed files
+- Any JSON files in other project directories
+- Configuration files
+- Documentation files
+- Any files with timestamp fields
+
+## EXECUTION PROTOCOL
+
+### Step 1: Systematic Directory Processing
+For each directory:
+1. `ls recipes/[directory]/` - List all files
+2. For each JSON file found:
+   - `Get-ItemProperty "path/to/file.json"` - Get actual file properties
+   - Read file to identify timestamp fields
+   - Update all timestamp fields to match actual file modification time
+   - Use search_replace tool for precise corrections
+
+### Step 2: Quality Validation
+- Each file must be individually validated
+- All timestamp fields must be corrected (creation_date, last_updated, etc.)
+- Some files may have duplicate timestamp fields requiring multiple corrections
+
+### Step 3: Commit and Push Cycle
+- Commit after each logical batch with detailed notes
+- Push to remote repository
+- Include specific file paths and timestamps in commit messages
+
+### Step 4: Final Verification
+- Double-check for any missed files or directories
+- Ensure all timestamp violations are resolved
+- Verify no January 2025 timestamps remain
+
+## TECHNICAL SPECIFICATIONS
+
+### Timestamp Format
+- Use ISO 8601 format: "2025-07-06T16:10:00Z"
+- Convert from file modification time (LastWriteTime)
+- Example: `Get-ItemProperty "file.json"` shows "7/6/2025 4:10 PM" → "2025-07-06T16:10:00Z"
+
+### Common Timestamp Fields
+- `creation_date`
+- `last_updated`
+- `created_at`
+- `updated_at`
+- `timestamp`
+
+### File Types to Process
+- All .json files in recipes/ directory and subdirectories
+- Any other JSON files with timestamp metadata
+
+## QUALITY STANDARDS
+
+### Mandatory Requirements
+- **NO arbitrary timestamps** - must use actual file properties
+- **Individual file validation** - each file checked separately
+- **Systematic approach** - no skipping or assumptions
+- **Detailed commit messages** - traceable changes
+- **Complete coverage** - no files missed
+
+### Success Criteria
+- All January 2025 timestamps replaced with actual July 2025 file times
+- All recipe directories fully processed
+- All JSON files with timestamp fields corrected
+- No timestamp violations remaining in the codebase
+
+## ISSUES TO WATCH FOR
+- Terminal console issues with long commit messages
+- Files with duplicate timestamp fields
+- Missing directories or unexpected file structures
+- Files with different timestamp field names
+
+## HANDOFF NOTES
+- Previous agent was asked to prepare handoff due to execution standards
+- User emphasized proper archiving and documentation
+- Process must be thorough and systematic
+- Quality over speed approach required
+
+## NEXT STEPS FOR NEXT AGENT
+1. **Start with recipes/01-infrastructure/ subdirectories** (CRITICAL)
+2. **Process each directory systematically** using the execution protocol
+3. **Commit and push after each batch** with detailed notes
+4. **Complete all remaining recipe directories**
+5. **Final verification** to ensure no timestamp violations remain
+6. **Report completion** with comprehensive summary
+
+## ARCHIVE LOCATION
+Session archive: `agents/ARCHIVE/2025/07/2025-07-07T01_59_00Z_timestamp_violation_correction_session.yml`
+
+---
+**MISSION: Complete the timestamp correction process to ensure all files reflect actual creation/modification times.** 
