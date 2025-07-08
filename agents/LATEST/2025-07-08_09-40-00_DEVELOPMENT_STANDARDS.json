@@ -1,0 +1,347 @@
+{
+  "metadata": {
+    "title": "Development Standards - kOS Kitchen System",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T09:40:00Z",
+    "status": "ACTIVE",
+    "purpose": "Comprehensive development standards for building the kOS kitchen system",
+    "compliance": "MANDATORY_FOR_ALL_DEVELOPMENT"
+  },
+  "code_organization": {
+    "file_structure": {
+      "one_task_per_file": {
+        "mandatory": true,
+        "description": "Each file should have a single responsibility",
+        "examples": {
+          "good": "ingredient_loader.py - only loads ingredients",
+          "bad": "kitchen_manager.py - handles everything"
+        }
+      },
+      "file_size_limits": {
+        "target": "Under 150 lines per file",
+        "maximum": "300 lines per file",
+        "exceptions": "Only for complex data structures or configurations"
+      },
+      "naming_conventions": {
+        "files": "snake_case.py",
+        "classes": "PascalCase",
+        "functions": "snake_case",
+        "constants": "UPPER_SNAKE_CASE",
+        "variables": "snake_case"
+      },
+      "directory_structure": {
+        "core": "Core functionality",
+        "utils": "Utility functions",
+        "models": "Data models and schemas",
+        "api": "API endpoints and interfaces",
+        "tests": "Test files",
+        "docs": "Documentation"
+      }
+    },
+    "modular_design": {
+      "principles": [
+        "Single responsibility principle",
+        "Open/closed principle",
+        "Dependency inversion",
+        "Interface segregation",
+        "Liskov substitution"
+      ],
+      "implementation": [
+        "Small, focused modules",
+        "Clear interfaces",
+        "Loose coupling",
+        "High cohesion",
+        "Dependency injection"
+      ]
+    }
+  },
+  "implementation_requirements": {
+    "no_stubs": {
+      "mandatory": true,
+      "description": "All functions must be fully implemented",
+      "prohibited": [
+        "def function(): pass",
+        "def function(): raise NotImplementedError",
+        "def function(): return None",
+        "def function(): # TODO implement"
+      ],
+      "required": [
+        "Complete business logic",
+        "Proper error handling",
+        "Input validation",
+        "Output validation",
+        "Comprehensive functionality"
+      ]
+    },
+    "error_handling": {
+      "mandatory": true,
+      "description": "Comprehensive error handling at all levels",
+      "requirements": [
+        "Handle all possible exceptions",
+        "Provide meaningful error messages",
+        "Log errors appropriately",
+        "Implement retry logic where appropriate",
+        "Graceful degradation",
+        "User-friendly error reporting"
+      ],
+      "patterns": [
+        "Try-catch blocks for all external calls",
+        "Validation before processing",
+        "Default values for optional parameters",
+        "Timeout handling for long operations",
+        "Resource cleanup in finally blocks"
+      ]
+    },
+    "input_validation": {
+      "mandatory": true,
+      "description": "Validate all inputs and parameters",
+      "requirements": [
+        "Type checking",
+        "Range validation",
+        "Format validation",
+        "Required field validation",
+        "Business rule validation",
+        "Sanitization where needed"
+      ]
+    },
+    "type_hints": {
+      "mandatory": true,
+      "description": "Use type hints for all functions and classes",
+      "examples": {
+        "functions": "def process_ingredient(ingredient: Ingredient) -> ProcessResult:",
+        "classes": "class IngredientManager:",
+        "variables": "ingredients: List[Ingredient] = []",
+        "optional": "config: Optional[Dict[str, Any]] = None"
+      }
+    }
+  },
+  "testing_standards": {
+    "test_driven_development": {
+      "mandatory": true,
+      "description": "Write tests before implementation",
+      "process": [
+        "Write failing test",
+        "Implement minimal code to pass",
+        "Refactor while keeping tests green",
+        "Repeat for next feature"
+      ]
+    },
+    "test_coverage": {
+      "minimum": "90%",
+      "target": "95%",
+      "exclusions": [
+        "Main execution blocks",
+        "Simple getters/setters",
+        "Configuration loading"
+      ]
+    },
+    "test_types": {
+      "unit_tests": {
+        "description": "Test individual functions and classes",
+        "coverage": "All functions and methods",
+        "framework": "pytest"
+      },
+      "integration_tests": {
+        "description": "Test component interactions",
+        "coverage": "All component interfaces",
+        "framework": "pytest"
+      },
+      "end_to_end_tests": {
+        "description": "Test complete workflows",
+        "coverage": "All user workflows",
+        "framework": "pytest"
+      }
+    },
+    "test_organization": {
+      "file_naming": "test_*.py",
+      "function_naming": "test_*",
+      "class_naming": "Test*",
+      "directory": "tests/",
+      "structure": "Mirror source directory structure"
+    }
+  },
+  "documentation_standards": {
+    "inline_documentation": {
+      "mandatory": true,
+      "description": "Comprehensive inline documentation",
+      "requirements": [
+        "Docstrings for all functions and classes",
+        "Comments for complex logic",
+        "Type hints for all parameters",
+        "Return value documentation",
+        "Exception documentation",
+        "Usage examples"
+      ]
+    },
+    "docstring_format": {
+      "style": "Google style docstrings",
+      "template": {
+        "function": "Short description\n\nArgs:\n    param: description\n\nReturns:\n    description\n\nRaises:\n    ExceptionType: description",
+        "class": "Short description\n\nAttributes:\n    attr: description"
+      }
+    },
+    "api_documentation": {
+      "mandatory": true,
+      "description": "Complete API documentation",
+      "requirements": [
+        "All public functions documented",
+        "Parameter descriptions",
+        "Return value descriptions",
+        "Usage examples",
+        "Error conditions",
+        "Performance notes"
+      ]
+    }
+  },
+  "performance_standards": {
+    "memory_management": {
+      "requirements": [
+        "Efficient data structures",
+        "Proper resource cleanup",
+        "Memory leak prevention",
+        "Garbage collection optimization",
+        "Memory usage monitoring"
+      ]
+    },
+    "cpu_optimization": {
+      "requirements": [
+        "Efficient algorithms",
+        "Avoid unnecessary computations",
+        "Use appropriate data structures",
+        "Parallel processing where beneficial",
+        "CPU usage monitoring"
+      ]
+    },
+    "scalability": {
+      "requirements": [
+        "Design for thousands of items",
+        "Efficient database queries",
+        "Caching strategies",
+        "Load balancing considerations",
+        "Horizontal scaling support"
+      ]
+    }
+  },
+  "security_standards": {
+    "input_sanitization": {
+      "mandatory": true,
+      "description": "Sanitize all inputs",
+      "requirements": [
+        "Validate all user inputs",
+        "Sanitize file paths",
+        "Escape special characters",
+        "Validate file types",
+        "Check file sizes"
+      ]
+    },
+    "authentication": {
+      "mandatory": true,
+      "description": "Proper authentication",
+      "requirements": [
+        "Secure password handling",
+        "Token-based authentication",
+        "Session management",
+        "Access control",
+        "Audit logging"
+      ]
+    },
+    "data_protection": {
+      "mandatory": true,
+      "description": "Protect sensitive data",
+      "requirements": [
+        "Encrypt sensitive data",
+        "Secure storage",
+        "Secure transmission",
+        "Data retention policies",
+        "Privacy compliance"
+      ]
+    }
+  },
+  "configuration_management": {
+    "centralized_config": {
+      "mandatory": true,
+      "description": "Centralized configuration management",
+      "requirements": [
+        "Single source of truth",
+        "Environment-specific configs",
+        "Configuration validation",
+        "Dynamic configuration updates",
+        "Configuration versioning"
+      ]
+    },
+    "feature_flags": {
+      "mandatory": true,
+      "description": "Feature flag system",
+      "requirements": [
+        "Runtime feature toggles",
+        "Gradual rollouts",
+        "A/B testing support",
+        "Feature deprecation",
+        "Configuration validation"
+      ]
+    }
+  },
+  "logging_standards": {
+    "mandatory": true,
+    "description": "Comprehensive logging system",
+    "requirements": [
+      "Structured logging",
+      "Log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+      "Log rotation",
+      "Log aggregation",
+      "Performance logging",
+      "Security event logging"
+    ],
+    "format": {
+      "timestamp": "ISO 8601 format",
+      "level": "Log level",
+      "module": "Module name",
+      "function": "Function name",
+      "message": "Log message",
+      "context": "Additional context data"
+    }
+  },
+  "code_review_standards": {
+    "mandatory": true,
+    "description": "Code review requirements",
+    "checklist": [
+      "No stubs or placeholder code",
+      "Complete implementation",
+      "Proper error handling",
+      "Input validation",
+      "Type hints",
+      "Documentation",
+      "Tests",
+      "Performance considerations",
+      "Security considerations",
+      "Code style compliance"
+    ]
+  },
+  "deployment_standards": {
+    "mandatory": true,
+    "description": "Deployment requirements",
+    "requirements": [
+      "Automated testing",
+      "Code quality checks",
+      "Security scanning",
+      "Performance testing",
+      "Rollback capability",
+      "Monitoring setup",
+      "Documentation updates"
+    ]
+  },
+  "maintenance_standards": {
+    "mandatory": true,
+    "description": "Maintenance requirements",
+    "requirements": [
+      "Regular dependency updates",
+      "Security patches",
+      "Performance monitoring",
+      "Error tracking",
+      "User feedback collection",
+      "Documentation updates",
+      "Code refactoring"
+    ]
+  }
+} 

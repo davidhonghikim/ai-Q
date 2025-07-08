@@ -1,0 +1,287 @@
+{
+  "documentation_standards_metadata": {
+    "title": "ai-Q Documentation System Standards",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_timestamp": "2025-07-07T01:53:51Z",
+    "last_updated": "2025-07-07T09:15:00Z",
+    "status": "ACTIVE",
+    "priority": "CRITICAL",
+    "purpose": "Mandatory standards for all agent documentation, archiving, and handoff processes"
+  },
+  "timestamp_standards": {
+    "project_start_date": "2025-06-15T00:00:00Z",
+    "format": "ISO 8601 (YYYY-MM-DDTHH:MM:SSZ)",
+    "timezone": "UTC",
+    "validation_rules": [
+      "All timestamps must be >= 2025-06-15T00:00:00Z",
+      "Any timestamps before mid-June 2025 are INVALID and must be corrected",
+      "Use actual file creation time from file properties for filenames",
+      "NEVER use last write time or arbitrary timestamps",
+      "Maintain consistency across all documentation"
+    ],
+    "required_fields": [
+      "creation_timestamp",
+      "last_updated",
+      "analysis_timestamp (for analysis documents)",
+      "handoff_timestamp (for handoff documents)"
+    ]
+  },
+  "file_naming_conventions": {
+    "format": "YYYY-MM-DD_HH-MM-SS_[document_type]_[description]_v[version]_[status].json",
+    "examples": [
+      "2025-07-07_02-07-57_handoff_next_agent_comprehensive_fixes_and_completion_v1.0.0_FINAL.json",
+      "2025-07-07_02-05-55_analysis_comprehensive_previous_agent_failures_and_critical_issues_v1.0.0_FINAL.json",
+      "2025-07-07_02-07-02_execution_comprehensive_fixes_and_system_completion_plan_v1.0.0_FINAL.json"
+    ],
+    "components": {
+      "timestamp": "YYYY-MM-DD_HH-MM-SS (MUST use actual file creation time from file properties)",
+      "document_type": "handoff, analysis, execution, progress, blueprint, etc.",
+      "description": "descriptive_name_with_underscores",
+      "version": "v1.0.0, v2.0.0, etc.",
+      "status": "DRAFT, FINAL, IN_PROGRESS, etc."
+    },
+    "critical_requirements": [
+      "MUST use actual file creation timestamp from file properties",
+      "NEVER use last write time or arbitrary timestamps",
+      "NEVER use 'current time' or 'now' for filenames",
+      "Use Get-ItemProperty to get actual CreationTime",
+      "Convert to YYYY-MM-DD_HH-MM-SS format"
+    ]
+  },
+  "archiving_system": {
+    "structure": "agents/ARCHIVE/[topic]/[year]/[month]/",
+    "topics": [
+      "handoff",
+      "analysis", 
+      "execution",
+      "blueprint",
+      "progress",
+      "validation"
+    ],
+    "archive_path_format": "agents/ARCHIVE/[topic]/[year]/[month]/[filename_with_creation_timestamp].json",
+    "examples": [
+      "agents/ARCHIVE/handoff/2025/07/2025-07-07_02-07-57_handoff_next_agent_comprehensive_fixes_and_completion_v1.0.0_FINAL.json",
+      "agents/ARCHIVE/analysis/2025/07/2025-07-07_02-05-55_analysis_comprehensive_previous_agent_failures_and_critical_issues_v1.0.0_FINAL.json",
+      "agents/ARCHIVE/execution/2025/07/2025-07-07_02-07-02_execution_comprehensive_fixes_and_system_completion_plan_v1.0.0_FINAL.json"
+    ],
+    "mandatory_rules": [
+      "MOVE old documents to archive immediately when superseded",
+      "Use actual file creation timestamp in archive path",
+      "Organize by topic first, then year/month",
+      "NEVER leave old documents in LATEST/",
+      "Update all index files when archiving"
+    ]
+  },
+  "document_categories": {
+    "handoff": {
+      "purpose": "Agent handoff documentation",
+      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/handoff/YYYY/MM/ (archived)",
+      "required_fields": [
+        "handoff_timestamp",
+        "agent_name",
+        "current_state",
+        "critical_fixes_completed",
+        "immediate_next_steps",
+        "project_rules",
+        "log_location"
+      ]
+    },
+    "analysis": {
+      "purpose": "System analysis and audit reports",
+      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/analysis/YYYY/MM/ (archived)",
+      "required_fields": [
+        "analysis_timestamp",
+        "analyst_name",
+        "analysis_scope",
+        "critical_issues_found",
+        "recommended_actions",
+        "next_agent_instructions"
+      ]
+    },
+    "execution": {
+      "purpose": "Execution plans and implementation guides",
+      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/execution/YYYY/MM/ (archived)",
+      "required_fields": [
+        "execution_timestamp",
+        "planner_name",
+        "execution_scope",
+        "phases",
+        "success_criteria",
+        "validation_procedures"
+      ]
+    },
+    "blueprint": {
+      "purpose": "Architecture and design documents",
+      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/blueprint/YYYY/MM/ (archived)",
+      "required_fields": [
+        "blueprint_timestamp",
+        "architect_name",
+        "design_scope",
+        "architecture_overview",
+        "implementation_guidelines",
+        "validation_criteria"
+      ]
+    },
+    "progress": {
+      "purpose": "Progress tracking and status updates",
+      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/progress/YYYY/MM/ (archived)",
+      "required_fields": [
+        "progress_timestamp",
+        "agent_name",
+        "completed_tasks",
+        "current_status",
+        "next_priorities",
+        "blockers"
+      ]
+    }
+  },
+  "agent_handoff_process": {
+    "mandatory_steps": [
+      {
+        "step": 1,
+        "action": "Archive old documents",
+        "requirements": [
+          "Move all old documents from LATEST/ to appropriate archive directories",
+          "Use actual file creation timestamps in archive paths",
+          "Organize by topic/year/month structure",
+          "Update MASTER_INDEX.json with new locations"
+        ]
+      },
+      {
+        "step": 2,
+        "action": "Create timestamped handoff document",
+        "requirements": [
+          "Use actual file creation timestamp from file properties",
+          "Follow file naming convention with creation timestamp",
+          "Include all required fields",
+          "Validate timestamp >= 2025-06-15"
+        ]
+      },
+      {
+        "step": 3,
+        "action": "Update LATEST directory",
+        "requirements": [
+          "Only current/active documents remain in LATEST/",
+          "All old documents properly archived",
+          "Update any index files",
+          "Maintain chronological order"
+        ]
+      },
+      {
+        "step": 4,
+        "action": "Validate documentation consistency",
+        "requirements": [
+          "Check all timestamps are valid (>= 2025-06-15)",
+          "Ensure no conflicting information",
+          "Verify file naming conventions use actual creation times",
+          "Confirm all required fields present",
+          "Verify proper archive organization"
+        ]
+      }
+    ],
+    "prohibited_actions": [
+      "Using timestamps before mid-June 2025",
+      "Using last write time instead of creation time",
+      "Using arbitrary or 'current' timestamps in filenames",
+      "Creating documents without proper naming",
+      "Leaving documents in wrong directories",
+      "Inconsistent timestamp formats",
+      "Missing required fields",
+      "Leaving old documents in LATEST/"
+    ]
+  },
+  "documentation_validation": {
+    "automated_checks": [
+      "Timestamp validation (>= 2025-06-15)",
+      "File naming convention compliance (actual creation time)",
+      "Required fields presence",
+      "Directory structure compliance",
+      "JSON syntax validation",
+      "Archive organization validation"
+    ],
+    "manual_checks": [
+      "Content consistency across documents",
+      "Logical flow and progression",
+      "Clear handoff instructions",
+      "Complete status reporting",
+      "Proper archive structure",
+      "No old documents in LATEST/"
+    ]
+  },
+  "directory_structure": {
+    "ai-Q/agents/": {
+      "LATEST/": "Current active documents only",
+      "ARCHIVE/[topic]/[year]/[month]/": "Historical documents by topic and date",
+      "analysis/": "Analysis and audit reports",
+      "blueprint/": "System design and execution plans",
+      "TEMPLATES/": "Document templates",
+      "SCHEMAS/": "JSON schemas for validation"
+    },
+    "maintenance_rules": [
+      "LATEST/ contains only current documents",
+      "ARCHIVE/ organized by topic/YYYY/MM with creation timestamps",
+      "Templates updated with current standards",
+      "Schemas validated against current requirements",
+      "No old documents left in LATEST/"
+    ]
+  },
+  "compliance_requirements": {
+    "all_agents_must": [
+      "Follow timestamp standards (>= mid-June 2025)",
+      "Use actual file creation time for filenames",
+      "Use proper file naming conventions",
+      "Include all required fields",
+      "Maintain directory structure",
+      "Archive old documents immediately",
+      "Validate documentation before handoff",
+      "Update index files when archiving"
+    ],
+    "validation_checklist": [
+              "✓ Timestamps are valid (>= 2025-06-15)",
+      "✓ File names use actual creation time from file properties",
+      "✓ All required fields present",
+      "✓ Documents in correct directories",
+      "✓ JSON syntax valid",
+      "✓ Content is consistent",
+      "✓ Handoff instructions clear",
+      "✓ Old documents properly archived",
+      "✓ No old documents in LATEST/",
+      "✓ Archive structure follows topic/year/month"
+    ]
+  },
+  "critical_corrections_needed": [
+    {
+      "priority": "CRITICAL",
+      "action": "Use actual file creation timestamps for all filenames",
+      "method": "Get-ItemProperty to get CreationTime, convert to YYYY-MM-DD_HH-MM-SS format"
+    },
+    {
+      "priority": "CRITICAL", 
+      "action": "Archive old documents to topic/year/month structure",
+      "method": "Move to agents/ARCHIVE/[topic]/[year]/[month]/ with creation timestamp in filename"
+    },
+    {
+      "priority": "CRITICAL",
+      "action": "Never leave old documents in LATEST/",
+      "method": "Archive immediately when superseded"
+    }
+  ],
+  "success_criteria": [
+    "All timestamps >= 2025-06-15T00:00:00Z",
+    "All filenames use actual file creation time from file properties",
+    "All documents include required fields",
+    "Directory structure properly maintained",
+    "No conflicting or inconsistent information",
+    "Clear handoff process for all agents",
+    "Old documents properly archived",
+    "No old documents in LATEST/",
+    "Archive follows topic/year/month structure"
+  ],
+  "enforcement_mechanisms": {
+    "mandatory_validation": "All agents must complete validation checklist before handoff",
+    "failure_consequences": "Any agent who violates these standards will be considered to have failed the handoff",
+    "quality_over_speed": "Proper archiving and naming takes priority over speed",
+    "documentation_requirements": "All changes must be documented in handoff documents"
+  }
+} 

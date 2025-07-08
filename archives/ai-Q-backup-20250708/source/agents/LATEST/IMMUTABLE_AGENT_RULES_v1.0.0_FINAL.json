@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "title": "IMMUTABLE AGENT RULES - Permanent Directions for All Agents",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_timestamp": "2025-07-08T01:30:00Z",
+    "status": "IMMUTABLE",
+    "purpose": "Permanent, immutable rules that ALL agents must ALWAYS follow without exception"
+  },
+  "immutable_rules": {
+    "file_size_limits": {
+      "maximum_lines_per_file": 250,
+      "minimum_lines_per_file": 50,
+      "target_lines_per_file": "150-250",
+      "maximum_tokens_per_file": 30000,
+      "target_tokens_per_file": "15000-25000",
+      "rule": "NEVER create monolithic files. Break everything into smaller logical components."
+    },
+    "code_quality_standards": {
+      "single_responsibility": "Each file must have ONE clear purpose or task type",
+      "no_monolithic_files": "NEVER create files with multiple unrelated functions",
+      "logical_organization": "Group related functionality into separate files",
+      "error_free_code": "NEVER leave files with errors. Double-check work before moving to next file",
+      "testing_requirement": "All code must be tested and validated before completion"
+    },
+    "file_organization": {
+      "one_task_per_file": "Each file should handle one specific type of task or operation",
+      "logical_grouping": "Group files by functionality, not by arbitrary categories",
+      "clear_naming": "File names must clearly indicate their purpose and functionality",
+      "separation_of_concerns": "Keep different types of operations in separate files"
+    },
+    "implementation_standards": {
+      "actual_functionality": "NEVER create metadata-only files. All files must have real working code",
+      "no_fake_implementations": "NEVER return hardcoded success responses. Implement real functionality",
+      "proper_error_handling": "All functions must have comprehensive error handling",
+      "logging_required": "All operations must include appropriate logging",
+      "type_hints": "All functions must include proper type hints"
+    },
+    "documentation_requirements": {
+      "accurate_documentation": "Documentation must reflect actual system capabilities, not theoretical ones",
+      "no_misleading_info": "NEVER claim functionality exists when it doesn't",
+      "clear_instructions": "All handoff documents must include clear, actionable instructions",
+      "permanent_directions": "Create immutable documentation that agents always follow"
+    },
+    "workflow_requirements": {
+      "double_check_before_next": "ALWAYS verify current work is error-free before moving to next task",
+      "no_technical_debt": "NEVER leave broken or incomplete implementations",
+      "quality_over_speed": "Take time to do things right. Quality is more important than speed",
+      "comprehensive_testing": "Test all functionality thoroughly before considering it complete"
+    },
+    "architectural_principles": {
+      "modular_design": "Create modular, reusable components",
+      "simple_over_complex": "Prefer simple, direct implementations over complex abstractions",
+      "working_over_theoretical": "Focus on working functionality over theoretical architecture",
+      "maintainable_code": "Write code that is easy to understand and maintain"
+    }
+  },
+  "mandatory_checklist": {
+    "before_creating_any_file": [
+      "✓ Does this file have a single, clear purpose?",
+      "✓ Is this file under 250 lines?",
+      "✓ Does this file handle one specific type of task?",
+      "✓ Is this file logically separated from other functionality?",
+      "✓ Will this file contain actual working code, not just metadata?"
+    ],
+    "before_completing_any_task": [
+      "✓ Is the code error-free and tested?",
+      "✓ Does the code actually work, not just return fake responses?",
+      "✓ Is the documentation accurate and not misleading?",
+      "✓ Are all functions properly implemented with error handling?",
+      "✓ Is the file size within the 150-250 line target?"
+    ],
+    "before_handoff": [
+      "✓ Are all files working and error-free?",
+      "✓ Is documentation accurate and complete?",
+      "✓ Are clear next steps provided for the next agent?",
+      "✓ Are all timestamps compliant with project standards?",
+      "✓ Is the system actually functional, not just theoretical?"
+    ]
+  },
+  "prohibited_actions": [
+    "Creating files over 250 lines",
+    "Creating metadata-only files without actual functionality",
+    "Returning fake or hardcoded success responses",
+    "Leaving files with errors or incomplete implementations",
+    "Creating misleading documentation",
+    "Creating monolithic files with multiple unrelated functions",
+    "Moving to next task without verifying current work is complete",
+    "Creating complex abstractions before basic functionality works"
+  ],
+  "enforcement": {
+    "mandatory_compliance": "These rules are IMMUTABLE and must be followed by ALL agents",
+    "no_exceptions": "No exceptions are allowed. These rules apply to every agent and every task",
+    "quality_requirement": "Quality and correctness take priority over speed or convenience",
+    "verification_required": "All work must be verified against these rules before completion"
+  },
+  "success_criteria": {
+    "file_quality": [
+      "All files are 150-250 lines",
+      "All files have single, clear purposes",
+      "All files contain actual working code",
+      "All files are error-free and tested"
+    ],
+    "system_quality": [
+      "System is actually functional, not theoretical",
+      "All operations return real results",
+      "Documentation accurately reflects capabilities",
+      "No technical debt or incomplete implementations"
+    ],
+    "workflow_quality": [
+      "All tasks are completed thoroughly before moving to next",
+      "All work is verified and tested",
+      "Clear handoffs with actionable instructions",
+      "No broken or misleading documentation"
+    ]
+  }
+} 

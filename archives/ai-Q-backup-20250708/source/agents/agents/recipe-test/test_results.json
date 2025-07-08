@@ -1,0 +1,13 @@
+{
+  "test_timestamp": "2025-07-07T15:33:09.468494",
+  "tests_passed": 0,
+  "tests_failed": 1,
+  "test_results": [
+    {
+      "test_name": "Recipe Index Loading",
+      "status": "FAIL",
+      "timestamp": "2025-07-07T15:33:09.488761",
+      "details": "Missing fields: ['recipe_categories']"
+    }
+  ]
+}

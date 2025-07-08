@@ -1,0 +1,489 @@
+{
+  "checklist_metadata": {
+    "title": "Recipe Fix Checklist - Systematic Atomic Task Implementation",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-30T23:05:00Z",
+    "status": "ACTIVE_CHECKLIST",
+    "priority": "critical"
+  },
+  "systematic_fix_checklist": {
+    "phase_1_infrastructure": {
+      "title": "Fix Infrastructure Recipes (01-07)",
+      "recipes": [
+        {
+          "recipe_id": "01-core-infrastructure",
+          "file": "01-infrastructure/01-core-infrastructure-recipe.json",
+          "status": "REFERENCE_STANDARD",
+          "notes": "Already at proper level - use as template",
+          "checklist": [
+            "✓ Has implementation_steps with exact_commands",
+            "✓ Has files_to_create with exact paths",
+            "✓ Has acceptance_criteria with measurable criteria",
+            "✓ Has exact_validation_commands for skills",
+            "✓ Has exact_config_spec for tools",
+            "✓ Has troubleshooting_guide with specific solutions",
+            "✓ Has performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "02-unified-docker-system",
+          "file": "01-infrastructure/02-unified-docker-system-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "03-storage-systems",
+          "file": "01-infrastructure/03-storage-systems-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "04-database-setup",
+          "file": "01-infrastructure/04-database-setup-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "05-monitoring-observability",
+          "file": "01-infrastructure/05-monitoring-observability-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "06-api-gateway",
+          "file": "01-infrastructure/06-api-gateway-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "07-authentication-security",
+          "file": "01-infrastructure/07-authentication-security-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against reference standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_2_ai_services": {
+      "title": "Fix AI Services Recipes (02-03)",
+      "recipes": [
+        {
+          "recipe_id": "02-ai-services-master",
+          "file": "02-ai-services/01-ai-services-master-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "03-rag-engine",
+          "file": "03-intelligence/01-rag-engine-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "03-knowledge-graph",
+          "file": "03-intelligence/02-knowledge-graph-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "03-semantic-search",
+          "file": "03-intelligence/03-semantic-search-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_3_interface": {
+      "title": "Fix Interface Recipes (04)",
+      "recipes": [
+        {
+          "recipe_id": "04-web-dashboard",
+          "file": "04-interface/01-web-dashboard-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "04-mobile-app",
+          "file": "04-interface/02-mobile-app-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_4_development": {
+      "title": "Fix Development Recipes (05)",
+      "recipes": [
+        {
+          "recipe_id": "05-development-automation",
+          "file": "05-development-automation/01-development-automation-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_5_content": {
+      "title": "Fix Content Processing Recipes (06)",
+      "recipes": [
+        {
+          "recipe_id": "06-content-ingestion",
+          "file": "06-content-processing/01-content-ingestion-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "06-text-processing",
+          "file": "06-content-processing/02-text-processing-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "06-image-processing",
+          "file": "06-content-processing/03-image-processing-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "06-video-audio-processing",
+          "file": "06-content-processing/04-video-audio-processing-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "06-content-ingestion-core",
+          "file": "06-content-processing/01-content-ingestion-core-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_6_workflows": {
+      "title": "Fix Workflow Recipes (07-10)",
+      "recipes": [
+        {
+          "recipe_id": "07-content-creation-workflows",
+          "file": "07-content-creation-workflows/01-content-creation-workflows-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "08-research-automation",
+          "file": "08-research-automation/01-research-automation-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "09-knowledge-synthesis",
+          "file": "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "10-collaboration-platform",
+          "file": "10-collaboration-platform/01-collaboration-platform-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    },
+    "phase_7_quality": {
+      "title": "Fix Quality and Operations Recipes (11-17)",
+      "recipes": [
+        {
+          "recipe_id": "11-quality-assurance",
+          "file": "11-quality-assurance/01-quality-assurance-recipe.json",
+          "status": "PARTIALLY_FIXED",
+          "notes": "Has implementation_steps but needs validation",
+          "checklist": [
+            "✓ Has implementation_steps with exact_commands",
+            "✓ Has files_to_create with exact paths",
+            "✓ Has acceptance_criteria with measurable criteria",
+            "□ Verify exact_validation_commands for skills",
+            "□ Verify exact_config_spec for tools",
+            "✓ Has troubleshooting_guide with specific solutions",
+            "✓ Has performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "14-monitoring-alerting",
+          "file": "14-monitoring-alerting/01-monitoring-alerting-recipe.json",
+          "status": "PARTIALLY_FIXED",
+          "notes": "Has implementation_steps but needs validation",
+          "checklist": [
+            "✓ Has implementation_steps with exact_commands",
+            "✓ Has files_to_create with exact paths",
+            "✓ Has acceptance_criteria with measurable criteria",
+            "□ Verify exact_validation_commands for skills",
+            "□ Verify exact_config_spec for tools",
+            "✓ Has troubleshooting_guide with specific solutions",
+            "✓ Has performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "15-backup-recovery",
+          "file": "15-backup-recovery/01-backup-recovery-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "16-scaling-optimization",
+          "file": "16-scaling-optimization/01-scaling-optimization-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        },
+        {
+          "recipe_id": "17-deployment-automation",
+          "file": "17-deployment-automation/01-deployment-automation-recipe.json",
+          "status": "NEEDS_FIX",
+          "notes": "Check against infrastructure standard",
+          "checklist": [
+            "□ Add implementation_steps with exact_commands",
+            "□ Add files_to_create with exact paths",
+            "□ Add acceptance_criteria with measurable criteria",
+            "□ Add exact_validation_commands for skills",
+            "□ Add exact_config_spec for tools",
+            "□ Add troubleshooting_guide with specific solutions",
+            "□ Add performance_benchmarks with exact targets"
+          ]
+        }
+      ]
+    }
+  },
+  "validation_criteria": {
+    "each_recipe_must_have": [
+      "recipe_metadata with version 5.0.0 and last_updated",
+      "implementation_steps with exact_commands array",
+      "implementation_steps with files_to_create array",
+      "implementation_steps with acceptance_criteria array",
+      "exact_validation_commands for all skills",
+      "exact_config_spec for all tools",
+      "troubleshooting_guide with specific solutions",
+      "performance_benchmarks with exact targets",
+      "acceptance_criteria with measurable outcomes",
+      "deliverables with specific achievements"
+    ],
+    "quality_gates": [
+      "No generic commands - all must be specific",
+      "No room for interpretation in any task",
+      "All file paths must be exact",
+      "All commands must be executable",
+      "All criteria must be measurable",
+      "All solutions must be specific"
+    ]
+  }
+} 

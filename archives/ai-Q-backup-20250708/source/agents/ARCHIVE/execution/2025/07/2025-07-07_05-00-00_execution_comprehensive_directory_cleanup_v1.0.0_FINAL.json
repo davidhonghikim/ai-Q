@@ -1,0 +1,187 @@
+{
+  "metadata": {
+    "title": "Comprehensive Directory Cleanup and Standardization Execution Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-07T05:00:00Z",
+    "status": "FINAL",
+    "purpose": "Fix all directory structure, naming convention, and timestamp issues discovered in audit"
+  },
+  "critical_issues_discovered": {
+    "naming_convention_violations": [
+      "COMPREHENSIVE_SYSTEM_ANALYSIS.json - No timestamp prefix",
+      "EXECUTION_PLAN.json - No timestamp prefix", 
+      "MISSING_COMPONENTS_ANALYSIS.json - No timestamp prefix",
+      "COMPREHENSIVE_IMPLEMENTATION_PLAN.json - No timestamp prefix",
+      "REGISTRY_IMPLEMENTATION_GUIDE.json - No timestamp prefix",
+      "PRACTICAL_IMPLEMENTATION_GUIDE.json - No timestamp prefix",
+      "NEXT_AGENT_EXECUTION_PROMPT.json - No timestamp prefix",
+      "MODULAR_REGISTRY_IMPLEMENTATION_GUIDE.json - No timestamp prefix",
+      "IMPLEMENTATION_GUIDE.json - No timestamp prefix"
+    ],
+    "wrong_directory_placement": [
+      "Execution files in analysis directory",
+      "Files in ARCHIVE/analysis/2025/07/ instead of ARCHIVE/2025/07/06/",
+      "Mixed file types in same directories"
+    ],
+    "january_2025_timestamps": [
+      "COMPREHENSIVE_SYSTEM_ANALYSIS.json: 2025-01-27T15:00:00Z",
+      "EXECUTION_PLAN.json: 2025-01-27T22:00:00Z",
+      "Multiple files with conversion_timestamp: 2025-01-27T22:30:00Z"
+    ],
+         "directory_structure_violations": [
+       "ARCHIVE/analysis/2025/07/ - CORRECT (topic first, then date)",
+       "ARCHIVE/execution/2025/07/ - CORRECT (topic first, then date)",
+       "Files in ARCHIVE root directory - Must be moved to proper subdirectories",
+       "Files not in proper topic-based subdirectories with date organization"
+     ]
+  },
+  "execution_plan": {
+    "phase_1_rename_non_compliant_files": {
+      "duration": "1 hour",
+      "priority": "CRITICAL",
+      "files_to_rename": [
+                 {
+           "current": "ai-Q/agents/ARCHIVE/analysis/2025/07/COMPREHENSIVE_SYSTEM_ANALYSIS.json",
+           "new": "ai-Q/agents/ARCHIVE/analysis/2025/07/2025-07-06_16-45-00_analysis_comprehensive_system_analysis_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T16:45:00Z"
+         },
+                 {
+           "current": "ai-Q/agents/ARCHIVE/analysis/2025/07/MISSING_COMPONENTS_ANALYSIS.json",
+           "new": "ai-Q/agents/ARCHIVE/analysis/2025/07/2025-07-06_16-45-00_analysis_missing_components_analysis_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T16:45:00Z"
+         },
+                 {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/EXECUTION_PLAN.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_02-35-00_execution_main_execution_plan_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T02:35:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/COMPREHENSIVE_IMPLEMENTATION_PLAN.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_02-40-00_execution_comprehensive_implementation_plan_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T02:40:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/REGISTRY_IMPLEMENTATION_GUIDE.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_02-45-00_execution_registry_implementation_guide_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T02:45:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/PRACTICAL_IMPLEMENTATION_GUIDE.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_02-50-00_execution_practical_implementation_guide_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T02:50:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/NEXT_AGENT_EXECUTION_PROMPT.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_02-55-00_execution_next_agent_execution_prompt_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T02:55:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/MODULAR_REGISTRY_IMPLEMENTATION_GUIDE.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_03-00-00_execution_modular_registry_implementation_guide_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T03:00:00Z"
+         },
+         {
+           "current": "ai-Q/agents/ARCHIVE/execution/2025/07/IMPLEMENTATION_GUIDE.json",
+           "new": "ai-Q/agents/ARCHIVE/execution/2025/07/2025-07-06_03-05-00_execution_implementation_guide_v1.0.0_FINAL.json",
+           "git_date": "2025-07-06T03:05:00Z"
+         }
+      ]
+    },
+         "phase_2_move_files_to_correct_directories": {
+       "duration": "30 minutes",
+       "priority": "CRITICAL",
+       "directory_restructure": [
+         {
+           "action": "Create proper topic-based structure with date subdirectories",
+           "create_directories": [
+             "ai-Q/agents/ARCHIVE/analysis/2025/07/",
+             "ai-Q/agents/ARCHIVE/execution/2025/07/",
+             "ai-Q/agents/ARCHIVE/handoff/2025/07/",
+             "ai-Q/agents/ARCHIVE/progress/2025/07/"
+           ]
+         },
+         {
+           "action": "Move all files from ARCHIVE root to proper subdirectories",
+           "files_to_move": [
+             "All progress files to ARCHIVE/progress/2025/07/",
+             "All handoff files to ARCHIVE/handoff/2025/07/",
+             "All analysis files to ARCHIVE/analysis/2025/07/",
+             "All execution files to ARCHIVE/execution/2025/07/"
+           ]
+         },
+         {
+           "action": "Move all files from ARCHIVE/analysis/2025/07/ to ARCHIVE/analysis/2025/07/ (already correct)",
+           "files_to_move": "All analysis files with proper timestamps"
+         },
+         {
+           "action": "Move all files from ARCHIVE/execution/2025/07/ to ARCHIVE/execution/2025/07/ (already correct)",
+           "files_to_move": "All execution files with proper timestamps"
+         },
+         {
+           "action": "Remove empty directories",
+           "directories_to_remove": [
+             "ai-Q/agents/ARCHIVE/analysis/",
+             "ai-Q/agents/ARCHIVE/execution/"
+           ]
+         }
+       ]
+     },
+    "phase_3_fix_inline_timestamps": {
+      "duration": "1 hour",
+      "priority": "CRITICAL",
+      "timestamp_corrections": [
+        {
+          "file_pattern": "COMPREHENSIVE_SYSTEM_ANALYSIS.json",
+          "changes": [
+            "last_updated: 2025-01-27T15:00:00Z → 2025-07-06T16:45:00Z",
+            "conversion_timestamp: 2025-01-27T22:30:00Z → 2025-07-06T16:45:00Z"
+          ]
+        },
+        {
+          "file_pattern": "EXECUTION_PLAN.json",
+          "changes": [
+            "last_updated: 2025-01-27T22:00:00Z → 2025-07-06T02:35:00Z",
+            "conversion_timestamp: 2025-01-27T22:30:00Z → 2025-07-06T02:35:00Z"
+          ]
+        },
+        {
+          "file_pattern": "All other renamed files",
+          "changes": [
+            "Update all timestamps to match git creation dates",
+            "Remove any January 2025 timestamps",
+            "Ensure consistency with filename timestamps"
+          ]
+        }
+      ]
+    },
+    "phase_4_validate_and_cleanup": {
+      "duration": "30 minutes",
+      "priority": "HIGH",
+      "validation_checks": [
+        "All files follow naming convention",
+        "All files in correct date-based directories",
+        "No January 2025 timestamps remain",
+        "No empty directories",
+        "Directory structure is clean and organized"
+      ]
+    }
+  },
+     "success_criteria": [
+     "Zero files with non-compliant names",
+     "All files in proper topic-based directories with date organization",
+     "No files in ARCHIVE root directory",
+     "All inline timestamps match filename timestamps",
+     "No January 2025 timestamps anywhere",
+     "Clean directory structure following standards",
+     "All files properly categorized by type"
+   ],
+  "critical_reminders": [
+    "Quality over speed - do it right the first time",
+    "Use git history for true creation dates",
+    "Update ALL inline timestamps simultaneously",
+    "Verify each file after moving/renaming",
+    "No January 2025 timestamps should remain anywhere",
+    "Follow established naming convention exactly"
+  ]
+} 

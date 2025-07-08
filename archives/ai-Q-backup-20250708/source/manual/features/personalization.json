@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "Personalization & User Profiles",
+    "description": "Spec for personalization, user profiles, preferences, memory/context, privacy controls, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support user profiles, preferences, memory/context, privacy controls, notifications, and activity feeds.",
+  "requirements": [
+    "Implement user profile and preference management.",
+    "Build privacy and access control features.",
+    "Design and implement timeline, gallery, and conversation UIs.",
+    "Integrate notifications and activity feeds."
+  ],
+  "integration": {
+    "postgres": {
+      "table": "users, preferences, notifications, activity_feed",
+      "usage": "Store user data, preferences, and activity."
+    },
+    "redis": {
+      "usage": "Session management, notifications."
+    }
+  },
+  "agent_tasks": [
+    "Implement user profile and preference endpoints.",
+    "Build privacy and access control UI.",
+    "Design and implement timeline, gallery, and conversation UIs.",
+    "Integrate notifications and activity feeds.",
+    "Write tests for all personalization features.",
+    "Document setup and usage."
+  ]
+} 

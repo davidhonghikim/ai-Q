@@ -1,0 +1,406 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI-Q Knowledge Library System Environment Configuration Schema",
+  "description": "JSON schema for validating environment configuration files",
+  "type": "object",
+  "required": [
+    "metadata",
+    "project_configuration",
+    "network_configuration",
+    "database_configuration",
+    "search_engine_configuration",
+    "graph_database_configuration",
+    "vector_database_configuration",
+    "object_storage_configuration",
+    "api_server_configuration",
+    "web_dashboard_configuration",
+    "security_configuration",
+    "logging_configuration",
+    "feature_flags"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["version", "timestamp", "created_by", "model_version", "purpose"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "purpose": {
+          "type": "string"
+        }
+      }
+    },
+    "project_configuration": {
+      "type": "object",
+      "required": ["name", "version", "environment", "node_env"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        },
+        "node_env": {
+          "type": "string",
+          "enum": ["development", "production", "test"]
+        }
+      }
+    },
+    "network_configuration": {
+      "type": "object",
+      "required": ["subnet", "gateway", "container_prefix", "service_namespace"],
+      "properties": {
+        "subnet": {
+          "type": "string",
+          "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/\\d{1,2}$"
+        },
+        "gateway": {
+          "type": "string",
+          "pattern": "^\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}$"
+        },
+        "container_prefix": {
+          "type": "string"
+        },
+        "service_namespace": {
+          "type": "string"
+        }
+      }
+    },
+    "database_configuration": {
+      "type": "object",
+      "required": ["postgresql", "redis"],
+      "properties": {
+        "postgresql": {
+          "type": "object",
+          "required": ["port", "database", "user", "password", "host", "initdb_args"],
+          "properties": {
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "database": {
+              "type": "string"
+            },
+            "user": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "initdb_args": {
+              "type": "string"
+            }
+          }
+        },
+        "redis": {
+          "type": "object",
+          "required": ["port", "password", "host", "database"],
+          "properties": {
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "password": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "database": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 15
+            }
+          }
+        }
+      }
+    },
+    "search_engine_configuration": {
+      "type": "object",
+      "required": ["elasticsearch"],
+      "properties": {
+        "elasticsearch": {
+          "type": "object",
+          "required": ["port", "cluster_port", "password", "host", "discovery_type", "xpack_security_enabled", "java_opts"],
+          "properties": {
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "cluster_port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "password": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "discovery_type": {
+              "type": "string"
+            },
+            "xpack_security_enabled": {
+              "type": "boolean"
+            },
+            "java_opts": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "graph_database_configuration": {
+      "type": "object",
+      "required": ["neo4j"],
+      "properties": {
+        "neo4j": {
+          "type": "object",
+          "required": ["browser_port", "bolt_port", "user", "password", "host", "plugins", "procedures_unrestricted", "heap_initial_size", "heap_max_size", "pagecache_size"],
+          "properties": {
+            "browser_port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "bolt_port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "user": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "plugins": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "procedures_unrestricted": {
+              "type": "string"
+            },
+            "heap_initial_size": {
+              "type": "string"
+            },
+            "heap_max_size": {
+              "type": "string"
+            },
+            "pagecache_size": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "vector_database_configuration": {
+      "type": "object",
+      "required": ["weaviate"],
+      "properties": {
+        "weaviate": {
+          "type": "object",
+          "required": ["port", "host", "query_defaults_limit", "authentication_anonymous_access_enabled", "persistence_data_path", "default_vectorizer_module", "enable_modules", "transformers_inference_api", "cluster_hostname"],
+          "properties": {
+            "port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "host": {
+              "type": "string"
+            },
+            "query_defaults_limit": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "authentication_anonymous_access_enabled": {
+              "type": "boolean"
+            },
+            "persistence_data_path": {
+              "type": "string"
+            },
+            "default_vectorizer_module": {
+              "type": "string"
+            },
+            "enable_modules": {
+              "type": "string"
+            },
+            "transformers_inference_api": {
+              "type": "string"
+            },
+            "cluster_hostname": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "object_storage_configuration": {
+      "type": "object",
+      "required": ["minio"],
+      "properties": {
+        "minio": {
+          "type": "object",
+          "required": ["api_port", "console_port", "root_user", "root_password", "host", "console_address"],
+          "properties": {
+            "api_port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "console_port": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            "root_user": {
+              "type": "string"
+            },
+            "root_password": {
+              "type": "string"
+            },
+            "host": {
+              "type": "string"
+            },
+            "console_address": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "api_server_configuration": {
+      "type": "object",
+      "required": ["port", "host", "jwt_secret", "environment"],
+      "properties": {
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "host": {
+          "type": "string"
+        },
+        "jwt_secret": {
+          "type": "string",
+          "minLength": 32
+        },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        }
+      }
+    },
+    "web_dashboard_configuration": {
+      "type": "object",
+      "required": ["port", "host", "environment"],
+      "properties": {
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "host": {
+          "type": "string"
+        },
+        "environment": {
+          "type": "string",
+          "enum": ["development", "staging", "production"]
+        }
+      }
+    },
+    "security_configuration": {
+      "type": "object",
+      "required": ["cors_origins", "rate_limit_requests_per_minute", "jwt_expiration_hours", "bcrypt_rounds"],
+      "properties": {
+        "cors_origins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rate_limit_requests_per_minute": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "jwt_expiration_hours": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "bcrypt_rounds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 14
+        }
+      }
+    },
+    "logging_configuration": {
+      "type": "object",
+      "required": ["level", "format", "destination"],
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": ["debug", "info", "warn", "error"]
+        },
+        "format": {
+          "type": "string",
+          "enum": ["JSON", "text"]
+        },
+        "destination": {
+          "type": "string",
+          "enum": ["console", "file", "both"]
+        }
+      }
+    },
+    "feature_flags": {
+      "type": "object",
+      "required": ["enable_rag", "enable_knowledge_graph", "enable_vector_search", "enable_object_storage", "enable_api_documentation"],
+      "properties": {
+        "enable_rag": {
+          "type": "boolean"
+        },
+        "enable_knowledge_graph": {
+          "type": "boolean"
+        },
+        "enable_vector_search": {
+          "type": "boolean"
+        },
+        "enable_object_storage": {
+          "type": "boolean"
+        },
+        "enable_api_documentation": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+} 

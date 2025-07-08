@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "title": "Agent Workflow Standards - kOS Kitchen System",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T09:35:00Z",
+    "status": "ACTIVE",
+    "purpose": "Mandatory workflow standards for all agents working on the kOS kitchen system",
+    "compliance": "MANDATORY_FOR_ALL_AGENTS"
+  },
+  "agent_introduction": {
+    "mandatory": true,
+    "format": "I am [Agent Name], specialized in [Specialization], currently working on [Current Role] in the kOS kitchen system project.",
+    "example": "I am Q-Assist (GPT-4.1), specialized in system architecture and development, currently working on creating comprehensive execution plans and workflow standards for the kOS kitchen system project."
+  },
+  "pre_work_requirements": {
+    "review_previous_work": {
+      "mandatory": true,
+      "description": "Review all previous agent work for quality and completeness",
+      "checklist": [
+        "Read the latest handoff document in agents/LATEST/",
+        "Review recent changelog entries in agents/ARCHIVE/",
+        "Check for any incomplete implementations or stubs",
+        "Verify all dependencies are properly implemented",
+        "Identify any technical debt from previous work",
+        "Understand the current state of the system"
+      ]
+    },
+    "understand_execution_plan": {
+      "mandatory": true,
+      "description": "Completely understand the execution plan before starting",
+      "requirements": [
+        "Read the complete execution plan document",
+        "Understand the current phase and priorities",
+        "Identify your specific tasks and responsibilities",
+        "Understand dependencies and prerequisites",
+        "Know the success criteria for your phase"
+      ]
+    },
+    "check_system_state": {
+      "mandatory": true,
+      "description": "Check the current state of the system",
+      "actions": [
+        "Run system health checks",
+        "Verify all required files exist",
+        "Check for any errors or warnings",
+        "Validate configuration files",
+        "Test existing functionality"
+      ]
+    }
+  },
+  "implementation_standards": {
+    "no_stubs_or_placeholders": {
+      "mandatory": true,
+      "description": "All code must be fully implemented with no stubs or placeholders",
+      "prohibited": [
+        "TODO comments without implementation",
+        "Pass statements without logic",
+        "Raise NotImplementedError",
+        "Return None without proper logic",
+        "Mock data in production code",
+        "Placeholder implementations"
+      ],
+      "required": [
+        "Complete business logic implementation",
+        "Proper error handling",
+        "Input validation",
+        "Output validation",
+        "Comprehensive functionality"
+      ]
+    },
+    "code_quality": {
+      "mandatory": true,
+      "description": "Maintain high code quality standards",
+      "requirements": [
+        "Use type hints for all functions and classes",
+        "Write comprehensive docstrings",
+        "Follow PEP 8 style guidelines",
+        "Use descriptive variable and function names",
+        "Keep functions small and focused",
+        "Avoid code duplication",
+        "Handle all edge cases"
+      ]
+    },
+    "file_organization": {
+      "mandatory": true,
+      "description": "Organize code properly with one task per file",
+      "requirements": [
+        "One responsibility per file",
+        "Keep files under 150 lines when possible",
+        "Use clear, descriptive file names",
+        "Organize into logical subdirectories",
+        "Follow consistent naming conventions",
+        "Separate concerns properly"
+      ]
+    },
+    "testing_requirements": {
+      "mandatory": true,
+      "description": "Write comprehensive tests for all code",
+      "requirements": [
+        "Write tests before implementation (TDD)",
+        "Achieve minimum 90% test coverage",
+        "Test all edge cases and error conditions",
+        "Write integration tests for component interactions",
+        "Write end-to-end tests for complete workflows",
+        "Document all test cases"
+      ]
+    }
+  },
+  "workflow_process": {
+    "planning_phase": {
+      "mandatory": true,
+      "description": "Plan your work before starting implementation",
+      "steps": [
+        "Review the execution plan for your phase",
+        "Identify specific tasks and components to implement",
+        "Understand dependencies and prerequisites",
+        "Plan the implementation approach",
+        "Identify potential challenges and solutions",
+        "Create a detailed work plan"
+      ]
+    },
+    "implementation_phase": {
+      "mandatory": true,
+      "description": "Implement one component at a time with quality",
+      "steps": [
+        "Implement one component completely",
+        "Write tests for the component",
+        "Ensure no stubs or placeholders",
+        "Document the component",
+        "Test the component thoroughly",
+        "Review code quality",
+        "Move to next component only after current is complete"
+      ]
+    },
+    "review_phase": {
+      "mandatory": true,
+      "description": "Review your work before completing",
+      "steps": [
+        "Review all implemented code",
+        "Check for any stubs or placeholders",
+        "Verify all requirements are met",
+        "Run all tests and ensure they pass",
+        "Check code quality and style",
+        "Verify documentation is complete",
+        "Test functionality end-to-end"
+      ]
+    },
+    "documentation_phase": {
+      "mandatory": true,
+      "description": "Document everything thoroughly",
+      "requirements": [
+        "Update inline code documentation",
+        "Write comprehensive function and class docs",
+        "Update API documentation",
+        "Create or update user guides",
+        "Update developer documentation",
+        "Document any configuration changes",
+        "Create handoff notes for next agent"
+      ]
+    }
+  },
+  "quality_assurance": {
+    "code_review": {
+      "mandatory": true,
+      "description": "Review your own code for quality",
+      "checklist": [
+        "No stubs or placeholder implementations",
+        "All functions fully implemented",
+        "Comprehensive error handling",
+        "Proper input validation",
+        "Complete documentation",
+        "All tests passing",
+        "Performance considerations addressed",
+        "Security considerations addressed"
+      ]
+    },
+    "testing_verification": {
+      "mandatory": true,
+      "description": "Verify all tests pass and coverage is adequate",
+      "requirements": [
+        "Run all unit tests",
+        "Run all integration tests",
+        "Run all end-to-end tests",
+        "Verify test coverage is at least 90%",
+        "Test all error conditions",
+        "Test all edge cases",
+        "Verify performance under load"
+      ]
+    },
+    "functionality_verification": {
+      "mandatory": true,
+      "description": "Verify all functionality works as expected",
+      "requirements": [
+        "Test all implemented features",
+        "Verify integration with other components",
+        "Test error handling and recovery",
+        "Verify performance characteristics",
+        "Test security features",
+        "Verify scalability considerations"
+      ]
+    }
+  },
+  "handoff_requirements": {
+    "mandatory": true,
+    "description": "Create comprehensive handoff documentation",
+    "requirements": [
+      "Create detailed handoff document in agents/LATEST/",
+      "Document all completed work",
+      "Document any issues or challenges encountered",
+      "Document any technical debt created",
+      "Provide clear instructions for next agent",
+      "Update changelog with all changes",
+      "Archive completed work properly"
+    ],
+    "handoff_format": {
+      "metadata": "Title, version, timestamp, status",
+      "current_status": "What was accomplished",
+      "next_agent_tasks": "Clear tasks for next agent",
+      "dependencies": "What the next agent needs",
+      "success_criteria": "How to measure success",
+      "references": "Relevant documentation and files"
+    }
+  },
+  "error_handling": {
+    "mandatory": true,
+    "description": "Handle errors and issues properly",
+    "requirements": [
+      "Never leave errors unresolved",
+      "Document all errors and solutions",
+      "Fix root causes, not symptoms",
+      "Test fixes thoroughly",
+      "Update documentation for fixes",
+      "Communicate issues clearly"
+    ]
+  },
+  "communication_standards": {
+    "mandatory": true,
+    "description": "Maintain clear communication throughout work",
+    "requirements": [
+      "Provide regular progress updates",
+      "Communicate any issues immediately",
+      "Ask for clarification when needed",
+      "Document decisions and rationale",
+      "Keep handoff documentation current",
+      "Update status in real-time"
+    ]
+  },
+  "completion_criteria": {
+    "mandatory": true,
+    "description": "Criteria that must be met before marking work complete",
+    "requirements": [
+      "All assigned tasks fully implemented",
+      "No stubs or placeholder code",
+      "All tests passing with adequate coverage",
+      "Complete documentation updated",
+      "Code reviewed for quality",
+      "Functionality verified end-to-end",
+      "Handoff documentation created",
+      "Work archived properly"
+    ]
+  },
+  "best_practices": {
+    "development": [
+      "Write tests first (TDD)",
+      "Implement one feature at a time",
+      "Keep functions small and focused",
+      "Use descriptive names",
+      "Handle all error cases",
+      "Document as you code",
+      "Review code frequently"
+    ],
+    "organization": [
+      "Follow consistent file organization",
+      "Use clear directory structures",
+      "Maintain consistent naming",
+      "Separate concerns properly",
+      "Keep related files together",
+      "Use version control effectively"
+    ],
+    "quality": [
+      "Prioritize quality over speed",
+      "Fix issues immediately",
+      "Don't accumulate technical debt",
+      "Test thoroughly",
+      "Document everything",
+      "Review work before completing"
+    ]
+  },
+  "prohibited_actions": {
+    "mandatory": true,
+    "description": "Actions that are strictly prohibited",
+    "prohibited": [
+      "Leaving stubs or placeholder code",
+      "Using mock data in production",
+      "Skipping tests",
+      "Incomplete implementations",
+      "Poor documentation",
+      "Ignoring error conditions",
+      "Rushing without quality",
+      "Creating technical debt"
+    ]
+  },
+  "success_metrics": {
+    "mandatory": true,
+    "description": "Metrics to measure success",
+    "metrics": [
+      "100% implementation completion (no stubs)",
+      "90%+ test coverage",
+      "All tests passing",
+      "Complete documentation",
+      "No technical debt created",
+      "All requirements met",
+      "System ready for next phase"
+    ]
+  }
+} 

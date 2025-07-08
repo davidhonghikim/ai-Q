@@ -1,0 +1,49 @@
+{
+  "note": "This file is the entry point for all agent documentation. For operational memory, use the RAG/DB system in 11-intelligence.",
+  "agent_docs_index": {
+    "purpose": "Central index for all agent-generated documentation, logs, and collaborative memory.",
+    "primary_memory": "RAG/DB system (see intelligence module)",
+    "file_usage": "Files are for admin use, quick read, and redundant backup for DBs. Agents should use the RAG/DB system for all operational memory and collaboration.",
+    "current_status": "DOCUMENTATION_SYSTEM_COMPLETE",
+    "next_phase": "RECIPE_SYSTEM_IMPLEMENTATION",
+    "sections": [
+      {
+        "name": "Master Index",
+        "description": "Central index for all agent documentation",
+        "file": "agents/MASTER_INDEX.json"
+      },
+      {
+        "name": "Latest Documents",
+        "description": "Most recent handoff, analysis, execution, and progress documents",
+        "directory": "agents/LATEST/"
+      },
+      {
+        "name": "Blueprint Documents",
+        "description": "Architecture, design, analysis, and execution blueprints",
+        "directory": "agents/blueprint/"
+      },
+      {
+        "name": "Analysis Documents",
+        "description": "Comprehensive analysis, error reports, and quality checks",
+        "directory": "agents/analysis/"
+      },
+      {
+        "name": "Templates",
+        "description": "Standardized templates for each document type",
+        "directory": "agents/TEMPLATES/"
+      },
+      {
+        "name": "Schemas",
+        "description": "JSON schemas for document validation",
+        "directory": "agents/SCHEMAS/"
+      },
+      {
+        "name": "Archive",
+        "description": "Historical documents organized by date",
+        "directory": "agents/ARCHIVE/"
+      }
+    ],
+    "agent_memory_reference": "For all agentic memory, context, and collaboration, use the RAG/DB system in 11-intelligence. Files are for backup and admin only.",
+    "next_agent_handoff": "agents/LATEST/2025-07-06_17-30-00_handoff_next_agent_recipe_kitchen_pantry_completion_v1.0.0_FINAL.json"
+  }
+} 

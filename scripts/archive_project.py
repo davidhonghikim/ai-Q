@@ -20,6 +20,7 @@ from datetime import datetime
 from pathlib import Path
 import json
 import hashlib
+import zipfile
 
 # Configure logging
 logging.basicConfig(
@@ -243,8 +244,7 @@ class ProjectArchiver:
         """Create a script to extract the archive."""
         try:
             extract_script = self.destination_path / 'scripts' / 'extract_archive.py'
-            
-            script_content = f'''#!/usr/bin/env python3
+            script_content = '''#!/usr/bin/env python3
 """
 Archive Extraction Script
 Extracts the AI-Q project archive.
@@ -262,37 +262,29 @@ from pathlib import Path
 def extract_archive(archive_path, destination_path):
     """Extract the archive to the specified destination."""
     try:
-        source_path = Path(archive_path) / 'source'
-        dest_path = Path(destination_path)
-        
-        if not source_path.exists():
-            print(f"Error: Archive source not found at {source_path}")
+        archive_source = Path(archive_path) / 'source'
+        dest = Path(destination_path)
+        if not archive_source.exists():
+            print(f"Error: Archive source not found at {archive_source}")
             return False
-        
         # Copy source files
-        shutil.copytree(source_path, dest_path, dirs_exist_ok=True)
-        print(f"Archive extracted to: {dest_path}")
+        shutil.copytree(archive_source, dest, dirs_exist_ok=True)
+        print(f"Archive extracted to: {dest}")
         return True
-        
     except Exception as e:
-        print(f"Error extracting archive: {{e}}")
+        print(f"Error extracting archive: {e}")
         return False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract AI-Q project archive")
     parser.add_argument("destination", help="Destination path for extraction")
     args = parser.parse_args()
-    
     archive_path = Path(__file__).parent.parent
     extract_archive(archive_path, args.destination)
 '''
-            
             with open(extract_script, 'w') as f:
                 f.write(script_content)
-            
-            # Make script executable
             extract_script.chmod(0o755)
-            
             logger.info(f"Created extraction script: {extract_script}")
             return True
         except Exception as e:
@@ -374,6 +366,33 @@ python scripts/extract_archive.py [destination_path]
         self.create_archive_script()
         self.create_readme()
         
+        # Compress the archive directory unless --no-zip is set
+        if not self.options.get('no_zip', False):
+            # Create the zip file first
+            temp_zip_path = str(self.destination_path) + '.zip'
+            logger.info(f"Compressing archive to: {temp_zip_path}")
+            try:
+                shutil.make_archive(str(self.destination_path), 'zip', root_dir=str(self.destination_path))
+                
+                # Get the actual creation time of the zip file and rename it
+                zip_file = Path(temp_zip_path)
+                if zip_file.exists():
+                    # Get creation time and format it properly
+                    creation_time = datetime.fromtimestamp(zip_file.stat().st_ctime)
+                    timestamp_str = creation_time.strftime('%Y-%m-%d_%H-%M-%S')
+                    final_zip_name = f"ai-Q-backup_{timestamp_str}.zip"
+                    final_zip_path = self.destination_path.parent / final_zip_name
+                    
+                    # Rename the zip file to use the standardized timestamp format
+                    zip_file.rename(final_zip_path)
+                    logger.info(f"Archive compressed and renamed to: {final_zip_path}")
+                else:
+                    logger.error("Zip file was not created successfully")
+            except Exception as e:
+                logger.error(f"Failed to compress archive: {e}")
+        else:
+            logger.info("Skipping compression due to --no-zip option.")
+        
         # Log summary
         logger.info(f"Archive completed successfully!")
         logger.info(f"Files archived: {self.metadata['file_count']}")
@@ -425,6 +444,12 @@ Examples:
         help='Show what would be archived without actually doing it'
     )
     
+    parser.add_argument(
+        '--no-zip',
+        action='store_true',
+        help='Do not compress the archive directory into a zip file.'
+    )
+    
     args = parser.parse_args()
     
     # Configure logging level
@@ -437,7 +462,8 @@ Examples:
         args.destination,
         exclude_temp=args.exclude_temp,
         verbose=args.verbose,
-        dry_run=args.dry_run
+        dry_run=args.dry_run,
+        no_zip=args.no_zip
     )
     
     # Execute archiving

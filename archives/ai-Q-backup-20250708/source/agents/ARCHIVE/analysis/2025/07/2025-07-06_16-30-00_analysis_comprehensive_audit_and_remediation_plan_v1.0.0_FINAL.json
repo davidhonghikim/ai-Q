@@ -1,0 +1,307 @@
+{
+  "execution_plan_metadata": {
+    "plan_id": "COMPREHENSIVE_AUDIT_AND_REMEDIATION_2025-07-06",
+    "title": "Systematic Recipe Library Audit and Remediation Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T17:30:00Z",
+    "last_updated": "2025-07-06T18:15:00Z",
+    "priority": "CRITICAL",
+    "estimated_duration": "4-6 hours",
+    "status": "IN_PROGRESS"
+  },
+  "critical_issues_identified": {
+    "issue_1": {
+      "severity": "CRITICAL",
+      "description": "Recipe version inconsistency - 9 out of 12 core infrastructure recipes use v1.0.0 instead of v5.0.0",
+      "affected_files": [
+        "01-05-service-discovery.json",
+        "01-06-message-queue.json", 
+        "01-07-cache-layer.json",
+        "01-08-backup-infrastructure.json",
+        "01-09-security-hardening.json",
+        "01-10-performance-optimization.json",
+        "01-11-disaster-recovery.json",
+        "01-12-documentation-and-handover.json"
+      ],
+      "status": "IN_PROGRESS - 3/9 CONVERTED"
+    },
+    "issue_2": {
+      "severity": "CRITICAL", 
+      "description": "Missing kitchen_execution sections in v5.0.0 recipes",
+      "affected_files": [
+        "01-04-load-balancing.json",
+        "01-05-api-gateway.json"
+      ],
+      "status": "PENDING"
+    },
+    "issue_3": {
+      "severity": "HIGH",
+      "description": "Inconsistent directory structure and naming conventions",
+      "affected_files": [
+        "02-docker/ directory structure",
+        "03-storage-systems/ directory structure",
+        "04-database-setup/ directory structure"
+      ],
+      "status": "PENDING"
+    },
+    "issue_4": {
+      "severity": "MEDIUM",
+      "description": "Port assignment conflicts and inconsistencies",
+      "affected_services": [
+        "Grafana (moved from 3000 to 3001)",
+        "Gitea (moved from 3002 to 3003)"
+      ],
+      "impact": "Potential service conflicts during deployment"
+    }
+  },
+  "execution_progress": {
+    "phase_1_complete": {
+      "status": "COMPLETED",
+      "timestamp": "2025-07-06T17:45:00Z",
+      "actions": [
+        "Comprehensive audit of recipe library structure",
+        "Identification of all v1.0.0 recipes requiring conversion",
+        "Creation of systematic remediation plan"
+      ]
+    },
+    "phase_2_in_progress": {
+      "status": "IN_PROGRESS",
+      "timestamp": "2025-07-06T18:15:00Z",
+      "actions": [
+        "Recipe conversion from v1.0.0 to v5.0.0 standard",
+        "Progress: 3 out of 9 recipes converted",
+        "Converted recipes: 01-05-service-discovery, 01-06-message-queue, 01-07-cache-layer"
+      ]
+    },
+    "phase_3_pending": {
+      "status": "PENDING",
+      "actions": [
+        "Complete remaining 6 recipe conversions",
+        "Add missing kitchen_execution sections to v5.0.0 recipes",
+        "Standardize directory structure and naming conventions",
+        "Update all README.json files",
+        "Validate port assignments and resolve conflicts"
+      ]
+    }
+  },
+  "converted_recipes": {
+    "01-05-service-discovery.json": {
+      "conversion_date": "2025-07-06T17:45:00Z",
+      "status": "COMPLETE",
+      "changes": [
+        "Updated metadata to recipe_metadata",
+        "Added recipe_overview section",
+        "Added pantry_ingredients section",
+        "Added kitchen_execution section with orchestrator_steps",
+        "Updated version to 5.0.0",
+        "Added proper dependencies and kitchen_system configuration"
+      ]
+    },
+    "01-06-message-queue.json": {
+      "conversion_date": "2025-07-06T17:50:00Z", 
+      "status": "COMPLETE",
+      "changes": [
+        "Updated metadata to recipe_metadata",
+        "Added recipe_overview section",
+        "Added pantry_ingredients section",
+        "Added kitchen_execution section with orchestrator_steps",
+        "Updated version to 5.0.0",
+        "Added proper dependencies and kitchen_system configuration"
+      ]
+    },
+    "01-07-cache-layer.json": {
+      "conversion_date": "2025-07-06T18:15:00Z",
+      "status": "COMPLETE", 
+      "changes": [
+        "Updated metadata to recipe_metadata",
+        "Added recipe_overview section",
+        "Added pantry_ingredients section",
+        "Added kitchen_execution section with orchestrator_steps",
+        "Updated version to 5.0.0",
+        "Added proper dependencies and kitchen_system configuration"
+      ]
+    }
+  },
+  "remaining_conversions": {
+    "01-08-backup-infrastructure.json": {
+      "priority": "HIGH",
+      "estimated_time": "30 minutes",
+      "status": "PENDING"
+    },
+    "01-09-security-hardening.json": {
+      "priority": "HIGH", 
+      "estimated_time": "30 minutes",
+      "status": "PENDING"
+    },
+    "01-10-performance-optimization.json": {
+      "priority": "MEDIUM",
+      "estimated_time": "30 minutes", 
+      "status": "PENDING"
+    },
+    "01-11-disaster-recovery.json": {
+      "priority": "HIGH",
+      "estimated_time": "30 minutes",
+      "status": "PENDING"
+    },
+    "01-12-documentation-and-handover.json": {
+      "priority": "MEDIUM",
+      "estimated_time": "20 minutes",
+      "status": "PENDING"
+    }
+  },
+  "next_actions": [
+    "Continue systematic conversion of remaining v1.0.0 recipes",
+    "Add missing kitchen_execution sections to v5.0.0 recipes",
+    "Standardize directory structure across all recipe categories",
+    "Update port assignments and resolve any conflicts",
+    "Validate all recipes for consistency and completeness"
+  ],
+  "quality_metrics": {
+    "recipes_v5_0_0_compliant": "5 out of 12 (41.7%)",
+    "recipes_with_kitchen_execution": "5 out of 12 (41.7%)",
+    "recipes_atomic_and_reproducible": "5 out of 12 (41.7%)",
+    "estimated_completion_time": "2-3 hours remaining"
+  },
+  "remediation_strategy": {
+    "phase_1": {
+      "title": "Complete System Audit",
+      "duration": "1 hour",
+      "tasks": [
+        "Audit all recipe directories for structure consistency",
+        "Document current state of every recipe file",
+        "Identify all version mismatches and missing sections",
+        "Create comprehensive inventory of issues"
+      ]
+    },
+    "phase_2": {
+      "title": "Critical Recipe Fixes",
+      "duration": "2-3 hours", 
+      "tasks": [
+        "Fix v1.0.0 recipes to v5.0.0 standard",
+        "Add missing kitchen_execution.orchestrator_steps",
+        "Ensure all recipes have exact_commands and files_to_create",
+        "Validate atomic task structure"
+      ]
+    },
+    "phase_3": {
+      "title": "Directory Structure Standardization",
+      "duration": "1 hour",
+      "tasks": [
+        "Standardize naming conventions across all directories",
+        "Update README.json files to reflect current structure",
+        "Ensure consistent organization patterns"
+      ]
+    },
+    "phase_4": {
+      "title": "Port Assignment Resolution",
+      "duration": "30 minutes",
+      "tasks": [
+        "Resolve port conflicts in canonical assignments",
+        "Update affected recipes with correct port assignments",
+        "Validate no conflicts remain"
+      ]
+    }
+  },
+  "execution_steps": [
+    {
+      "step_id": "STEP_1",
+      "action": "complete_system_audit",
+      "description": "Perform comprehensive audit of entire recipe library",
+      "sub_steps": [
+        "Audit 01-infrastructure directory structure",
+        "Audit 02-ai-services directory structure", 
+        "Audit 03-intelligence directory structure",
+        "Audit 04-ai-agent-integration directory structure",
+        "Audit 04-interface directory structure",
+        "Audit 05-development-automation directory structure",
+        "Audit 06-content-processing directory structure",
+        "Audit 07-content-creation-workflows directory structure",
+        "Audit 08-research-automation directory structure",
+        "Audit 09-knowledge-synthesis directory structure",
+        "Audit 10-collaboration-platform directory structure",
+        "Audit 11-quality-assurance directory structure",
+        "Audit 12-advanced-interfaces directory structure",
+        "Audit 13-deployment directory structure",
+        "Audit 14-monitoring-alerting directory structure",
+        "Audit 15-backup-recovery directory structure",
+        "Audit 16-scaling-optimization directory structure",
+        "Audit 17-deployment-automation directory structure"
+      ],
+      "expected_output": "Complete audit report with all issues documented"
+    },
+    {
+      "step_id": "STEP_2", 
+      "action": "fix_critical_v1_recipes",
+      "description": "Convert all v1.0.0 recipes to v5.0.0 standard",
+      "sub_steps": [
+        "Fix 01-05-service-discovery.json",
+        "Fix 01-06-message-queue.json",
+        "Fix 01-07-cache-layer.json", 
+        "Fix 01-08-backup-infrastructure.json",
+        "Fix 01-09-security-hardening.json",
+        "Fix 01-10-performance-optimization.json",
+        "Fix 01-11-disaster-recovery.json",
+        "Fix 01-12-documentation-and-handover.json"
+      ],
+      "expected_output": "All recipes converted to v5.0.0 with proper kitchen_execution"
+    },
+    {
+      "step_id": "STEP_3",
+      "action": "add_missing_kitchen_execution",
+      "description": "Add missing kitchen_execution.orchestrator_steps to recipes",
+      "sub_steps": [
+        "Fix 01-04-load-balancing.json kitchen_execution",
+        "Fix 01-05-api-gateway.json kitchen_execution"
+      ],
+      "expected_output": "All recipes have complete kitchen_execution sections"
+    },
+    {
+      "step_id": "STEP_4",
+      "action": "standardize_directory_structure", 
+      "description": "Standardize naming and organization across all directories",
+      "sub_steps": [
+        "Review and fix 02-docker directory structure",
+        "Review and fix 03-storage-systems directory structure",
+        "Review and fix 04-database-setup directory structure", 
+        "Review and fix 05-monitoring-observability directory structure",
+        "Update all README.json files"
+      ],
+      "expected_output": "Consistent directory structure across all recipe categories"
+    },
+    {
+      "step_id": "STEP_5",
+      "action": "resolve_port_conflicts",
+      "description": "Resolve all port assignment conflicts",
+      "sub_steps": [
+        "Review canonical port assignments",
+        "Identify and resolve conflicts",
+        "Update affected recipes",
+        "Validate no conflicts remain"
+      ],
+      "expected_output": "Clean port assignment registry with no conflicts"
+    }
+  ],
+  "validation_criteria": {
+    "all_recipes_v5_compliant": "Every recipe must use recipe_metadata, not metadata",
+    "all_recipes_have_kitchen_execution": "Every recipe must have kitchen_execution.orchestrator_steps",
+    "all_recipes_atomic": "Every recipe must have exact_commands and files_to_create",
+    "consistent_naming": "All directories must follow consistent naming patterns",
+    "no_port_conflicts": "Canonical port assignments must have no conflicts",
+    "complete_documentation": "All README.json files must be accurate and up-to-date"
+  },
+  "success_criteria": [
+    "100% of recipes are v5.0.0 compliant",
+    "100% of recipes have complete kitchen_execution sections", 
+    "100% of directories follow consistent naming patterns",
+    "0 port conflicts in canonical assignments",
+    "100% of README.json files are accurate",
+    "All recipes can be executed by any v5.0.0 compliant agent"
+  ],
+  "risk_mitigation": {
+    "backup_strategy": "Create backup of current state before making changes",
+    "incremental_fixes": "Fix one recipe at a time and validate before proceeding",
+    "rollback_plan": "Maintain ability to rollback to previous state if issues arise",
+    "validation_checkpoints": "Validate after each major step before proceeding"
+  }
+} 

@@ -1,0 +1,170 @@
+{
+  "archive_date": "2025-07-08T08:52:45.608549",
+  "source_path": "E:\\kos\\ai-Q",
+  "destination_path": "E:\\kos\\ai-Q\\archives\\ai-Q-backup-20250708",
+  "options": {
+    "exclude_temp": false,
+    "verbose": true,
+    "dry_run": false
+  },
+  "file_count": 878,
+  "directory_count": 252,
+  "total_size": 79890474,
+  "excluded_items": [
+    {
+      "path": "E:\\kos\\ai-Q\\src\\config\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\api\\routes\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\api\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\utils\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\services\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\src\\core\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\venv",
+      "reason": "Common exclusion: venv"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\.git",
+      "reason": "Common exclusion: .git"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\.gitignore",
+      "reason": "Common exclusion: .gitignore"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\archives",
+      "reason": "Common exclusion: archives"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\tests\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\tests\\unit\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\tests\\integration\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\.pytest_cache",
+      "reason": "Common exclusion: .pytest_cache"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\.vscode",
+      "reason": "Common exclusion: .vscode"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\logs\\kitchen_test.log",
+      "reason": "Pattern exclusion: *.log"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\logs\\kitchen_engine.log",
+      "reason": "Pattern exclusion: *.log"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\nodejs-portable\\node-v20.11.0-win-x64\\node_modules",
+      "reason": "Common exclusion: node_modules"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\node_modules",
+      "reason": "Common exclusion: node_modules"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\core\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\core\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\modules\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\skills\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tasks\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tools\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tools\\automatic1111\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tools\\comfyui\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tools\\n8n\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\tools\\penpot\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\image_edit\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\video_edit\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\social_media\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\ai_content\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\kitchen\\pantry\\operations\\calendar\\__pycache__",
+      "reason": "Common exclusion: __pycache__"
+    },
+    {
+      "path": "E:\\kos\\ai-Q\\archive.log",
+      "reason": "Pattern exclusion: *.log"
+    }
+  ],
+  "errors": [],
+  "archive_complete": true,
+  "archive_duration": "0:00:42.468497"
+}

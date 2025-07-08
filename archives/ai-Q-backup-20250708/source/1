@@ -1,0 +1,38 @@
+[33mcommit 41fce35fe88924a83e5cadc5e4566f85b6b2b287[m
+Author: davidhonghikim <davidhonghikim@gmail.com>
+Date:   Mon Jul 7 15:47:28 2025 -0500
+
+    Cleanup: removed temp_kitchen_testing and stray test_kitchen_functionality.py from root. All test artifacts now removed. Project root and scripts/ are clean and organized.
+
+agents/ARCHIVE/analysis/2025/07/2025-07-07_04-30-00_analysis_comprehensive_recovery_assessment_and_immediate_action_plan_v1.0.0_FINAL.json
+agents/ARCHIVE/handoff/2025/07/2025-07-07_03-15-00_analysis_comprehensive_previous_agent_mess_and_critical_issues_v1.0.0_FINAL.json
+agents/ARCHIVE/handoff/2025/07/2025-07-07_03-20-00_execution_comprehensive_cleanup_and_standards_compliance_v1.0.0_FINAL.json
+agents/ARCHIVE/handoff/2025/07/2025-07-07_03-45-00_comprehensive_timestamp_fixes_complete_v1.0.0_FINAL.json
+agents/ARCHIVE/handoff/2025/07/2025-07-07_04-00-00_handoff_next_agent_git_push_completion_v1.0.0_FINAL.json
+agents/ARCHIVE/handoff/2025/07/2025-07-07_06-00-00_handoff_next_agent_kitchen_real_recipe_ready_v1.0.0_FINAL.json
+agents/ARCHIVE/progress/2025/07/2025-07-07_05-00-00_progress_recipe_audit_and_pantry_population_complete_v1.0.0_FINAL.json
+agents/LATEST/2025-07-07_15-32-00_handoff_next_agent_system_validation_complete_and_cleanup_finished_v1.0.0_FINAL.json
+temp_kitchen_testing/README.md
+temp_kitchen_testing/cleanup_testing.py
+temp_kitchen_testing/kitchen/README.json
+temp_kitchen_testing/kitchen/cache_manager.json
+temp_kitchen_testing/kitchen/kitchen_config.json
+temp_kitchen_testing/kitchen/kitchen_log.json
+temp_kitchen_testing/kitchen/schemas/orchestrator_schema.json
+temp_kitchen_testing/pantry/README.json
+temp_kitchen_testing/pantry/configs/docker-daemon-config.json
+temp_kitchen_testing/pantry/modules/basic-docker-setup.json
+temp_kitchen_testing/pantry/pantry_index.json
+temp_kitchen_testing/pantry/schemas/pantry_item_schema.json
+temp_kitchen_testing/pantry/schemas/recipe_schema.json
+temp_kitchen_testing/pantry/skills/run-docker-compose.json
+temp_kitchen_testing/pantry/tasks/docker_pull_task.json
+temp_kitchen_testing/pantry/tasks/pull-docker-image.json
+temp_kitchen_testing/pantry/tools/docker.json
+temp_kitchen_testing/pantry/tools/docker_tool.json
+temp_kitchen_testing/recipes/01-infrastructure/01-core-infrastructure/01-01-docker-environment.json
+temp_kitchen_testing/recipes/01-infrastructure/02-docker-unified-infrastructure/02-01-docker-core.json
+temp_kitchen_testing/recipes/02-ai-services/modules/02-ollama-setup.json
+temp_kitchen_testing/run_real_recipe_tests.py
+temp_kitchen_testing/test_config.json
+test_kitchen_functionality.py
