@@ -1,0 +1,19 @@
+{
+  "id": "module.visualization",
+  "type": "module",
+  "name": "Visualization Module",
+  "description": "Data visualization module for creating comprehensive charts and dashboards",
+  "version": "1.8.0",
+  "category": "modules",
+  "dependencies": ["tool.matplotlib", "tool.pandas"],
+  "tags": ["visualization", "plotting", "charts", "dashboards", "reports"],
+  "author": "data_team",
+  "created": "2025-07-07T23:00:00Z",
+  "updated": "2025-07-07T23:00:00Z",
+  "access_level": "protected",
+  "usage": "Use for creating comprehensive visualizations and data dashboards",
+  "validation": {
+    "required_fields": ["chart_type", "data", "output_format"],
+    "operations": ["create_dashboard", "multi_plot", "interactive_chart", "export_plot"]
+  }
+} 

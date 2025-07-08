@@ -9,7 +9,7 @@
     "prerequisites": ["04-unified-storage-api-gateway", "08-storage-monitoring-alerting", "11-storage-compliance-governance"],
     "tags": ["integration", "automation", "ci-cd", "api", "workflows"],
     "version": "1.0.0",
-    "last_updated": "2025-01-27T12:00:00Z"
+    "last_updated": "2025-07-07T04:33:58Z"
   },
   "prerequisites": {
     "system_requirements": {

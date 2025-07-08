@@ -1,4 +1,37 @@
 {
+  "incremental_installation_guide": {
+    "title": "Incremental Node.js Dependency Installation Guide",
+    "purpose": "Avoid dependency conflicts and ensure stable environment setup for kitchen, pantry, and recipe systems.",
+    "files": {
+      "package-core.json": "Minimal core dependencies (for initial setup)",
+      "package-development.json": "Basic development dependencies (for development environment)",
+      "package-advanced.json": "Enhanced/advanced development dependencies",
+      "package-full-feature.json": "All features and full stack (for production or full local dev)",
+      "package-cleanup.json": "For cleaning up or restoring a minimal state",
+      "package-legacy.json": "For legacy or conservative installs"
+    },
+    "script": "scripts/incremental-install.ps1",
+    "usage": [
+      "Open PowerShell in the project root (E:/kos/ai-Q)",
+      "Run .\\scripts\\incremental-install.ps1 -Stage1    # Install minimal dependencies (core)",
+      "Run .\\scripts\\incremental-install.ps1 -Stage2    # Add basic development dependencies",
+      "Run .\\scripts\\incremental-install.ps1 -Stage3    # Add advanced development dependencies",
+      "Run .\\scripts\\incremental-install.ps1 -Stage4    # Install full feature dependencies",
+      "Or run .\\scripts\\incremental-install.ps1 -All    # Run all stages in sequence",
+      "If you need to reset, run .\\scripts\\incremental-install.ps1 -Clean"
+    ],
+    "troubleshooting": [
+      "If a stage fails, check the error message for the problematic dependency.",
+      "Try running the previous stage again, then proceed.",
+      "If npm cache issues occur, run 'npm cache clean --force' and retry.",
+      "If you switch Node.js versions, always clean and reinstall dependencies."
+    ],
+    "notes": [
+      "This process is required due to complex peer dependencies and Windows install quirks.",
+      "Always use the provided scripts and package-*.json files for reproducible installs.",
+      "For production, use package-full-feature.json as the final state."
+    ]
+  },
   "version": "1.0.0",
   "last_updated": "2025-07-07T01:24:44Z",
   "created_by": "Claude Sonnet 4 - Sonnet 4",

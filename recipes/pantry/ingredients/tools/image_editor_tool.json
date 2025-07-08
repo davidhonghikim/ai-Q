@@ -1,0 +1,19 @@
+{
+  "id": "tool.image_editor",
+  "type": "tool",
+  "name": "Image Editor Tool",
+  "description": "Basic image editing and manipulation tool for content creation",
+  "version": "2.1.0",
+  "category": "tools",
+  "dependencies": [],
+  "tags": ["image", "editing", "content", "creative", "photoshop", "filters"],
+  "author": "creative_team",
+  "created": "2025-07-08T00:10:58Z",
+  "updated": "2025-07-08T00:10:58Z",
+  "access_level": "public",
+  "usage": "Use for basic image editing, filters, resizing, and enhancement",
+  "validation": {
+    "required_fields": ["operation", "image_path"],
+    "operations": ["resize", "crop", "filter", "adjust_brightness", "add_text", "blur", "sharpen"]
+  }
+} 

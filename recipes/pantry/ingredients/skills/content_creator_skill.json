@@ -1,0 +1,19 @@
+{
+  "id": "skill.content_creator",
+  "type": "skill",
+  "name": "Content Creator Skill",
+  "description": "Expertise in content creation, social media, and digital marketing",
+  "version": "2.0.0",
+  "category": "skills",
+  "dependencies": ["module.content_creation", "tool.ai_content_generator"],
+  "tags": ["expertise", "content_creation", "social_media", "marketing", "creative", "influencer"],
+  "author": "creative_team",
+  "created": "2025-07-08T00:12:25Z",
+  "updated": "2025-07-08T00:12:25Z",
+  "access_level": "protected",
+  "usage": "Use for tasks requiring advanced content creation and social media expertise",
+  "validation": {
+    "required_fields": ["expertise_level", "platforms", "content_types"],
+    "capabilities": ["content_strategy", "social_media_management", "audience_engagement", "trend_analysis", "brand_collaboration"]
+  }
+} 

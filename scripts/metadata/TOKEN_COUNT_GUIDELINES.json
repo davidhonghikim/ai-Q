@@ -1,9 +1,9 @@
 {
   "version": "1.0",
-  "last_updated": "2025-01-27T12:00:00Z",
+  "last_updated": "2025-07-05T04:52:19Z",
   "created_by": "Claude Sonnet 4 - Claude Sonnet 4 - Sonnet 4",
   "converted_from": "E:\\kos\\ai-Q\\scripts\\metadata\\TOKEN_COUNT_GUIDELINES.json",
-  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "conversion_timestamp": "2025-07-05T04:52:19Z",
   "converter": "RobustYAMLToJSONConverter v1.0",
   "purpose": "Comprehensive guidelines for adding token count metadata to different file types without breaking syntax or causing parsing errors.\n",
   "overview": {

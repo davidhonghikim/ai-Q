@@ -1,0 +1,19 @@
+{
+  "id": "tool.file_utils",
+  "type": "tool",
+  "name": "File Utilities",
+  "description": "Basic file utility functions for reading, writing, and file operations",
+  "version": "1.0.0",
+  "category": "tools",
+  "dependencies": [],
+  "tags": ["file", "utility", "io", "basic"],
+  "author": "system",
+  "created": "2025-07-07T23:44:29Z",
+  "updated": "2025-07-07T23:44:29Z",
+  "access_level": "public",
+  "usage": "Use for basic file operations in recipes",
+  "validation": {
+    "required_fields": ["operation", "file_path"],
+    "operations": ["read", "write", "exists", "delete"]
+  }
+} 

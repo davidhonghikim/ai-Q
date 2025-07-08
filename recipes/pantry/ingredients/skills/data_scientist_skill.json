@@ -1,0 +1,19 @@
+{
+  "id": "skill.data_scientist",
+  "type": "skill",
+  "name": "Data Scientist Skill",
+  "description": "Expertise in data analysis, statistics, and machine learning",
+  "version": "1.0.0",
+  "category": "skills",
+  "dependencies": ["module.statistics", "module.visualization"],
+  "tags": ["expertise", "data_science", "analysis", "ml", "statistics"],
+  "author": "system",
+  "created": "2025-07-08T00:08:53Z",
+  "updated": "2025-07-08T00:08:53Z",
+  "access_level": "protected",
+  "usage": "Use for tasks requiring advanced data science expertise",
+  "validation": {
+    "required_fields": ["expertise_level", "specializations"],
+    "capabilities": ["statistical_analysis", "ml_modeling", "data_visualization", "experiment_design"]
+  }
+} 

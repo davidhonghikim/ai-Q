@@ -76,7 +76,7 @@
           "{",
           "  \"disaster_recovery_plan\": {",
           "    \"version\": \"1.0.0\",",
-          "    \"last_updated\": \"2025-01-27T21:00:00Z\",",
+          "    \"last_updated\": \"2025-07-07T04:15:47Z\",",
           "    \"rto_target\": \"4 hours\",",
           "    \"rpo_target\": \"1 hour\",",
           "    \"scenarios\": [",

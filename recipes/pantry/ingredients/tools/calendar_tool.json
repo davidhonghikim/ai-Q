@@ -1,0 +1,19 @@
+{
+  "id": "tool.calendar",
+  "type": "tool",
+  "name": "Calendar Tool",
+  "description": "Calendar management and scheduling tool for productivity",
+  "version": "2.0.0",
+  "category": "tools",
+  "dependencies": [],
+  "tags": ["calendar", "scheduling", "productivity", "time_management", "events", "reminders"],
+  "author": "productivity_team",
+  "created": "2025-07-08T00:11:32Z",
+  "updated": "2025-07-08T00:11:32Z",
+  "access_level": "public",
+  "usage": "Use for managing schedules, setting reminders, and organizing events",
+  "validation": {
+    "required_fields": ["event_title", "date_time"],
+    "operations": ["create_event", "set_reminder", "check_availability", "sync_calendar", "generate_schedule"]
+  }
+} 

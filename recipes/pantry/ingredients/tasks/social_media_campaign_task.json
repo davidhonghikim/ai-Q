@@ -1,0 +1,19 @@
+{
+  "id": "task.social_media_campaign",
+  "type": "task",
+  "name": "Social Media Campaign",
+  "description": "Complete social media campaign creation and management for influencers",
+  "version": "3.1.0",
+  "category": "tasks",
+  "dependencies": ["module.content_creation", "tool.social_media", "tool.ai_content_generator"],
+  "tags": ["social_media", "campaign", "influencer", "marketing", "engagement", "viral"],
+  "author": "marketing_team",
+  "created": "2025-07-07T23:00:00Z",
+  "updated": "2025-07-07T23:00:00Z",
+  "access_level": "protected",
+  "usage": "Use for creating and managing complete social media campaigns",
+  "validation": {
+    "required_fields": ["campaign_goal", "target_audience", "platforms", "timeline"],
+    "operations": ["plan_campaign", "create_content", "schedule_posts", "monitor_engagement", "analyze_results"]
+  }
+} 

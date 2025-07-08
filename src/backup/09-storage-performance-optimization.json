@@ -9,7 +9,7 @@
     "prerequisites": ["01-minio-enterprise-cluster", "03-local-storage-optimization", "08-storage-monitoring-alerting"],
     "tags": ["performance", "optimization", "caching", "compression", "tuning"],
     "version": "1.0.0",
-    "last_updated": "2025-01-27T12:00:00Z"
+    "last_updated": "2025-07-07T04:33:58Z"
   },
   "prerequisites": {
     "system_requirements": {

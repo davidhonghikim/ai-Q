@@ -1,0 +1,19 @@
+{
+  "id": "module.statistics",
+  "type": "module",
+  "name": "Statistics Module",
+  "description": "Statistical analysis module for data science workflows",
+  "version": "2.0.0",
+  "category": "modules",
+  "dependencies": ["tool.pandas", "tool.numpy"],
+  "tags": ["statistics", "analysis", "math", "data_science", "inference"],
+  "author": "data_team",
+  "created": "2025-07-07T23:00:00Z",
+  "updated": "2025-07-07T23:00:00Z",
+  "access_level": "protected",
+  "usage": "Use for statistical analysis, hypothesis testing, and data inference",
+  "validation": {
+    "required_fields": ["analysis_type", "data"],
+    "operations": ["descriptive_stats", "t_test", "correlation", "regression", "anova"]
+  }
+} 

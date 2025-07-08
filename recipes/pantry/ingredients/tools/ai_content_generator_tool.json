@@ -1,0 +1,19 @@
+{
+  "id": "tool.ai_content_generator",
+  "type": "tool",
+  "name": "AI Content Generator Tool",
+  "description": "AI-powered content generation for text, captions, and creative writing",
+  "version": "4.0.0",
+  "category": "tools",
+  "dependencies": [],
+  "tags": ["ai", "content_generation", "writing", "creative", "captions", "blog", "social"],
+  "author": "ai_team",
+  "created": "2025-07-08T00:11:24Z",
+  "updated": "2025-07-08T00:11:24Z",
+  "access_level": "protected",
+  "usage": "Use for generating captions, blog posts, social media content, and creative writing",
+  "validation": {
+    "required_fields": ["content_type", "prompt", "tone"],
+    "operations": ["generate_caption", "write_blog_post", "create_social_post", "brainstorm_ideas", "rewrite_content"]
+  }
+} 

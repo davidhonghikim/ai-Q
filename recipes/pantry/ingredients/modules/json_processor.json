@@ -1,0 +1,19 @@
+{
+  "id": "module.json_processor",
+  "type": "module",
+  "name": "JSON Processor",
+  "description": "Module for processing and manipulating JSON data",
+  "version": "1.0.0",
+  "category": "modules",
+  "dependencies": ["tool.file_utils"],
+  "tags": ["json", "data", "processing", "module"],
+  "author": "system",
+  "created": "2025-07-07T23:00:00Z",
+  "updated": "2025-07-07T23:00:00Z",
+  "access_level": "public",
+  "usage": "Use for JSON data processing in recipes",
+  "validation": {
+    "required_fields": ["data", "operation"],
+    "operations": ["parse", "stringify", "validate", "merge"]
+  }
+} 
