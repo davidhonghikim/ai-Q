@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "title": "Pantry Directory Organization Handoff",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "handoff_timestamp": "2025-07-08T08:20:00Z",
+    "status": "ACTIVE",
+    "purpose": "Formal handoff for reviewing and organizing the kitchen pantry ingredients directory"
+  },
+  "current_status": {
+    "directory_structure": "App-centric structure created under kitchen/pantry/ingredients/ with subfolders for base, automatic1111, comfyui, n8n, penpot, openwebui, each with tools, skills, tasks, modules.",
+    "file_migration": "Most ingredient files have been moved to their appropriate app/type subfolders. Some legacy or scattered files may remain.",
+    "cleanup": "Old empty directories have been removed. No directories with files were deleted."
+  },
+  "next_agent_tasks": [
+    "Audit all files in kitchen/pantry/ingredients/ and subfolders.",
+    "Move any remaining files to the correct app/type subfolder.",
+    "Remove only empty legacy directories.",
+    "If unsure about a file, move to base/ or create a legacy/ folder for review.",
+    "Update or create README.json describing the structure and conventions.",
+    "Document any files or directories that could not be confidently categorized.",
+    "Summarize actions and issues in the changelog and this handoff."
+  ],
+  "dependencies": [
+    "No blocking dependencies. All required directories exist.",
+    "Some files may need review for correct categorization."
+  ],
+  "success_criteria": [
+    "All ingredient files are grouped by app and type.",
+    "No files are left in legacy or root locations.",
+    "Structure is ready for hundreds/thousands of ingredients.",
+    "README.json is up to date.",
+    "Changelog and handoff are complete."
+  ],
+  "references": {
+    "immutable_rules": "agents/LATEST/IMMUTABLE_AGENT_RULES_v1.0.0_FINAL.json",
+    "workflow": "agents/LATEST/2025-07-07_22-46-17_agent_workflow.json",
+    "integration_plan": "agents/LATEST/2025-07-07_22-46-17_kos_kitchen_integration_plan_v1.0.0_FINAL.json",
+    "previous_handoff": "agents/LATEST/2025-07-08_02-40-00_handoff_kitchen_system_organization_complete_v1.0.0_FINAL.json"
+  },
+  "notes": "If any files are ambiguous, document them for review rather than deleting. Prioritize maintainability and future scalability."
+} 
