@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "created_by": "Q-Assist (GPT-4.1)",
     "creation_timestamp": "2025-07-08T09:45:00Z",
-    "status": "ACTIVE",
     "purpose": "Comprehensive architecture standards for the kOS kitchen system",
     "compliance": "MANDATORY_FOR_ALL_ARCHITECTURE_DECISIONS"
   },

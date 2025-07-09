@@ -1,0 +1,27 @@
+{
+    "deployment_and_devops": {
+      "mandatory": true,
+      "description": "Modern deployment and DevOps practices",
+      "requirements": [
+        "Containerization with Docker",
+        "Orchestration with Kubernetes",
+        "Infrastructure as Code (IaC)",
+        "Automated deployment pipelines",
+        "Blue-green deployments",
+        "Rollback capabilities",
+        "Shared Docker volumes for data persistence",
+        "Gitea Actions for CI/CD automation",
+        "Git and Gitea redundancy for version control"
+      ],
+      "implementation": [
+        "docker/ - Docker configurations",
+        "kubernetes/ - K8s manifests",
+        "terraform/ - Infrastructure as Code",
+        "CI/CD pipelines",
+        "Deployment automation",
+        "volumes/ - Shared Docker volumes",
+        "gitea/ - Gitea Actions workflows",
+        "git-redundancy/ - Git/Gitea sync configuration"
+      ]
+    }
+} 

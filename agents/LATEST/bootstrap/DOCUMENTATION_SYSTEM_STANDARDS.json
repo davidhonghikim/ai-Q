@@ -1,13 +1,50 @@
 {
   "documentation_standards_metadata": {
     "title": "ai-Q Documentation System Standards",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "created_by": "Claude Sonnet 4",
     "creation_timestamp": "2025-07-07T01:53:51Z",
-    "last_updated": "2025-07-07T09:15:00Z",
-    "status": "ACTIVE",
-    "priority": "CRITICAL",
+    "last_updated": "2025-07-09T00:30:00Z",
     "purpose": "Mandatory standards for all agent documentation, archiving, and handoff processes"
+  },
+  "current_directory_structure": {
+    "agents_root": {
+      "description": "Clean root directory with only essential directories",
+      "contents": [
+        "ARCHIVE/ - All archived documents and future archive locations",
+        "blueprint/ - Blueprint documentation and templates",
+        "LATEST/ - Current handoff, analysis, and core documents",
+        "README.json - Project readme"
+      ]
+    },
+    "archive_structure": {
+      "description": "Comprehensive archive structure for all document types",
+      "topics": [
+        "agents - Agent-specific documents",
+        "analysis - Analysis documents",
+        "blueprint - Blueprint documents",
+        "changelog - Changelog files by date",
+        "config - Configuration files",
+        "execution - Execution documents",
+        "git-ref - Git reference documents",
+        "handoff - Handoff documents",
+        "jobs - Job documents",
+        "progress - Progress documents",
+        "tests - Tests documents",
+        "validation - Validation documents"
+      ],
+      "path_format": "agents/ARCHIVE/[topic]/[year]/[month]/[filename_with_creation_timestamp].json"
+    },
+    "latest_structure": {
+      "description": "Current active documents and core standards",
+      "contents": [
+        "LATEST_HANDOFF.json - Current handoff document",
+        "CURRENT_ANALYSIS.json - Critical system analysis",
+        "DIRECTORY_CLEANUP_SUMMARY.json - Cleanup work summary",
+        "bootstrap/ - Core standards and documentation",
+        "jobs/ - Active job documents"
+      ]
+    }
   },
   "timestamp_standards": {
     "project_start_date": "2025-06-15T00:00:00Z",
@@ -52,11 +89,17 @@
   "archiving_system": {
     "structure": "agents/ARCHIVE/[topic]/[year]/[month]/",
     "topics": [
-      "handoff",
+      "agents",
       "analysis", 
-      "execution",
       "blueprint",
+      "changelog",
+      "config",
+      "execution",
+      "git-ref",
+      "handoff",
+      "jobs",
       "progress",
+      "tests",
       "validation"
     ],
     "archive_path_format": "agents/ARCHIVE/[topic]/[year]/[month]/[filename_with_creation_timestamp].json",
@@ -76,7 +119,7 @@
   "document_categories": {
     "handoff": {
       "purpose": "Agent handoff documentation",
-      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/handoff/YYYY/MM/ (archived)",
+      "location": "agents/LATEST/ (current) → agents/ARCHIVE/handoff/YYYY/MM/ (archived)",
       "required_fields": [
         "handoff_timestamp",
         "agent_name",
@@ -89,7 +132,7 @@
     },
     "analysis": {
       "purpose": "System analysis and audit reports",
-      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/analysis/YYYY/MM/ (archived)",
+      "location": "agents/LATEST/ (current) → agents/ARCHIVE/analysis/YYYY/MM/ (archived)",
       "required_fields": [
         "analysis_timestamp",
         "analyst_name",
@@ -101,7 +144,7 @@
     },
     "execution": {
       "purpose": "Execution plans and implementation guides",
-      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/execution/YYYY/MM/ (archived)",
+      "location": "agents/LATEST/ (current) → agents/ARCHIVE/execution/YYYY/MM/ (archived)",
       "required_fields": [
         "execution_timestamp",
         "planner_name",
@@ -113,7 +156,7 @@
     },
     "blueprint": {
       "purpose": "Architecture and design documents",
-      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/blueprint/YYYY/MM/ (archived)",
+      "location": "agents/blueprint/ (current) → agents/ARCHIVE/blueprint/YYYY/MM/ (archived)",
       "required_fields": [
         "blueprint_timestamp",
         "architect_name",
@@ -125,7 +168,7 @@
     },
     "progress": {
       "purpose": "Progress tracking and status updates",
-      "location": "ai-Q/agents/LATEST/ (current) → agents/ARCHIVE/progress/YYYY/MM/ (archived)",
+      "location": "agents/LATEST/ (current) → agents/ARCHIVE/progress/YYYY/MM/ (archived)",
       "required_fields": [
         "progress_timestamp",
         "agent_name",
@@ -133,6 +176,18 @@
         "current_status",
         "next_priorities",
         "blockers"
+      ]
+    },
+    "jobs": {
+      "purpose": "Active job documents and research guides",
+      "location": "agents/LATEST/jobs/ (current) → agents/ARCHIVE/jobs/YYYY/MM/ (archived when complete)",
+      "required_fields": [
+        "job_timestamp",
+        "agent_name",
+        "job_scope",
+        "current_status",
+        "completion_criteria",
+        "next_steps"
       ]
     }
   },
@@ -145,12 +200,12 @@
           "Move all old documents from LATEST/ to appropriate archive directories",
           "Use actual file creation timestamps in archive paths",
           "Organize by topic/year/month structure",
-          "Update MASTER_INDEX.json with new locations"
+          "Update any index files with new locations"
         ]
       },
       {
         "step": 2,
-        "action": "Create timestamped handoff document",
+        "action": "Create comprehensive handoff document",
         "requirements": [
           "Use actual file creation timestamp from file properties",
           "Follow file naming convention with creation timestamp",
@@ -165,7 +220,7 @@
           "Only current/active documents remain in LATEST/",
           "All old documents properly archived",
           "Update any index files",
-          "Maintain chronological order"
+          "Maintain clean structure"
         ]
       },
       {
@@ -201,87 +256,39 @@
       "Archive organization validation"
     ],
     "manual_checks": [
-      "Content consistency across documents",
-      "Logical flow and progression",
-      "Clear handoff instructions",
-      "Complete status reporting",
-      "Proper archive structure",
-      "No old documents in LATEST/"
+      "Document content accuracy",
+      "Cross-reference validation",
+      "Handoff completeness",
+      "Archive path correctness",
+      "Directory structure cleanliness"
     ]
   },
-  "directory_structure": {
-    "ai-Q/agents/": {
-      "LATEST/": "Current active documents only",
-      "ARCHIVE/[topic]/[year]/[month]/": "Historical documents by topic and date",
-      "analysis/": "Analysis and audit reports",
-      "blueprint/": "System design and execution plans",
-      "TEMPLATES/": "Document templates",
-      "SCHEMAS/": "JSON schemas for validation"
-    },
-    "maintenance_rules": [
-      "LATEST/ contains only current documents",
-      "ARCHIVE/ organized by topic/YYYY/MM with creation timestamps",
-      "Templates updated with current standards",
-      "Schemas validated against current requirements",
-      "No old documents left in LATEST/"
-    ]
-  },
-  "compliance_requirements": {
-    "all_agents_must": [
-      "Follow timestamp standards (>= mid-June 2025)",
-      "Use actual file creation time for filenames",
-      "Use proper file naming conventions",
-      "Include all required fields",
-      "Maintain directory structure",
-      "Archive old documents immediately",
-      "Validate documentation before handoff",
-      "Update index files when archiving"
+  "current_system_priorities": {
+    "documentation_focus": [
+      "Maintain clean LATEST directory structure",
+      "Ensure proper archival of completed work",
+      "Keep core documents updated and consistent",
+      "Follow established naming conventions"
     ],
-    "validation_checklist": [
-              "✓ Timestamps are valid (>= 2025-06-15)",
-      "✓ File names use actual creation time from file properties",
-      "✓ All required fields present",
-      "✓ Documents in correct directories",
-      "✓ JSON syntax valid",
-      "✓ Content is consistent",
-      "✓ Handoff instructions clear",
-      "✓ Old documents properly archived",
-      "✓ No old documents in LATEST/",
-      "✓ Archive structure follows topic/year/month"
+    "system_priorities": [
+      "Fix kitchen system critical issues (see CURRENT_ANALYSIS.json)",
+      "Implement Git workflow system",
+      "Continue MCP servers research"
     ]
   },
-  "critical_corrections_needed": [
-    {
-      "priority": "CRITICAL",
-      "action": "Use actual file creation timestamps for all filenames",
-      "method": "Get-ItemProperty to get CreationTime, convert to YYYY-MM-DD_HH-MM-SS format"
-    },
-    {
-      "priority": "CRITICAL", 
-      "action": "Archive old documents to topic/year/month structure",
-      "method": "Move to agents/ARCHIVE/[topic]/[year]/[month]/ with creation timestamp in filename"
-    },
-    {
-      "priority": "CRITICAL",
-      "action": "Never leave old documents in LATEST/",
-      "method": "Archive immediately when superseded"
-    }
-  ],
-  "success_criteria": [
-    "All timestamps >= 2025-06-15T00:00:00Z",
-    "All filenames use actual file creation time from file properties",
-    "All documents include required fields",
-    "Directory structure properly maintained",
-    "No conflicting or inconsistent information",
-    "Clear handoff process for all agents",
-    "Old documents properly archived",
-    "No old documents in LATEST/",
-    "Archive follows topic/year/month structure"
-  ],
-  "enforcement_mechanisms": {
-    "mandatory_validation": "All agents must complete validation checklist before handoff",
-    "failure_consequences": "Any agent who violates these standards will be considered to have failed the handoff",
-    "quality_over_speed": "Proper archiving and naming takes priority over speed",
-    "documentation_requirements": "All changes must be documented in handoff documents"
+  "quality_standards": {
+    "file_size_limit": "Maximum 250 lines per file",
+    "documentation_quality": "Accurate, complete, and up-to-date",
+    "naming_compliance": "Follow established conventions strictly",
+    "archival_compliance": "Proper organization and timestamps",
+    "consistency": "All documents follow same standards"
+  },
+  "references": {
+    "core_documents": "agents/LATEST/bootstrap/",
+    "active_jobs": "agents/LATEST/jobs/",
+    "archived_work": "agents/ARCHIVE/",
+    "current_handoff": "agents/LATEST/LATEST_HANDOFF.json",
+    "critical_analysis": "agents/LATEST/CURRENT_ANALYSIS.json",
+    "cleanup_summary": "agents/LATEST/DIRECTORY_CLEANUP_SUMMARY.json"
   }
 } 

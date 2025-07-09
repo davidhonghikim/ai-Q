@@ -4,7 +4,6 @@
     "version": "1.0.0",
     "created_by": "Q-Assist (GPT-4.1)",
     "creation_timestamp": "2025-07-08T09:55:00Z",
-    "status": "ACTIVE",
     "purpose": "Standardized template for agent handoffs in the kOS kitchen system",
     "compliance": "MANDATORY_FOR_ALL_AGENTS"
   },
@@ -14,7 +13,6 @@
       "version": "[Version Number]",
       "created_by": "[Agent Name and Type]",
       "handoff_timestamp": "[ISO 8601 Timestamp]",
-      "status": "ACTIVE",
       "purpose": "[Clear description of what was accomplished and what needs to be done next]"
     },
     "current_status": {
@@ -180,9 +178,9 @@
       "Provide clear next steps"
     ],
     "after_creating_handoff": [
+      "Archive previous handoff documents",
       "Save handoff to agents/LATEST/",
       "Update changelog with work completed",
-      "Archive previous handoff documents",
       "Verify handoff is complete and accurate",
       "Notify next agent of handoff availability"
     ]
@@ -191,6 +189,7 @@
     "good_handoff": {
       "description": "Example of a good handoff",
       "characteristics": [
+        "Archived previous handoff documents",
         "Complete and comprehensive",
         "Clear and detailed descriptions",
         "Accurate file paths and timestamps",
@@ -202,6 +201,7 @@
     "bad_handoff": {
       "description": "Example of a bad handoff",
       "characteristics": [
+        "Did not archive previous handoff documents",
         "Incomplete or missing sections",
         "Vague or unclear descriptions",
         "Incorrect file paths or timestamps",

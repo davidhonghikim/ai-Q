@@ -1,0 +1,396 @@
+{
+  "metadata": {
+    "title": "Agent Tracking System Plan - Live Monitoring & Validation",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T23:55:00Z",
+    "status": "PLAN",
+    "purpose": "Comprehensive plan for live tracking system to monitor agent work and enforce quality standards"
+  },
+  "system_overview": {
+    "vision": "Git Actions-style validation system integrated with kOS kitchen for real-time agent work monitoring",
+    "core_components": [
+      "Database-driven tracking system",
+      "Real-time file monitoring",
+      "Automated quality validation",
+      "Agent performance metrics",
+      "Compliance enforcement engine"
+    ],
+    "integration_points": [
+      "kitchen/core/ - Main kitchen engine",
+      "kitchen/pantry/core/ - Pantry management system",
+      "agents/LATEST/ - Agent handoff and documentation",
+      "kitchen/logs/ - System logging and monitoring"
+    ]
+  },
+  "database_design": {
+    "tracking_database": {
+      "name": "agent_tracking.db",
+      "type": "SQLite (lightweight, file-based)",
+      "location": "kitchen/data/tracking/",
+      "tables": {
+        "agent_sessions": {
+          "columns": [
+            "session_id (PRIMARY KEY)",
+            "agent_name",
+            "start_timestamp",
+            "end_timestamp",
+            "status (active/completed/failed)",
+            "files_created",
+            "files_modified",
+            "validation_passed",
+            "compliance_score"
+          ]
+        },
+        "file_operations": {
+          "columns": [
+            "operation_id (PRIMARY KEY)",
+            "session_id (FOREIGN KEY)",
+            "file_path",
+            "operation_type (create/modify/delete)",
+            "timestamp",
+            "file_size_lines",
+            "file_size_bytes",
+            "validation_status",
+            "quality_score"
+          ]
+        },
+        "quality_violations": {
+          "columns": [
+            "violation_id (PRIMARY KEY)",
+            "session_id (FOREIGN KEY)",
+            "file_path",
+            "violation_type",
+            "severity (critical/moderate/minor)",
+            "description",
+            "timestamp",
+            "resolved",
+            "resolution_timestamp"
+          ]
+        },
+        "compliance_checks": {
+          "columns": [
+            "check_id (PRIMARY KEY)",
+            "session_id (FOREIGN KEY)",
+            "check_type",
+            "status (pass/fail/warning)",
+            "details",
+            "timestamp",
+            "auto_fixed"
+          ]
+        }
+      }
+    }
+  },
+  "real_time_monitoring": {
+    "file_watchers": {
+      "monitored_directories": [
+        "kitchen/",
+        "agents/LATEST/",
+        "agents/blueprint/",
+        "agents/analysis/"
+      ],
+      "file_types": [
+        "*.py",
+        "*.json",
+        "*.yml",
+        "*.md"
+      ],
+      "events_tracked": [
+        "file_created",
+        "file_modified",
+        "file_deleted",
+        "file_moved"
+      ]
+    },
+    "validation_triggers": {
+      "immediate_checks": [
+        "File size validation (≤250 lines)",
+        "JSON syntax validation",
+        "Required fields validation",
+        "Timestamp compliance (≥2025-06-15)"
+      ],
+      "batch_checks": [
+        "Code quality analysis",
+        "Documentation completeness",
+        "Architecture compliance",
+        "Integration testing"
+      ]
+    }
+  },
+  "quality_validation_rules": {
+    "file_size_enforcement": {
+      "rule": "Maximum 250 lines per file",
+      "check_method": "Line count on file save",
+      "action": "Block save if exceeded, suggest refactoring",
+      "severity": "CRITICAL"
+    },
+    "code_quality_checks": {
+      "syntax_validation": "Python/JSON syntax check",
+      "import_validation": "Check for missing imports",
+      "function_validation": "Ensure actual implementation, not placeholders",
+      "error_handling": "Check for proper error handling",
+      "logging_validation": "Ensure logging is implemented"
+    },
+    "documentation_standards": {
+      "timestamp_compliance": "All timestamps ≥ 2025-06-15",
+      "required_fields": "All mandatory fields present",
+      "naming_conventions": "Proper file naming with creation timestamps",
+      "archive_compliance": "Old documents properly archived"
+    },
+    "architectural_compliance": {
+      "modular_design": "Single responsibility principle",
+      "separation_of_concerns": "Logical file organization",
+      "integration_standards": "Proper kitchen system integration",
+      "vault_compliance": "Vault integration standards"
+    }
+  },
+  "automated_enforcement": {
+    "pre_commit_hooks": {
+      "file_size_check": "Block commits with files >250 lines",
+      "syntax_check": "Validate Python/JSON syntax",
+      "timestamp_check": "Ensure timestamp compliance",
+      "documentation_check": "Validate required fields"
+    },
+    "real_time_validation": {
+      "file_save_validation": "Check file on save",
+      "directory_scan": "Periodic directory scanning",
+      "session_tracking": "Track agent work sessions",
+      "compliance_scoring": "Real-time compliance scoring"
+    },
+    "auto_fix_capabilities": {
+      "timestamp_correction": "Auto-fix invalid timestamps",
+      "json_formatting": "Auto-format JSON files",
+      "import_cleanup": "Remove unused imports",
+      "documentation_updates": "Auto-update documentation timestamps"
+    }
+  },
+  "agent_performance_metrics": {
+    "tracking_metrics": {
+      "files_created": "Number of files created per session",
+      "files_modified": "Number of files modified per session",
+      "compliance_rate": "Percentage of files meeting standards",
+      "violation_count": "Number of quality violations",
+      "auto_fix_rate": "Percentage of violations auto-fixed",
+      "session_duration": "Time spent per session",
+      "completion_rate": "Percentage of planned tasks completed"
+    },
+    "quality_scores": {
+      "file_size_score": "Score based on file size compliance",
+      "code_quality_score": "Score based on code quality checks",
+      "documentation_score": "Score based on documentation standards",
+      "architecture_score": "Score based on architectural compliance",
+      "overall_score": "Weighted average of all scores"
+    },
+    "performance_dashboard": {
+      "real_time_view": "Live agent activity monitoring",
+      "historical_analysis": "Trend analysis over time",
+      "comparison_metrics": "Agent performance comparison",
+      "improvement_tracking": "Progress tracking over sessions"
+    }
+  },
+  "integration_with_kitchen": {
+    "kitchen_engine_integration": {
+      "tracking_hooks": "Integrate tracking into kitchen engine operations",
+      "validation_pipeline": "Add validation to recipe execution pipeline",
+      "quality_gates": "Quality gates in kitchen workflow",
+      "compliance_reporting": "Compliance reports in kitchen status"
+    },
+    "pantry_system_integration": {
+      "ingredient_validation": "Validate ingredients against quality standards",
+      "registry_tracking": "Track ingredient registry changes",
+      "dependency_validation": "Validate ingredient dependencies",
+      "quality_scoring": "Quality scoring for pantry ingredients"
+    },
+    "recipe_system_integration": {
+      "recipe_validation": "Validate recipes against standards",
+      "execution_tracking": "Track recipe execution quality",
+      "performance_monitoring": "Monitor recipe performance",
+      "compliance_checking": "Check recipe compliance"
+    }
+  },
+  "git_actions_style_validation": {
+    "workflow_triggers": {
+      "file_changes": "Trigger on file modifications",
+      "commit_events": "Trigger on git commits",
+      "pull_requests": "Trigger on pull request creation",
+      "manual_runs": "Manual validation triggers"
+    },
+    "validation_stages": {
+      "pre_commit": "Pre-commit validation checks",
+      "commit_validation": "Commit-time validation",
+      "post_commit": "Post-commit analysis",
+      "periodic_scan": "Periodic full system scan"
+    },
+    "validation_actions": {
+      "block_violations": "Block commits with violations",
+      "auto_fix_issues": "Automatically fix minor issues",
+      "generate_reports": "Generate validation reports",
+      "notify_agents": "Notify agents of issues"
+    }
+  },
+  "implementation_phases": {
+    "phase_1": {
+      "name": "Core Tracking System",
+      "duration": "1 week",
+      "deliverables": [
+        "Database schema and initialization",
+        "Basic file monitoring system",
+        "Simple validation rules",
+        "Agent session tracking"
+      ]
+    },
+    "phase_2": {
+      "name": "Quality Validation Engine",
+      "duration": "1 week",
+      "deliverables": [
+        "Comprehensive validation rules",
+        "Real-time file validation",
+        "Quality scoring system",
+        "Violation tracking"
+      ]
+    },
+    "phase_3": {
+      "name": "Automated Enforcement",
+      "duration": "1 week",
+      "deliverables": [
+        "Pre-commit hooks",
+        "Auto-fix capabilities",
+        "Compliance enforcement",
+        "Blocking mechanisms"
+      ]
+    },
+    "phase_4": {
+      "name": "Integration & Dashboard",
+      "duration": "1 week",
+      "deliverables": [
+        "Kitchen system integration",
+        "Performance dashboard",
+        "Historical analysis",
+        "Reporting system"
+      ]
+    }
+  },
+  "technical_requirements": {
+    "dependencies": [
+      "sqlite3 (built-in)",
+      "watchdog (file monitoring)",
+      "pylint (code quality)",
+      "black (code formatting)",
+      "jsonschema (JSON validation)",
+      "psutil (system monitoring)"
+    ],
+    "file_structure": {
+      "kitchen/core/tracking/": "Core tracking system modules",
+      "kitchen/data/tracking/": "Database and tracking data",
+      "kitchen/config/tracking/": "Tracking configuration",
+      "kitchen/logs/tracking/": "Tracking system logs"
+    },
+    "configuration": {
+      "tracking_config.json": "Main tracking configuration",
+      "validation_rules.json": "Validation rules definition",
+      "quality_standards.json": "Quality standards definition",
+      "enforcement_config.json": "Enforcement configuration"
+    }
+  },
+  "monitoring_dashboard": {
+    "real_time_views": {
+      "agent_activity": "Live agent work monitoring",
+      "file_operations": "Real-time file operation tracking",
+      "quality_violations": "Live violation monitoring",
+      "system_health": "Overall system health status"
+    },
+    "historical_views": {
+      "agent_performance": "Agent performance over time",
+      "quality_trends": "Quality improvement trends",
+      "violation_analysis": "Violation pattern analysis",
+      "compliance_reports": "Compliance reporting"
+    },
+    "alerts_and_notifications": {
+      "critical_violations": "Immediate alerts for critical violations",
+      "quality_degradation": "Alerts for quality degradation",
+      "system_issues": "System health alerts",
+      "performance_issues": "Performance degradation alerts"
+    }
+  },
+  "success_criteria": {
+    "tracking_accuracy": [
+      "100% file operation tracking",
+      "Real-time validation with <1 second latency",
+      "Accurate quality scoring",
+      "Complete session tracking"
+    ],
+    "enforcement_effectiveness": [
+      "Block 100% of critical violations",
+      "Auto-fix 80% of minor issues",
+      "Maintain 95%+ compliance rate",
+      "Zero files >250 lines in production"
+    ],
+    "system_integration": [
+      "Seamless kitchen system integration",
+      "No performance impact on kitchen operations",
+      "Comprehensive reporting and analytics",
+      "User-friendly dashboard interface"
+    ],
+    "agent_experience": [
+      "Immediate feedback on violations",
+      "Clear guidance on fixes",
+      "Performance improvement tracking",
+      "Reduced manual validation overhead"
+    ]
+  },
+  "risk_mitigation": {
+    "performance_risks": [
+      "Monitor system performance impact",
+      "Implement efficient database queries",
+      "Use lightweight file monitoring",
+      "Optimize validation algorithms"
+    ],
+    "false_positive_risks": [
+      "Tune validation rules carefully",
+      "Implement override mechanisms",
+      "Provide clear violation explanations",
+      "Allow manual validation bypass"
+    ],
+    "integration_risks": [
+      "Test integration thoroughly",
+      "Implement graceful degradation",
+      "Maintain backward compatibility",
+      "Provide rollback mechanisms"
+    ]
+  },
+  "next_steps": {
+    "immediate_actions": [
+      "Review and validate this plan",
+      "Create detailed technical specifications",
+      "Design database schema in detail",
+      "Plan integration points with kitchen system"
+    ],
+    "implementation_priorities": [
+      "Start with core tracking system",
+      "Implement basic file monitoring",
+      "Add simple validation rules",
+      "Build agent session tracking"
+    ],
+    "success_metrics": [
+      "Track implementation progress",
+      "Measure system performance impact",
+      "Monitor agent adoption and satisfaction",
+      "Validate quality improvement results"
+    ]
+  },
+  "references": {
+    "existing_systems": [
+      "kitchen/core/kitchen_engine.py",
+      "kitchen/pantry/core/validation_system.py",
+      "agents/LATEST/IMMUTABLE_AGENT_RULES.json",
+      "agents/LATEST/DOCUMENTATION_SYSTEM_STANDARDS.json"
+    ],
+    "inspiration_sources": [
+      "GitHub Actions validation workflows",
+      "CI/CD pipeline quality gates",
+      "Code quality monitoring tools",
+      "Real-time development analytics"
+    ]
+  }
+} 

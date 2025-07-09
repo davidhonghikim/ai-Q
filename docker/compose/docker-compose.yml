@@ -26,7 +26,7 @@ services:
   redis:
     image: redis:7-alpine
     container_name: ai-q-redis
-    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}
+    command: redis-server --appendonly yes
     volumes:
       - redis_data:/data
     ports:
@@ -96,9 +96,9 @@ services:
       QUERY_DEFAULTS_LIMIT: ${WEAVIATE_QUERY_DEFAULTS_LIMIT:-25}
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: ${WEAVIATE_AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED:-true}
       PERSISTENCE_DATA_PATH: ${WEAVIATE_PERSISTENCE_DATA_PATH:-/var/lib/weaviate}
-      DEFAULT_VECTORIZER_MODULE: ${WEAVIATE_DEFAULT_VECTORIZER_MODULE:-none}
-      ENABLE_MODULES: ${WEAVIATE_ENABLE_MODULES:-ref2vec-centroid,generative-openai,qna-openai}
-      CLUSTER_HOSTNAME: ${WEAVIATE_CLUSTER_HOSTNAME:-node1}
+      DEFAULT_VECTORIZER_MODULE: text2vec-transformers
+      ENABLE_MODULES: text2vec-transformers,ref2vec-centroid
+      TRANSFORMERS_INFERENCE_API: http://huggingface-inference:8080
     volumes:
       - weaviate_data:/var/lib/weaviate
     ports:
@@ -364,6 +364,107 @@ services:
       timeout: 10s
       retries: 3
 
+  # HuggingFace Transformers Inference (Primary Vectorization)
+  huggingface-inference:
+    image: python:3.11-slim
+    container_name: ai-q-huggingface-inference
+    environment:
+      - MODEL_NAME=${MODEL_NAME}
+      - DEVICE=${DEVICE}
+      - MAX_BATCH_SIZE=${MAX_BATCH_SIZE}
+      - MAX_BATCH_WAIT=${MAX_BATCH_WAIT}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+    volumes:
+      - huggingface_cache:/root/.cache/huggingface
+      - ../../config/huggingface:/app
+    working_dir: /app
+    command: >
+      sh -c "pip install -r requirements.txt &&
+             python -m uvicorn main:app --host 0.0.0.0 --port 8080"
+    ports:
+      - "${HUGGINGFACE_PORT:-8082}:8080"
+    networks:
+      - ai-q-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-q-ollama
+    environment:
+      - OLLAMA_MODEL=${OLLAMA_MODEL}
+      - OLLAMA_EMBEDDING_MODEL=${OLLAMA_EMBEDDING_MODEL}
+      - OLLAMA_LOG_LEVEL=${OLLAMA_LOG_LEVEL}
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - ai-q-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:11434/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+
+  # Gitea Git Server (Feature Flagged)
+  gitea:
+    image: gitea/gitea:1.21.0
+    container_name: ai-q-gitea
+    environment:
+      - GITEA__database__DB_TYPE=${GITEA_DB_TYPE:-sqlite3}
+      - GITEA__database__PATH=${GITEA_DB_PATH:-/data/gitea/gitea.db}
+      - GITEA__server__DOMAIN=${GITEA_DOMAIN:-localhost}
+      - GITEA__server__ROOT_URL=${GITEA_ROOT_URL:-http://localhost:3002/}
+      - GITEA__server__SSH_DOMAIN=${GITEA_SSH_DOMAIN:-localhost}
+      - GITEA__server__SSH_PORT=${GITEA_SSH_PORT:-222}
+      - GITEA__server__HTTP_PORT=${GITEA_HTTP_PORT:-3000}
+      - GITEA__server__DISABLE_SSH=${GITEA_DISABLE_SSH:-false}
+      - GITEA__security__INSTALL_LOCK=${GITEA_INSTALL_LOCK:-true}
+      - GITEA__service__DISABLE_REGISTRATION=${GITEA_DISABLE_REGISTRATION:-false}
+      - GITEA__service__REQUIRE_SIGNIN_VIEW=${GITEA_REQUIRE_SIGNIN_VIEW:-false}
+      - GITEA__log__LEVEL=${GITEA_LOG_LEVEL:-Info}
+      - GITEA__log__MODE=${GITEA_LOG_MODE:-console}
+      - ENABLE_GITEA=${ENABLE_GITEA:-true}
+    volumes:
+      - gitea_data:/data
+      - gitea_config:/data/gitea/conf
+      - gitea_repos:/data/git/repositories
+      - gitea_ssh:/data/git/.ssh
+    ports:
+      - "${GITEA_PORT:-3002}:3000"
+      - "${GITEA_SSH_PORT:-222}:22"
+    networks:
+      - ai-q-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/v1/version || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    profiles:
+      - gitea
+
 volumes:
   postgres_data:
   redis_data:
@@ -384,6 +485,12 @@ volumes:
   comfyui_custom_nodes:
   n8n_data:
   penpot_data:
+  gitea_data:
+  gitea_config:
+  gitea_repos:
+  gitea_ssh:
+  huggingface_cache:
+  ollama_data:
 
 networks:
   ai-q-network:

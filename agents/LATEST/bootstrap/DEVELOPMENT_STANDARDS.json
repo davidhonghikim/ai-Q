@@ -1,0 +1,608 @@
+{
+  "metadata": {
+    "title": "Development Standards - kOS Kitchen System",
+    "version": "1.0.1",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T09:40:00Z",
+    "last_updated": "2025-07-09T00:30:00Z",
+    "purpose": "Comprehensive development standards for building the kOS kitchen system",
+    "compliance": "MANDATORY_FOR_ALL_DEVELOPMENT"
+  },
+  "current_system_state": {
+    "kitchen_system_status": "CRITICAL_ISSUES_DETECTED_NEEDS_IMMEDIATE_ATTENTION",
+    "critical_issues": [
+      "Missing methods in OperationRegistry",
+      "Broken module import path resolution",
+      "Missing recipes directory",
+      "Incomplete operation interfaces",
+      "Oversized files (>250 lines)"
+    ],
+    "quality_standards": {
+      "file_size_limit": "Maximum 250 lines per file",
+      "code_quality": "Actual implementation, not placeholders",
+      "documentation": "Accurate and complete",
+      "testing": "All code must be tested and validated"
+    }
+  },
+  "code_organization": {
+    "file_structure": {
+      "one_task_per_file": {
+        "mandatory": true,
+        "description": "Each file should have a single responsibility - NO MONOLITHIC CODE",
+        "examples": {
+          "good": "ingredient_loader.py - only loads ingredients",
+          "bad": "kitchen_manager.py - handles everything"
+        },
+        "strict_requirements": [
+          "ONE task per file - no exceptions",
+          "NO monolithic files that handle multiple responsibilities",
+          "Each file should be focused and specific",
+          "Break down any file that tries to do multiple things"
+        ]
+      },
+      "file_size_limits": {
+        "target": "Under 200 lines per file",
+        "maximum": "300 lines per file",
+        "exceptions": "Only for complex data structures or configurations",
+        "current_violations": [
+          "kitchen/core/kitchen_engine.py (491 lines)",
+          "kitchen/pantry/operations/advanced_examples.py (375 lines)",
+          "kitchen/pantry/operations/demo_pantry.py (244 lines)"
+        ],
+        "enforcement": "STRICT - No files over 300 lines allowed"
+      },
+      "naming_conventions": {
+        "files": "snake_case.py",
+        "classes": "PascalCase",
+        "functions": "snake_case",
+        "constants": "UPPER_SNAKE_CASE",
+        "variables": "snake_case"
+      },
+      "directory_structure": {
+        "core": "Core functionality",
+        "utils": "Utility functions",
+        "models": "Data models and schemas",
+        "api": "API endpoints and interfaces",
+        "tests": "Test files",
+        "docs": "Documentation"
+      }
+    },
+    "modular_design": {
+      "principles": [
+        "Single responsibility principle - ONE task per file",
+        "Open/closed principle",
+        "Dependency inversion",
+        "Interface segregation",
+        "Liskov substitution"
+      ],
+      "implementation": [
+        "Small, focused modules - ONE responsibility each",
+        "Clear interfaces",
+        "Loose coupling",
+        "High cohesion",
+        "Dependency injection",
+        "Generic, reusable components"
+      ],
+      "strict_rules": [
+        "NEVER create monolithic files",
+        "ALWAYS break down complex functionality into smaller files",
+        "Each file should be independently testable",
+        "Each file should have a clear, single purpose",
+        "Generic code that can be reused across the system"
+      ]
+    }
+  },
+  "implementation_requirements": {
+    "no_stubs": {
+      "mandatory": true,
+      "description": "All functions must be fully implemented",
+      "prohibited": [
+        "def function(): pass",
+        "def function(): raise NotImplementedError",
+        "def function(): return None",
+        "def function(): # TODO implement"
+      ],
+      "required": [
+        "Complete business logic",
+        "Proper error handling",
+        "Input validation",
+        "Output validation",
+        "Comprehensive functionality"
+      ]
+    },
+    "error_handling": {
+      "mandatory": true,
+      "description": "Comprehensive error handling at all levels",
+      "requirements": [
+        "Handle all possible exceptions",
+        "Provide meaningful error messages",
+        "Log errors appropriately",
+        "Implement retry logic where appropriate",
+        "Graceful degradation",
+        "User-friendly error reporting"
+      ],
+      "patterns": [
+        "Try-catch blocks for all external calls",
+        "Validation before processing",
+        "Default values for optional parameters",
+        "Timeout handling for long operations",
+        "Resource cleanup in finally blocks"
+      ]
+    },
+    "input_validation": {
+      "mandatory": true,
+      "description": "Validate all inputs and parameters",
+      "requirements": [
+        "Type checking",
+        "Range validation",
+        "Format validation",
+        "Required field validation",
+        "Business rule validation",
+        "Sanitization where needed"
+      ]
+    },
+    "type_hints": {
+      "mandatory": true,
+      "description": "Use type hints for all functions and classes",
+      "examples": {
+        "functions": "def process_ingredient(ingredient: Ingredient) -> ProcessResult:",
+        "classes": "class IngredientManager:",
+        "variables": "ingredients: List[Ingredient] = []",
+        "optional": "config: Optional[Dict[str, Any]] = None"
+      }
+    }
+  },
+  "testing_standards": {
+    "test_driven_development": {
+      "mandatory": true,
+      "description": "Write tests before implementation",
+      "process": [
+        "Write failing test",
+        "Implement minimal code to pass",
+        "Refactor while keeping tests green",
+        "Repeat for next feature"
+      ]
+    },
+    "test_coverage": {
+      "minimum": "90%",
+      "target": "95%",
+      "exclusions": [
+        "Main execution blocks",
+        "Simple getters/setters",
+        "Configuration loading"
+      ]
+    },
+    "test_types": {
+      "unit_tests": {
+        "description": "Test individual functions and classes",
+        "coverage": "All functions and methods",
+        "framework": "pytest"
+      },
+      "integration_tests": {
+        "description": "Test component interactions",
+        "coverage": "All component interfaces",
+        "framework": "pytest"
+      },
+      "end_to_end_tests": {
+        "description": "Test complete workflows",
+        "coverage": "All user workflows",
+        "framework": "pytest"
+      }
+    },
+    "test_organization": {
+      "file_naming": "test_*.py",
+      "function_naming": "test_*",
+      "class_naming": "Test*",
+      "directory": "tests/",
+      "structure": "Mirror source directory structure"
+    }
+  },
+  "documentation_standards": {
+    "format_requirements": {
+      "mandatory": true,
+      "description": "All documentation must be in JSON format",
+      "requirements": [
+        "ALL documentation files must be .json format",
+        "NO .md or .yml files for documentation",
+        "Only exception: Docker configs and other system configs that require YAML",
+        "JSON format ensures consistency and machine readability",
+        "All documentation must follow established JSON schemas"
+      ],
+      "examples": {
+        "allowed": [
+          "README.json",
+          "handoff.json",
+          "analysis.json",
+          "standards.json",
+          "docker-compose.yml (config only)",
+          "dockerfile (config only)"
+        ],
+        "prohibited": [
+          "README.md",
+          "handoff.md",
+          "analysis.md",
+          "standards.yml"
+        ]
+      }
+    },
+    "inline_documentation": {
+      "mandatory": true,
+      "description": "Comprehensive inline documentation",
+      "requirements": [
+        "Docstrings for all functions and classes",
+        "Comments for complex logic",
+        "Type hints for all parameters",
+        "Return value documentation",
+        "Exception documentation",
+        "Usage examples"
+      ]
+    },
+    "docstring_format": {
+      "style": "Google style docstrings",
+      "template": {
+        "function": "Short description\n\nArgs:\n    param: description\n\nReturns:\n    description\n\nRaises:\n    ExceptionType: description",
+        "class": "Short description\n\nAttributes:\n    attr: description"
+      }
+    },
+    "api_documentation": {
+      "mandatory": true,
+      "description": "Complete API documentation",
+      "requirements": [
+        "All public functions documented",
+        "Parameter descriptions",
+        "Return value descriptions",
+        "Usage examples",
+        "Error conditions",
+        "Performance notes"
+      ]
+    }
+  },
+  "performance_standards": {
+    "memory_management": {
+      "requirements": [
+        "Efficient data structures",
+        "Proper resource cleanup",
+        "Memory leak prevention",
+        "Garbage collection optimization"
+      ]
+    },
+    "execution_time": {
+      "requirements": [
+        "Optimize critical paths",
+        "Use appropriate algorithms",
+        "Cache frequently accessed data",
+        "Minimize I/O operations"
+      ]
+    },
+    "scalability": {
+      "requirements": [
+        "Design for horizontal scaling",
+        "Efficient database queries",
+        "Load balancing considerations",
+        "Resource pooling"
+      ]
+    }
+  },
+  "security_standards": {
+    "input_validation": {
+      "mandatory": true,
+      "description": "Validate and sanitize all inputs",
+      "requirements": [
+        "Type checking",
+        "Length validation",
+        "Format validation",
+        "Content validation",
+        "SQL injection prevention",
+        "XSS prevention"
+      ]
+    },
+    "authentication": {
+      "requirements": [
+        "Secure authentication mechanisms",
+        "Password hashing",
+        "Session management",
+        "Access control"
+      ]
+    },
+    "data_protection": {
+      "requirements": [
+        "Encrypt sensitive data",
+        "Secure data transmission",
+        "Access logging",
+        "Data backup and recovery"
+      ]
+    }
+  },
+  "current_priorities": {
+    "critical_fixes": {
+      "priority": "CRITICAL",
+      "description": "Fix critical issues in kitchen system",
+      "tasks": [
+        "Add missing get_all_operations method to OperationRegistry",
+        "Fix module import path resolution in registry.py",
+        "Create proper recipes directory structure",
+        "Implement execute method in all operation classes",
+        "Break down oversized files into smaller modules"
+      ]
+    },
+    "quality_improvements": {
+      "priority": "HIGH",
+      "description": "Improve overall code quality",
+      "tasks": [
+        "Add comprehensive error handling",
+        "Implement input validation",
+        "Add type hints to all functions",
+        "Write comprehensive tests",
+        "Complete documentation"
+      ]
+    },
+    "system_implementation": {
+      "priority": "MEDIUM",
+      "description": "Complete system implementation",
+      "tasks": [
+        "Implement pantry system functionality",
+        "Complete recipe execution engine",
+        "Add context management",
+        "Implement performance optimization"
+      ]
+    }
+  },
+  "quality_gates": {
+    "mandatory_checks": [
+      "All files under 250 lines",
+      "No stubs or placeholder code",
+      "All functions have type hints",
+      "All functions have docstrings",
+      "All code has tests",
+      "All tests pass",
+      "No critical security issues",
+      "Performance requirements met"
+    ],
+    "validation_process": [
+      "Automated testing",
+      "Code review",
+      "Security scan",
+      "Performance testing",
+      "Documentation review"
+    ]
+  },
+  "references": {
+    "core_documents": "agents/LATEST/bootstrap/",
+    "critical_analysis": "agents/LATEST/CURRENT_ANALYSIS.json",
+    "current_handoff": "agents/LATEST/LATEST_HANDOFF.json",
+    "kitchen_system": "kitchen/",
+    "active_jobs": "agents/LATEST/jobs/"
+  },
+  "enterprise_best_practices": {
+    "centralized_environment_management": {
+      "mandatory": true,
+      "description": "Centralized environment and configuration management",
+      "requirements": [
+        "Use centralized environment management system",
+        "All configs in config/ directory with clear structure",
+        "Environment-specific configurations (dev, staging, prod)",
+        "Secrets management through centralized vault system",
+        "Configuration validation and schema enforcement",
+        "Dynamic configuration updates without restarts"
+      ],
+      "implementation": [
+        "config/env/ - Environment configurations",
+        "config/feature_flags/ - Feature flag definitions",
+        "config/secrets/ - Secrets management",
+        "config/validation/ - Configuration schemas",
+        "Centralized config loader with validation"
+      ]
+    },
+    "centralized_logging_system": {
+      "mandatory": true,
+      "description": "Comprehensive centralized logging system",
+      "requirements": [
+        "Structured logging with consistent format",
+        "Centralized log aggregation and storage",
+        "Log levels (DEBUG, INFO, WARNING, ERROR, CRITICAL)",
+        "Request tracing and correlation IDs",
+        "Performance logging and metrics",
+        "Security event logging",
+        "Log rotation and retention policies"
+      ],
+      "implementation": [
+        "logs/ - Centralized log directory",
+        "Structured JSON logging format",
+        "Request correlation IDs",
+        "Performance metrics collection",
+        "Security audit logging"
+      ]
+    },
+    "feature_flag_system": {
+      "mandatory": true,
+      "description": "Comprehensive feature flag system for gradual rollouts",
+      "requirements": [
+        "Runtime feature toggles without code changes",
+        "Gradual rollouts and A/B testing support",
+        "Feature deprecation and cleanup",
+        "Environment-specific feature flags",
+        "User/role-based feature access",
+        "Feature flag analytics and monitoring"
+      ],
+      "implementation": [
+        "config/feature_flags/ - Feature flag definitions",
+        "Feature flag service with caching",
+        "Runtime flag evaluation",
+        "Flag analytics and reporting",
+        "Automated flag cleanup"
+      ]
+    },
+    "monitoring_and_observability": {
+      "mandatory": true,
+      "description": "Comprehensive monitoring and observability",
+      "requirements": [
+        "Application performance monitoring (APM)",
+        "Health checks and readiness probes",
+        "Metrics collection and visualization",
+        "Alerting and notification systems",
+        "Distributed tracing",
+        "Error tracking and reporting"
+      ],
+      "implementation": [
+        "monitoring/ - Monitoring configurations",
+        "Health check endpoints",
+        "Metrics collection",
+        "Alert rules and notifications",
+        "Error tracking integration"
+      ]
+    },
+    "dependency_management": {
+      "mandatory": true,
+      "description": "Robust dependency management for large projects",
+      "requirements": [
+        "Centralized dependency management",
+        "Version pinning and lock files",
+        "Dependency vulnerability scanning",
+        "Automated dependency updates",
+        "Dependency audit and compliance",
+        "Multi-environment dependency management"
+      ],
+      "implementation": [
+        "requirements.txt - Python dependencies",
+        "package.json - Node.js dependencies",
+        "Dependency lock files",
+        "Automated vulnerability scanning",
+        "Dependency update automation"
+      ]
+    },
+    "code_quality_and_standards": {
+      "mandatory": true,
+      "description": "Enterprise-level code quality standards",
+      "requirements": [
+        "Automated code quality checks",
+        "Static analysis and linting",
+        "Code coverage requirements",
+        "Security scanning and analysis",
+        "Performance benchmarking",
+        "Code review automation"
+      ],
+      "implementation": [
+        "Quality gates in CI/CD",
+        "Automated linting and formatting",
+        "Security scanning integration",
+        "Performance testing automation",
+        "Code review checklists"
+      ]
+    },
+    "testing_strategy": {
+      "mandatory": true,
+      "description": "Comprehensive testing strategy for large projects",
+      "requirements": [
+        "Unit testing with high coverage",
+        "Integration testing for components",
+        "End-to-end testing for workflows",
+        "Performance and load testing",
+        "Security testing and penetration testing",
+        "Automated test execution and reporting"
+      ],
+      "implementation": [
+        "tests/unit/ - Unit tests",
+        "tests/integration/ - Integration tests",
+        "tests/e2e/ - End-to-end tests",
+        "tests/performance/ - Performance tests",
+        "Automated test execution",
+        "Test reporting and analytics"
+      ]
+    },
+    "security_best_practices": {
+      "mandatory": true,
+      "description": "Enterprise security standards",
+      "requirements": [
+        "Secure coding practices",
+        "Input validation and sanitization",
+        "Authentication and authorization",
+        "Data encryption and protection",
+        "Security audit logging",
+        "Vulnerability management"
+      ],
+      "implementation": [
+        "security/ - Security configurations",
+        "Authentication service",
+        "Authorization middleware",
+        "Data encryption utilities",
+        "Security audit logging",
+        "Vulnerability scanning"
+      ]
+    },
+    "deployment_and_devops": {
+      "mandatory": true,
+      "description": "Modern deployment and DevOps practices",
+      "requirements": [
+        "Containerization with Docker",
+        "Orchestration with Kubernetes",
+        "Infrastructure as Code (IaC)",
+        "Automated deployment pipelines",
+        "Blue-green deployments",
+        "Rollback capabilities"
+      ],
+      "implementation": [
+        "docker/ - Docker configurations",
+        "kubernetes/ - K8s manifests",
+        "terraform/ - Infrastructure as Code",
+        "CI/CD pipelines",
+        "Deployment automation"
+      ]
+    },
+    "documentation_standards": {
+      "mandatory": true,
+      "description": "Comprehensive documentation for large projects",
+      "requirements": [
+        "API documentation with OpenAPI/Swagger",
+        "Architecture documentation",
+        "Deployment and operations guides",
+        "Troubleshooting documentation",
+        "Contributing guidelines",
+        "Change log and release notes"
+      ],
+      "implementation": [
+        "docs/api/ - API documentation",
+        "docs/architecture/ - Architecture docs",
+        "docs/deployment/ - Deployment guides",
+        "docs/troubleshooting/ - Troubleshooting",
+        "CHANGELOG.json - Change log"
+      ]
+    },
+    "performance_optimization": {
+      "mandatory": true,
+      "description": "Performance optimization for large-scale systems",
+      "requirements": [
+        "Caching strategies (Redis, Memcached)",
+        "Database optimization and indexing",
+        "CDN integration for static assets",
+        "Load balancing and scaling",
+        "Resource monitoring and optimization",
+        "Performance benchmarking"
+      ],
+      "implementation": [
+        "cache/ - Caching configurations",
+        "Database optimization scripts",
+        "CDN integration",
+        "Load balancer configurations",
+        "Performance monitoring"
+      ]
+    },
+    "data_management": {
+      "mandatory": true,
+      "description": "Robust data management for large projects",
+      "requirements": [
+        "Database migrations and versioning",
+        "Data backup and recovery",
+        "Data validation and integrity",
+        "Data archival and retention",
+        "Data privacy and compliance",
+        "Data analytics and reporting"
+      ],
+      "implementation": [
+        "migrations/ - Database migrations",
+        "backup/ - Backup configurations",
+        "validation/ - Data validation",
+        "analytics/ - Analytics and reporting"
+      ]
+    }
+  }
+} 

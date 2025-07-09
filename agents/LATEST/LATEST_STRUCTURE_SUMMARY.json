@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "title": "LATEST Directory Structure Summary",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T23:56:00Z",
+    "status": "ACTIVE",
+    "purpose": "Summary of the new LATEST directory structure and usage guidelines"
+  },
+  "new_structure": {
+    "LATEST/": {
+      "description": "Current active documents only - clean and organized",
+      "contents": {
+        "core_documents": {
+          "description": "Essential documents that every agent must load",
+          "files": [
+            "IMMUTABLE_AGENT_RULES.json",
+            "DOCUMENTATION_SYSTEM_STANDARDS.json",
+            "AGENT_WORKFLOW_STANDARDS.json",
+            "DEVELOPMENT_STANDARDS.json",
+            "ARCHITECTURE_STANDARDS.json",
+            "BEST_PRACTICES_GUIDE.json",
+            "AGENT_HANDOFF_TEMPLATE.json",
+            "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+            "CORE_AGENT_DOCUMENTS.json"
+          ],
+          "naming": "NO timestamps in filenames",
+          "purpose": "Permanent standards and rules"
+        },
+        "current_handoff": {
+          "description": "Current handoff document for next agent",
+          "file": "LATEST_HANDOFF.json",
+          "naming": "NO timestamp in filename",
+          "purpose": "Current status and next steps"
+        },
+        "structure_summary": {
+          "description": "This document explaining the structure",
+          "file": "LATEST_STRUCTURE_SUMMARY.json",
+          "purpose": "Reference for understanding the structure"
+        },
+        "bootstrap/": {
+          "description": "Bootstrap directory for persistent standards and jobs",
+          "contents": {
+            "jobs/": {
+              "description": "Persistent job documents that span multiple agent sessions",
+              "files": [
+                "AGENT_TRACKING_SYSTEM_PLAN.json",
+                "LATEST_CLEANUP_PLAN.json",
+                "2025-07-08_10-45-00_MCP_SERVERS_RESEARCH_GUIDE.json"
+              ],
+              "naming": "WITH timestamps for job-specific documents",
+              "purpose": "Long-term work that continues across agents"
+            }
+          }
+        }
+      }
+    }
+  },
+  "agent_workflow": {
+    "on_startup": [
+      "Load all core documents (no timestamps)",
+      "Read LATEST_HANDOFF.json for current status",
+      "Review bootstrap/jobs/ for active work",
+      "Follow all standards and rules"
+    ],
+    "during_work": [
+      "Create timestamped documents for temporary work",
+      "Move job documents between bootstrap/jobs/ and LATEST/ as needed",
+      "Update core documents if standards change",
+      "Maintain clean organization"
+    ],
+    "on_handoff": [
+      "Archive all timestamped documents to appropriate archive directories",
+      "Update core documents if needed",
+      "Create new LATEST_HANDOFF.json",
+      "Ensure only current documents remain in LATEST/"
+    ]
+  },
+  "document_categories": {
+    "core_documents": {
+      "description": "Permanent standards and rules",
+      "location": "LATEST/ (root)",
+      "naming": "NO timestamps",
+      "examples": [
+        "IMMUTABLE_AGENT_RULES.json",
+        "DOCUMENTATION_SYSTEM_STANDARDS.json"
+      ]
+    },
+    "current_handoff": {
+      "description": "Current status and next steps",
+      "location": "LATEST/ (root)",
+      "naming": "NO timestamp",
+      "example": "LATEST_HANDOFF.json"
+    },
+    "persistent_jobs": {
+      "description": "Long-term work spanning multiple agents",
+      "location": "bootstrap/jobs/",
+      "naming": "WITH timestamps",
+      "examples": [
+        "AGENT_TRACKING_SYSTEM_PLAN.json",
+        "MCP_SERVERS_RESEARCH_GUIDE.json"
+      ]
+    },
+    "temporary_work": {
+      "description": "Short-term work for current agent session",
+      "location": "LATEST/ (root) during work, ARCHIVE/ when complete",
+      "naming": "WITH timestamps",
+      "examples": [
+        "2025-07-08_XX-XX-XX_ANALYSIS_TASK.json",
+        "2025-07-08_XX-XX-XX_IMPLEMENTATION_PLAN.json"
+      ]
+    }
+  },
+  "archive_structure": {
+    "agents/ARCHIVE/": {
+      "structure": "[topic]/[year]/[month]/",
+      "topics": [
+        "handoff",
+        "analysis",
+        "execution",
+        "blueprint",
+        "progress",
+        "validation"
+      ],
+      "example": "agents/ARCHIVE/handoff/2025/07/2025-07-08_10-45-00_LATEST_HANDOFF.json"
+    }
+  },
+  "benefits": {
+    "clarity": "Clear separation between core documents and temporary work",
+    "efficiency": "Agents know exactly which documents to load",
+    "persistence": "Important work doesn't get lost between agents",
+    "organization": "Clean structure prevents confusion",
+    "scalability": "Structure supports growth and complexity"
+  },
+  "usage_guidelines": {
+    "core_documents": [
+      "Never archive core documents",
+      "Update in place when standards change",
+      "All agents must load these documents",
+      "Maintain consistent naming (no timestamps)"
+    ],
+    "job_documents": [
+      "Use bootstrap/jobs/ for work that spans multiple agents",
+      "Move to LATEST/ when actively working on them",
+      "Move back to bootstrap/jobs/ when pausing work",
+      "Archive when job is complete"
+    ],
+    "temporary_documents": [
+      "Create in LATEST/ during work",
+      "Archive immediately when complete",
+      "Use timestamps in filenames",
+      "Don't leave in LATEST/ permanently"
+    ]
+  },
+  "success_criteria": {
+    "structure": [
+      "LATEST/ contains only current, active documents",
+      "Core documents have consistent, timestamp-free names",
+      "Job documents are properly organized in bootstrap/jobs/",
+      "No old documents left in LATEST/"
+    ],
+    "workflow": [
+      "Agents can quickly identify which documents to load",
+      "Important work persists across agent sessions",
+      "Clean handoff process with clear next steps",
+      "No confusion about document status or purpose"
+    ]
+  }
+} 

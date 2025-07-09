@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "title": "AI-Q Feature Flags Configuration",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-09T01:45:00Z",
+    "status": "ACTIVE",
+    "purpose": "Controls which components and services are enabled in the unified container"
+  },
+  "core": {
+    "api_server": true,
+    "web_dashboard": true,
+    "health_monitoring": true
+  },
+  "databases": {
+    "postgresql": true,
+    "redis": true,
+    "elasticsearch": true,
+    "neo4j": true,
+    "weaviate": true
+  },
+  "storage": {
+    "minio": true
+  },
+  "monitoring": {
+    "prometheus": true,
+    "grafana": true,
+    "cadvisor": true
+  },
+  "ai_ml": {
+    "rag_enabled": true,
+    "vector_search": true,
+    "graph_analytics": true,
+    "content_analysis": true
+  },
+  "development": {
+    "hot_reload": true,
+    "debug_mode": false,
+    "verbose_logging": false
+  },
+  "security": {
+    "authentication": false,
+    "ssl_enabled": false,
+    "cors_enabled": true
+  },
+  "performance": {
+    "caching_enabled": true,
+    "compression_enabled": true,
+    "rate_limiting": false
+  },
+  "integrations": {
+    "openai_enabled": false,
+    "huggingface_enabled": false,
+    "external_apis": false
+  },
+  "version_control": {
+    "gitea_enabled": true,
+    "git_sync_enabled": true,
+    "gitea_actions_enabled": true,
+    "redundant_version_control": true
+  },
+  "monitoring_stack": {
+    "enabled": true,
+    "description": "Enables the Prometheus and Grafana monitoring stack for observing system metrics."
+  },
+  "anything_llm": {
+    "enabled": false,
+    "description": "Enables the AnythingLLM service, providing an all-in-one interface for RAG, AI agents, and vector DB management."
+  },
+  "gitea_service": {
+    "enabled": true,
+    "description": "Enables the Gitea Git server for redundant version control and Gitea Actions CI/CD workflows.",
+    "environment_variable": "ENABLE_GITEA",
+    "default_value": true,
+    "docker_profile": "gitea"
+  }
+} 

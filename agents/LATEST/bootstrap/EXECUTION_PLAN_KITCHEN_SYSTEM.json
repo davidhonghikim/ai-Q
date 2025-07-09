@@ -4,20 +4,21 @@
     "version": "1.0.0",
     "created_by": "Q-Assist (GPT-4.1)",
     "creation_timestamp": "2025-07-08T09:30:00Z",
-    "status": "ACTIVE",
     "purpose": "Definitive execution plan for building the kOS kitchen system with quality-first approach",
     "completion_criteria": "All phases complete with full functionality, no stubs, comprehensive testing, and documentation"
   },
   "core_principles": {
     "quality_over_speed": "Build with quality and maintainability as primary goals",
     "no_technical_debt": "Complete implementations only, no stubs or placeholders",
-    "modular_architecture": "Small, focused files with single responsibility",
-    "atomic_tasks": "One task per file, no monolithic code",
+    "modular_architecture": "Small, focused files with single responsibility - NO MONOLITHIC CODE",
+    "atomic_tasks": "ONE task per file, no monolithic code",
     "scalable_design": "Plan for thousands of tasks, recipes, and workflows",
     "generic_framework": "Build for unknown future additions",
     "centralized_management": "Centralized settings, prompts, and artifacts",
     "full_ui_ux_connectors": "High-quality admin interfaces for frontend development",
-    "comprehensive_documentation": "Developer and user documentation for all components"
+    "comprehensive_documentation": "Developer and user documentation for all components in JSON format",
+    "strict_modularity": "STRICT - ONE task per file, NO monolithic code allowed",
+    "json_documentation": "ALL documentation in JSON format - no .md or .yml files"
   },
   "phase_1_foundation": {
     "title": "Foundation & Core Infrastructure",
