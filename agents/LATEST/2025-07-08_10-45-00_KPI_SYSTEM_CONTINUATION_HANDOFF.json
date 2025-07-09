@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "title": "Kitchen Pantry Ingredients (kOS KPI) System Continuation Handoff",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "handoff_timestamp": "2025-07-08T10:45:00Z",
+    "status": "ACTIVE",
+    "purpose": "Handoff for continuing kitchen/pantry/ingredients system development and testing Context7 integration"
+  },
+  "current_status": {
+    "context7_integration": {
+      "status": "COMPLETED",
+      "components_created": [
+        "kitchen/config/context7_integration.json - Main configuration",
+        "kitchen/pantry/ingredients/base/tools/context7_tool.json - Tool ingredient",
+        "kitchen/pantry/operations/tools/context7/context7_client.py - Client operations",
+        "kitchen/recipes/context7-integration/01-context7-setup-recipe.json - Setup recipe",
+        "docs/integrations/context7_integration.json - Documentation"
+      ],
+      "kitchen_config_updated": "kitchen/config/kitchen_config.json includes Context7 settings"
+    },
+    "pantry_structure": {
+      "status": "ORGANIZED",
+      "current_structure": "App-centric organization under kitchen/pantry/ingredients/",
+      "subfolders": ["base", "automatic1111", "comfyui", "n8n", "penpot", "openwebui"],
+      "categories": ["tools", "skills", "tasks", "modules"]
+    }
+  },
+  "next_agent_primary_tasks": [
+    {
+      "task": "Test Context7 Integration",
+      "priority": "HIGH",
+      "steps": [
+        "Verify Context7 configuration in kitchen/config/context7_integration.json",
+        "Test Context7 client operations in kitchen/pantry/operations/tools/context7/context7_client.py",
+        "Execute Context7 setup recipe: kitchen/recipes/context7-integration/01-context7-setup-recipe.json",
+        "Test library resolution: resolve_library_id('react')",
+        "Test documentation fetching: get_library_docs('/facebook/react', 'hooks')",
+        "Validate integration with kitchen prompt manager",
+        "Test error handling and troubleshooting scenarios"
+      ],
+      "success_criteria": [
+        "Context7 server starts successfully",
+        "Library resolution works correctly",
+        "Documentation fetching returns valid content",
+        "Integration with kitchen components functions properly",
+        "Error handling works as expected"
+      ]
+    },
+    {
+      "task": "Complete Pantry Ingredients Organization",
+      "priority": "HIGH",
+      "steps": [
+        "Audit all files in kitchen/pantry/ingredients/ and subfolders",
+        "Move any files outside app/type structure to correct subfolders",
+        "Create legacy/ folder for files requiring review",
+        "Update README.json describing the new structure and conventions",
+        "Document any files that could not be confidently categorized",
+        "Ensure structure is scalable for hundreds/thousands of ingredients"
+      ],
+      "success_criteria": [
+        "All ingredient files are properly categorized",
+        "No files left in legacy locations",
+        "README.json documents structure and conventions",
+        "Structure supports hundreds/thousands of ingredients"
+      ]
+    },
+    {
+      "task": "Research Additional MCP Servers",
+      "priority": "MEDIUM",
+      "steps": [
+        "Analyze MCP servers from https://composio.dev/blog/10-awesome-mcp-servers-to-make-your-life-easier",
+        "Research https://digma.ai/15-best-mcp-servers/ for additional options",
+        "Identify open-source, self-hosted, and free alternatives",
+        "Evaluate compatibility with kOS kitchen system",
+        "Prioritize servers based on utility and integration potential"
+      ],
+      "success_criteria": [
+        "List of recommended MCP servers with open-source options",
+        "Integration feasibility assessment for each server",
+        "Priority ranking for implementation"
+      ]
+    }
+  ],
+  "context7_testing_protocol": {
+    "prerequisites": [
+      "Node.js >= 16.0.0 installed",
+      "Network access for documentation fetching",
+      "kOS kitchen system initialized"
+    ],
+    "test_sequence": [
+      {
+        "test": "Installation Test",
+        "command": "npx -y @upstash/context7-mcp@latest",
+        "expected": "Successful installation without errors"
+      },
+      {
+        "test": "Library Resolution Test",
+        "operation": "resolve_library_id",
+        "parameters": {"libraryName": "react"},
+        "expected": {"libraryId": "/facebook/react", "confidence": ">0.8"}
+      },
+      {
+        "test": "Documentation Fetching Test",
+        "operation": "get_library_docs",
+        "parameters": {
+          "context7CompatibleLibraryID": "/facebook/react",
+          "topic": "hooks",
+          "tokens": 5000
+        },
+        "expected": "Valid documentation content with metadata"
+      },
+      {
+        "test": "Error Handling Test",
+        "operation": "resolve_library_id",
+        "parameters": {"libraryName": "nonexistent_library"},
+        "expected": "Graceful error handling with meaningful message"
+      }
+    ],
+    "troubleshooting_commands": [
+      "bunx -y @upstash/context7-mcp (alternative to npx)",
+      "npx -y --node-options=--experimental-vm-modules @upstash/context7-mcp@1.0.6 (ESM issues)",
+      "npx -y --node-options=--experimental-fetch @upstash/context7-mcp (TLS issues)"
+    ]
+  },
+  "additional_mcp_servers_research": {
+    "sources": [
+      "https://composio.dev/blog/10-awesome-mcp-servers-to-make-your-life-easier",
+      "https://digma.ai/15-best-mcp-servers/"
+    ],
+    "evaluation_criteria": [
+      "Open-source availability",
+      "Self-hosting capability",
+      "Free tier or cost",
+      "Integration complexity",
+      "Utility for kOS kitchen system",
+      "Community support"
+    ],
+    "priority_categories": {
+      "high": "Essential for kitchen operations",
+      "medium": "Useful for enhanced functionality",
+      "low": "Nice-to-have features"
+    }
+  },
+  "pantry_organization_standards": {
+    "file_naming": "Use descriptive names without agent references",
+    "structure": "App/type categorization with subfolders",
+    "documentation": "Each ingredient must have proper metadata",
+    "scalability": "Support for hundreds/thousands of ingredients",
+    "modularity": "Small, focused files under 150 lines",
+    "atomic_tasks": "Each ingredient should be atomic and reusable"
+  },
+  "dependencies": [
+    "kitchen/pantry/ingredients/ directory and all subfolders",
+    "kitchen/config/context7_integration.json",
+    "kitchen/pantry/operations/tools/context7/context7_client.py",
+    "kitchen/recipes/context7-integration/01-context7-setup-recipe.json",
+    "docs/integrations/context7_integration.json"
+  ],
+  "success_criteria": [
+    "Context7 integration fully tested and functional",
+    "Pantry ingredients properly organized and documented",
+    "Additional MCP servers researched and prioritized",
+    "System ready for scaling to thousands of ingredients",
+    "All components follow kOS quality standards"
+  ],
+  "references": [
+    "agents/LATEST/IMMUTABLE_AGENT_RULES_v1.0.0_FINAL.json",
+    "agents/LATEST/2025-07-07_22-46-17_agent_workflow.json",
+    "agents/blueprint/kitchen/ for design documentation",
+    "kitchen/config/kitchen_config.json for system configuration"
+  ],
+  "notes": {
+    "context7_importance": "Context7 provides real-time documentation access, crucial for recipe execution and development",
+    "pantry_organization": "Current structure supports app-centric organization but needs completion",
+    "mcp_expansion": "Additional MCP servers can enhance kitchen capabilities significantly",
+    "quality_standards": "All work must follow established kOS quality and documentation standards"
+  }
+} 
