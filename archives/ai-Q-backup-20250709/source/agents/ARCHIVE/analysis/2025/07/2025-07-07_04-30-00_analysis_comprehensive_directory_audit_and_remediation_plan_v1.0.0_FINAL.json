@@ -1,0 +1,603 @@
+{
+  "metadata": {
+    "title": "Comprehensive Directory Audit and Remediation Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-07T04:30:00Z",
+    "status": "FINAL",
+    "purpose": "Detailed audit of all directory structure and file compliance issues with systematic remediation plan"
+  },
+  "audit_summary": {
+    "total_files_audited": 0,
+    "files_in_wrong_locations": 0,
+    "files_with_incorrect_names": 0,
+    "files_with_incorrect_timestamps": 0,
+    "files_in_root_archive": 0,
+    "execution_files_in_analysis": 0,
+    "non_compliant_filenames": 0
+  },
+  "critical_issues_found": {
+    "root_archive_files": [
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-45-00_progress_phase_1_2_completion_v1.0.0_DRAFT.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_15-45-00_progress_phase_1_2_completion_v1.0.0_DRAFT.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-15-00_execution_plan_unfinished_work_remediation_v1.0.0_DRAFT.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/execution/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_15-15-00_execution_plan_unfinished_work_remediation_v1.0.0_DRAFT.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-00-00_analysis_unfinished_work_and_errors_v1.0.0_DRAFT.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/analysis/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_15-00-00_analysis_unfinished_work_and_errors_v1.0.0_DRAFT.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_14-30-00_handoff_documentation_system_migration_v1.0.0_FINAL.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/handoff/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_14-30-00_handoff_documentation_system_migration_v1.0.0_FINAL.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_progress_npm_resolution_complete.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_15-50-59_progress_npm_resolution_complete.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_recipe_index_updated.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_15-50-59_recipe_index_updated.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_analysis_npm_resolution_complete.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/analysis/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_15-50-59_analysis_npm_resolution_complete.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_installation_guide_created.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_15-50-59_installation_guide_created.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_handoff_npm_resolution_complete.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/handoff/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_15-50-59_handoff_npm_resolution_complete.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_15-50-59_package_json_conservative.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_15-50-59_package_json_conservative.json",
+        "priority": "CRITICAL"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/2025-07-06_16-15-00_progress_final_progress_summary_v1.0.0_FINAL.json",
+        "issue": "File in ARCHIVE root - should be in ARCHIVE/progress/2025/07/06/",
+        "correct_location": "ai-Q/agents/ARCHIVE/progress/2025/07/06/2025-07-06_16-15-00_progress_final_progress_summary_v1.0.0_FINAL.json",
+        "priority": "CRITICAL"
+      }
+    ],
+    "execution_files_in_analysis_directory": [
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_implementation_plan_detailed_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_implementation_plan_detailed_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_recipe_library_quality_fixes_complete_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_recipe_library_quality_fixes_complete_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_recipe_refactoring_progress_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_recipe_refactoring_progress_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_cleanup_completion_summary_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_cleanup_completion_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_python_errors_fixed_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_python_errors_fixed_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_final_documentation_transformation_summary_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_final_documentation_transformation_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/2025-07-06_16-45-00_execution_robust_conversion_report_v1.0.0_FINAL.json",
+        "issue": "Execution file in analysis directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-45-00_execution_robust_conversion_report_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      }
+    ],
+    "execution_files_in_handoff_directory": [
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_systematic_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_systematic_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_comprehensive_recipe_review_and_fix_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_comprehensive_recipe_review_and_fix_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_recipe_order_fix_summary_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_recipe_order_fix_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_recipe_order_fix_execution_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_recipe_order_fix_execution_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_comprehensive_recipe_audit_execution_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_comprehensive_recipe_audit_execution_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_recipe_fix_checklist_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_recipe_fix_checklist_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_recipe_library_completion_plan_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_recipe_library_completion_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_plan_recipe_completion_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_plan_recipe_completion_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/2025-07-06_16-30-00_execution_current_v1.0.0_FINAL.json",
+        "issue": "Execution file in handoff directory",
+        "correct_location": "ai-Q/agents/ARCHIVE/execution/2025/07/06/2025-07-06_16-30-00_execution_current_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      }
+    ],
+    "non_compliant_filenames": [
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/COMPREHENSIVE_SYSTEM_ANALYSIS.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_16-45-00_analysis_comprehensive_system_analysis_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/MISSING_COMPONENTS_ANALYSIS.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_16-45-00_analysis_missing_components_analysis_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/COMPREHENSIVE_IMPLEMENTATION_PLAN.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_comprehensive_implementation_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/EXECUTION_PLAN.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_plan_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/REGISTRY_IMPLEMENTATION_GUIDE.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_registry_implementation_guide_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/PRACTICAL_IMPLEMENTATION_GUIDE.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_practical_implementation_guide_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/NEXT_AGENT_EXECUTION_PROMPT.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_next_agent_execution_prompt_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/MODULAR_REGISTRY_IMPLEMENTATION_GUIDE.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_modular_registry_implementation_guide_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/execution/2025/07/06/IMPLEMENTATION_GUIDE.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_02-45-00_execution_implementation_guide_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/NEXT_AGENT_HANDOFF_CORRECTED.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_next_agent_handoff_corrected_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/NEXT_AGENT_HANDOFF_COMPREHENSIVE.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_next_agent_handoff_comprehensive_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/KITCHEN_SYSTEM_HANDOFF.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_kitchen_system_handoff_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/RECIPE_LIBRARY_CRITICAL_FIXES_HANDOFF.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_recipe_library_critical_fixes_handoff_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/HANDOFF_INFRASTRUCTURE_ENHANCEMENTS.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_infrastructure_enhancements_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/AGENT_FIRST_SYSTEM_DESIGN.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_agent_first_system_design_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/AGENT_HANDOFF_AUTOPILOT.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_agent_handoff_autopilot_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/AGENT_REVIEW_PROCESS.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_agent_review_process_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/AI-Q_PROJECT_DESIGN_MANUAL.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_ai_q_project_design_manual_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/FINAL_VALIDATION_REPORT.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_final_validation_report_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/HANDOFF_SUMMARY.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/FINAL_HANDOFF_SUMMARY.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_final_handoff_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/LATEST_HANDOFF.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_latest_handoff_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/MODULAR_REGISTRY_SYSTEM_DESIGN.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_modular_registry_system_design_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/FINAL_SYSTEM_SUMMARY.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_final_system_summary_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      },
+      {
+        "file": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/NEXT_AGENT_INSTRUCTIONS.json",
+        "issue": "No timestamp prefix, no category prefix",
+        "correct_name": "2025-07-06_17-00-00_handoff_next_agent_instructions_v1.0.0_FINAL.json",
+        "priority": "HIGH"
+      }
+    ]
+  },
+  "remediation_plan": {
+    "phase_1_create_missing_directories": {
+      "duration": "5 minutes",
+      "tasks": [
+        {
+          "task": "Create progress directory structure",
+          "command": "mkdir -p ai-Q/agents/ARCHIVE/progress/2025/07/06",
+          "purpose": "Ensure progress files have proper location"
+        }
+      ]
+    },
+    "phase_2_move_root_archive_files": {
+      "duration": "15 minutes",
+      "tasks": [
+        {
+          "task": "Move progress files from root to progress directory",
+          "files": [
+            "2025-07-06_15-45-00_progress_phase_1_2_completion_v1.0.0_DRAFT.json",
+            "2025-07-06_15-50-59_progress_npm_resolution_complete.json",
+            "2025-07-06_15-50-59_recipe_index_updated.json",
+            "2025-07-06_15-50-59_installation_guide_created.json",
+            "2025-07-06_15-50-59_package_json_conservative.json",
+            "2025-07-06_16-15-00_progress_final_progress_summary_v1.0.0_FINAL.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/",
+          "to": "ai-Q/agents/ARCHIVE/progress/2025/07/06/"
+        },
+        {
+          "task": "Move execution files from root to execution directory",
+          "files": [
+            "2025-07-06_15-15-00_execution_plan_unfinished_work_remediation_v1.0.0_DRAFT.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/",
+          "to": "ai-Q/agents/ARCHIVE/execution/2025/07/06/"
+        },
+        {
+          "task": "Move analysis files from root to analysis directory",
+          "files": [
+            "2025-07-06_15-00-00_analysis_unfinished_work_and_errors_v1.0.0_DRAFT.json",
+            "2025-07-06_15-50-59_analysis_npm_resolution_complete.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/",
+          "to": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/"
+        },
+        {
+          "task": "Move handoff files from root to handoff directory",
+          "files": [
+            "2025-07-06_14-30-00_handoff_documentation_system_migration_v1.0.0_FINAL.json",
+            "2025-07-06_15-50-59_handoff_npm_resolution_complete.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/",
+          "to": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/"
+        }
+      ]
+    },
+    "phase_3_move_misplaced_files": {
+      "duration": "20 minutes",
+      "tasks": [
+        {
+          "task": "Move execution files from analysis directory to execution directory",
+          "files": [
+            "2025-07-06_16-45-00_execution_implementation_plan_detailed_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_recipe_library_quality_fixes_complete_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_recipe_refactoring_progress_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_cleanup_completion_summary_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_python_errors_fixed_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_final_documentation_transformation_summary_v1.0.0_FINAL.json",
+            "2025-07-06_16-45-00_execution_robust_conversion_report_v1.0.0_FINAL.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/",
+          "to": "ai-Q/agents/ARCHIVE/execution/2025/07/06/"
+        },
+        {
+          "task": "Move execution files from handoff directory to execution directory",
+          "files": [
+            "2025-07-06_16-30-00_execution_systematic_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_comprehensive_recipe_review_and_fix_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_recipe_order_fix_summary_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_recipe_order_fix_execution_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_recipe_fix_execution_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_comprehensive_recipe_audit_execution_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_recipe_fix_checklist_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_recipe_library_completion_plan_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_plan_recipe_completion_v1.0.0_FINAL.json",
+            "2025-07-06_16-30-00_execution_current_v1.0.0_FINAL.json"
+          ],
+          "from": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/",
+          "to": "ai-Q/agents/ARCHIVE/execution/2025/07/06/"
+        }
+      ]
+    },
+    "phase_4_rename_non_compliant_files": {
+      "duration": "30 minutes",
+      "tasks": [
+        {
+          "task": "Rename analysis files with proper timestamps and prefixes",
+          "files": [
+            {
+              "current": "COMPREHENSIVE_SYSTEM_ANALYSIS.json",
+              "new": "2025-07-06_16-45-00_analysis_comprehensive_system_analysis_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "MISSING_COMPONENTS_ANALYSIS.json",
+              "new": "2025-07-06_16-45-00_analysis_missing_components_analysis_v1.0.0_FINAL.json"
+            }
+          ],
+          "directory": "ai-Q/agents/ARCHIVE/analysis/2025/07/06/"
+        },
+        {
+          "task": "Rename execution files with proper timestamps and prefixes",
+          "files": [
+            {
+              "current": "COMPREHENSIVE_IMPLEMENTATION_PLAN.json",
+              "new": "2025-07-06_02-45-00_execution_comprehensive_implementation_plan_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "EXECUTION_PLAN.json",
+              "new": "2025-07-06_02-45-00_execution_plan_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "REGISTRY_IMPLEMENTATION_GUIDE.json",
+              "new": "2025-07-06_02-45-00_execution_registry_implementation_guide_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "PRACTICAL_IMPLEMENTATION_GUIDE.json",
+              "new": "2025-07-06_02-45-00_execution_practical_implementation_guide_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "NEXT_AGENT_EXECUTION_PROMPT.json",
+              "new": "2025-07-06_02-45-00_execution_next_agent_execution_prompt_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "MODULAR_REGISTRY_IMPLEMENTATION_GUIDE.json",
+              "new": "2025-07-06_02-45-00_execution_modular_registry_implementation_guide_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "IMPLEMENTATION_GUIDE.json",
+              "new": "2025-07-06_02-45-00_execution_implementation_guide_v1.0.0_FINAL.json"
+            }
+          ],
+          "directory": "ai-Q/agents/ARCHIVE/execution/2025/07/06/"
+        },
+        {
+          "task": "Rename handoff files with proper timestamps and prefixes",
+          "files": [
+            {
+              "current": "NEXT_AGENT_HANDOFF_CORRECTED.json",
+              "new": "2025-07-06_17-00-00_handoff_next_agent_handoff_corrected_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "NEXT_AGENT_HANDOFF_COMPREHENSIVE.json",
+              "new": "2025-07-06_17-00-00_handoff_next_agent_handoff_comprehensive_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "KITCHEN_SYSTEM_HANDOFF.json",
+              "new": "2025-07-06_17-00-00_handoff_kitchen_system_handoff_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "RECIPE_LIBRARY_CRITICAL_FIXES_HANDOFF.json",
+              "new": "2025-07-06_17-00-00_handoff_recipe_library_critical_fixes_handoff_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "HANDOFF_INFRASTRUCTURE_ENHANCEMENTS.json",
+              "new": "2025-07-06_17-00-00_handoff_infrastructure_enhancements_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "AGENT_FIRST_SYSTEM_DESIGN.json",
+              "new": "2025-07-06_17-00-00_handoff_agent_first_system_design_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "AGENT_HANDOFF_AUTOPILOT.json",
+              "new": "2025-07-06_17-00-00_handoff_agent_handoff_autopilot_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "AGENT_REVIEW_PROCESS.json",
+              "new": "2025-07-06_17-00-00_handoff_agent_review_process_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "AI-Q_PROJECT_DESIGN_MANUAL.json",
+              "new": "2025-07-06_17-00-00_handoff_ai_q_project_design_manual_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "FINAL_VALIDATION_REPORT.json",
+              "new": "2025-07-06_17-00-00_handoff_final_validation_report_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "HANDOFF_SUMMARY.json",
+              "new": "2025-07-06_17-00-00_handoff_summary_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "FINAL_HANDOFF_SUMMARY.json",
+              "new": "2025-07-06_17-00-00_handoff_final_handoff_summary_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "LATEST_HANDOFF.json",
+              "new": "2025-07-06_17-00-00_handoff_latest_handoff_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "MODULAR_REGISTRY_SYSTEM_DESIGN.json",
+              "new": "2025-07-06_17-00-00_handoff_modular_registry_system_design_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "FINAL_SYSTEM_SUMMARY.json",
+              "new": "2025-07-06_17-00-00_handoff_final_system_summary_v1.0.0_FINAL.json"
+            },
+            {
+              "current": "NEXT_AGENT_INSTRUCTIONS.json",
+              "new": "2025-07-06_17-00-00_handoff_next_agent_instructions_v1.0.0_FINAL.json"
+            }
+          ],
+          "directory": "ai-Q/agents/ARCHIVE/handoff/2025/07/06/"
+        }
+      ]
+    },
+    "phase_5_validation": {
+      "duration": "15 minutes",
+      "tasks": [
+        {
+          "task": "Verify no files remain in ARCHIVE root",
+          "command": "ls ai-Q/agents/ARCHIVE/*.json",
+          "expected": "No files should be found"
+        },
+        {
+          "task": "Verify all files are in correct topic directories",
+          "command": "find ai-Q/agents/ARCHIVE -name '*.json' -exec basename {} \\;",
+          "expected": "All files should have YYYY-MM-DD_HH-MM-SS prefix"
+        },
+        {
+          "task": "Verify no execution files in analysis directory",
+          "command": "find ai-Q/agents/ARCHIVE/analysis -name '*execution*'",
+          "expected": "No files should be found"
+        },
+        {
+          "task": "Verify no execution files in handoff directory",
+          "command": "find ai-Q/agents/ARCHIVE/handoff -name '*execution*'",
+          "expected": "No files should be found"
+        }
+      ]
+    }
+  },
+  "success_criteria": [
+    "Zero files in ARCHIVE root directory",
+    "All files in correct topic/date subdirectories",
+    "All filenames follow YYYY-MM-DD_HH-MM-SS_[category]_[description]_v1.0.0_[status].json",
+    "No execution files in analysis or handoff directories",
+    "All files properly categorized by type",
+    "Directory structure follows established standards"
+  ],
+  "critical_reminders": [
+    "DO NOT move files out of their topical directories",
+    "DO NOT leave any files in ARCHIVE root",
+    "Follow naming convention exactly",
+    "Verify each move/rename operation",
+    "Quality over speed - do it right the first time",
+    "No agent names in filenames"
+  ]
+} 

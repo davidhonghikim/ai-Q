@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2025-01-27T22:30:00Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "converted_from": "E:\\kos\\ai-Q\\manual\\features\\README.md",
+  "conversion_timestamp": "2025-01-27T22:30:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "purpose": "Converted from Markdown file: README.md",
+  "title": "Features Index",
+  "original_content": "# Features Index\n\nThis directory contains detailed specifications for every feature and subfeature of the AI-Q project. Each file describes a single feature or tightly related group of features, with implementation details, user stories, and agent task breakdowns.\n\n## Major Features\n- Universal Ingestion (all file types)\n- Semantic Search (cross-modal)\n- Image Generation (ComfyUI, A1111)\n- Video & Audio Processing (ffmpeg, Whisper)\n- Document Parsing & Summarization\n- Code Search & Explanation\n- Personalization & User Profiles\n- Timeline, Gallery, and Dashboard Views\n- Knowledge Graph & Relationships\n- Automation & Workflow (n8n)\n- Data Science & Analytics (Jupyter)\n- Security, Privacy, and Compliance\n- Extensibility & Plugin System\n\nSee individual files in this directory for full details on each feature. ",
+  "sections": {
+    "Features Index": "This directory contains detailed specifications for every feature and subfeature of the AI-Q project. Each file describes a single feature or tightly related group of features, with implementation details, user stories, and agent task breakdowns.",
+    "Major Features": "- Universal Ingestion (all file types)\n- Semantic Search (cross-modal)\n- Image Generation (ComfyUI, A1111)\n- Video & Audio Processing (ffmpeg, Whisper)\n- Document Parsing & Summarization\n- Code Search & Explanation\n- Personalization & User Profiles\n- Timeline, Gallery, and Dashboard Views\n- Knowledge Graph & Relationships\n- Automation & Workflow (n8n)\n- Data Science & Analytics (Jupyter)\n- Security, Privacy, and Compliance\n- Extensibility & Plugin System\n\nSee individual files in this directory for full details on each feature."
+  },
+  "metadata": {},
+  "conversion_notes": "Converted from Markdown to structured JSON format",
+  "requires_manual_review": false
+}

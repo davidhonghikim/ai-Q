@@ -1,0 +1,333 @@
+{
+  "metadata": {
+    "title": "Agent Workflow Standards - kOS Kitchen System",
+    "version": "1.0.1",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T09:35:00Z",
+    "last_updated": "2025-07-09T00:30:00Z",
+    "purpose": "Mandatory workflow standards for all agents working on the kOS kitchen system",
+    "compliance": "MANDATORY_FOR_ALL_AGENTS"
+  },
+  "current_system_state": {
+    "directory_structure": "CLEANED_AND_ORGANIZED",
+    "kitchen_system_status": "CRITICAL_ISSUES_DETECTED_NEEDS_IMMEDIATE_ATTENTION",
+    "current_priorities": [
+      "Implement Git workflow system",
+      "Fix kitchen system critical issues (see CURRENT_ANALYSIS.json)",
+      "Continue MCP servers research"
+    ],
+    "quality_standards": {
+      "file_size_limit": "Maximum 300 lines per file - ideally 150-250 lines",
+      "code_quality": "Actual implementation, not placeholders",
+      "documentation": "Accurate and complete",
+      "testing": "All code must be tested and validated"
+    }
+  },
+  "agent_introduction": {
+    "mandatory": true,
+    "format": "I am [Agent Name], specialized in [Specialization], currently working on [Current Role] in the kOS Project.",
+    "example": "I am SuperAgent, specialized in system architecture and development, currently working on creating comprehensive execution plans and workflow standards for the kOS project."
+  },
+  "pre_work_requirements": {
+    "review_previous_work": {
+      "mandatory": true,
+      "description": "Review all previous agent work for quality and completeness",
+      "checklist": [
+        "Read the latest handoff document in agents/LATEST/LATEST_HANDOFF.json",
+        "Review CURRENT_ANALYSIS.json for critical issues",
+        "Check DIRECTORY_CLEANUP_SUMMARY.json for recent changes",
+        "Review recent changelog entries in agents/ARCHIVE/changelog/",
+        "Check for any incomplete implementations or stubs",
+        "Verify all dependencies are properly implemented",
+        "Identify any technical debt from previous work",
+        "Understand the current state of the system"
+      ]
+    },
+    "understand_execution_plan": {
+      "mandatory": true,
+      "description": "Completely understand the execution plan before starting",
+      "requirements": [
+        "Read the complete execution plan document",
+        "Understand the current phase and priorities",
+        "Identify your specific tasks and responsibilities",
+        "Understand dependencies and prerequisites",
+        "Know the success criteria for your phase"
+      ]
+    },
+    "check_system_state": {
+      "mandatory": true,
+      "description": "Check the current state of the system",
+      "actions": [
+        "Run system health checks",
+        "Verify all required files exist",
+        "Check for any errors or warnings",
+        "Validate configuration files",
+        "Test existing functionality",
+        "Review critical issues in CURRENT_ANALYSIS.json"
+      ]
+    },
+    "load_core_documents": {
+      "mandatory": true,
+      "description": "Load all core documents from bootstrap directory",
+      "documents": [
+        "IMMUTABLE_AGENT_RULES.json",
+        "DOCUMENTATION_SYSTEM_STANDARDS.json",
+        "AGENT_WORKFLOW_STANDARDS.json",
+        "DEVELOPMENT_STANDARDS.json",
+        "ARCHITECTURE_STANDARDS.json",
+        "BEST_PRACTICES_GUIDE.json",
+        "AGENT_HANDOFF_TEMPLATE.json",
+        "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+        "GIT_WORKFLOW_SYSTEM_DOCUMENTATION.json"
+      ]
+    }
+  },
+  "implementation_standards": {
+    "no_stubs_or_placeholders": {
+      "mandatory": true,
+      "description": "All code must be fully implemented with no stubs or placeholders",
+      "prohibited": [
+        "TODO comments without implementation",
+        "Pass statements without logic",
+        "Raise NotImplementedError",
+        "Return None without proper logic",
+        "Mock data in production code",
+        "Placeholder implementations"
+      ],
+      "required": [
+        "Complete business logic implementation",
+        "Proper error handling",
+        "Input validation",
+        "Output validation",
+        "Comprehensive functionality"
+      ]
+    },
+    "modular_code_requirements": {
+      "mandatory": true,
+      "description": "STRICT modular code requirements - NO MONOLITHIC CODE",
+      "requirements": [
+        "ONE task per file - no exceptions",
+        "Each file must have a single, clear responsibility",
+        "Break down any file over 300 lines",
+        "Generic, reusable components only",
+        "No files that handle multiple responsibilities",
+        "Each file should be independently testable"
+      ],
+      "examples": {
+        "good": [
+          "ingredient_loader.py - only loads ingredients",
+          "dependency_resolver.py - only resolves dependencies",
+          "validator.py - only validates data"
+        ],
+        "bad": [
+          "kitchen_manager.py - handles everything",
+          "processor.py - processes multiple things",
+          "handler.py - handles multiple responsibilities"
+        ]
+      },
+      "enforcement": "STRICT - No monolithic code allowed"
+    },
+    "documentation_format": {
+      "mandatory": true,
+      "description": "All documentation must be in JSON format",
+      "requirements": [
+        "ALL documentation files must be .json format",
+        "NO .md or .yml files for documentation",
+        "Only exception: Docker configs and system configs that require YAML",
+        "JSON format ensures consistency and machine readability"
+      ]
+    },
+    "code_quality": {
+      "mandatory": true,
+      "description": "Maintain high code quality standards",
+      "requirements": [
+        "Use type hints for all functions and classes",
+        "Write comprehensive docstrings",
+        "Follow PEP 8 style guidelines",
+        "Use descriptive variable and function names",
+        "Keep functions small and focused",
+        "Avoid code duplication",
+        "Handle all edge cases"
+      ]
+    },
+    "file_organization": {
+      "mandatory": true,
+      "description": "Organize code properly with one task per file",
+      "requirements": [
+        "One responsibility per file",
+        "Keep files under 300 lines maximum - ideally 150-250 lines",
+        "Use clear, descriptive file names",
+        "Organize into logical subdirectories",
+        "Follow consistent naming conventions",
+        "Separate concerns properly"
+      ]
+    },
+    "testing_requirements": {
+      "mandatory": true,
+      "description": "Write comprehensive tests for all code",
+      "requirements": [
+        "Write tests before implementation (TDD)",
+        "Achieve minimum 90% test coverage",
+        "Test all edge cases and error conditions",
+        "Write integration tests for component interactions",
+        "Write end-to-end tests for complete workflows",
+        "Document all test cases"
+      ]
+    }
+  },
+  "workflow_process": {
+    "planning_phase": {
+      "mandatory": true,
+      "description": "Plan your work before starting implementation",
+      "steps": [
+        "Review the execution plan for your phase",
+        "Review CURRENT_ANALYSIS.json for critical issues",
+        "Identify specific tasks and components to implement",
+        "Understand dependencies and prerequisites",
+        "Plan the implementation approach",
+        "Identify potential challenges and solutions",
+        "Create a detailed work plan"
+      ]
+    },
+    "implementation_phase": {
+      "mandatory": true,
+      "description": "Implement one component at a time with quality",
+      "steps": [
+        "Implement one component completely",
+        "Write tests for the component",
+        "Ensure no stubs or placeholders",
+        "Document the component",
+        "Test the component thoroughly",
+        "Review code quality",
+        "Move to next component only after current is complete"
+      ]
+    },
+    "review_phase": {
+      "mandatory": true,
+      "description": "Review your work before completing",
+      "steps": [
+        "Review all implemented code",
+        "Check for any stubs or placeholders",
+        "Verify all requirements are met",
+        "Run all tests and ensure they pass",
+        "Check code quality and style",
+        "Verify documentation is complete",
+        "Test functionality end-to-end"
+      ]
+    },
+    "documentation_phase": {
+      "mandatory": true,
+      "description": "Document everything thoroughly",
+      "requirements": [
+        "Update inline code documentation",
+        "Write comprehensive function and class docs",
+        "Update API documentation",
+        "Create or update user guides",
+        "Update developer documentation",
+        "Document any configuration changes",
+        "Create handoff notes for next agent"
+      ]
+    }
+  },
+  "quality_assurance": {
+    "code_review": {
+      "mandatory": true,
+      "description": "Review your own code for quality",
+      "checklist": [
+        "No stubs or placeholder implementations",
+        "All functions fully implemented",
+        "Comprehensive error handling",
+        "Proper input validation",
+        "Complete documentation",
+        "All tests passing",
+        "Performance considerations addressed",
+        "Security considerations addressed",
+        "File size under 250 lines"
+      ]
+    },
+    "testing_verification": {
+      "mandatory": true,
+      "description": "Verify all tests pass and coverage is adequate",
+      "requirements": [
+        "Run all unit tests",
+        "Run all integration tests",
+        "Run all end-to-end tests",
+        "Verify test coverage is at least 90%",
+        "Test all error conditions",
+        "Test all edge cases",
+        "Verify performance under load"
+      ]
+    },
+    "functionality_verification": {
+      "mandatory": true,
+      "description": "Verify all functionality works as expected",
+      "requirements": [
+        "Test all implemented features",
+        "Verify integration with other components",
+        "Test error handling and recovery",
+        "Verify performance characteristics",
+        "Test security features",
+        "Verify scalability considerations"
+      ]
+    }
+  },
+  "handoff_process": {
+    "mandatory_requirements": [
+      "Create comprehensive handoff document",
+      "Archive all timestamped documents",
+      "Update core documents if standards changed",
+      "Ensure clean LATEST directory structure",
+      "Document all completed work",
+      "Provide clear next steps for next agent"
+    ],
+    "handoff_document_requirements": [
+      "Current system state and status",
+      "Completed work and achievements",
+      "Critical issues and fixes",
+      "Immediate next steps and priorities",
+      "Project rules and standards",
+      "Quality standards and compliance",
+      "References to all relevant documents"
+    ]
+  },
+  "current_priorities_focus": {
+    "kitchen_system_critical_fixes": {
+      "priority": "CRITICAL",
+      "description": "Address critical issues identified in CURRENT_ANALYSIS.json",
+      "focus_areas": [
+        "Fix missing methods in OperationRegistry",
+        "Fix module import path resolution",
+        "Create proper recipes directory",
+        "Implement proper operation interfaces",
+        "Break down oversized files"
+      ]
+    },
+    "git_workflow_implementation": {
+      "priority": "HIGH",
+      "description": "Implement Git workflow system as documented",
+      "focus_areas": [
+        "Deploy Gitea server",
+        "Implement automated validation workflows",
+        "Set up quality gates and compliance checks",
+        "Create agent performance tracking"
+      ]
+    },
+    "mcp_servers_research": {
+      "priority": "MEDIUM",
+      "description": "Continue MCP servers research for kitchen integration",
+      "focus_areas": [
+        "Research additional MCP servers",
+        "Evaluate integration possibilities",
+        "Document findings and recommendations"
+      ]
+    }
+  },
+  "references": {
+    "core_documents": "agents/LATEST/bootstrap/",
+    "current_handoff": "agents/LATEST/LATEST_HANDOFF.json",
+    "critical_analysis": "agents/LATEST/CURRENT_ANALYSIS.json",
+    "cleanup_summary": "agents/LATEST/DIRECTORY_CLEANUP_SUMMARY.json",
+    "active_jobs": "agents/LATEST/jobs/",
+    "archived_work": "agents/ARCHIVE/"
+  }
+} 

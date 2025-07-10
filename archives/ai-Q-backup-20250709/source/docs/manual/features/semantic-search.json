@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "title": "Semantic Search (Cross-Modal)",
+    "description": "Spec for cross-modal semantic search (modalities, search types, agent tasks)",
+    "token_count": 350
+  },
+  "overview": "The system must support semantic search across all modalities (text, image, video, audio, documents, code). Users can search using natural language and receive relevant results from any data type.",
+  "supported_modalities": [
+    "Text",
+    "Images",
+    "Video",
+    "Audio",
+    "Documents",
+    "Code"
+  ],
+  "search_types": [
+    "Keyword Search (BM25, Postgres full-text)",
+    "Vector Search (Weaviate, CLIP, text2vec, image2vec, etc.)",
+    "Hybrid Search (combine keyword and vector scores)",
+    "Faceted Search (filter by type, date, tags, etc.)"
+  ],
+  "data_flow": [
+    "User submits search query (UI/API).",
+    "Query is parsed and routed to appropriate search engines (BM25, Weaviate).",
+    "Results are ranked, merged, and filtered.",
+    "User receives unified, cross-modal results with highlights and metadata."
+  ],
+  "agent_tasks": [
+    "Implement search API endpoint (FastAPI).",
+    "Integrate with Weaviate for vector search.",
+    "Integrate with Postgres for keyword search.",
+    "Implement hybrid ranking logic.",
+    "Build UI for search bar, filters, and results display.",
+    "Write tests for all modalities and search types.",
+    "Document search API and UI."
+  ]
+} 

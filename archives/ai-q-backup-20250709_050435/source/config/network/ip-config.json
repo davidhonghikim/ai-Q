@@ -1,0 +1,100 @@
+{
+  "network_configuration": {
+    "config_id": "AI-Q-NETWORK-CONFIG-001",
+    "title": "AI-Q Dynamic Network Configuration",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-05T22:15:42Z",
+    "description": "Dynamic IP configuration system supporting multiple network scenarios"
+  },
+  "network_profiles": {
+    "localhost": {
+      "name": "Localhost Development",
+      "description": "Single machine development with localhost",
+      "bind_address": "127.0.0.1",
+      "external_address": "localhost",
+      "subnet": "127.0.0.0/8",
+      "gateway": "127.0.0.1",
+      "dns": ["127.0.0.1", "8.8.8.8"],
+      "use_case": "Development and testing on single machine"
+    },
+    "local_network": {
+      "name": "Local Network (Default)",
+      "description": "Local network deployment with 192.168.1.x for remote access",
+      "bind_address": "0.0.0.0",
+      "external_address": "192.168.1.180",
+      "subnet": "192.168.1.0/24",
+      "gateway": "192.168.1.1",
+      "dns": ["192.168.1.1", "8.8.8.8"],
+      "use_case": "Default for local network testing and remote access"
+    },
+    "docker_network": {
+      "name": "Docker Internal Network",
+      "description": "Docker container communication",
+      "bind_address": "0.0.0.0",
+      "external_address": "172.20.0.1",
+      "subnet": "172.20.0.0/16",
+      "gateway": "172.20.0.1",
+      "dns": ["172.20.0.1", "8.8.8.8"],
+      "use_case": "Docker container communication"
+    },
+    "production": {
+      "name": "Production Network",
+      "description": "Production deployment with custom IP range",
+      "bind_address": "0.0.0.0",
+      "external_address": "10.0.0.100",
+      "subnet": "10.0.0.0/24",
+      "gateway": "10.0.0.1",
+      "dns": ["10.0.0.1", "8.8.8.8"],
+      "use_case": "Production deployment"
+    },
+    "custom": {
+      "name": "Custom Network",
+      "description": "User-defined network configuration",
+      "bind_address": "0.0.0.0",
+      "external_address": "192.168.1.100",
+      "subnet": "192.168.1.0/24",
+      "gateway": "192.168.1.1",
+      "dns": ["192.168.1.1", "8.8.8.8"],
+      "use_case": "Custom network configuration"
+    }
+  },
+  "default_profile": "local_network",
+  "service_network_mapping": {
+    "frontend_services": {
+      "network_type": "local_network",
+      "bind_address": "0.0.0.0",
+      "external_address": "192.168.1.180"
+    },
+    "backend_services": {
+      "network_type": "docker_network",
+      "bind_address": "0.0.0.0",
+      "external_address": "172.20.0.1"
+    },
+    "ai_ml_services": {
+      "network_type": "local_network",
+      "bind_address": "0.0.0.0",
+      "external_address": "192.168.1.180"
+    },
+    "storage_services": {
+      "network_type": "docker_network",
+      "bind_address": "0.0.0.0",
+      "external_address": "172.20.0.1"
+    }
+  },
+  "environment_variables": {
+    "AIQ_NETWORK_PROFILE": "local_network",
+    "AIQ_BIND_ADDRESS": "0.0.0.0",
+    "AIQ_EXTERNAL_ADDRESS": "192.168.1.180",
+    "AIQ_SUBNET": "192.168.1.0/24",
+    "AIQ_GATEWAY": "192.168.1.1",
+    "AIQ_DNS_PRIMARY": "192.168.1.1",
+    "AIQ_DNS_SECONDARY": "8.8.8.8"
+  },
+  "validation_rules": {
+    "ip_format": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+    "subnet_format": "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)/([0-9]|[1-2][0-9]|3[0-2])$",
+    "port_range": "1-65535",
+    "required_fields": ["bind_address", "external_address", "subnet", "gateway"]
+  }
+} 

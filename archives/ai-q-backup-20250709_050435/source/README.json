@@ -1,0 +1,489 @@
+{
+  "incremental_installation_guide": {
+    "title": "Incremental Node.js Dependency Installation Guide",
+    "purpose": "Avoid dependency conflicts and ensure stable environment setup for kitchen, pantry, and recipe systems.",
+    "files": {
+      "package-core.json": "Minimal core dependencies (for initial setup)",
+      "package-development.json": "Basic development dependencies (for development environment)",
+      "package-advanced.json": "Enhanced/advanced development dependencies",
+      "package-full-feature.json": "All features and full stack (for production or full local dev)",
+      "package-cleanup.json": "For cleaning up or restoring a minimal state",
+      "package-legacy.json": "For legacy or conservative installs"
+    },
+    "script": "scripts/incremental-install.ps1",
+    "usage": [
+      "Open PowerShell in the project root (E:/kos/ai-Q)",
+      "Run .\\scripts\\incremental-install.ps1 -Stage1    # Install minimal dependencies (core)",
+      "Run .\\scripts\\incremental-install.ps1 -Stage2    # Add basic development dependencies",
+      "Run .\\scripts\\incremental-install.ps1 -Stage3    # Add advanced development dependencies",
+      "Run .\\scripts\\incremental-install.ps1 -Stage4    # Install full feature dependencies",
+      "Or run .\\scripts\\incremental-install.ps1 -All    # Run all stages in sequence",
+      "If you need to reset, run .\\scripts\\incremental-install.ps1 -Clean"
+    ],
+    "troubleshooting": [
+      "If a stage fails, check the error message for the problematic dependency.",
+      "Try running the previous stage again, then proceed.",
+      "If npm cache issues occur, run 'npm cache clean --force' and retry.",
+      "If you switch Node.js versions, always clean and reinstall dependencies."
+    ],
+    "notes": [
+      "This process is required due to complex peer dependencies and Windows install quirks.",
+      "Always use the provided scripts and package-*.json files for reproducible installs.",
+      "For production, use package-full-feature.json as the final state."
+    ]
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-07-07T01:24:44Z",
+  "created_by": "Claude Sonnet 4 - Sonnet 4",
+  "purpose": "AI-Q Knowledge Library System - Main Project Documentation",
+  "converted_from": "README.md",
+  "conversion_timestamp": "2025-07-05T05:11:00Z",
+  "converter": "ComprehensiveDocConverter v1.0",
+  "title": "AI-Q Knowledge Library System",
+  "project_overview": {
+    "name": "AI-Q Knowledge Library System",
+    "description": "A comprehensive knowledge management and AI agent orchestration system designed for modular, scalable, and intelligent information processing",
+    "status": "Active Development - Phase 1 Complete",
+    "current_phase": "Documentation Standardization and Migration",
+    "target_architecture": "Modular plug-and-play with registry-based organization"
+  },
+  "documentation_format": {
+    "current_standard": "JSON (.json) only",
+    "conversion_completed": "2025-07-05T05:11:00Z",
+    "previous_formats": ["YAML (.yml, .yaml)", "Markdown (.md, .markdown)"],
+    "archival_status": "All original files removed, archives preserved",
+    "agent_consumption": "Direct JSON parsing with consistent metadata structure"
+  },
+  "project_structure": {
+    "root_directories": {
+      "agents": "Agent handoff documents, execution plans, and analysis reports",
+      "manual": "Comprehensive system documentation and guides",
+      "recipes": "Implementation recipes and architectural blueprints",
+      "scripts": "Automation and utility scripts",
+      "config": "Configuration files and templates",
+      "prompts": "AI agent prompts and system instructions",
+      "archives": "Historical documentation and backup files"
+    },
+    "key_files": {
+      "documentation_reference": "agents/DOCUMENTATION_REFERENCE_UPDATE.json",
+      "conversion_report": "agents/COMPREHENSIVE_CONVERSION_REPORT.json",
+      "execution_plan": "agents/EXECUTION_PLAN_PHASE_1.json",
+      "critical_issues": "agents/CRITICAL_ISSUES_ANALYSIS.json"
+    }
+  },
+  "current_status": {
+    "documentation_migration": {
+      "status": "COMPLETE",
+      "files_converted": 17,
+      "success_rate": "100%",
+      "format_standardization": "JSON-only format established"
+    },
+    "next_priorities": [
+      "Recipe system overhaul and standardization",
+      "Node specifications review and update",
+      "System architecture documentation update",
+      "Error analysis and resolution"
+    ]
+  },
+  "agent_workflow": {
+    "documentation_access": "All documentation now in JSON format with consistent metadata",
+    "parsing_requirements": "Use standard JSON libraries for all file operations",
+    "metadata_importance": "Always check conversion metadata for historical context",
+    "validation_requirements": "Validate JSON syntax before processing any documentation"
+  },
+  "development_guidelines": {
+    "new_documentation": "Create all new documentation in JSON format only",
+    "file_naming": "Use descriptive names with .json extension, UPPER_CASE for important docs",
+    "metadata_standards": "Include required conversion metadata fields",
+    "versioning": "Increment version field for significant changes",
+    "archival": "Archive old versions in archives/ directory"
+  },
+  "system_architecture": {
+    "core_components": {
+      "knowledge_library": "Centralized knowledge management and retrieval",
+      "agent_orchestration": "Multi-agent coordination and task distribution",
+      "modular_registry": "Plug-and-play component registration system",
+      "ai_pipelines": "Intelligent data processing and analysis workflows"
+    },
+    "technology_stack": {
+      "backend": "Python with modular architecture",
+      "frontend": "Web-based dashboard and interfaces",
+      "ai_integration": "OpenWebUI with Ollama, support for multiple LLMs",
+      "storage": "Distributed and scalable data storage"
+    }
+  },
+  "docker_setup": {
+    "organization": "All Docker files organized in docker/ directory",
+    "compose_files": {
+      "unified": "docker/compose/docker-compose.unified.yml",
+      "development": "docker/compose/docker-compose.yml",
+      "infrastructure": "docker/compose/docker-compose.infrastructure.yml",
+      "feature_flags": "docker/compose/docker-compose.feature-flags.yml"
+    },
+    "dockerfiles": {
+      "unified": "docker/dockerfiles/Dockerfile.unified",
+      "api": "docker/dockerfiles/Dockerfile.api",
+      "web": "docker/dockerfiles/Dockerfile.web"
+    },
+    "quick_start": {
+      "windows": ".\\scripts\\docker-run.ps1 up unified",
+      "linux_mac": "./scripts/docker-run.sh up unified",
+      "feature_flags": "python3 scripts/feature-flag-parser.py generate-compose"
+    },
+    "documentation": "See docker/README.md for detailed Docker setup instructions"
+  },
+  "getting_started": {
+    "prerequisites": [
+      "Python 3.8+",
+      "Docker and Docker Compose",
+      "Git for version control"
+    ],
+    "installation": "See manual/README.json for detailed setup instructions",
+    "configuration": "Review config/ directory for system configuration",
+    "first_steps": "Start with agents/EXECUTION_PLAN_PHASE_1.json for current priorities"
+  },
+  "contributing": {
+    "documentation_standards": "All contributions must use JSON format",
+    "code_standards": "Follow modular architecture principles",
+    "testing_requirements": "Comprehensive testing for all new features",
+    "review_process": "All changes require validation and testing"
+  },
+  "support_and_resources": {
+    "documentation": "All documentation available in JSON format in manual/ directory",
+    "recipes": "Implementation guides in recipes/ directory",
+    "agent_handoffs": "Current status in agents/ directory",
+    "archives": "Historical information in archives/ directory"
+  },
+  "conversion_notes": "This README was converted from Markdown to JSON format as part of the comprehensive documentation standardization effort. All internal references have been updated to reflect the new JSON-only format.",
+  "requires_manual_review": false,
+  "metadata": {
+    "title": "AI-Q Knowledge Library System",
+    "version": "5.0.0",
+    "created_by": "Claude Sonnet 4",
+    "last_updated": "2025-07-05T23:55:00Z",
+    "purpose": "Comprehensive AI-powered knowledge management and content creation platform",
+    "project_type": "Self-hosted AI infrastructure with modular recipe system",
+    "kitchen_system": "Includes pantry ingredients, orchestrator agent, and intelligent caching"
+  },
+  "project_overview": {
+    "description": "AI-Q is a comprehensive, self-hosted knowledge library system that integrates multiple AI tools and services into a unified platform. The system uses a kitchen analogy with atomic, reusable ingredients and intelligent caching for optimal performance.",
+    "key_features": [
+      "Self-hosted AI infrastructure with Ollama integration",
+      "Modular recipe system with atomic, reusable ingredients",
+      "Intelligent caching for improved performance and reliability",
+      "Multi-agent collaboration with MCP server support",
+      "Comprehensive content processing and intelligence capabilities",
+      "Advanced interfaces for meshnet, robotics, and IoT integration"
+    ],
+    "target_users": [
+      "Personal note-takers and students",
+      "Content creators and researchers", 
+      "Developers and data scientists",
+      "Enterprise analysts and teams"
+    ]
+  },
+  "kitchen_analogy_system": {
+    "description": "The system uses a kitchen analogy for atomic, modular recipe execution",
+    "components": {
+      "pantry": {
+        "description": "Central registry of atomic ingredients (tasks, modules, skills, tools, configs)",
+        "features": [
+          "Reusable, versioned ingredients",
+          "Intelligent caching with validation",
+          "Registry ID-based organization",
+          "Signature-based verification"
+        ]
+      },
+      "kitchen": {
+        "description": "Runtime environment with orchestrator agent and cache management",
+        "features": [
+          "Orchestrator agent (chef) for recipe execution",
+          "Cache manager for performance optimization",
+          "Task delegation and agent coordination",
+          "Comprehensive audit logging"
+        ]
+      },
+      "orchestrator": {
+        "description": "Agent that loads recipes, gathers ingredients, validates, executes, and logs results",
+        "capabilities": [
+          "Recipe execution and validation",
+          "Ingredient gathering and caching",
+          "Task delegation to specialized agents",
+          "Result logging and audit trails"
+        ]
+      }
+    },
+    "benefits": [
+      "Atomic, reusable ingredients eliminate duplication",
+      "Intelligent caching improves performance and reliability",
+      "Modular design enables plug-and-play architecture",
+      "Comprehensive audit trail and validation",
+      "Support for distributed execution and agent delegation"
+    ]
+  },
+  "system_architecture": {
+    "core_components": {
+      "infrastructure": {
+        "description": "Docker-based services with dynamic configuration",
+        "services": ["Core infrastructure", "Unified Docker system", "Storage systems", "Database setup", "Monitoring", "API gateway", "Authentication"]
+      },
+      "ai_integration": {
+        "description": "AI agent integration with MCP and multi-agent support",
+        "features": ["MCP server", "Multi-agent coordination", "Model chaining", "Group chat", "Collaborative workflows"],
+        "tools": ["RA.Aid", "Browser-Use", "ArchiveBox", "Aider"]
+      },
+      "intelligence": {
+        "description": "Advanced AI intelligence and search capabilities",
+        "features": ["RAG engine", "Knowledge graph", "Semantic search"]
+      },
+      "interfaces": {
+        "description": "User interfaces and advanced capabilities",
+        "features": ["Web dashboard", "Mobile app", "Advanced interfaces (meshnet, robotics, IoT)"]
+      }
+    },
+    "modular_design": {
+      "description": "Each component is self-contained and installable",
+      "benefits": [
+        "Independent development and testing",
+        "Flexible deployment options",
+        "Easy maintenance and updates",
+        "Scalable architecture"
+      ]
+    }
+  },
+  "recipe_system": {
+    "description": "Comprehensive recipe library with 25 sequential recipes",
+    "organization": {
+      "structure": "Sequential implementation with modular subdirectories",
+      "naming": "[##]-[CATEGORY]/[##]-[MODULE]-recipe.json",
+      "total_recipes": 25,
+      "estimated_duration": "6-8 months"
+    },
+    "phases": [
+      {
+        "phase": "Foundation (01-07)",
+        "description": "Core infrastructure and basic system setup",
+        "duration": "4-6 weeks"
+      },
+      {
+        "phase": "AI Integration (08-13)", 
+        "description": "AI agent integration and autonomous capabilities",
+        "duration": "6-8 weeks"
+      },
+      {
+        "phase": "Content Processing (14-17)",
+        "description": "Advanced content processing and AI capabilities", 
+        "duration": "4-6 weeks"
+      },
+      {
+        "phase": "Intelligence (18-20)",
+        "description": "Advanced AI intelligence and search capabilities",
+        "duration": "4-6 weeks"
+      },
+      {
+        "phase": "Interface (21-22)",
+        "description": "User interface and experience",
+        "duration": "4-6 weeks"
+      },
+      {
+        "phase": "Deployment (23-24)",
+        "description": "Production deployment and distribution",
+        "duration": "2-4 weeks"
+      },
+      {
+        "phase": "Advanced Features (25)",
+        "description": "Advanced interfaces and specialized capabilities",
+        "duration": "2-4 weeks"
+      }
+    ]
+  },
+  "ai_tools_integration": {
+    "description": "Integrated AI tools as modular components",
+    "tools": {
+      "RA.Aid": {
+        "purpose": "Research and analysis assistance",
+        "integration": "Modular component with self-hosted LLM"
+      },
+      "Browser-Use": {
+        "purpose": "Web browsing and automation",
+        "integration": "Secure browser automation with privacy controls"
+      },
+      "ArchiveBox": {
+        "purpose": "Web content archiving",
+        "integration": "Comprehensive web archiving with search"
+      },
+      "Aider": {
+        "purpose": "AI-assisted development",
+        "integration": "Code generation and development automation"
+      }
+    },
+    "self_hosted_llm": {
+      "description": "Ollama integration with local models",
+      "benefits": [
+        "Complete privacy and data control",
+        "No external API dependencies",
+        "Customizable model selection",
+        "Offline operation capability"
+      ]
+    }
+  },
+  "user_scenarios": {
+    "basic_users": {
+      "personal_note_taker": {
+        "description": "Personal knowledge management and note-taking",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows"],
+        "ai_tools": ["RA.Aid"],
+        "content_types": ["text", "images", "audio"]
+      },
+      "student": {
+        "description": "Academic research and study assistance",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "10-research-automation"],
+        "ai_tools": ["RA.Aid", "Browser-Use", "ArchiveBox"],
+        "content_types": ["documents", "research", "presentations"]
+      }
+    },
+    "professional_users": {
+      "content_creator": {
+        "description": "Professional content creation and management",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "10-research-automation"],
+        "ai_tools": ["RA.Aid", "Browser-Use", "Aider"],
+        "content_types": ["video", "audio", "images", "text"]
+      },
+      "researcher": {
+        "description": "Advanced research and knowledge synthesis",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "10-research-automation", "12-knowledge-synthesis"],
+        "ai_tools": ["RA.Aid", "Browser-Use", "ArchiveBox"],
+        "content_types": ["papers", "data", "presentations"]
+      },
+      "developer": {
+        "description": "AI-assisted development and coding",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "11-development-automation"],
+        "ai_tools": ["RA.Aid", "Aider"],
+        "content_types": ["code", "documentation", "tutorials"]
+      }
+    },
+    "expert_users": {
+      "data_scientist": {
+        "description": "Advanced data analysis and model development",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "10-research-automation", "11-development-automation", "12-knowledge-synthesis"],
+        "ai_tools": ["RA.Aid", "Aider", "Browser-Use"],
+        "content_types": ["models", "analyses", "research"]
+      },
+      "enterprise_analyst": {
+        "description": "Enterprise-level analysis and collaboration",
+        "required_recipes": ["01-core-infrastructure", "02-unified-docker-system", "08-ai-agent-integration", "09-content-creation-workflows", "10-research-automation", "12-knowledge-synthesis", "13-collaboration-platform"],
+        "ai_tools": ["RA.Aid", "Browser-Use", "ArchiveBox"],
+        "content_types": ["reports", "dashboards", "analyses"]
+      }
+    }
+  },
+  "caching_system": {
+    "description": "Intelligent caching system for ingredients and results",
+    "features": {
+      "ingredient_caching": {
+        "description": "Cache frequently used pantry ingredients",
+        "strategies": ["aggressive", "conservative", "smart"],
+        "validation": ["signature", "timestamp", "content_hash", "none"]
+      },
+      "result_caching": {
+        "description": "Cache recipe execution results",
+        "benefits": ["Improved performance", "Reduced resource usage", "Faster subsequent executions"]
+      },
+      "cache_management": {
+        "description": "Comprehensive cache management and cleanup",
+        "features": ["TTL-based expiration", "Size-based cleanup", "Validation-based invalidation", "Index management"]
+      }
+    }
+  },
+  "deployment_options": {
+    "local_development": {
+      "description": "Local development and testing environment",
+      "requirements": ["Docker", "Git", "Basic system resources"],
+      "setup_time": "30-60 minutes"
+    },
+    "production_deployment": {
+      "description": "Production-ready deployment with enterprise features",
+      "requirements": ["Docker Swarm or Kubernetes", "Enterprise infrastructure", "Monitoring and backup systems"],
+      "setup_time": "2-4 hours"
+    },
+    "off_grid_deployment": {
+      "description": "Off-grid deployment with limited connectivity",
+      "features": ["Local model storage", "Offline operation", "Data synchronization", "Backup and recovery"]
+    }
+  },
+  "development_guidelines": {
+    "code_quality": {
+      "principles": [
+        "Zero technical debt",
+        "Comprehensive error handling",
+        "Atomic, testable components",
+        "Clear documentation"
+      ]
+    },
+    "documentation": {
+      "format": "JSON only (no markdown files)",
+      "requirements": [
+        "Complete API documentation",
+        "Configuration guides",
+        "Troubleshooting information",
+        "User guides for all scenarios"
+      ]
+    },
+    "testing": {
+      "requirements": [
+        "Unit tests for all components",
+        "Integration tests for recipes",
+        "End-to-end testing for user scenarios",
+        "Performance testing for caching system"
+      ]
+    }
+  },
+  "success_metrics": {
+    "technical_metrics": [
+      "100% of recipes successfully implemented",
+      "All AI tools integrated and operational",
+      "Self-hosted LLM performance optimized",
+      "Zero system breakage during development",
+      "All user scenarios fully supported",
+      "Cache hit rate > 80% for frequently used ingredients"
+    ],
+    "user_experience_metrics": [
+      "Intuitive interfaces for all user types",
+      "Seamless AI-assisted workflows",
+      "High-quality content generation",
+      "Efficient research and development processes",
+      "Excellent collaboration capabilities"
+    ],
+    "business_metrics": [
+      "Significant productivity improvements",
+      "Reduced dependency on external services",
+      "Enhanced knowledge management",
+      "Cost savings through self-hosted infrastructure",
+      "Competitive advantage through AI integration"
+    ]
+  },
+  "quick_start": {
+    "prerequisites": [
+      "Docker and Docker Compose installed",
+      "Git for version control",
+      "Basic command line knowledge",
+      "Minimum 8GB RAM, 50GB storage"
+    ],
+    "installation_steps": [
+      "Clone the repository: git clone [repository-url]",
+      "Navigate to project directory: cd ai-Q",
+      "Review recipe index: recipes/00-RECIPE_INDEX.json",
+      "Start with core infrastructure: recipes/01-infrastructure/01-core-infrastructure-recipe.json",
+      "Follow sequential recipe implementation",
+      "Use kitchen system for optimal performance"
+    ],
+    "first_recipe": "01-core-infrastructure-recipe.json",
+    "estimated_setup_time": "30-60 minutes for basic setup"
+  },
+  "support_and_community": {
+    "documentation": "All documentation in JSON format within the project",
+    "recipe_guidance": "Each recipe contains detailed implementation instructions",
+    "troubleshooting": "Comprehensive troubleshooting guides in each recipe",
+    "community": "Project designed for self-hosted deployment with community contributions"
+  }
+}

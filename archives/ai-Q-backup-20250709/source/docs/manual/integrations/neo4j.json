@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "title": "Neo4j Integration",
+    "description": "Integration spec for Neo4j knowledge graph (setup, schema, usage, agent tasks)",
+    "token_count": 250
+  },
+  "overview": "Neo4j is used as the knowledge graph database for storing relationships, entities, and context across all user data.",
+  "setup": {
+    "docker_image": "neo4j:latest",
+    "ports": [7474, 7687],
+    "data_persistence": "Docker volume"
+  },
+  "schema": {
+    "nodes": ["File", "User", "Event", "Person", "Project", "Tag"],
+    "relationships": ["RELATED_TO", "CONTAINS", "CREATED_BY", "TAGGED_WITH"],
+    "properties": ["filename", "type", "user", "date", "tags", "metadata"]
+  },
+  "usage": [
+    "Store and query relationships between files, users, events, etc.",
+    "Semantic queries (e.g., 'find all files related to project X')",
+    "Visualize knowledge graph in UI"
+  ],
+  "agent_tasks": [
+    "Write Neo4j schema definition (Cypher)",
+    "Implement Python/TypeScript client integration",
+    "Write utilities for creating and querying nodes/relationships",
+    "Write tests for relationship queries",
+    "Document setup and usage"
+  ]
+} 

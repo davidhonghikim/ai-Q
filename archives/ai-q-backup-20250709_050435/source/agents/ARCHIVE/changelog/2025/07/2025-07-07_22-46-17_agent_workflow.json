@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "title": "Agent Workflow - kOS Kitchen System Implementation",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "workflow_timestamp": "2025-07-07T22:46:17Z",
+    "status": "ACTIVE",
+    "purpose": "Mandatory workflow for implementing kOS kitchen system integration"
+  },
+  "mandatory_process": {
+    "onboarding": [
+      "Read this workflow document completely",
+      "Review kOS kitchen system design documents in agents/blueprint/kitchen/",
+      "Study the integration plan in LATEST/2025-07-07_22-46-17_kos_kitchen_integration_plan_v1.0.0_FINAL.json",
+      "Understand proper node specifications (Griot, Tohunga, Ronin, etc.)",
+      "Familiarize with kOS architecture principles and constraints"
+    ],
+    "execution_standards": [
+      "Follow atomic recipe structure (≤300 lines, ≤30k tokens per recipe)",
+      "Use kOS kitchen system as execution framework for all tasks",
+      "Create reusable ingredients for common operations",
+      "Maintain deterministic execution and security-first approach",
+      "Document all changes and progress in agent changelog",
+      "Archive old files before creating new ones"
+    ],
+    "quality_requirements": [
+      "TypeScript strict mode with full type safety",
+      "Complete API documentation and specifications",
+      "Comprehensive testing and validation",
+      "Security audit and vault integration",
+      "Performance optimization and monitoring"
+    ]
+  },
+  "implementation_phases": {
+    "phase_1_core_foundation": {
+      "priority": "IMMEDIATE",
+      "duration": "2-3 weeks",
+      "recipes": [
+        "kos.recipe.setup.environment",
+        "kos.recipe.deploy.kernel",
+        "kos.recipe.setup.agents", 
+        "kos.recipe.deploy.kitchen",
+        "kos.recipe.deploy.memory"
+      ],
+      "success_criteria": [
+        "Functional kOS kernel with boot system",
+        "Working agent framework with personas",
+        "Kitchen runtime with pantry system",
+        "Memory and RAG integration"
+      ]
+    },
+    "phase_2_core_services": {
+      "priority": "HIGH",
+      "duration": "3-4 weeks", 
+      "recipes": [
+        "kos.recipe.deploy.ollama",
+        "kos.recipe.deploy.weaviate",
+        "kos.recipe.deploy.mongodb",
+        "kos.recipe.deploy.vault",
+        "kos.recipe.deploy.n8n"
+      ],
+      "success_criteria": [
+        "Self-hosted LLM service (Ollama)",
+        "Vector database (Weaviate)",
+        "State store (MongoDB)",
+        "Secure vault system",
+        "Workflow orchestration (n8n)"
+      ]
+    },
+    "phase_3_frontend_ui": {
+      "priority": "MEDIUM",
+      "duration": "2-3 weeks",
+      "recipes": [
+        "kos.recipe.deploy.frontend",
+        "kos.recipe.deploy.ui",
+        "kos.recipe.integrate.browser"
+      ],
+      "success_criteria": [
+        "API bridge with REST/WebSocket",
+        "UI runtime with components", 
+        "Browser extension integration"
+      ]
+    },
+    "phase_4_advanced_features": {
+      "priority": "LOW",
+      "duration": "3-4 weeks",
+      "recipes": [
+        "kos.recipe.deploy.recipe_manager",
+        "kos.recipe.enhance.agents",
+        "kos.recipe.integrate.griot",
+        "kos.recipe.deploy.production"
+      ],
+      "success_criteria": [
+        "Advanced recipe management",
+        "Enhanced agent capabilities",
+        "Griot node integration",
+        "Production deployment"
+      ]
+    }
+  },
+  "recipe_development_guidelines": {
+    "atomic_structure": {
+      "max_lines": 300,
+      "max_tokens": 30000,
+      "single_purpose": true,
+      "deterministic_execution": true,
+      "vault_safe": true
+    },
+    "ingredient_pattern": {
+      "reusable_components": [
+        "env_validator",
+        "docker_installer", 
+        "api_validator",
+        "schema_manager",
+        "backup_manager",
+        "monitoring_setup",
+        "auth_integrator",
+        "performance_optimizer"
+      ],
+      "dynamic_imports": "Use override pattern for customization",
+      "validation": "All ingredients must be validated before use"
+    },
+    "output_standards": {
+      "format": "JSON or structured file",
+      "validation": "Must pass schema validation",
+      "documentation": "Include usage examples and dependencies"
+    }
+  },
+  "node_specifications": {
+    "proper_classes": [
+      "Griot - Primal Starseed: Lifecycle & Bootstrapping",
+      "Tohunga - Sensory Organ: Data Acquisition",
+      "Ronin - Pathfinder: Network Discovery", 
+      "Musa - Guardian: Security & Auth",
+      "Hakim - Healer: System Health & Maintenance",
+      "Skald - Herald: Pub/Sub & Eventing",
+      "Oracle - Seer: Reasoning & Data Fusion",
+      "Junzi - Scholar: Knowledge & Learning",
+      "Yachay - Sage: Andean Wisdom",
+      "Sachem - Chief: Algonquian Consensus",
+      "Amauta - Teacher: Incan Teaching",
+      "Mzee - Elder: Swahili Awareness",
+      "Archon - Coordinator: Byzantine Coordination"
+    ],
+    "current_status": "Node roles not yet implemented - use generic agent framework",
+    "implementation_approach": [
+      "Start with generic agent framework",
+      "Implement basic roles (griot, oracle, runner, monitor, auditor)",
+      "Add specific node capabilities gradually",
+      "Maintain backward compatibility"
+    ]
+  },
+  "documentation_requirements": {
+    "changelog": {
+      "location": "agents/changelog/[TIMESTAMP]_agent_changelog.json",
+      "required_sections": [
+        "Actions taken and decisions made",
+        "Files created, modified, or deleted",
+        "Issues encountered and resolutions",
+        "Progress against milestones",
+        "Next steps and recommendations"
+      ]
+    },
+    "handoff": {
+      "location": "agents/handoff/[TIMESTAMP]_LATEST_HANDOFF.json",
+      "required_sections": [
+        "Current status and progress",
+        "Next agent's specific tasks",
+        "Dependencies and prerequisites",
+        "Success criteria and validation",
+        "References and resources"
+      ]
+    },
+    "archiving": {
+      "procedure": [
+        "Archive old handoff files before creating new ones",
+        "Use timestamp format: YYYY-MM-DD_HH-MM-SS",
+        "Move to agents/ARCHIVE/YYYY/MM/ directory",
+        "Update any references to archived files"
+      ]
+    }
+  },
+  "references": {
+    "kOS_design": "agents/blueprint/kitchen/",
+    "integration_plan": "agents/LATEST/2025-07-07_22-46-17_kos_kitchen_integration_plan_v1.0.0_FINAL.json",
+    "griot_node": "https://github.com/davidhonghikim/griot",
+    "browser_extension": "https://github.com/davidhonghikim/kai-cd",
+    "current_recipes": "recipes/"
+  },
+  "success_metrics": {
+    "phase_1": "Core kOS system operational with basic agent framework",
+    "phase_2": "Self-hosted LLM and intelligence capabilities",
+    "phase_3": "Functional frontend and user interface",
+    "phase_4": "Complete kOS ecosystem integrated with Griot node",
+    "overall": "Modular, scalable, secure AI system ready for production"
+  }
+} 

@@ -1,0 +1,40 @@
+{
+  "metadata": {
+    "title": "Next Agent Handoff - Cleanup and Full Compliance",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "handoff_timestamp": "2025-07-07T03:00:00Z",
+    "status": "IN_PROGRESS",
+    "purpose": "Actionable handoff for the next agent to complete all timestamp/naming convention fixes, archive all superseded docs, and ensure 100% standards compliance."
+  },
+  "project_status": {
+    "overall_status": "INCOMPLETE",
+    "completion_percentage": 40,
+    "critical_issues_found": "Batch process interrupted by shell errors; many files remain non-compliant.",
+    "timestamp_violations": "Many files with pre-June 2025 timestamps remain.",
+    "naming_convention_violations": "Numerous files do not follow required naming format.",
+    "incomplete_systems": ["kitchen", "pantry", "recipe"]
+  },
+  "remaining_violations": {
+    "timestamp_violations": "All files with timestamps before 2025-06-15 must be fixed using actual file creation time.",
+    "naming_violations": "All files must be renamed to standards-compliant format using creation time."
+  },
+  "required_standards": {
+    "timestamp": ">= 2025-06-15, use actual file creation time",
+    "file_naming": "YYYY-MM-DD_HH-MM-SS_[type]_[description]_v[version]_[status].json",
+    "directory_structure": "topic/year/month for archives, modular for systems",
+    "atomic_design": "Each recipe/module must be atomic and reproducible"
+  },
+  "explicit_user_instructions": [
+    "Do not stop, pause, or wait for confirmation. Execute all fixes in a single, continuous batch.",
+    "Archive all superseded docs immediately using correct timestamp and naming.",
+    "Leave only the actionable handoff in LATEST/; archive all others.",
+    "Document all actions and update index files as required.",
+    "Do not mark as complete until user confirms all requirements are met."
+  ],
+  "handoff_notes": {
+    "user_emphasis": "Continuous, non-stop execution is mandatory. No pauses or confirmations.",
+    "quality_over_speed": "Take the time to verify every step. No shortcuts.",
+    "final_verification": "Do not mark as complete until user confirms all requirements are met."
+  }
+} 

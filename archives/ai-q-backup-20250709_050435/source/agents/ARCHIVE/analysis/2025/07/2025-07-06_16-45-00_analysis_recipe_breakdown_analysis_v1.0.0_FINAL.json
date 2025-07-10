@@ -1,0 +1,218 @@
+{
+  "recipe_breakdown_analysis": {
+    "analysis_id": "RECIPE-BREAKDOWN-ANALYSIS-001",
+    "title": "Comprehensive Recipe Token Consumption Analysis and Breakdown Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T16:45:00Z",
+    "analysis_methodology": "Thorough token consumption analysis for agent execution",
+    "critical_finding": "Content Ingestion Recipe requires ~118,000 tokens - exceeds 80k limit"
+  },
+  "content_ingestion_recipe_analysis": {
+    "recipe_id": "12-content-ingestion",
+    "current_version": "1.0.0",
+    "total_tasks": 15,
+    "estimated_execution_tokens": 118000,
+    "token_limit": 80000,
+    "exceeds_limit": true,
+    "excess_tokens": 38000,
+    "breakdown_required": true,
+    "token_consumption_breakdown": {
+      "recipe_comprehension": {
+        "metadata_and_overview": 500,
+        "architecture_understanding": 800,
+        "task_descriptions": 1500,
+        "configuration_sections": 600,
+        "subtotal": 3400
+      },
+      "task_execution": {
+        "per_task_breakdown": {
+          "task_reading": 100,
+          "command_execution": 200,
+          "file_creation": 3000,
+          "validation": 300,
+          "progress_reporting": 200,
+          "total_per_task": 3800
+        },
+        "total_for_15_tasks": 57000
+      },
+      "code_generation": {
+        "average_per_task": 3500,
+        "total_code_generation": 52500
+      },
+      "testing_and_validation": {
+        "unit_tests": 3000,
+        "integration_tests": 2000,
+        "performance_tests": 1500,
+        "configuration_validation": 1000,
+        "subtotal": 7500
+      },
+      "documentation": {
+        "api_documentation": 2000,
+        "usage_examples": 1500,
+        "troubleshooting_guides": 1000,
+        "subtotal": 4500
+      },
+      "context_and_progress": {
+        "progress_tracking": 3000,
+        "error_handling": 2000,
+        "subtotal": 5000
+      }
+    }
+  },
+  "recommended_breakdown": {
+    "breakdown_strategy": "Split into 3 focused recipes based on functional areas",
+    "recipe_1": {
+      "recipe_id": "12-01-content-ingestion-core",
+      "title": "Content Ingestion Core System",
+      "description": "Core content ingestion architecture, upload system, and multi-format support",
+      "tasks_included": ["12-001", "12-002", "12-003", "12-004", "12-005"],
+      "estimated_tokens": 40000,
+      "focus_areas": [
+        "Content ingestion architecture",
+        "File upload system",
+        "Multi-format support",
+        "Content validation",
+        "Processing pipeline foundation"
+      ],
+      "files_to_create": [
+        "src/services/content/core.py",
+        "src/services/content/manager.py",
+        "src/services/content/ingestion/upload/",
+        "src/services/content/ingestion/formats/",
+        "src/services/content/validation/",
+        "src/services/content/processing/pipeline.py"
+      ]
+    },
+    "recipe_2": {
+      "recipe_id": "12-02-content-processing-pipeline",
+      "title": "Content Processing Pipeline",
+      "description": "Advanced content processing, metadata extraction, storage, and queuing",
+      "tasks_included": ["12-006", "12-007", "12-008", "12-009", "12-010"],
+      "estimated_tokens": 35000,
+      "focus_areas": [
+        "Metadata extraction and indexing",
+        "Content storage and versioning",
+        "Content API endpoints",
+        "Progress tracking",
+        "Error handling and recovery"
+      ],
+      "files_to_create": [
+        "src/services/content/metadata/",
+        "src/services/content/storage/",
+        "src/api/routes/content/",
+        "src/services/content/tracking/",
+        "src/services/content/errors/"
+      ]
+    },
+    "recipe_3": {
+      "recipe_id": "12-03-content-testing-optimization",
+      "title": "Content Testing and Optimization",
+      "description": "Comprehensive testing, monitoring, documentation, and performance optimization",
+      "tasks_included": ["12-011", "12-012", "12-013", "12-014", "12-015"],
+      "estimated_tokens": 43000,
+      "focus_areas": [
+        "Content queuing and background processing",
+        "Comprehensive testing framework",
+        "Monitoring and analytics",
+        "Documentation and examples",
+        "Performance optimization"
+      ],
+      "files_to_create": [
+        "src/services/content/queue/",
+        "tests/content/",
+        "src/services/content/monitoring/",
+        "docs/content/",
+        "examples/content/",
+        "src/services/content/optimization/"
+      ]
+    }
+  },
+  "other_recipes_analysis": {
+    "knowledge_graph_recipe": {
+      "recipe_id": "17-knowledge-graph",
+      "current_version": "1.0.0",
+      "estimated_tokens": 95000,
+      "exceeds_limit": true,
+      "breakdown_required": true,
+      "recommended_split": [
+        "Knowledge Graph Core (4 tasks, ~35k tokens)",
+        "Graph Storage and Queries (4 tasks, ~30k tokens)",
+        "Graph Analytics and Reasoning (4 tasks, ~30k tokens)"
+      ]
+    },
+    "semantic_search_recipe": {
+      "recipe_id": "20-semantic-search",
+      "current_version": "1.0.0",
+      "estimated_tokens": 85000,
+      "exceeds_limit": true,
+      "breakdown_required": true,
+      "recommended_split": [
+        "Search Core (3 tasks, ~30k tokens)",
+        "Search Optimization (3 tasks, ~25k tokens)",
+        "Search Integration (3 tasks, ~30k tokens)"
+      ]
+    }
+  },
+  "implementation_plan": {
+    "phase_1_breakdown": {
+      "priority": "immediate",
+      "description": "Break down large recipes that exceed 80k token limit",
+      "recipes_to_breakdown": [
+        "12-content-ingestion-recipe.json",
+        "17-knowledge-graph-recipe.json", 
+        "20-semantic-search-recipe.json"
+      ],
+      "estimated_effort": "6-8 hours",
+      "deliverables": [
+        "3 focused content ingestion recipes",
+        "3 focused knowledge graph recipes",
+        "3 focused semantic search recipes"
+      ]
+    },
+    "phase_2_enhancement": {
+      "priority": "high",
+      "description": "Enhance all recipes to version 5.0.0 with exact specifications",
+      "recipes_to_enhance": [
+        "All remaining version 1.0.0 recipes",
+        "All newly created broken-down recipes"
+      ],
+      "enhancement_requirements": [
+        "Add exact specifications for all tasks",
+        "Implement comprehensive kitchen system integration",
+        "Add detailed pantry ingredients with exact validation commands",
+        "Add performance benchmarks with exact targets",
+        "Implement comprehensive troubleshooting guides",
+        "Add acceptance criteria with measurable success metrics",
+        "Implement zero technical debt approach"
+      ]
+    },
+    "phase_3_validation": {
+      "priority": "critical",
+      "description": "Validate all recipes meet quality standards and token limits",
+      "validation_requirements": [
+        "Token count analysis for each recipe",
+        "Quality assessment against version 5.0.0 standards",
+        "Kitchen system integration validation",
+        "Exact specification verification",
+        "Performance benchmark validation",
+        "Troubleshooting guide completeness"
+      ]
+    }
+  },
+  "quality_standards": {
+    "token_limit_compliance": {
+      "maximum_tokens_per_recipe": 80000,
+      "target_tokens_per_recipe": 60000,
+      "buffer_for_execution": 20000
+    },
+    "recipe_structure": {
+      "exact_specifications": "All tasks must have exact commands with precise parameters",
+      "kitchen_system_integration": "Complete pantry, orchestrator, and caching integration",
+      "validation_commands": "All validation commands must be exact and testable",
+      "performance_benchmarks": "All benchmarks must have measurable targets",
+      "troubleshooting_guides": "All guides must have exact solutions",
+      "acceptance_criteria": "All criteria must be measurable and testable"
+    }
+  }
+} 

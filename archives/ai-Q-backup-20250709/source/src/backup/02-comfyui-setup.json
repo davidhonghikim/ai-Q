@@ -1,0 +1,41 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-INFRA-COMFYUI-SETUP-002",
+    "title": "ComfyUI (Optional)",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "expert",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Deploys ComfyUI, a powerful and modular node-based interface for Stable Diffusion. This service is hardware-intensive and the recipe will check 'config/hardware_profile.json' for a compatible GPU. It also allows for connecting to a remote ComfyUI instance.",
+    "technology_stack": {
+      "image_generation": "Stable Diffusion",
+      "ui": "ComfyUI",
+      "orchestration": "Docker Compose"
+    },
+    "deliverables": [
+      "A running ComfyUI Docker container (if hardware is compatible).",
+      "Configuration for connecting to a local or remote ComfyUI API."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "50-002",
+      "title": "Deploy ComfyUI Container",
+      "description": "Checks for a compatible GPU in 'config/hardware_profile.json'. If compatible, deploys the ComfyUI container. If not, logs a message and skips installation. Provides an option to configure a remote URL.",
+      "dependencies": ["40-001"],
+      "estimated_time": "30 minutes",
+      "files_to_create": [
+        "docker/compose/comfyui.yml",
+        "config/creative_services/comfyui_config.yml"
+      ],
+      "acceptance_criteria": [
+        "If a compatible GPU is present, the ComfyUI container starts successfully.",
+        "If no compatible GPU is found, a clear message is logged and the setup is skipped.",
+        "The 'config/creative_services/comfyui_config.yml' is created, allowing a user to specify a remote_api_url."
+      ]
+    }
+  ]
+} 

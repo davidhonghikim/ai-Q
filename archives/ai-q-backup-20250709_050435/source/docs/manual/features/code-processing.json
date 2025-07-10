@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "title": "Code Processing",
+    "description": "Spec for code upload, language detection, embedding, explanation, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support code file upload, syntax highlighting, search, explanation, and linking.",
+  "requirements": [
+    "Upload and store code files in Minio.",
+    "Extract language, function/class names, and store in Postgres.",
+    "Generate embeddings for code search.",
+    "Integrate LLMs for code explanation and Q&A.",
+    "Build UI for code preview and linking."
+  ],
+  "integration": {
+    "pygments": {
+      "python_package": "pygments",
+      "usage": "Syntax highlighting."
+    },
+    "llm": {
+      "api": "Ollama, Llama.cpp, VLLM",
+      "usage": "Code explanation and Q&A."
+    }
+  },
+  "agent_tasks": [
+    "Implement code file upload and storage.",
+    "Write language detection and metadata extraction utility.",
+    "Integrate with code embedding and search.",
+    "Build UI for code preview and linking.",
+    "Write tests for all supported languages.",
+    "Document setup and usage."
+  ]
+} 

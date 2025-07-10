@@ -1,0 +1,235 @@
+{
+  "plan_metadata": {
+    "title": "Recipe Library Completion Plan - Systematic Fix of ALL Recipes",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-30T23:00:00Z",
+    "status": "CRITICAL_PLANNING",
+    "priority": "critical",
+    "agent_id": "claude-sonnet-4-recipe-completion",
+    "plan_type": "systematic_recipe_fix",
+    "estimated_duration": "12-15 hours",
+    "total_recipes_to_fix": 24
+  },
+  "executive_summary": {
+    "problem_statement": "The recipe library contains recipes with generic atomic tasks that leave room for interpretation. All recipes must be updated to match the infrastructure recipe level of detail with extremely specific commands, file paths, and acceptance criteria.",
+    "solution_approach": "Systematically fix ALL recipes in numerical order, starting from 01-infrastructure, ensuring each recipe has the proper v5.0.0 structure with exact specifications.",
+    "success_criteria": "All 24 recipes must have extremely specific atomic tasks with no room for interpretation, exact commands, file paths, acceptance criteria, and proper v5.0.0 structure."
+  },
+  "current_state_analysis": {
+    "recipes_at_v5_0_0": 14,
+    "recipes_needing_fix": 10,
+    "recipes_with_generic_tasks": 10,
+    "recipes_with_specific_tasks": 14,
+    "completion_percentage": 25,
+    "critical_issues": [
+      "Generic atomic tasks leave room for interpretation",
+      "Missing exact commands and file paths",
+      "Inconsistent recipe structure",
+      "Some recipes missing proper v5.0.0 elements"
+    ]
+  },
+  "systematic_fix_plan": {
+    "phase_1_foundation": {
+      "title": "Fix Infrastructure Recipes (01-07)",
+      "description": "Ensure all infrastructure recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "01-infrastructure/01-core-infrastructure-recipe.json",
+        "01-infrastructure/02-unified-docker-system-recipe.json",
+        "01-infrastructure/03-storage-systems-recipe.json",
+        "01-infrastructure/04-database-setup-recipe.json",
+        "01-infrastructure/05-monitoring-observability-recipe.json",
+        "01-infrastructure/06-api-gateway-recipe.json",
+        "01-infrastructure/07-authentication-security-recipe.json"
+      ],
+      "reference_standard": "01-infrastructure/01-core-infrastructure-recipe.json (already at proper level)",
+      "fix_requirements": [
+        "Add exact_commands array with specific shell commands",
+        "Add files_to_create array with exact file paths",
+        "Add acceptance_criteria array with measurable criteria",
+        "Add exact_validation_commands for skills",
+        "Add exact_config_spec for tools",
+        "Add exact_schema for configs"
+      ]
+    },
+    "phase_2_ai_services": {
+      "title": "Fix AI Services Recipes (02-03)",
+      "description": "Ensure all AI services recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "02-ai-services/01-ai-services-master-recipe.json",
+        "03-intelligence/01-rag-engine-recipe.json",
+        "03-intelligence/02-knowledge-graph-recipe.json",
+        "03-intelligence/03-semantic-search-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add implementation_steps with exact commands",
+        "Add acceptance_criteria with measurable outcomes",
+        "Add troubleshooting_guide with specific solutions",
+        "Add performance_benchmarks with exact targets"
+      ]
+    },
+    "phase_3_interface": {
+      "title": "Fix Interface Recipes (04)",
+      "description": "Ensure all interface recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "04-interface/01-web-dashboard-recipe.json",
+        "04-interface/02-mobile-app-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add exact_commands for frontend setup",
+        "Add files_to_create for UI components",
+        "Add acceptance_criteria for user experience",
+        "Add performance_benchmarks for UI responsiveness"
+      ]
+    },
+    "phase_4_development": {
+      "title": "Fix Development Recipes (05)",
+      "description": "Ensure development automation recipe has extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "05-development-automation/01-development-automation-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add implementation_steps with exact CI/CD commands",
+        "Add acceptance_criteria for automation success",
+        "Add troubleshooting_guide for common issues",
+        "Add performance_benchmarks for build times"
+      ]
+    },
+    "phase_5_content": {
+      "title": "Fix Content Processing Recipes (06)",
+      "description": "Ensure all content processing recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "06-content-processing/01-content-ingestion-recipe.json",
+        "06-content-processing/02-text-processing-recipe.json",
+        "06-content-processing/03-image-processing-recipe.json",
+        "06-content-processing/04-video-audio-processing-recipe.json",
+        "06-content-processing/01-content-ingestion-core-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add implementation_steps with exact processing commands",
+        "Add acceptance_criteria for content quality",
+        "Add troubleshooting_guide for processing issues",
+        "Add performance_benchmarks for processing speed"
+      ]
+    },
+    "phase_6_workflows": {
+      "title": "Fix Workflow Recipes (07-10)",
+      "description": "Ensure all workflow recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "07-content-creation-workflows/01-content-creation-workflows-recipe.json",
+        "08-research-automation/01-research-automation-recipe.json",
+        "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json",
+        "10-collaboration-platform/01-collaboration-platform-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add implementation_steps with exact workflow commands",
+        "Add acceptance_criteria for workflow success",
+        "Add troubleshooting_guide for workflow issues",
+        "Add performance_benchmarks for workflow efficiency"
+      ]
+    },
+    "phase_7_quality": {
+      "title": "Fix Quality and Operations Recipes (11-17)",
+      "description": "Ensure all quality and operations recipes have extremely specific atomic tasks",
+      "recipes_to_fix": [
+        "11-quality-assurance/01-quality-assurance-recipe.json",
+        "14-monitoring-alerting/01-monitoring-alerting-recipe.json",
+        "15-backup-recovery/01-backup-recovery-recipe.json",
+        "16-scaling-optimization/01-scaling-optimization-recipe.json",
+        "17-deployment-automation/01-deployment-automation-recipe.json"
+      ],
+      "fix_requirements": [
+        "Add implementation_steps with exact operational commands",
+        "Add acceptance_criteria for operational success",
+        "Add troubleshooting_guide for operational issues",
+        "Add performance_benchmarks for operational efficiency"
+      ]
+    }
+  },
+  "reference_standards": {
+    "infrastructure_recipe_template": {
+      "file": "01-infrastructure/01-core-infrastructure-recipe.json",
+      "key_elements": [
+        "implementation_steps with exact_commands, files_to_create, acceptance_criteria",
+        "exact_validation_commands for skills",
+        "exact_config_spec for tools",
+        "exact_schema for configs",
+        "troubleshooting_guide with specific solutions",
+        "performance_benchmarks with exact targets"
+      ]
+    },
+    "required_structure": {
+      "recipe_metadata": "Must include recipe_id, version 5.0.0, last_updated",
+      "pantry_ingredients": "Must include exact_commands, exact_validation_commands, exact_config_spec",
+      "kitchen_execution": "Must include orchestrator_steps with exact actions",
+      "implementation_steps": "Must include exact_commands, files_to_create, acceptance_criteria",
+      "acceptance_criteria": "Must be measurable and specific",
+      "deliverables": "Must be specific and achievable",
+      "troubleshooting_guide": "Must include specific solutions",
+      "performance_benchmarks": "Must include exact targets"
+    }
+  },
+  "quality_standards": {
+    "atomic_task_requirements": [
+      "Each task must have exact_commands array with specific shell commands",
+      "Each task must have files_to_create array with exact file paths",
+      "Each task must have acceptance_criteria array with measurable criteria",
+      "No room for interpretation - commands must be exact",
+      "All file paths must be absolute or relative to project root",
+      "All commands must be executable without modification"
+    ],
+    "validation_requirements": [
+      "Each skill must have exact_validation_commands array",
+      "Each tool must have exact_config_spec object",
+      "Each config must have exact_schema object",
+      "All validation commands must be testable",
+      "All config specs must be complete and specific"
+    ],
+    "documentation_requirements": [
+      "Each recipe must have troubleshooting_guide with specific solutions",
+      "Each recipe must have performance_benchmarks with exact targets",
+      "Each recipe must have deliverables list with specific outcomes",
+      "All documentation must be actionable and specific"
+    ]
+  },
+  "execution_instructions": {
+    "step_1_analysis": "Analyze each recipe against the reference standard",
+    "step_2_identification": "Identify missing elements and generic tasks",
+    "step_3_fix": "Add missing elements with extremely specific details",
+    "step_4_validation": "Validate that no room for interpretation exists",
+    "step_5_testing": "Test that all commands and paths are correct",
+    "step_6_documentation": "Update recipe index and progress tracking"
+  },
+  "success_criteria": {
+    "all_recipes_v5_0_0": "All 24 recipes must be at version 5.0.0",
+    "specific_atomic_tasks": "All recipes must have extremely specific atomic tasks",
+    "no_interpretation": "No room for interpretation in any task",
+    "complete_documentation": "All recipes must have complete documentation",
+    "consistent_structure": "All recipes must follow the same structure",
+    "zero_technical_debt": "No technical debt left for future agents"
+  },
+  "next_agent_requirements": {
+    "skills_needed": [
+      "Systematic analysis and planning",
+      "Attention to detail and consistency",
+      "Understanding of infrastructure recipe standards",
+      "Ability to write extremely specific commands",
+      "Quality assurance and validation"
+    ],
+    "tools_needed": [
+      "File editing tools for JSON modification",
+      "Search and replace tools for bulk updates",
+      "Validation tools for checking recipe structure",
+      "Documentation tools for progress tracking"
+    ],
+    "time_estimate": "12-15 hours for complete systematic fix",
+    "priority": "Critical - must be completed before any other work"
+  },
+  "handoff_notes": {
+    "current_progress": "Phase 1 partially complete, need systematic approach",
+    "critical_issues": "Generic atomic tasks throughout recipe library",
+    "immediate_actions": "Start with 01-infrastructure and work systematically",
+    "quality_gates": "Each recipe must pass validation before moving to next",
+    "success_metrics": "All recipes must have extremely specific atomic tasks"
+  }
+} 

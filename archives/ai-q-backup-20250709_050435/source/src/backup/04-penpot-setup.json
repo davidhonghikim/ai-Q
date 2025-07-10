@@ -1,0 +1,39 @@
+{
+  "recipe_metadata": {
+    "recipe_id": "01-INFRA-PENPOT-SETUP-004",
+    "title": "Penpot Design Platform (Optional)",
+    "version": "1.0.0",
+    "created_by": "Gemini",
+    "creation_date": "2025-07-05T00:00:00Z",
+    "difficulty_level": "intermediate",
+    "total_tasks": 1
+  },
+  "recipe_overview": {
+    "description": "Deploys Penpot, the open-source design and prototyping platform for product teams. This service provides functionality similar to Figma and is not hardware-intensive. The recipe also supports connecting to a remote Penpot instance.",
+    "technology_stack": {
+      "design_tool": "Penpot",
+      "orchestration": "Docker Compose"
+    },
+    "deliverables": [
+      "A running Penpot Docker stack.",
+      "Configuration for connecting to a local or remote Penpot instance."
+    ]
+  },
+  "tasks": [
+    {
+      "id": "50-004",
+      "title": "Deploy Penpot Stack",
+      "description": "Deploys the complete Penpot stack (frontend, backend, exporter) using the official Docker Compose file. Provides an option to configure a remote instance URL.",
+      "dependencies": [],
+      "estimated_time": "25 minutes",
+      "files_to_create": [
+        "docker/compose/penpot.yml",
+        "config/design_services/penpot_config.yml"
+      ],
+      "acceptance_criteria": [
+        "The Penpot containers start successfully.",
+        "The 'config/design_services/penpot_config.yml' is created, allowing a user to specify a remote_url."
+      ]
+    }
+  ]
+} 

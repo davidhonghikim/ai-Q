@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "title": "Structured JSON Logging Configuration",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-09T02:00:00Z",
+    "status": "ACTIVE",
+    "purpose": "Centralized structured logging configuration for enterprise compliance with ISO 8601 timestamps"
+  },
+  "logging_configuration": {
+    "format": "json",
+    "timestamp_format": "ISO8601",
+    "timestamp_example": "2025-07-09T20:15:30.123Z",
+    "include_correlation_id": true,
+    "include_service_name": true,
+    "include_version": true,
+    "include_environment": true
+  },
+  "log_levels": {
+    "default": "INFO",
+    "development": "DEBUG",
+    "staging": "INFO",
+    "production": "WARNING",
+    "critical": "ERROR"
+  },
+  "directory_structure": {
+    "base_directory": "logs",
+    "organization": "service_based",
+    "subdirectories": {
+      "api": "logs/api/",
+      "kitchen": "logs/kitchen/",
+      "gitea": "logs/gitea/",
+      "web": "logs/web/",
+      "database": "logs/database/",
+      "monitoring": "logs/monitoring/",
+      "security": "logs/security/",
+      "system": "logs/system/"
+    },
+    "archive_structure": "logs/archive/YYYY/MM/DD/",
+    "temp_directory": "logs/temp/"
+  },
+  "output_handlers": {
+    "file_handler": {
+      "enabled": true,
+      "log_directory": "logs",
+      "file_pattern": "{service}_{timestamp}.log",
+      "timestamp_format": "YYYY-MM-DDTHH-mm-ssZ",
+      "max_file_size": "100MB",
+      "backup_count": 10,
+      "encoding": "utf-8",
+      "rotation_schedule": "daily"
+    },
+    "console_handler": {
+      "enabled": true,
+      "format": "json",
+      "colorize": false,
+      "timestamp_format": "ISO8601"
+    },
+    "syslog_handler": {
+      "enabled": false,
+      "host": "localhost",
+      "port": 514,
+      "facility": "local0"
+    }
+  },
+  "log_rotation": {
+    "enabled": true,
+    "rotation_strategy": "time_and_size_based",
+    "rotation_schedule": {
+      "daily": "00:00:00Z",
+      "weekly": "sunday_00:00:00Z",
+      "monthly": "first_day_00:00:00Z"
+    },
+    "file_naming": {
+      "current": "{service}_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "rotated": "{service}_{YYYY-MM-DDTHH-mm-ssZ}.{rotation_count}.log",
+      "archived": "{service}_{YYYY-MM-DDTHH-mm-ssZ}.{rotation_count}.log.gz"
+    },
+    "compression": {
+      "enabled": true,
+      "algorithm": "gzip",
+      "compression_level": 6
+    },
+    "cleanup": {
+      "enabled": true,
+      "retention_days": 90,
+      "max_total_size": "10GB",
+      "cleanup_schedule": "daily_02:00:00Z"
+    }
+  },
+  "structured_fields": {
+    "required_fields": [
+      "timestamp",
+      "level",
+      "service",
+      "correlation_id",
+      "message",
+      "version",
+      "environment"
+    ],
+    "optional_fields": [
+      "user_id",
+      "session_id",
+      "request_id",
+      "operation",
+      "duration",
+      "error_code",
+      "stack_trace",
+      "metadata"
+    ],
+    "performance_fields": [
+      "response_time",
+      "memory_usage",
+      "cpu_usage",
+      "database_queries",
+      "cache_hits",
+      "cache_misses"
+    ],
+    "security_fields": [
+      "ip_address",
+      "user_agent",
+      "authentication_method",
+      "authorization_level",
+      "access_granted",
+      "security_event_type"
+    ]
+  },
+  "service_specific_logging": {
+    "kitchen_engine": {
+      "log_level": "DEBUG",
+      "directory": "logs/kitchen/",
+      "file_pattern": "kitchen_engine_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_operations": true,
+      "include_recipes": true,
+      "include_performance": true,
+      "rotation": "daily"
+    },
+    "gitea_service": {
+      "log_level": "INFO",
+      "directory": "logs/gitea/",
+      "file_pattern": "gitea_service_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_api_calls": true,
+      "include_sync_operations": true,
+      "include_security_events": true,
+      "rotation": "daily"
+    },
+    "api_server": {
+      "log_level": "INFO",
+      "directory": "logs/api/",
+      "file_pattern": "api_server_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_requests": true,
+      "include_responses": true,
+      "include_errors": true,
+      "rotation": "daily"
+    },
+    "web_dashboard": {
+      "log_level": "INFO",
+      "directory": "logs/web/",
+      "file_pattern": "web_dashboard_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_user_actions": true,
+      "include_page_views": true,
+      "include_errors": true,
+      "rotation": "daily"
+    },
+    "database": {
+      "log_level": "INFO",
+      "directory": "logs/database/",
+      "file_pattern": "database_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_queries": true,
+      "include_performance": true,
+      "include_errors": true,
+      "rotation": "daily"
+    },
+    "monitoring": {
+      "log_level": "INFO",
+      "directory": "logs/monitoring/",
+      "file_pattern": "monitoring_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_metrics": true,
+      "include_alerts": true,
+      "include_health_checks": true,
+      "rotation": "daily"
+    },
+    "security": {
+      "log_level": "WARNING",
+      "directory": "logs/security/",
+      "file_pattern": "security_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_auth_events": true,
+      "include_access_attempts": true,
+      "include_violations": true,
+      "rotation": "daily"
+    },
+    "system": {
+      "log_level": "INFO",
+      "directory": "logs/system/",
+      "file_pattern": "system_{YYYY-MM-DDTHH-mm-ssZ}.log",
+      "include_startup": true,
+      "include_shutdown": true,
+      "include_errors": true,
+      "rotation": "daily"
+    }
+  },
+  "correlation_tracking": {
+    "enabled": true,
+    "header_name": "X-Correlation-ID",
+    "generate_if_missing": true,
+    "include_in_responses": true,
+    "propagate_to_downstream": true,
+    "format": "uuid4"
+  },
+  "error_logging": {
+    "include_stack_traces": true,
+    "include_context": true,
+    "group_similar_errors": true,
+    "error_threshold": 100,
+    "alert_on_threshold": true,
+    "error_file": "logs/errors/errors_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "performance_logging": {
+    "enabled": true,
+    "slow_query_threshold": 1000,
+    "memory_threshold": 80,
+    "cpu_threshold": 80,
+    "log_performance_metrics": true,
+    "performance_file": "logs/performance/performance_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "security_logging": {
+    "enabled": true,
+    "log_authentication_events": true,
+    "log_authorization_events": true,
+    "log_security_violations": true,
+    "log_access_attempts": true,
+    "mask_sensitive_data": true,
+    "security_file": "logs/security/security_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "log_aggregation": {
+    "enabled": true,
+    "aggregation_interval": "5m",
+    "metrics_collection": true,
+    "alerting": true,
+    "aggregation_file": "logs/aggregation/aggregation_{YYYY-MM-DDTHH-mm-ssZ}.json"
+  },
+  "monitoring_integration": {
+    "prometheus_metrics": true,
+    "grafana_dashboards": true,
+    "alert_manager": true,
+    "log_analytics": true,
+    "metrics_file": "logs/metrics/metrics_{YYYY-MM-DDTHH-mm-ssZ}.json"
+  },
+  "compliance_requirements": {
+    "audit_logging": true,
+    "data_retention": "90_days",
+    "encryption": true,
+    "access_control": true,
+    "backup_logs": true,
+    "audit_file": "logs/audit/audit_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "development_features": {
+    "debug_logging": true,
+    "trace_logging": false,
+    "log_to_console": true,
+    "pretty_print": false,
+    "development_file": "logs/development/dev_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "production_features": {
+    "structured_only": true,
+    "no_console_logging": true,
+    "high_performance": true,
+    "minimal_overhead": true,
+    "production_file": "logs/production/prod_{YYYY-MM-DDTHH-mm-ssZ}.log"
+  },
+  "log_analysis": {
+    "enabled": true,
+    "analysis_tools": ["grep", "jq", "logstash"],
+    "search_patterns": {
+      "errors": "level.*ERROR",
+      "warnings": "level.*WARNING",
+      "performance": "duration.*[0-9]{4,}",
+      "security": "security_event_type.*"
+    },
+    "analysis_file": "logs/analysis/analysis_{YYYY-MM-DDTHH-mm-ssZ}.json"
+  }
+} 

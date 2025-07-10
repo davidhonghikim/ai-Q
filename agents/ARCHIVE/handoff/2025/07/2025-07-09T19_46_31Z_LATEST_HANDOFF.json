@@ -1,0 +1,313 @@
+{
+  "metadata": {
+    "title": "LATEST_HANDOFF - Environment Configuration Issues & Service Recovery",
+    "version": "1.0.5",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "handoff_timestamp": "2025-07-09T19:46:31Z",
+    "status": "ARCHIVED",
+    "purpose": "Critical handoff document covering environment configuration issues and service recovery requirements"
+  },
+  "agent_information": {
+    "current_agent": "Q-Assist (GPT-4.1)",
+    "session_duration": "45 minutes",
+    "focus_area": "Environment configuration, AI services debugging, system recovery",
+    "completion_status": "ENVIRONMENT_CONFIGURATION_FAILED_CRITICAL_RECOVERY_NEEDED"
+  },
+  "current_state": {
+    "system_status": "ENVIRONMENT_CONFIGURATION_BROKEN_CRITICAL_ISSUES",
+    "docker_services": "MIXED_STATUS_ENVIRONMENT_VARIABLES_MISSING",
+    "ai_services": "CONFIGURATION_FAILED_ENVIRONMENT_VARIABLES_CORRUPTED",
+    "dashboard": "NOT_IMPLEMENTED_CRITICAL_NEED",
+    "griot_integration": "PLANNED_NOT_STARTED",
+    "gitea_integration": "FULLY_COMPLETED_AND_OPERATIONAL",
+    "repository_sync": "AUTOMATION_SETUP_COMPLETE",
+    "environment_files": "CORRUPTED_AND_INCOMPLETE_CRITICAL_ISSUE"
+  },
+  "critical_issues_to_fix": {
+    "environment_files": {
+      "issue": "Environment files (.env and .env.example) have been corrupted and are incomplete",
+      "symptoms": "Missing essential variables, encoding issues, incomplete configuration",
+      "root_cause": "Multiple failed attempts to reconstruct environment files",
+      "priority": "CRITICAL",
+      "impact": "Blocks all AI services and Docker container startup",
+      "required_action": "Restore from backup or reconstruct from project documentation"
+    },
+    "ai_services_configuration": {
+      "issue": "HuggingFace, Ollama, and Weaviate services cannot start due to missing environment variables",
+      "symptoms": "Environment variable warnings, service startup failures",
+      "root_cause": "Corrupted environment files",
+      "priority": "CRITICAL",
+      "impact": "Entire AI pipeline non-functional",
+      "required_action": "Fix environment variables and restart services"
+    },
+    "docker_compose_issues": {
+      "issue": "Docker Compose cannot read environment variables properly",
+      "symptoms": "Variable substitution warnings, service configuration errors",
+      "root_cause": "Environment file corruption and encoding issues",
+      "priority": "CRITICAL",
+      "impact": "All containerized services affected",
+      "required_action": "Restore proper environment configuration"
+    }
+  },
+  "environment_variables_required": {
+    "huggingface": [
+      "MODEL_NAME=sentence-transformers/all-MiniLM-L6-v2",
+      "DEVICE=cuda",
+      "MAX_BATCH_SIZE=32",
+      "MAX_BATCH_WAIT=0.1",
+      "LOG_LEVEL=INFO",
+      "HUGGINGFACE_TOKEN=optional",
+      "HUGGINGFACE_PORT=8082"
+    ],
+    "ollama": [
+      "OLLAMA_MODEL=llama3.2:3b",
+      "OLLAMA_EMBEDDING_MODEL=nomic-embed-text",
+      "OLLAMA_LOG_LEVEL=INFO"
+    ],
+    "weaviate": [
+      "WEAVIATE_TRANSFORMERS_INFERENCE_API=http://huggingface-inference:8080",
+      "WEAVIATE_PORT=8080",
+      "WEAVIATE_AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true",
+      "WEAVIATE_PERSISTENCE_DATA_PATH=/var/lib/weaviate",
+      "WEAVIATE_DEFAULT_VECTORIZER_MODULE=text2vec-transformers",
+      "WEAVIATE_ENABLE_MODULES=text2vec-transformers,ref2vec-centroid"
+    ],
+    "core_services": [
+      "POSTGRES_DB=aiq_knowledge",
+      "POSTGRES_USER=aiq_user",
+      "POSTGRES_PASSWORD=aiq_password",
+      "REDIS_PORT=6379",
+      "ELASTICSEARCH_PORT=9200",
+      "ELASTICSEARCH_PASSWORD=elastic",
+      "NEO4J_USER=neo4j",
+      "NEO4J_PASSWORD=password",
+      "MINIO_ROOT_USER=minioadmin",
+      "MINIO_ROOT_PASSWORD=minioadmin"
+    ],
+    "gitea": [
+      "GITEA_USER=thedangerdawg",
+      "GITEA_PASSWORD=overKill7*nice",
+      "GITEA_PORT=3002"
+    ]
+  },
+  "immediate_next_steps": {
+    "priority_1": [
+      {
+        "task": "Restore environment files from backup",
+        "description": "Recover .env and .env.example from known good backup",
+        "location": "Project root directory",
+        "estimated_duration": "15 minutes",
+        "dependencies": "Access to backup or previous working version",
+        "commands": [
+          "Restore .env from backup",
+          "Restore .env.example from backup",
+          "Verify all required variables are present"
+        ]
+      },
+      {
+        "task": "Validate environment configuration",
+        "description": "Ensure all required environment variables are present and correct",
+        "location": ".env file",
+        "estimated_duration": "30 minutes",
+        "dependencies": "Restored environment files",
+        "commands": [
+          "Check for all required variables listed above",
+          "Verify variable formats and values",
+          "Test Docker Compose environment loading"
+        ]
+      },
+      {
+        "task": "Restart all Docker services",
+        "description": "Restart services with corrected environment variables",
+        "location": "docker/compose/",
+        "estimated_duration": "15 minutes",
+        "dependencies": "Fixed environment files",
+        "commands": [
+          "docker-compose -f docker/compose/docker-compose.yml down",
+          "docker-compose -f docker/compose/docker-compose.yml up -d",
+          "docker ps -a (verify all services healthy)"
+        ]
+      }
+    ],
+    "priority_2": [
+      {
+        "task": "Create comprehensive dashboard",
+        "description": "Build static webpage dashboard showing all service UIs and status",
+        "location": "dashboard/ directory",
+        "estimated_duration": "2-3 hours",
+        "dependencies": "All services healthy",
+        "requirements": [
+          "Single page showing all service UIs",
+          "Health status indicators for all services",
+          "Quick access to service dashboards (Grafana, Prometheus, etc.)",
+          "Embedding and generation test interfaces",
+          "Service logs viewer"
+        ]
+      },
+      {
+        "task": "Add missing Docker services",
+        "description": "Implement Open WebUI, Nextcloud, and Registry services",
+        "location": "docker/compose/docker-compose.yml",
+        "estimated_duration": "1-2 hours",
+        "dependencies": "None",
+        "services": [
+          "Open WebUI (for Ollama interface)",
+          "Nextcloud (file storage and sharing)",
+          "Registry (Docker image registry)"
+        ]
+      }
+    ]
+  },
+  "gitea_integration_details": {
+    "service_status": "FULLY_OPERATIONAL",
+    "access_url": "http://localhost:3002",
+    "user_credentials": {
+      "username": "thedangerdawg",
+      "password": "overKill7*nice"
+    },
+    "repositories": {
+      "ai_q": {
+        "status": "MIGRATED",
+        "objects": 2225,
+        "branches": ["main"],
+        "gitea_url": "http://localhost:3002/thedangerdawg/ai-Q"
+      },
+      "griot": {
+        "status": "MIGRATED",
+        "objects": 10155,
+        "branches": ["main", "develop"],
+        "gitea_url": "http://localhost:3002/thedangerdawg/griot"
+      },
+      "kai_cd": {
+        "status": "MIGRATED",
+        "objects": "Full history",
+        "branches": ["main"],
+        "gitea_url": "http://localhost:3002/thedangerdawg/kai-cd"
+      },
+      "chatdemon": {
+        "status": "MIGRATED",
+        "objects": 22387,
+        "branches": ["main", "feat/server-manager-ui"],
+        "gitea_url": "http://localhost:3002/thedangerdawg/chatdemon"
+      }
+    },
+    "sync_automation": {
+      "github_actions_workflow": ".github/workflows/sync-to-gitea.yml",
+      "gitea_mirror_setup": "Ready for web UI configuration",
+      "setup_script": "scripts/utilities/complete_sync_setup.py",
+      "instructions": "gitea_sync_setup_instructions.json"
+    }
+  },
+  "service_endpoints": {
+    "gitea": {
+      "web_ui": "http://localhost:3002/",
+      "api": "http://localhost:3002/api/v1/"
+    },
+    "huggingface": {
+      "ui": "http://localhost:8082/",
+      "health": "http://localhost:8082/health",
+      "embeddings": "http://localhost:8082/embeddings",
+      "api_info": "http://localhost:8082/api/info"
+    },
+    "ollama": {
+      "api": "http://localhost:11434/",
+      "embeddings": "http://localhost:11434/api/embeddings",
+      "chat": "http://localhost:11434/api/chat"
+    },
+    "weaviate": {
+      "api": "http://localhost:8080/",
+      "graphql": "http://localhost:8080/v1/graphql"
+    },
+    "grafana": "http://localhost:3001/",
+    "prometheus": "http://localhost:9090/",
+    "minio": "http://localhost:9000/",
+    "neo4j": "http://localhost:7474/"
+  },
+  "project_rules": {
+    "immutable_rules": "Follow bootstrap/IMMUTABLE_AGENT_RULES.json strictly",
+    "enterprise_requirements": "Follow enterprise_scale_requirements in IMMUTABLE_AGENT_RULES.json",
+    "feature_flags": "ALL new services MUST use feature flags - CRITICAL",
+    "modular_code": "One task per file, maximum 150 lines, JSON documentation only",
+    "centralized_systems": "Use config/, logs/, monitoring/ directories - MANDATORY",
+    "terminal_commands": "NEVER use PowerShell commands - BANNED due to failures and timeouts. Use cmd, bash, or standard shell commands only",
+    "documentation_standards": "Follow bootstrap/DOCUMENTATION_SYSTEM_STANDARDS.json",
+    "workflow_standards": "Follow bootstrap/AGENT_WORKFLOW_STANDARDS.json",
+    "development_standards": "Follow bootstrap/DEVELOPMENT_STANDARDS.json",
+    "architecture_standards": "Follow bootstrap/ARCHITECTURE_STANDARDS.json",
+    "best_practices": "Follow bootstrap/BEST_PRACTICES_GUIDE.json",
+    "repository_organization": "repos/ directory excluded from git, gitea, and archive scripts"
+  },
+  "success_criteria": {
+    "immediate": [
+      "Environment files restored and validated",
+      "All Docker services healthy and running",
+      "HuggingFace inference service responding to requests",
+      "Ollama service responding to requests",
+      "Weaviate successfully connecting to HuggingFace",
+      "Basic dashboard showing service status"
+    ],
+    "short_term": [
+      "Comprehensive dashboard with all service UIs",
+      "All missing services (Open WebUI, Nextcloud, Registry) implemented",
+      "Gitea mirroring fully configured and tested",
+      "GitHub Actions sync working for all repositories"
+    ],
+    "long_term": [
+      "Full Griot project integration",
+      "Unified deployment and management",
+      "Production-ready AI-Q ecosystem",
+      "Complete documentation and user guides"
+    ]
+  },
+  "log_location": {
+    "current_session": "This handoff document",
+    "archived_documents": "agents/ARCHIVE/handoff/2025/07/2025-07-09T19_46_31Z_LATEST_HANDOFF.json",
+    "previous_handoff": "agents/ARCHIVE/handoff/2025/07/2025-07-09T05_10_00Z_LATEST_HANDOFF.json",
+    "gitea_setup_log": "complete_sync_setup.log",
+    "gitea_instructions": "gitea_sync_setup_instructions.json",
+    "ai_services_config": "config/feature_flags/ai_services.json",
+    "huggingface_service": "config/huggingface/",
+    "docker_compose": "docker/compose/docker-compose.yml",
+    "github_actions_workflow": ".github/workflows/sync-to-gitea.yml"
+  },
+  "next_agent_instructions": {
+    "mandatory_actions": [
+      "1. RESTORE ENVIRONMENT FILES FROM BACKUP BEFORE PROCEEDING",
+      "2. Validate all environment variables are present and correct",
+      "3. Restart all Docker services after environment restoration",
+      "4. Create comprehensive dashboard as top priority after fixing services",
+      "5. Review Griot project for integration requirements",
+      "6. Follow enterprise standards strictly (see enterprise_enforcement)",
+      "7. Use modular code (one task per file, max 150 lines)",
+      "8. Use JSON documentation only (no YAML or Markdown)",
+      "9. Implement centralized systems (config/, logs/, monitoring/)",
+      "10. Archive handoff document before creating new one",
+      "11. Maintain Gitea integration and sync automation",
+      "12. Keep repos/ directory excluded from version control"
+    ],
+    "priority_sequence": [
+      "1. RESTORE .env and .env.example from backup",
+      "2. Validate all environment variables are present",
+      "3. Restart all Docker services",
+      "4. Verify all services are healthy",
+      "5. Create comprehensive dashboard with all service UIs",
+      "6. Add missing Docker services (Open WebUI, Nextcloud, Registry)",
+      "7. Configure Gitea mirrors through web UI",
+      "8. Test GitHub Actions sync automation",
+      "9. Review and plan Griot integration"
+    ],
+    "critical_reminders": [
+      "DO NOT PROCEED WITHOUT RESTORING ENVIRONMENT FILES",
+      "ALL services must be healthy before proceeding",
+      "Dashboard must show UIs, not just JSON responses",
+      "NEVER USE POWERSHELL COMMANDS - BANNED due to failures and timeouts",
+      "Use cmd, bash, or standard shell commands only",
+      "Griot integration requires careful planning",
+      "ALL deployments MUST be automated",
+      "ALL documentation MUST be JSON format",
+      "ALL persistent data MUST use shared volumes",
+      "Gitea integration is COMPLETE - maintain and test it",
+      "Repository sync automation is READY - configure and test it"
+    ]
+  }
+} 

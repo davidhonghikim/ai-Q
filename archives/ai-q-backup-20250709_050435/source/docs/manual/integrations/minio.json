@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "title": "Minio Integration",
+    "description": "Integration spec for Minio object storage (setup, usage, agent tasks)",
+    "token_count": 200
+  },
+  "overview": "Minio is used as the S3-compatible object storage backend for all user files (text, images, video, audio, documents, code, etc.).",
+  "setup": {
+    "docker_image": "minio/minio:latest",
+    "ports": [9000, 9001],
+    "access_secret_keys": "Set via environment variables",
+    "data_persistence": "Docker volume"
+  },
+  "usage": [
+    "Buckets per user or data type",
+    "Store raw files, retrieve for processing and download",
+    "Integrate with AI/ML pipelines and UI"
+  ],
+  "agent_tasks": [
+    "Write Minio upload/download utility (Python: minio-py or boto3)",
+    "Implement file storage and retrieval endpoints",
+    "Write tests for all file types",
+    "Document setup and usage"
+  ]
+} 

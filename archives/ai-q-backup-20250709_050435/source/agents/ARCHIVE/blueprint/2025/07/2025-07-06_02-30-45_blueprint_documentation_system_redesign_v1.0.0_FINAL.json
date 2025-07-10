@@ -1,0 +1,202 @@
+{
+  "documentation_system_redesign": {
+    "metadata": {
+      "title": "Agent Documentation System Redesign",
+      "version": "1.0.0",
+      "created_by": "Claude Sonnet 4",
+      "creation_date": "2025-07-06T18:00:00Z",
+      "status": "proposed_redesign",
+      "priority": "critical"
+    },
+    "current_problems": {
+      "duplication": "Multiple files with similar content and names",
+      "versioning": "No clear way to identify newest documents",
+      "organization": "Scattered across multiple directories",
+      "consistency": "Each agent creates their own format",
+      "discoverability": "No clear hierarchy or index",
+      "maintenance": "No cleanup of outdated documents"
+    },
+    "proposed_solution": {
+      "single_source_of_truth": {
+        "master_index": "agents/MASTER_INDEX.json",
+        "version_control": "Timestamped filenames with semantic versioning",
+        "hierarchical_structure": "Clear categorization and nesting",
+        "automated_cleanup": "Retention policies and archival"
+      },
+      "file_naming_convention": {
+        "format": "YYYY-MM-DD_HH-MM-SS_CATEGORY_DESCRIPTION.json",
+        "example": "2025-01-30_14-00-00_handoff_recipe_library_enhancement.json",
+        "semantic_versioning": "v1.0.0, v1.1.0, etc.",
+        "status_suffix": "_DRAFT, _FINAL, _ARCHIVED"
+      },
+      "directory_structure": {
+        "agents/": {
+          "MASTER_INDEX.json": "Single source of truth for all documents",
+          "LATEST/": "Most recent documents by category",
+          "ARCHIVE/": "Historical documents organized by date",
+          "TEMPLATES/": "Standardized templates for each document type",
+          "SCHEMAS/": "JSON schemas for validation"
+        }
+      }
+    },
+    "document_categories": {
+      "handoff": {
+        "description": "Agent handoff documents",
+        "template": "TEMPLATES/handoff_template.json",
+        "schema": "SCHEMAS/handoff_schema.json",
+        "retention": "30 days in LATEST, then archive",
+        "required_fields": ["agent_id", "timestamp", "summary", "next_steps", "status"]
+      },
+      "analysis": {
+        "description": "System analysis and findings",
+        "template": "TEMPLATES/analysis_template.json",
+        "schema": "SCHEMAS/analysis_schema.json",
+        "retention": "90 days in LATEST, then archive",
+        "required_fields": ["scope", "findings", "recommendations", "priority"]
+      },
+      "blueprint": {
+        "description": "Architecture and design documents",
+        "template": "TEMPLATES/blueprint_template.json",
+        "schema": "SCHEMAS/blueprint_schema.json",
+        "retention": "permanent in LATEST",
+        "required_fields": ["architecture", "components", "dependencies", "version"]
+      },
+      "execution": {
+        "description": "Execution plans and progress",
+        "template": "TEMPLATES/execution_template.json",
+        "schema": "SCHEMAS/execution_schema.json",
+        "retention": "60 days in LATEST, then archive",
+        "required_fields": ["plan", "progress", "milestones", "status"]
+      },
+      "validation": {
+        "description": "Validation and testing results",
+        "template": "TEMPLATES/validation_template.json",
+        "schema": "SCHEMAS/validation_schema.json",
+        "retention": "45 days in LATEST, then archive",
+        "required_fields": ["test_scope", "results", "issues", "recommendations"]
+      }
+    },
+    "master_index_structure": {
+      "metadata": {
+        "last_updated": "2025-07-06T18:00:00Z",
+        "total_documents": 0,
+        "categories": {}
+      },
+      "latest_documents": {
+        "handoff": {
+          "current": "LATEST/handoff_current.json",
+          "previous": "LATEST/handoff_previous.json",
+          "count": 0
+        },
+        "analysis": {
+          "current": "LATEST/analysis_current.json",
+          "previous": "LATEST/analysis_previous.json",
+          "count": 0
+        },
+        "blueprint": {
+          "current": "LATEST/blueprint_current.json",
+          "previous": "LATEST/blueprint_previous.json",
+          "count": 0
+        },
+        "execution": {
+          "current": "LATEST/execution_current.json",
+          "previous": "LATEST/execution_previous.json",
+          "count": 0
+        },
+        "validation": {
+          "current": "LATEST/validation_current.json",
+          "previous": "LATEST/validation_previous.json",
+          "count": 0
+        }
+      },
+      "document_history": {
+        "by_category": {},
+        "by_date": {},
+        "by_agent": {}
+      }
+    },
+    "implementation_plan": {
+      "phase_1_cleanup": {
+        "duration": "2-3 hours",
+        "tasks": [
+          "Create new directory structure",
+          "Create MASTER_INDEX.json",
+          "Create standardized templates",
+          "Create JSON schemas for validation"
+        ]
+      },
+      "phase_2_migration": {
+        "duration": "4-6 hours",
+        "tasks": [
+          "Analyze all existing documents",
+          "Categorize and rename files",
+          "Update MASTER_INDEX.json",
+          "Archive outdated documents"
+        ]
+      },
+      "phase_3_standardization": {
+        "duration": "2-3 hours",
+        "tasks": [
+          "Create agent documentation guidelines",
+          "Implement automated validation",
+          "Create cleanup scripts",
+          "Document the new system"
+        ]
+      }
+    },
+    "agent_guidelines": {
+      "document_creation": [
+        "Always use the appropriate template from TEMPLATES/",
+        "Validate against the corresponding schema",
+        "Use the standardized naming convention",
+        "Update MASTER_INDEX.json immediately",
+        "Set appropriate retention policy"
+      ],
+      "document_handoff": [
+        "Create handoff document using handoff_template.json",
+        "Include clear next steps and priorities",
+        "Reference relevant analysis and blueprint documents",
+        "Update MASTER_INDEX.json with new current document",
+        "Archive previous handoff document"
+      ],
+      "document_maintenance": [
+        "Review and update documents weekly",
+        "Archive documents past retention period",
+        "Validate all documents against schemas",
+        "Update MASTER_INDEX.json with any changes",
+        "Clean up duplicate or outdated content"
+      ]
+    }
+  },
+  "automation_scripts": {
+    "document_validator": {
+      "purpose": "Validate all documents against schemas",
+      "location": "scripts/validate_documents.py",
+      "frequency": "Daily automated check"
+    },
+    "index_updater": {
+      "purpose": "Update MASTER_INDEX.json automatically",
+      "location": "scripts/update_index.py",
+      "frequency": "On document creation/modification"
+    },
+    "cleanup_script": {
+      "purpose": "Archive documents past retention",
+      "location": "scripts/cleanup_documents.py",
+      "frequency": "Weekly automated cleanup"
+    }
+  },
+  "success_criteria": {
+    "immediate": [
+      "Single source of truth established",
+      "Clear document hierarchy implemented",
+      "No duplicate or conflicting documents",
+      "All documents properly categorized"
+    ],
+    "long_term": [
+      "Automated document management",
+      "Consistent agent documentation practices",
+      "Easy discovery of relevant information",
+      "Reduced documentation maintenance overhead"
+    ]
+  }
+} 

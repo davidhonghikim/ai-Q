@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "title": "LATEST Directory Cleanup Plan",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T23:50:00Z",
+    "status": "ACTIVE",
+    "purpose": "Clean up LATEST directory to have only core documents without timestamps"
+  },
+  "current_problem": {
+    "description": "LATEST directory has multiple timestamped documents creating confusion",
+    "violations": [
+      "Multiple timestamped documents in LATEST/ (should be archived)",
+      "Core documents have timestamps in filenames (should not)",
+      "No clear distinction between core and special documents",
+      "Agents don't know which documents to load"
+    ],
+    "impact": "Agent confusion, inconsistent document loading, violation of documentation standards"
+  },
+  "cleanup_actions": {
+    "step_1_archive_timestamped_documents": {
+      "action": "Archive all timestamped documents to appropriate archive directories",
+      "documents": [
+        {
+          "current_name": "2025-07-08_22-45-00_COMPREHENSIVE_PREVIOUS_AGENT_ANALYSIS.json",
+          "archive_location": "agents/ARCHIVE/analysis/2025/07/",
+          "reason": "Analysis document with timestamp - should be archived"
+        },
+        {
+          "current_name": "2025-07-08_23-00-00_COMPREHENSIVE_KITCHEN_STRUCTURE_ANALYSIS.json",
+          "archive_location": "agents/ARCHIVE/analysis/2025/07/",
+          "reason": "Analysis document with timestamp - should be archived"
+        },
+        {
+          "current_name": "2025-07-08_23-30-00_UPDATED_KITCHEN_STRUCTURE_ANALYSIS.json",
+          "archive_location": "agents/ARCHIVE/analysis/2025/07/",
+          "reason": "Analysis document with timestamp - should be archived"
+        }
+      ]
+    },
+    "step_2_rename_core_documents": {
+      "action": "Rename core documents to remove timestamps",
+      "documents": [
+        {
+          "current_name": "IMMUTABLE_AGENT_RULES_v1.0.0_FINAL.json",
+          "new_name": "IMMUTABLE_AGENT_RULES.json",
+          "reason": "Core rules document should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-30-00_EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+          "new_name": "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+          "reason": "Core execution plan should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-35-00_AGENT_WORKFLOW_STANDARDS.json",
+          "new_name": "AGENT_WORKFLOW_STANDARDS.json",
+          "reason": "Core workflow standards should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-40-00_DEVELOPMENT_STANDARDS.json",
+          "new_name": "DEVELOPMENT_STANDARDS.json",
+          "reason": "Core development standards should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-45-00_ARCHITECTURE_STANDARDS.json",
+          "new_name": "ARCHITECTURE_STANDARDS.json",
+          "reason": "Core architecture standards should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-50-00_BEST_PRACTICES_GUIDE.json",
+          "new_name": "BEST_PRACTICES_GUIDE.json",
+          "reason": "Core best practices guide should not have timestamp in filename"
+        },
+        {
+          "current_name": "2025-07-08_09-55-00_AGENT_HANDOFF_TEMPLATE.json",
+          "new_name": "AGENT_HANDOFF_TEMPLATE.json",
+          "reason": "Core handoff template should not have timestamp in filename"
+        }
+      ]
+    },
+    "step_3_keep_current_handoff": {
+      "action": "Keep current handoff document with timestamp (it's the current handoff)",
+      "document": {
+        "current_name": "2025-07-08_10-00-00_LATEST_HANDOFF.json",
+        "action": "Keep as is",
+        "reason": "This is the current handoff document and should remain"
+      }
+    },
+    "step_4_verify_core_documents": {
+      "action": "Verify all core documents are present and properly named",
+      "expected_core_documents": [
+        "IMMUTABLE_AGENT_RULES.json",
+        "DOCUMENTATION_SYSTEM_STANDARDS.json",
+        "AGENT_WORKFLOW_STANDARDS.json",
+        "DEVELOPMENT_STANDARDS.json",
+        "ARCHITECTURE_STANDARDS.json",
+        "BEST_PRACTICES_GUIDE.json",
+        "AGENT_HANDOFF_TEMPLATE.json",
+        "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+        "LATEST_HANDOFF.json"
+      ]
+    }
+  },
+  "final_latest_structure": {
+    "description": "LATEST directory after cleanup should contain only these documents",
+    "core_documents": [
+      "IMMUTABLE_AGENT_RULES.json",
+      "DOCUMENTATION_SYSTEM_STANDARDS.json",
+      "AGENT_WORKFLOW_STANDARDS.json",
+      "DEVELOPMENT_STANDARDS.json",
+      "ARCHITECTURE_STANDARDS.json",
+      "BEST_PRACTICES_GUIDE.json",
+      "AGENT_HANDOFF_TEMPLATE.json",
+      "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+      "CORE_AGENT_DOCUMENTS.json"
+    ],
+    "current_handoff": [
+      "LATEST_HANDOFF.json (current handoff with timestamp)"
+    ],
+    "special_documents": [
+      "LATEST_CLEANUP_PLAN.json (temporary, will be archived after cleanup)"
+    ]
+  },
+  "implementation_commands": {
+    "archive_commands": [
+      "Move 2025-07-08_22-45-00_COMPREHENSIVE_PREVIOUS_AGENT_ANALYSIS.json to agents/ARCHIVE/analysis/2025/07/",
+      "Move 2025-07-08_23-00-00_COMPREHENSIVE_KITCHEN_STRUCTURE_ANALYSIS.json to agents/ARCHIVE/analysis/2025/07/",
+      "Move 2025-07-08_23-30-00_UPDATED_KITCHEN_STRUCTURE_ANALYSIS.json to agents/ARCHIVE/analysis/2025/07/"
+    ],
+    "rename_commands": [
+      "Rename IMMUTABLE_AGENT_RULES_v1.0.0_FINAL.json to IMMUTABLE_AGENT_RULES.json",
+      "Rename 2025-07-08_09-30-00_EXECUTION_PLAN_KITCHEN_SYSTEM.json to EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+      "Rename 2025-07-08_09-35-00_AGENT_WORKFLOW_STANDARDS.json to AGENT_WORKFLOW_STANDARDS.json",
+      "Rename 2025-07-08_09-40-00_DEVELOPMENT_STANDARDS.json to DEVELOPMENT_STANDARDS.json",
+      "Rename 2025-07-08_09-45-00_ARCHITECTURE_STANDARDS.json to ARCHITECTURE_STANDARDS.json",
+      "Rename 2025-07-08_09-50-00_BEST_PRACTICES_GUIDE.json to BEST_PRACTICES_GUIDE.json",
+      "Rename 2025-07-08_09-55-00_AGENT_HANDOFF_TEMPLATE.json to AGENT_HANDOFF_TEMPLATE.json"
+    ]
+  },
+  "success_criteria": [
+    "All timestamped documents archived to appropriate directories",
+    "All core documents renamed to remove timestamps",
+    "LATEST directory contains only current, active documents",
+    "Clear distinction between core and special documents",
+    "No confusion about which documents agents should load",
+    "Documentation standards properly followed",
+    "Single source of truth for each document type"
+  ],
+  "notes": {
+    "cleanup_priority": "This cleanup is critical for agent efficiency and compliance with standards",
+    "naming_convention": "Core documents: NO timestamps, Special documents: WITH timestamps",
+    "archiving_importance": "Proper archiving prevents LATEST/ from becoming cluttered",
+    "consistency_benefit": "Consistent core document set enables all agents to work with same standards",
+    "future_maintenance": "All future agents must follow these naming conventions"
+  }
+} 

@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "Image Generation (ComfyUI, A1111)",
+    "description": "Spec for image generation features, device detection, user toggles, integration, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support local and remote image generation using ComfyUI and A1111, with GPU/CPU detection and user-selectable backends.",
+  "requirements": [
+    "Detect device GPU/CPU and enable/disable image generation accordingly.",
+    "Provide user-facing toggles for image generation features.",
+    "Integrate with file upload and gallery pipelines.",
+    "Allow user to select which backend (ComfyUI or A1111) to use for generation."
+  ],
+  "integration": {
+    "comfyui": {
+      "docker_image": "ghcr.io/ltdrdata/comfyui:latest",
+      "port": 8188
+    },
+    "a1111": {
+      "docker_image": "ghcr.io/hlky/stable-diffusion-webui:latest",
+      "port": 7860
+    }
+  },
+  "agent_tasks": [
+    "Implement device detection logic (Python, Node).",
+    "Build UI for backend selection and toggles.",
+    "Integrate image generation endpoints with upload/gallery.",
+    "Write tests for GPU/CPU fallback and backend switching.",
+    "Document setup and usage."
+  ]
+} 

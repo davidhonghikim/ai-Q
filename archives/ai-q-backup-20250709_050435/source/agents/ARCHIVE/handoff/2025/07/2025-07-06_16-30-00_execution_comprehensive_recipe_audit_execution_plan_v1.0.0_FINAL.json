@@ -1,0 +1,374 @@
+{
+  "execution_plan_metadata": {
+    "title": "Comprehensive Recipe Library Audit and Systematic Fix Execution Plan",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-01-30T23:30:00Z",
+    "status": "ACTIVE_EXECUTION",
+    "priority": "critical",
+    "agent_id": "claude-sonnet-4-comprehensive-audit",
+    "plan_type": "systematic_recipe_completion",
+    "estimated_duration": "8-10 hours",
+    "total_recipes_to_audit": 24
+  },
+  "executive_summary": {
+    "problem_statement": "Previous agents made errors, skipped steps, and left recipes incomplete. The recipe library needs comprehensive audit and systematic completion to ensure all recipes are complete, properly formatted, aligned with each other, and have explicit directions with no room for interpretation.",
+    "solution_approach": "Systematic audit and fix of ALL recipes starting from 01-infrastructure, working in numerical order, ensuring each recipe is complete before moving to the next. No jumping around or creating new recipes until existing ones are complete.",
+    "success_criteria": "All 24 recipes must be complete, properly formatted, aligned with each other, have explicit directions, no duplicates, proper format/style, atomic level detail, matching ports/settings, and zero technical debt."
+  },
+  "current_state_analysis": {
+    "recipe_index_inconsistencies": [
+      "Index shows 24 recipes but actual files don't match",
+      "Some recipes marked as v5.0.0 but may not have proper structure",
+      "Duplicate recipes exist in some directories",
+      "Missing recipes referenced in index"
+    ],
+    "format_issues": [
+      "Inconsistent recipe structure across directories",
+      "Missing exact_commands in some recipes",
+      "Missing files_to_create specifications",
+      "Missing acceptance_criteria",
+      "Inconsistent port configurations",
+      "Missing troubleshooting guides"
+    ],
+    "alignment_issues": [
+      "Port conflicts between recipes",
+      "Inconsistent configuration formats",
+      "Missing dependencies between recipes",
+      "Inconsistent file paths and naming"
+    ]
+  },
+  "systematic_audit_plan": {
+    "phase_1_infrastructure_audit": {
+      "title": "Audit and Fix Infrastructure Recipes (01)",
+      "description": "Complete audit and fix of all infrastructure recipes",
+      "recipes_to_audit": [
+        "01-infrastructure/01-core-infrastructure-recipe.json",
+        "01-infrastructure/02-unified-docker-system-recipe.json",
+        "01-infrastructure/03-storage-systems-recipe.json",
+        "01-infrastructure/04-database-setup-recipe.json",
+        "01-infrastructure/05-monitoring-observability-recipe.json",
+        "01-infrastructure/06-api-gateway-recipe.json",
+        "01-infrastructure/07-authentication-security-recipe.json",
+        "01-infrastructure/01-npm-installation-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check port configurations for conflicts",
+        "Verify troubleshooting guides",
+        "Validate performance benchmarks",
+        "Check alignment with other infrastructure recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands with specific shell commands",
+        "Add missing files_to_create with exact file paths",
+        "Add missing acceptance_criteria with measurable outcomes",
+        "Fix port conflicts and ensure consistency",
+        "Add missing troubleshooting guides",
+        "Add missing performance benchmarks",
+        "Ensure all recipes align with each other"
+      ]
+    },
+    "phase_2_ai_services_audit": {
+      "title": "Audit and Fix AI Services Recipes (02)",
+      "description": "Complete audit and fix of all AI services recipes",
+      "recipes_to_audit": [
+        "02-ai-services/01-ai-services-master-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on infrastructure recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with infrastructure recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with infrastructure",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_3_intelligence_audit": {
+      "title": "Audit and Fix Intelligence Recipes (03)",
+      "description": "Complete audit and fix of all intelligence recipes",
+      "recipes_to_audit": [
+        "03-intelligence/01-rag-engine-recipe.json",
+        "03-intelligence/02-knowledge-graph-recipe.json",
+        "03-intelligence/03-semantic-search-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on AI services recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with AI services recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with AI services",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_4_interface_audit": {
+      "title": "Audit and Fix Interface Recipes (04)",
+      "description": "Complete audit and fix of all interface recipes",
+      "recipes_to_audit": [
+        "04-interface/01-web-dashboard-recipe.json",
+        "04-interface/02-mobile-app-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on intelligence recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with intelligence recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with intelligence services",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_5_development_audit": {
+      "title": "Audit and Fix Development Recipes (05)",
+      "description": "Complete audit and fix of development automation recipe",
+      "recipes_to_audit": [
+        "05-development-automation/01-development-automation-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on interface recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with interface recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with interface services",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_6_content_processing_audit": {
+      "title": "Audit and Fix Content Processing Recipes (06)",
+      "description": "Complete audit and fix of all content processing recipes",
+      "recipes_to_audit": [
+        "06-content-processing/01-content-ingestion-recipe.json",
+        "06-content-processing/02-text-processing-recipe.json",
+        "06-content-processing/03-image-processing-recipe.json",
+        "06-content-processing/04-video-audio-processing-recipe.json",
+        "06-content-processing/01-content-ingestion-core-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on development recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check for duplicate recipes",
+        "Check alignment with development recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with development services",
+        "Add missing troubleshooting guides",
+        "Resolve duplicate recipes",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_7_workflow_audit": {
+      "title": "Audit and Fix Workflow Recipes (07-10)",
+      "description": "Complete audit and fix of all workflow recipes",
+      "recipes_to_audit": [
+        "07-content-creation-workflows/01-content-creation-workflows-recipe.json",
+        "08-research-automation/01-research-automation-recipe.json",
+        "09-knowledge-synthesis/01-knowledge-synthesis-recipe.json",
+        "10-collaboration-platform/01-collaboration-platform-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on content processing recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with content processing recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with content processing services",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    },
+    "phase_8_quality_operations_audit": {
+      "title": "Audit and Fix Quality and Operations Recipes (11-17)",
+      "description": "Complete audit and fix of all quality and operations recipes",
+      "recipes_to_audit": [
+        "11-quality-assurance/01-quality-assurance-recipe.json",
+        "14-monitoring-alerting/01-monitoring-alerting-recipe.json",
+        "15-backup-recovery/01-backup-recovery-recipe.json",
+        "16-scaling-optimization/01-scaling-optimization-recipe.json",
+        "17-deployment-automation/01-deployment-automation-recipe.json"
+      ],
+      "audit_requirements": [
+        "Verify v5.0.0 structure compliance",
+        "Check dependencies on workflow recipes",
+        "Validate port configurations",
+        "Check for exact_commands in all tasks",
+        "Verify files_to_create specifications",
+        "Validate acceptance_criteria",
+        "Check alignment with workflow recipes"
+      ],
+      "fix_requirements": [
+        "Add missing exact_commands",
+        "Add missing files_to_create",
+        "Add missing acceptance_criteria",
+        "Fix port conflicts with workflow services",
+        "Add missing troubleshooting guides",
+        "Ensure proper dependency references"
+      ]
+    }
+  },
+  "reference_standards": {
+    "v5_0_0_structure": {
+      "required_sections": [
+        "recipe_metadata with version 5.0.0",
+        "recipe_overview with prerequisites and success_criteria",
+        "pantry_ingredients with tasks, skills, tools, configs",
+        "kitchen_execution with orchestrator_steps",
+        "implementation_steps with exact_commands, files_to_create, acceptance_criteria",
+        "acceptance_criteria with measurable outcomes",
+        "deliverables with specific achievements",
+        "troubleshooting_guide with specific solutions",
+        "performance_benchmarks with exact targets"
+      ]
+    },
+    "atomic_task_requirements": [
+      "Each task must have exact_commands array with specific shell commands",
+      "Each task must have files_to_create array with exact file paths",
+      "Each task must have acceptance_criteria array with measurable criteria",
+      "No room for interpretation - commands must be exact",
+      "All file paths must be absolute or relative to project root",
+      "All commands must be executable without modification"
+    ],
+    "port_configuration_standards": {
+      "infrastructure_ports": {
+        "prometheus": 9090,
+        "grafana": 3000,
+        "alertmanager": 9093,
+        "nginx": 80,
+        "nginx_ssl": 443
+      },
+      "ai_services_ports": {
+        "ollama": 11434,
+        "open_webui": 3000,
+        "vllm": 8000
+      },
+      "intelligence_ports": {
+        "rag_engine": 8001,
+        "knowledge_graph": 8002,
+        "semantic_search": 8003
+      },
+      "interface_ports": {
+        "web_dashboard": 3001,
+        "mobile_api": 3002
+      }
+    }
+  },
+  "quality_standards": {
+    "completeness_requirements": [
+      "All recipes must be complete with no missing sections",
+      "All tasks must have explicit directions",
+      "All dependencies must be clearly specified",
+      "All ports must be consistent and non-conflicting",
+      "All file paths must be exact and consistent"
+    ],
+    "format_requirements": [
+      "All recipes must follow v5.0.0 structure",
+      "All JSON must be valid and properly formatted",
+      "All field names must be consistent across recipes",
+      "All version numbers must be accurate",
+      "All timestamps must be current"
+    ],
+    "alignment_requirements": [
+      "All recipes must align with each other",
+      "No duplicate recipes or conflicting configurations",
+      "Consistent naming conventions across all recipes",
+      "Consistent port assignments across all recipes",
+      "Consistent file path structures across all recipes"
+    ]
+  },
+  "execution_instructions": {
+    "step_1_analysis": "Analyze each recipe against the reference standard",
+    "step_2_identification": "Identify missing elements, format issues, and alignment problems",
+    "step_3_fix": "Fix all issues with extremely specific details",
+    "step_4_validation": "Validate that no room for interpretation exists",
+    "step_5_testing": "Test that all commands, paths, and ports are correct",
+    "step_6_documentation": "Update recipe index and progress tracking",
+    "step_7_verification": "Verify alignment with other recipes in the same phase"
+  },
+  "success_criteria": {
+    "all_recipes_complete": "All 24 recipes must be complete and whole",
+    "explicit_directions": "All recipes must have explicit directions with no room for interpretation",
+    "no_duplicates": "No duplicate recipes or conflicting configurations",
+    "proper_alignment": "All recipes must align with each other properly",
+    "consistent_format": "All recipes must have consistent format and style",
+    "atomic_level": "All recipes must be at atomic level with detailed specifications",
+    "matching_ports": "All recipes must have matching and non-conflicting ports",
+    "zero_technical_debt": "No technical debt left for future agents"
+  },
+  "next_agent_requirements": {
+    "skills_needed": [
+      "Systematic analysis and planning",
+      "Attention to detail and consistency",
+      "Understanding of recipe structure standards",
+      "Ability to write extremely specific commands",
+      "Quality assurance and validation",
+      "Port and configuration management"
+    ],
+    "tools_needed": [
+      "File editing tools for JSON modification",
+      "Search and replace tools for bulk updates",
+      "Validation tools for checking recipe structure",
+      "Documentation tools for progress tracking",
+      "Port conflict detection tools"
+    ],
+    "time_estimate": "8-10 hours for complete systematic audit and fix",
+    "priority": "Critical - must be completed before any other work"
+  },
+  "handoff_notes": {
+    "current_progress": "Starting comprehensive audit from phase 1",
+    "critical_issues": "Recipe index inconsistencies and format issues throughout library",
+    "immediate_actions": "Start with 01-infrastructure and work systematically through all phases",
+    "quality_gates": "Each recipe must pass validation before moving to next",
+    "success_metrics": "All recipes must be complete, properly formatted, and aligned"
+  }
+} 

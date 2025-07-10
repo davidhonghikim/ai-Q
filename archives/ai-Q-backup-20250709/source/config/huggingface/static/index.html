@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HuggingFace Inference Service</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .healthy { background-color: #d4edda; color: #155724; }
+        .unhealthy { background-color: #f8d7da; color: #721c24; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+        textarea { width: 100%; height: 100px; margin: 10px 0; }
+        pre { background-color: #f8f9fa; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤗 HuggingFace Inference Service</h1>
+        
+        <div class="test-section">
+            <h2>Health Check</h2>
+            <button onclick="checkHealth()">Check Health</button>
+            <div id="healthResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Service Info</h2>
+            <button onclick="getInfo()">Get Service Info</button>
+            <div id="infoResult"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Embedding Test</h2>
+            <textarea id="testText" placeholder="Enter text to test embeddings...">This is a test sentence for embedding generation.</textarea>
+            <button onclick="testEmbeddings()">Generate Embeddings</button>
+            <div id="embeddingResult"></div>
+        </div>
+    </div>
+
+    <script>
+        const BASE_URL = window.location.origin;
+
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${BASE_URL}/health`);
+                const data = await response.json();
+                const resultDiv = document.getElementById('healthResult');
+                resultDiv.innerHTML = `<div class="status ${data.status === 'healthy' ? 'healthy' : 'unhealthy'}">
+                    <strong>Status:</strong> ${data.status}<br>
+                    <strong>Model Loaded:</strong> ${data.model_loaded}
+                </div>`;
+            } catch (error) {
+                document.getElementById('healthResult').innerHTML = `<div class="status unhealthy">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function getInfo() {
+            try {
+                const response = await fetch(`${BASE_URL}/`);
+                const data = await response.json();
+                const resultDiv = document.getElementById('infoResult');
+                resultDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+            } catch (error) {
+                document.getElementById('infoResult').innerHTML = `<div class="status unhealthy">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function testEmbeddings() {
+            try {
+                const text = document.getElementById('testText').value;
+                const response = await fetch(`${BASE_URL}/embeddings`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ texts: [text] })
+                });
+                const data = await response.json();
+                const resultDiv = document.getElementById('embeddingResult');
+                resultDiv.innerHTML = `<pre>Embedding Vector (first 10 dimensions): ${JSON.stringify(data.embeddings[0].slice(0, 10))}...</pre>`;
+            } catch (error) {
+                document.getElementById('embeddingResult').innerHTML = `<div class="status unhealthy">Error: ${error.message}</div>`;
+            }
+        }
+
+        // Auto-check health on page load
+        window.onload = function() {
+            checkHealth();
+        };
+    </script>
+</body>
+</html> 

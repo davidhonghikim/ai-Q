@@ -1,0 +1,324 @@
+{
+  "metadata": {
+    "title": "LATEST_HANDOFF - AI Services Integration & Dashboard Development",
+    "version": "1.0.3",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "handoff_timestamp": "2025-07-09T08:50:00Z",
+    "status": "ACTIVE",
+    "purpose": "Current handoff document for next agent working on AI services integration, dashboard development, and Griot project integration"
+  },
+  "agent_information": {
+    "current_agent": "Q-Assist (GPT-4.1)",
+    "session_duration": "2 hours",
+    "focus_area": "AI services setup, Docker integration, dashboard requirements, and Griot project integration",
+    "completion_status": "AI_SERVICES_PARTIAL_DASHBOARD_PLANNED_GRIOT_INTEGRATION_PENDING"
+  },
+  "current_state": {
+    "system_status": "PARTIAL_AI_SERVICES_RUNNING",
+    "docker_services": "MIXED_STATUS_NEEDS_FIXES",
+    "ai_services": "HUGGINGFACE_OLLAMA_SETUP_INCOMPLETE",
+    "dashboard": "NOT_IMPLEMENTED_CRITICAL_NEED",
+    "griot_integration": "PLANNED_NOT_STARTED",
+    "gitea_integration": "READY_FOR_DEPLOYMENT"
+  },
+  "completed_work": {
+    "ai_services_setup": {
+      "status": "PARTIALLY_COMPLETED",
+      "actions": [
+        "Created HuggingFace inference service with FastAPI",
+        "Added Ollama service to Docker Compose",
+        "Created static UI for HuggingFace service",
+        "Set up environment variable configuration",
+        "Created feature flag system for AI services"
+      ],
+      "results": {
+        "huggingface_service": "Created but unhealthy - needs debugging",
+        "ollama_service": "Added but unhealthy - needs debugging",
+        "weaviate_integration": "Configured but failing to connect to HuggingFace",
+        "static_ui": "Basic UI created for HuggingFace service",
+        "environment_config": "Centralized .env file setup"
+      }
+    },
+    "docker_infrastructure": {
+      "status": "MOSTLY_COMPLETED",
+      "actions": [
+        "Unified Docker Compose setup with ai-q project name",
+        "Cleaned up duplicate images and volumes",
+        "Fixed Prometheus configuration and volume mounts",
+        "Added centralized environment variable management"
+      ],
+      "results": {
+        "core_services": "PostgreSQL, Redis, Elasticsearch, Neo4j, MinIO, Grafana, Prometheus, cAdvisor - Running",
+        "ai_services": "HuggingFace, Ollama - Running but unhealthy",
+        "missing_services": "Open WebUI, Nextcloud, Registry - Not implemented"
+      }
+    },
+    "enterprise_standards": {
+      "status": "IMPLEMENTED_AND_ENFORCED",
+      "actions": [
+        "Centralized configuration management",
+        "Feature flag system implementation",
+        "Structured logging and monitoring",
+        "Environment variable management"
+      ]
+    }
+  },
+  "critical_issues_to_fix": {
+    "huggingface_service": {
+      "issue": "Service is unhealthy and not responding to health checks",
+      "symptoms": "Container shows 'unhealthy' status, Weaviate cannot connect",
+      "root_cause": "Likely missing environment variables or startup errors",
+      "priority": "CRITICAL",
+      "impact": "Blocks Weaviate vectorization functionality"
+    },
+    "ollama_service": {
+      "issue": "Service is unhealthy and not responding to health checks",
+      "symptoms": "Container shows 'unhealthy' status",
+      "root_cause": "Likely missing environment variables or startup errors",
+      "priority": "HIGH",
+      "impact": "Blocks LLM generation functionality"
+    },
+    "weaviate_connection": {
+      "issue": "Weaviate cannot connect to HuggingFace inference API",
+      "symptoms": "TRANSFORMERS_INFERENCE_API environment variable not found",
+      "root_cause": "HuggingFace service not healthy or network connectivity issues",
+      "priority": "CRITICAL",
+      "impact": "Blocks entire vectorization pipeline"
+    },
+    "missing_services": {
+      "issue": "Open WebUI, Nextcloud, Registry not implemented",
+      "symptoms": "Services not defined in Docker Compose",
+      "root_cause": "Not added to infrastructure yet",
+      "priority": "MEDIUM",
+      "impact": "Missing functionality for complete AI-Q ecosystem"
+    }
+  },
+  "immediate_next_steps": {
+    "priority_1": [
+      {
+        "task": "Fix HuggingFace inference service",
+        "description": "Debug and fix HuggingFace container health issues",
+        "location": "docker/compose/docker-compose.yml, config/huggingface/",
+        "estimated_duration": "30 minutes",
+        "dependencies": "None",
+        "commands": [
+          "docker logs ai-q-huggingface-inference --tail 50",
+          "Check environment variables in .env file",
+          "Verify requirements.txt and main.py are properly mounted"
+        ]
+      },
+      {
+        "task": "Fix Ollama service",
+        "description": "Debug and fix Ollama container health issues",
+        "location": "docker/compose/docker-compose.yml",
+        "estimated_duration": "30 minutes",
+        "dependencies": "None",
+        "commands": [
+          "docker logs ai-q-ollama --tail 50",
+          "Check environment variables in .env file",
+          "Verify Ollama model downloads"
+        ]
+      },
+      {
+        "task": "Fix Weaviate connection to HuggingFace",
+        "description": "Ensure Weaviate can connect to HuggingFace inference API",
+        "location": "docker/compose/docker-compose.yml",
+        "estimated_duration": "15 minutes",
+        "dependencies": "HuggingFace service healthy",
+        "commands": [
+          "Verify TRANSFORMERS_INFERENCE_API environment variable",
+          "Test connectivity between containers",
+          "Restart Weaviate after HuggingFace is healthy"
+        ]
+      }
+    ],
+    "priority_2": [
+      {
+        "task": "Create comprehensive dashboard",
+        "description": "Build static webpage dashboard showing all service UIs and status",
+        "location": "dashboard/ directory",
+        "estimated_duration": "2-3 hours",
+        "dependencies": "All services healthy",
+        "requirements": [
+          "Single page showing all service UIs",
+          "Health status indicators for all services",
+          "Quick access to service dashboards (Grafana, Prometheus, etc.)",
+          "Embedding and generation test interfaces",
+          "Service logs viewer"
+        ]
+      },
+      {
+        "task": "Add missing Docker services",
+        "description": "Implement Open WebUI, Nextcloud, and Registry services",
+        "location": "docker/compose/docker-compose.yml",
+        "estimated_duration": "1-2 hours",
+        "dependencies": "None",
+        "services": [
+          "Open WebUI (for Ollama interface)",
+          "Nextcloud (file storage and sharing)",
+          "Registry (Docker image registry)"
+        ]
+      }
+    ]
+  },
+  "griot_integration_requirements": {
+    "project_url": "https://github.com/davidhonghikim/griot",
+    "integration_scope": "Full integration of ai-Q services into Griot project",
+    "requirements": [
+      "Review Griot project architecture and requirements",
+      "Identify integration points between ai-Q and Griot",
+      "Plan data flow and service communication",
+      "Design unified deployment strategy",
+      "Ensure compatibility with Griot's existing systems"
+    ],
+    "estimated_duration": "1-2 weeks",
+    "complexity": "HIGH"
+  },
+  "gitea_integration_requirements": {
+    "current_status": "Gitea service ready for deployment",
+    "requirements": [
+      "Deploy Gitea as feature-flagged service",
+      "Push entire ai-Q repository history to Gitea",
+      "Push entire Griot repository history to Gitea",
+      "Set up bidirectional sync between Git and Gitea",
+      "Configure Gitea Actions for CI/CD"
+    ],
+    "estimated_duration": "1 week",
+    "priority": "HIGH"
+  },
+  "dashboard_requirements": {
+    "overview": "Create a comprehensive static webpage dashboard that provides access to all service UIs and functionality",
+    "required_features": [
+      "Service health status dashboard",
+      "Quick access to all service UIs (Grafana, Prometheus, HuggingFace, etc.)",
+      "Embedding generation interface",
+      "Text generation interface",
+      "Service logs viewer",
+      "Configuration management interface",
+      "Real-time status updates"
+    ],
+    "technical_requirements": [
+      "Static HTML/CSS/JavaScript",
+      "Responsive design",
+      "Service discovery and health checking",
+      "API integration with all services",
+      "No backend dependencies (pure frontend)"
+    ],
+    "ui_components": [
+      "Service status cards with health indicators",
+      "Quick action buttons for each service",
+      "Embedding test interface",
+      "Text generation interface",
+      "Log viewer with real-time updates",
+      "Configuration editor"
+    ]
+  },
+  "environment_variables_required": {
+    "huggingface": [
+      "MODEL_NAME=sentence-transformers/all-MiniLM-L6-v2",
+      "DEVICE=cuda",
+      "MAX_BATCH_SIZE=32",
+      "MAX_BATCH_WAIT=0.1",
+      "LOG_LEVEL=INFO",
+      "HUGGINGFACE_TOKEN=optional"
+    ],
+    "ollama": [
+      "OLLAMA_MODEL=llama3.2:3b",
+      "OLLAMA_EMBEDDING_MODEL=nomic-embed-text",
+      "OLLAMA_LOG_LEVEL=INFO"
+    ],
+    "weaviate": [
+      "TRANSFORMERS_INFERENCE_API=http://huggingface-inference:8080"
+    ]
+  },
+  "service_endpoints": {
+    "huggingface": {
+      "ui": "http://localhost:8082/",
+      "health": "http://localhost:8082/health",
+      "embeddings": "http://localhost:8082/embeddings",
+      "api_info": "http://localhost:8082/api/info"
+    },
+    "ollama": {
+      "api": "http://localhost:11434/",
+      "embeddings": "http://localhost:11434/api/embeddings",
+      "chat": "http://localhost:11434/api/chat"
+    },
+    "weaviate": {
+      "api": "http://localhost:8080/",
+      "graphql": "http://localhost:8080/v1/graphql"
+    },
+    "grafana": "http://localhost:3001/",
+    "prometheus": "http://localhost:9090/",
+    "minio": "http://localhost:9000/",
+    "neo4j": "http://localhost:7474/"
+  },
+  "project_rules": {
+    "immutable_rules": "Follow bootstrap/IMMUTABLE_AGENT_RULES.json strictly",
+    "enterprise_requirements": "Follow enterprise_scale_requirements in IMMUTABLE_AGENT_RULES.json",
+    "feature_flags": "ALL new services MUST use feature flags - CRITICAL",
+    "modular_code": "One task per file, maximum 150 lines, JSON documentation only",
+    "centralized_systems": "Use config/, logs/, monitoring/ directories - MANDATORY",
+    "documentation_standards": "Follow bootstrap/DOCUMENTATION_SYSTEM_STANDARDS.json",
+    "workflow_standards": "Follow bootstrap/AGENT_WORKFLOW_STANDARDS.json",
+    "development_standards": "Follow bootstrap/DEVELOPMENT_STANDARDS.json",
+    "architecture_standards": "Follow bootstrap/ARCHITECTURE_STANDARDS.json",
+    "best_practices": "Follow bootstrap/BEST_PRACTICES_GUIDE.json"
+  },
+  "success_criteria": {
+    "immediate": [
+      "All Docker services healthy and running",
+      "HuggingFace inference service responding to requests",
+      "Ollama service responding to requests",
+      "Weaviate successfully connecting to HuggingFace",
+      "Basic dashboard showing service status"
+    ],
+    "short_term": [
+      "Comprehensive dashboard with all service UIs",
+      "All missing services (Open WebUI, Nextcloud, Registry) implemented",
+      "Gitea deployed and configured",
+      "Repository history pushed to Gitea"
+    ],
+    "long_term": [
+      "Full Griot project integration",
+      "Unified deployment and management",
+      "Production-ready AI-Q ecosystem",
+      "Complete documentation and user guides"
+    ]
+  },
+  "log_location": {
+    "current_session": "This handoff document",
+    "archived_documents": "agents/ARCHIVE/handoff/2025/07/2025-07-09T08_50_00Z_LATEST_HANDOFF.json",
+    "ai_services_config": "config/feature_flags/ai_services.json",
+    "huggingface_service": "config/huggingface/",
+    "docker_compose": "docker/compose/docker-compose.yml"
+  },
+  "next_agent_instructions": {
+    "mandatory_actions": [
+      "1. Fix all critical issues before proceeding with new features",
+      "2. Create comprehensive dashboard as top priority after fixing services",
+      "3. Review Griot project for integration requirements",
+      "4. Follow enterprise standards strictly (see enterprise_enforcement)",
+      "5. Use modular code (one task per file, max 150 lines)",
+      "6. Use JSON documentation only (no YAML or Markdown)",
+      "7. Implement centralized systems (config/, logs/, monitoring/)",
+      "8. Archive handoff document before creating new one"
+    ],
+    "priority_sequence": [
+      "1. Fix HuggingFace inference service health issues",
+      "2. Fix Ollama service health issues",
+      "3. Fix Weaviate connection to HuggingFace",
+      "4. Create comprehensive dashboard with all service UIs",
+      "5. Add missing Docker services (Open WebUI, Nextcloud, Registry)",
+      "6. Deploy Gitea and push repository histories",
+      "7. Review and plan Griot integration"
+    ],
+    "critical_reminders": [
+      "ALL services must be healthy before proceeding",
+      "Dashboard must show UIs, not just JSON responses",
+      "Griot integration requires careful planning",
+      "ALL deployments MUST be automated",
+      "ALL documentation MUST be JSON format",
+      "ALL persistent data MUST use shared volumes"
+    ]
+  }
+} 

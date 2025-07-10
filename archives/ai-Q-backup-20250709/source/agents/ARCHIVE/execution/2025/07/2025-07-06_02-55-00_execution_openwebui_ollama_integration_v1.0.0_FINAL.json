@@ -1,0 +1,226 @@
+{
+  "execution_plan": {
+    "plan_id": "OPENWEBUI_OLLAMA_INTEGRATION_001",
+    "title": "OpenWebUI and Ollama Integration with Port Management",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "creation_date": "2025-07-06T02:55:00Z",
+    "priority": "HIGH",
+    "status": "IN_PROGRESS"
+  },
+  "requirements_analysis": {
+    "port_conflicts": {
+      "current_assignments": {
+        "3000": "Gitea (self-hosted)",
+        "8080": "NextCloud (self-hosted)",
+        "9000": "Admin Panel (self-hosted)",
+        "5000": "Docker Registry (self-hosted)",
+        "11434": "Ollama (AI services)"
+      },
+      "required_changes": {
+        "openwebui": "3000 (default)",
+        "gitea": "3001 (moved from 3000)",
+        "ollama": "11434 (unchanged)"
+      }
+    },
+    "model_requirements": {
+      "default_model": "gemma3",
+      "function_calling_model": "codellama",
+      "additional_models": [
+        "llama3.1",
+        "mistral",
+        "phi3"
+      ]
+    }
+  },
+  "implementation_phases": [
+    {
+      "phase_id": "PHASE_1",
+      "title": "Port Reconfiguration",
+      "tasks": [
+        {
+          "task_id": "TASK_1_1",
+          "title": "Update Gitea Port Configuration",
+          "description": "Change Gitea from port 3000 to 3001 in all configurations",
+          "files_to_modify": [
+            "docker/compose/docker-compose-self-hosted.yml",
+            "scripts/gitea-setup.sh",
+            "scripts/admin-panel-setup.sh"
+          ],
+          "estimated_time": "15 minutes"
+        },
+        {
+          "task_id": "TASK_1_2",
+          "title": "Update Admin Panel Links",
+          "description": "Update admin panel HTML to reflect new Gitea port",
+          "files_to_modify": [
+            "scripts/admin-panel-setup.sh"
+          ],
+          "estimated_time": "10 minutes"
+        }
+      ]
+    },
+    {
+      "phase_id": "PHASE_2",
+      "title": "Ollama Service Implementation",
+      "tasks": [
+        {
+          "task_id": "TASK_2_1",
+          "title": "Create Ollama Docker Compose",
+          "description": "Create comprehensive Ollama Docker Compose with GPU support",
+          "files_to_create": [
+            "docker/compose/ollama.yml"
+          ],
+          "estimated_time": "20 minutes"
+        },
+        {
+          "task_id": "TASK_2_2",
+          "title": "Create Ollama Setup Script",
+          "description": "Create script to setup Ollama with model pulling",
+          "files_to_create": [
+            "scripts/ollama-setup.sh"
+          ],
+          "estimated_time": "30 minutes"
+        },
+        {
+          "task_id": "TASK_2_3",
+          "title": "Create Model Management Script",
+          "description": "Create script to pull and manage models including Gemma3 and CodeLlama",
+          "files_to_create": [
+            "scripts/ollama-model-manager.sh"
+          ],
+          "estimated_time": "25 minutes"
+        }
+      ]
+    },
+    {
+      "phase_id": "PHASE_3",
+      "title": "OpenWebUI Service Implementation",
+      "tasks": [
+        {
+          "task_id": "TASK_3_1",
+          "title": "Create OpenWebUI Docker Compose",
+          "description": "Create OpenWebUI Docker Compose with Ollama integration",
+          "files_to_create": [
+            "docker/compose/openwebui.yml"
+          ],
+          "estimated_time": "20 minutes"
+        },
+        {
+          "task_id": "TASK_3_2",
+          "title": "Create OpenWebUI Setup Script",
+          "description": "Create script to setup OpenWebUI with Ollama backend",
+          "files_to_create": [
+            "scripts/openwebui-setup.sh"
+          ],
+          "estimated_time": "25 minutes"
+        },
+        {
+          "task_id": "TASK_3_3",
+          "title": "Create OpenWebUI Configuration",
+          "description": "Create OpenWebUI configuration for Ollama integration",
+          "files_to_create": [
+            "config/openwebui/config.json"
+          ],
+          "estimated_time": "15 minutes"
+        }
+      ]
+    },
+    {
+      "phase_id": "PHASE_4",
+      "title": "Recipe Updates and Documentation",
+      "tasks": [
+        {
+          "task_id": "TASK_4_1",
+          "title": "Update AI Services Recipes",
+          "description": "Update existing recipes with actual implementation details",
+          "files_to_modify": [
+            "recipes/02-ai-services/modules/02-ollama-setup.json",
+            "recipes/02-ai-services/modules/03-open-webui-setup.json",
+            "recipes/02-ai-services/modules/04-model-management.json"
+          ],
+          "estimated_time": "30 minutes"
+        },
+        {
+          "task_id": "TASK_4_2",
+          "title": "Create Integration Documentation",
+          "description": "Create comprehensive documentation for the integration",
+          "files_to_create": [
+            "docs/openwebui-ollama-integration.json"
+          ],
+          "estimated_time": "20 minutes"
+        }
+      ]
+    },
+    {
+      "phase_id": "PHASE_5",
+      "title": "Testing and Verification",
+      "tasks": [
+        {
+          "task_id": "TASK_5_1",
+          "title": "Create Integration Test Script",
+          "description": "Create test script to verify OpenWebUI-Ollama integration",
+          "files_to_create": [
+            "scripts/test-openwebui-ollama.sh"
+          ],
+          "estimated_time": "25 minutes"
+        },
+        {
+          "task_id": "TASK_5_2",
+          "title": "Update Admin Panel",
+          "description": "Update admin panel to include OpenWebUI and Ollama services",
+          "files_to_modify": [
+            "scripts/admin-panel-setup.sh"
+          ],
+          "estimated_time": "15 minutes"
+        }
+      ]
+    }
+  ],
+  "port_mapping_final": {
+    "3000": "OpenWebUI (AI chat interface)",
+    "3001": "Gitea (Git server - moved from 3000)",
+    "8080": "NextCloud (File storage)",
+    "9000": "Admin Panel (Management interface)",
+    "5000": "Docker Registry (Container registry)",
+    "11434": "Ollama (LLM API)",
+    "8000": "AI-Q API (Knowledge library)",
+    "3002": "Grafana (Monitoring)",
+    "9090": "Prometheus (Metrics)"
+  },
+  "model_configuration": {
+    "default_models": {
+      "gemma3": {
+        "purpose": "Default general purpose model",
+        "pull_command": "ollama pull gemma3:2b",
+        "priority": "HIGH"
+      },
+      "codellama": {
+        "purpose": "Function calling and coding tasks",
+        "pull_command": "ollama pull codellama:7b",
+        "priority": "HIGH"
+      }
+    },
+    "optional_models": {
+      "llama3.1": {
+        "purpose": "Alternative general purpose model",
+        "pull_command": "ollama pull llama3.1:8b"
+      },
+      "mistral": {
+        "purpose": "Fast inference model",
+        "pull_command": "ollama pull mistral:7b"
+      },
+      "phi3": {
+        "purpose": "Lightweight model for quick responses",
+        "pull_command": "ollama pull phi3:3.8b"
+      }
+    }
+  },
+  "quality_standards": {
+    "documentation_format": "JSON only (no markdown)",
+    "directory_organization": "No root directory clutter",
+    "task_granularity": "Atomic, modular tasks",
+    "port_conflicts": "Zero tolerance for port conflicts",
+    "reproducibility": "All agents must achieve same results"
+  }
+} 

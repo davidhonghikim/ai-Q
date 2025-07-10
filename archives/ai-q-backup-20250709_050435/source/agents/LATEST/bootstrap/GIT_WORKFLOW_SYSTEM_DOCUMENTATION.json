@@ -1,0 +1,378 @@
+{
+  "metadata": {
+    "title": "Git Workflow System Documentation - kOS Kitchen",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T23:58:00Z",
+    "purpose": "Comprehensive documentation of Git workflow system for agent validation and automation"
+  },
+  "system_overview": {
+    "vision": "Industry-standard Git workflow system with automated agent validation and quality gates",
+    "git_server": "Gitea (open-source, self-hosted)",
+    "workflow_engine": "GitHub Actions-style workflows",
+    "integration": "Seamless integration with kOS kitchen system"
+  },
+  "directory_structure": {
+    "industry_standard": {
+      "description": "Git-standard directory structure following industry best practices",
+      "structure": {
+        ".github/": {
+          "workflows/": {
+            "agent-validation.yml": "Agent work validation workflow",
+            "kitchen-build.yml": "Kitchen system build workflow",
+            "quality-gates.yml": "Quality gates and compliance checks",
+            "deploy.yml": "Deployment automation workflow"
+          },
+          "ISSUE_TEMPLATE/": {
+            "agent-handoff.md": "Agent handoff issue template",
+            "bug-report.md": "Bug report template",
+            "feature-request.md": "Feature request template"
+          },
+          "PULL_REQUEST_TEMPLATE.md": "PR template for agent handoffs"
+        },
+        "config/": {
+          "agent-rules.json": "Agent rules and standards",
+          "kitchen-config.json": "Kitchen system configuration",
+          "standards/": {
+            "immutable-rules.json": "Immutable agent rules",
+            "documentation-standards.json": "Documentation standards",
+            "workflow-standards.json": "Workflow standards",
+            "development-standards.json": "Development standards",
+            "architecture-standards.json": "Architecture standards",
+            "best-practices.json": "Best practices guide"
+          }
+        },
+        "jobs/": {
+          "active/": "Currently active job documents",
+          "completed/": "Completed job documents",
+          "archive/": "Archived job documents"
+        },
+        "handoff/": {
+          "current/": "Current handoff document",
+          "archive/": "Archived handoff documents"
+        },
+        "docs/": {
+          "README.md": "Project documentation",
+          "CONTRIBUTING.md": "Contribution guidelines",
+          "CHANGELOG.md": "Change log"
+        },
+        "scripts/": {
+          "validation/": "Validation scripts",
+          "conversion/": "Document conversion scripts",
+          "automation/": "Automation scripts"
+        }
+      }
+    }
+  },
+  "workflow_capabilities": {
+    "document_processing": {
+      "markdown_to_json": "Convert Markdown docs to JSON format",
+      "json_to_markdown": "Convert JSON docs to Markdown format",
+      "validation": "Validate document structure and content",
+      "formatting": "Auto-format documents to standards"
+    },
+    "code_quality": {
+      "file_size_validation": "Check files against 250-line limit",
+      "syntax_validation": "Validate Python, JSON, YAML syntax",
+      "import_validation": "Check for missing imports",
+      "monolithic_detection": "Detect files that exceed size limits",
+      "code_style": "Enforce coding standards and style"
+    },
+    "agent_validation": {
+      "handoff_validation": "Validate agent handoff documents",
+      "work_quality": "Assess quality of agent work",
+      "compliance_checking": "Check compliance with standards",
+      "performance_metrics": "Track agent performance metrics"
+    },
+    "automated_testing": {
+      "unit_tests": "Run unit tests for kitchen system",
+      "integration_tests": "Run integration tests",
+      "system_tests": "Test complete kitchen system",
+      "performance_tests": "Run performance benchmarks"
+    },
+    "security_compliance": {
+      "security_scanning": "Scan for security vulnerabilities",
+      "license_compliance": "Check license compliance",
+      "dependency_audit": "Audit dependencies for vulnerabilities",
+      "access_control": "Validate access control and permissions"
+    },
+    "deployment_automation": {
+      "staging_deployment": "Deploy to staging environment",
+      "production_deployment": "Deploy to production environment",
+      "rollback_capability": "Automated rollback on failure",
+      "health_checks": "Post-deployment health checks"
+    },
+    "communication": {
+      "slack_notifications": "Send notifications to Slack",
+      "email_reports": "Send email reports",
+      "pr_comments": "Comment on pull requests",
+      "issue_creation": "Create issues for problems found"
+    }
+  },
+  "validation_scripts": {
+    "file_size_checker": {
+      "script": "scripts/validation/check_file_sizes.py",
+      "purpose": "Check files against 250-line limit",
+      "features": [
+        "Line count validation",
+        "File type filtering",
+        "Exclusion patterns",
+        "Detailed reporting"
+      ]
+    },
+    "json_validator": {
+      "script": "scripts/validation/validate_json.py",
+      "purpose": "Validate JSON structure and schema",
+      "features": [
+        "Schema validation",
+        "Required fields checking",
+        "Type validation",
+        "Error reporting"
+      ]
+    },
+    "mono_file_detector": {
+      "script": "scripts/validation/detect_mono_files.py",
+      "purpose": "Detect monolithic files",
+      "features": [
+        "Size threshold detection",
+        "Complexity analysis",
+        "Refactoring suggestions",
+        "Blocking capability"
+      ]
+    },
+    "handoff_validator": {
+      "script": "scripts/validation/validate_handoff.py",
+      "purpose": "Validate agent handoff documents",
+      "features": [
+        "Required fields validation",
+        "Timestamp compliance",
+        "Content completeness",
+        "Quality assessment"
+      ]
+    },
+    "kitchen_validator": {
+      "script": "scripts/validation/validate_kitchen.py",
+      "purpose": "Validate kitchen system components",
+      "features": [
+        "Recipe validation",
+        "Ingredient validation",
+        "Configuration validation",
+        "Integration testing"
+      ]
+    }
+  },
+  "workflow_examples": {
+    "agent_validation_workflow": {
+      "file": ".github/workflows/agent-validation.yml",
+      "triggers": ["pull_request", "push"],
+      "jobs": [
+        "validate-agent-work",
+        "check-file-sizes",
+        "validate-json",
+        "detect-mono-files",
+        "validate-handoff",
+        "run-kitchen-tests",
+        "generate-report",
+        "comment-on-pr"
+      ]
+    },
+    "kitchen_build_workflow": {
+      "file": ".github/workflows/kitchen-build.yml",
+      "triggers": ["push to main"],
+      "jobs": [
+        "build-kitchen",
+        "run-tests",
+        "deploy-staging",
+        "run-integration-tests",
+        "deploy-production"
+      ]
+    },
+    "quality_gates_workflow": {
+      "file": ".github/workflows/quality-gates.yml",
+      "triggers": ["pull_request"],
+      "jobs": [
+        "security-scan",
+        "license-check",
+        "dependency-audit",
+        "performance-test",
+        "compliance-check"
+      ]
+    }
+  },
+  "agent_workflow_process": {
+    "branch_strategy": {
+      "description": "Each agent works on a feature branch",
+      "naming": "agent/[agent-name]/[session-id]",
+      "example": "agent/q-assist/2025-07-08-session-1"
+    },
+    "commit_strategy": {
+      "description": "Atomic commits with clear messages",
+      "format": "type(scope): description",
+      "examples": [
+        "feat(kitchen): add pantry validation system",
+        "fix(agents): correct handoff validation",
+        "docs(standards): update workflow documentation"
+      ]
+    },
+    "pull_request_process": {
+      "description": "PR for agent handoffs with automated validation",
+      "steps": [
+        "Create PR from agent branch to main",
+        "Automated validation runs",
+        "Quality gates check",
+        "Review and approval",
+        "Merge and cleanup"
+      ]
+    },
+    "handoff_process": {
+      "description": "Structured handoff through PR process",
+      "steps": [
+        "Agent completes work on branch",
+        "Creates PR with handoff document",
+        "Automated validation runs",
+        "PR approved and merged",
+        "Next agent picks up from main"
+      ]
+    }
+  },
+  "quality_gates": {
+    "file_size_gate": {
+      "rule": "No files >250 lines",
+      "action": "Block commit/PR",
+      "script": "scripts/validation/check_file_sizes.py"
+    },
+    "json_validation_gate": {
+      "rule": "All JSON files must be valid",
+      "action": "Block commit/PR",
+      "script": "scripts/validation/validate_json.py"
+    },
+    "handoff_validation_gate": {
+      "rule": "Handoff documents must be complete",
+      "action": "Block PR merge",
+      "script": "scripts/validation/validate_handoff.py"
+    },
+    "kitchen_test_gate": {
+      "rule": "All kitchen tests must pass",
+      "action": "Block PR merge",
+      "script": "python -m pytest tests/kitchen/"
+    },
+    "security_gate": {
+      "rule": "No security vulnerabilities",
+      "action": "Block PR merge",
+      "script": "bandit -r kitchen/"
+    }
+  },
+  "implementation_phases": {
+    "phase_1": {
+      "name": "Setup Git Infrastructure",
+      "duration": "1 week",
+      "deliverables": [
+        "Deploy Gitea server",
+        "Configure webhooks",
+        "Set up agent accounts",
+        "Create base repository structure"
+      ]
+    },
+    "phase_2": {
+      "name": "Create Validation Scripts",
+      "duration": "1 week",
+      "deliverables": [
+        "File size checker",
+        "JSON validator",
+        "Mono file detector",
+        "Handoff validator",
+        "Kitchen validator"
+      ]
+    },
+    "phase_3": {
+      "name": "Implement Workflows",
+      "duration": "1 week",
+      "deliverables": [
+        "Agent validation workflow",
+        "Kitchen build workflow",
+        "Quality gates workflow",
+        "Deployment workflow"
+      ]
+    },
+    "phase_4": {
+      "name": "Integration & Testing",
+      "duration": "1 week",
+      "deliverables": [
+        "Integration with kitchen system",
+        "End-to-end testing",
+        "Performance optimization",
+        "Documentation completion"
+      ]
+    }
+  },
+  "benefits": {
+    "automation": "Automated validation reduces manual effort",
+    "quality": "Consistent quality standards enforcement",
+    "transparency": "Clear visibility into agent work quality",
+    "efficiency": "Streamlined agent handoff process",
+    "compliance": "Automatic compliance checking",
+    "scalability": "Supports multiple agents and projects",
+    "industry_alignment": "Follows industry best practices"
+  },
+  "success_criteria": {
+    "automation": [
+      "100% automated validation of agent work",
+      "Zero manual quality checks required",
+      "Automated blocking of violations"
+    ],
+    "quality": [
+      "Zero files >250 lines in production",
+      "100% JSON validation compliance",
+      "All handoffs properly validated"
+    ],
+    "efficiency": [
+      "Agent handoff time reduced by 50%",
+      "Quality issues caught before merge",
+      "Automated deployment on success"
+    ],
+    "compliance": [
+      "All security scans pass",
+      "All license checks pass",
+      "All compliance requirements met"
+    ]
+  },
+  "next_steps": {
+    "immediate": [
+      "Deploy Gitea server",
+      "Create validation scripts",
+      "Set up workflow files",
+      "Test with sample agent work"
+    ],
+    "short_term": [
+      "Integrate with kitchen system",
+      "Implement quality gates",
+      "Set up automated deployment",
+      "Train agents on new workflow"
+    ],
+    "long_term": [
+      "Expand validation capabilities",
+      "Add performance monitoring",
+      "Implement advanced automation",
+      "Scale to multiple projects"
+    ]
+  },
+  "references": {
+    "git_standards": [
+      "GitHub Actions documentation",
+      "GitLab CI/CD documentation",
+      "Jenkins pipeline documentation"
+    ],
+    "validation_tools": [
+      "Bandit (Python security)",
+      "Pylint (Python linting)",
+      "Black (Python formatting)",
+      "jsonschema (JSON validation)"
+    ],
+    "deployment_tools": [
+      "Docker Compose",
+      "Kubernetes",
+      "Terraform",
+      "Ansible"
+    ]
+  }
+} 

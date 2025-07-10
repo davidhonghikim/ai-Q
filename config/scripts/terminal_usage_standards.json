@@ -1,0 +1,43 @@
+{
+  "terminal_usage_standards": {
+    "version": "1.0.0",
+    "created": "2025-07-09T20:13:00Z",
+    "purpose": "Define terminal command usage standards for AI-Q project",
+    "restrictions": {
+      "powershell": {
+        "status": "BANNED",
+        "reason": "PowerShell commands cause consistent failures, timeouts, and terminal stalling",
+        "effective_date": "2025-07-09",
+        "severity": "CRITICAL"
+      }
+    },
+    "approved_terminals": {
+      "cmd": {
+        "status": "APPROVED",
+        "usage": "Windows command prompt for standard operations",
+        "examples": ["dir", "cd", "echo", "type", "docker", "git"]
+      },
+      "bash": {
+        "status": "APPROVED", 
+        "usage": "Unix/Linux shell for standard operations",
+        "examples": ["ls", "cd", "cat", "grep", "docker", "git"]
+      },
+      "sh": {
+        "status": "APPROVED",
+        "usage": "Standard shell for basic operations",
+        "examples": ["ls", "cd", "cat", "echo", "docker", "git"]
+      }
+    },
+    "mandatory_practices": [
+      "Always use cmd, bash, or sh commands",
+      "Never use PowerShell cmdlets or syntax",
+      "Prefer standard cross-platform commands",
+      "Test commands for immediate execution without hanging"
+    ],
+    "enforcement": {
+      "all_agents": "MUST follow these terminal standards",
+      "violation_consequence": "Immediate project rule violation",
+      "monitoring": "Active monitoring for PowerShell usage"
+    }
+  }
+} 

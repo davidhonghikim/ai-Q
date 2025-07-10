@@ -48,6 +48,12 @@
       "quality_over_speed": "Take time to do things right. Quality is more important than speed",
       "comprehensive_testing": "Test all functionality thoroughly before considering it complete"
     },
+    "terminal_usage_restrictions": {
+      "powershell_banned": "NEVER use PowerShell commands - BANNED due to failures and timeouts",
+      "approved_terminals": "Use cmd, bash, or standard shell commands only",
+      "reason": "PowerShell causes consistent terminal stalling and command failures",
+      "enforcement": "CRITICAL - Immediate rule violation if PowerShell is used"
+    },
     "architectural_principles": {
       "modular_design": "Create modular, reusable components",
       "simple_over_complex": "Prefer simple, direct implementations over complex abstractions",

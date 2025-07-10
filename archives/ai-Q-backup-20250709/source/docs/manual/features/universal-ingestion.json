@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "title": "Universal Ingestion",
+    "description": "Spec for universal file ingestion (all types, all methods, agent tasks)",
+    "token_count": 400
+  },
+  "overview": "The system must support ingestion of any file type (text, image, video, audio, document, code, etc.) via multiple methods (UI, API, mobile, integrations). All files are stored in Minio, with metadata in Postgres and indexed in Weaviate/Neo4j as appropriate.",
+  "supported_file_types": [
+    "Text (.txt, .md, .rtf, etc.)",
+    "Images (.jpg, .png, .gif, .bmp, .tiff, .webp, .svg, etc.)",
+    "Video (.mp4, .mov, .avi, .mkv, .webm, etc.)",
+    "Audio (.mp3, .wav, .ogg, .flac, .aac, etc.)",
+    "Documents (.pdf, .docx, .xlsx, .pptx, .odt, etc.)",
+    "Code (.py, .js, .ts, .java, .cpp, .go, .rs, etc.)",
+    "Archives (.zip, .tar, .gz, .7z, etc.)"
+  ],
+  "upload_methods": [
+    "Web UI (drag-and-drop, file picker)",
+    "REST API (multipart/form-data)",
+    "Mobile app (future)",
+    "Email/third-party integrations (future)"
+  ],
+  "data_flow": [
+    "User uploads file via UI/API.",
+    "File is stored in Minio (bucket: user or type).",
+    "Metadata (filename, type, size, user, upload date, tags) is stored in Postgres.",
+    "File is queued for processing (background job via RQ).",
+    "AI/ML pipelines extract content, generate embeddings, and update Weaviate/Neo4j.",
+    "User receives confirmation and can view/search file immediately."
+  ],
+  "agent_tasks": [
+    "Implement file upload endpoint (FastAPI, multipart/form-data).",
+    "Write Minio upload utility (Python, boto3 or minio-py).",
+    "Store metadata in Postgres (SQLAlchemy or SQLModel).",
+    "Queue file for processing (RQ, Redis).",
+    "Write tests for all file types and upload methods.",
+    "Document all endpoints and flows."
+  ]
+} 

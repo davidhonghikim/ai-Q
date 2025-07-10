@@ -1,0 +1,235 @@
+{
+  "metadata": {
+    "title": "Core Agent Documents - kOS Kitchen System",
+    "version": "1.0.1",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T23:45:00Z",
+    "last_updated": "2025-07-09T00:30:00Z",
+    "purpose": "Core set of documents that every agent must load for consistent operation",
+    "compliance": "MANDATORY_FOR_ALL_AGENTS"
+  },
+  "core_document_set": {
+    "description": "These are the essential documents that every agent must load and follow",
+    "mandatory_documents": [
+      {
+        "filename": "IMMUTABLE_AGENT_RULES.json",
+        "purpose": "Permanent, immutable rules that ALL agents must ALWAYS follow",
+        "priority": "CRITICAL",
+        "load_order": 1,
+        "content_type": "Rules and standards"
+      },
+      {
+        "filename": "DOCUMENTATION_SYSTEM_STANDARDS.json",
+        "purpose": "Mandatory standards for documentation, archiving, and handoff processes",
+        "priority": "CRITICAL",
+        "load_order": 2,
+        "content_type": "Documentation standards"
+      },
+      {
+        "filename": "AGENT_WORKFLOW_STANDARDS.json",
+        "purpose": "Mandatory workflow standards for all agents working on kOS kitchen system",
+        "priority": "CRITICAL",
+        "load_order": 3,
+        "content_type": "Workflow standards"
+      },
+      {
+        "filename": "DEVELOPMENT_STANDARDS.json",
+        "purpose": "Comprehensive development standards for building the kOS kitchen system",
+        "priority": "CRITICAL",
+        "load_order": 4,
+        "content_type": "Development standards"
+      },
+      {
+        "filename": "ARCHITECTURE_STANDARDS.json",
+        "purpose": "Comprehensive architecture standards for the kOS kitchen system",
+        "priority": "CRITICAL",
+        "load_order": 5,
+        "content_type": "Architecture standards"
+      },
+      {
+        "filename": "BEST_PRACTICES_GUIDE.json",
+        "purpose": "Comprehensive best practices guide for developing the kOS kitchen system",
+        "priority": "HIGH",
+        "load_order": 6,
+        "content_type": "Best practices"
+      },
+      {
+        "filename": "AGENT_HANDOFF_TEMPLATE.json",
+        "purpose": "Standardized template for agent handoffs in the kOS kitchen system",
+        "priority": "HIGH",
+        "load_order": 7,
+        "content_type": "Handoff template"
+      },
+      {
+        "filename": "EXECUTION_PLAN_KITCHEN_SYSTEM.json",
+        "purpose": "Definitive execution plan for building the kOS kitchen system",
+        "priority": "HIGH",
+        "load_order": 8,
+        "content_type": "Execution plan"
+      },
+      {
+        "filename": "GIT_WORKFLOW_SYSTEM_DOCUMENTATION.json",
+        "purpose": "Comprehensive Git workflow system documentation and implementation plan",
+        "priority": "HIGH",
+        "load_order": 9,
+        "content_type": "Git workflow documentation"
+      },
+      {
+        "filename": "LATEST_HANDOFF.json",
+        "purpose": "Current handoff document from previous agent",
+        "priority": "CRITICAL",
+        "load_order": 10,
+        "content_type": "Handoff information"
+      }
+    ],
+    "optional_documents": [
+      {
+        "filename": "CURRENT_ANALYSIS.json",
+        "purpose": "Current system analysis with critical issues identified",
+        "priority": "HIGH",
+        "load_order": 11,
+        "content_type": "Analysis"
+      },
+      {
+        "filename": "DIRECTORY_CLEANUP_SUMMARY.json",
+        "purpose": "Summary of agents directory cleanup and restructuring",
+        "priority": "MEDIUM",
+        "load_order": 12,
+        "content_type": "Cleanup summary"
+      }
+    ]
+  },
+  "document_loading_protocol": {
+    "mandatory_steps": [
+      {
+        "step": 1,
+        "action": "Load all mandatory documents in order",
+        "description": "Load documents 1-10 in sequence, ensuring each is properly loaded"
+      },
+      {
+        "step": 2,
+        "action": "Validate document consistency",
+        "description": "Check that all documents are consistent and up-to-date"
+      },
+      {
+        "step": 3,
+        "action": "Load optional documents if they exist",
+        "description": "Load documents 11-12 if they exist and are relevant"
+      },
+      {
+        "step": 4,
+        "action": "Follow all rules and standards",
+        "description": "Ensure compliance with all loaded documents"
+      }
+    ],
+    "validation_requirements": [
+      "All mandatory documents must be present",
+      "All documents must be valid JSON",
+      "All documents must have valid timestamps >= 2025-06-15",
+      "No conflicting information between documents",
+      "All required fields must be present"
+    ]
+  },
+  "document_maintenance": {
+    "core_document_rules": [
+      "Core documents should NOT have timestamps in their filenames",
+      "Core documents should be updated in place when content changes",
+      "Core documents should maintain consistent naming across all agents",
+      "Core documents should be versioned internally, not in filename"
+    ],
+    "archiving_rules": [
+      "Only timestamped documents should be archived",
+      "Core documents are never archived, only updated",
+      "When core documents are superseded, update the existing file",
+      "Maintain single source of truth for each core document type"
+    ],
+    "update_protocol": [
+      "Update core documents when standards change",
+      "Update version number and last_updated timestamp",
+      "Ensure all agents are notified of updates",
+      "Maintain backward compatibility when possible"
+    ]
+  },
+  "current_system_state": {
+    "directory_structure": {
+      "status": "CLEANED_AND_ORGANIZED",
+      "agents_root": [
+        "ARCHIVE/ - All archived documents and future archive locations",
+        "blueprint/ - Blueprint documentation and templates",
+        "LATEST/ - Current handoff, analysis, and core documents",
+        "README.json - Project readme"
+      ],
+      "archive_structure": [
+        "ARCHIVE/agents/ - Agent-specific documents",
+        "ARCHIVE/analysis/ - Analysis documents",
+        "ARCHIVE/blueprint/ - Blueprint documents",
+        "ARCHIVE/changelog/ - Changelog files by date",
+        "ARCHIVE/config/ - Configuration files",
+        "ARCHIVE/execution/ - Execution documents",
+        "ARCHIVE/git-ref/ - Git reference documents",
+        "ARCHIVE/handoff/ - Handoff documents",
+        "ARCHIVE/jobs/ - Job documents",
+        "ARCHIVE/progress/ - Progress documents",
+        "ARCHIVE/tests/ - Tests documents",
+        "ARCHIVE/validation/ - Validation documents"
+      ]
+    },
+    "current_priorities": [
+      "Fix kitchen system critical issues (see CURRENT_ANALYSIS.json)",
+      "Implement Git workflow system",
+      "Continue MCP servers research"
+    ],
+    "kitchen_system_status": "CRITICAL_ISSUES_DETECTED_NEEDS_IMMEDIATE_ATTENTION"
+  },
+  "special_job_documents": {
+    "description": "Documents for special jobs that are not part of core set",
+    "location": "agents/LATEST/jobs/",
+    "current_jobs": [
+      "AGENT_TRACKING_SYSTEM_PLAN.json",
+      "LATEST_CLEANUP_PLAN.json",
+      "MCP_SERVERS_RESEARCH_GUIDE.json"
+    ],
+    "handling": [
+      "Special job documents should have timestamps in filenames",
+      "Special job documents should be archived when job is complete",
+      "Special job documents should not remain in LATEST/ permanently",
+      "Special job documents should be clearly marked as temporary"
+    ]
+  },
+  "agent_instructions": {
+    "on_startup": [
+      "Load all mandatory core documents in order (1-10)",
+      "Validate document consistency and completeness",
+      "Load optional documents if they exist and are relevant",
+      "Follow all rules and standards from loaded documents",
+      "Begin work according to LATEST_HANDOFF.json instructions"
+    ],
+    "during_work": [
+      "Follow all standards and best practices",
+      "Update documents as needed with proper versioning",
+      "Create timestamped documents for special tasks",
+      "Archive completed timestamped documents immediately"
+    ],
+    "on_handoff": [
+      "Archive all timestamped documents to appropriate directories",
+      "Update core documents if standards have changed",
+      "Create comprehensive handoff document",
+      "Ensure all work is properly documented and archived"
+    ]
+  },
+  "quality_standards": {
+    "file_size_limit": "Maximum 250 lines per file",
+    "code_quality": "Actual implementation, not placeholders",
+    "documentation": "Accurate and complete",
+    "testing": "All code must be tested and validated",
+    "compliance": "Follow all immutable rules without exception"
+  },
+  "references": {
+    "core_documents": "agents/LATEST/bootstrap/",
+    "active_jobs": "agents/LATEST/jobs/",
+    "archived_work": "agents/ARCHIVE/",
+    "kitchen_system": "kitchen/",
+    "current_handoff": "agents/LATEST/LATEST_HANDOFF.json",
+    "critical_analysis": "agents/LATEST/CURRENT_ANALYSIS.json"
+  }
+} 

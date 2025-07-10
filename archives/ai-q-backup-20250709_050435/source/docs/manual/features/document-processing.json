@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "title": "Document Processing (PDF, Office, etc.)",
+    "description": "Spec for document processing, PDF/Office parsing, summarization, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support upload, parsing, search, summarization, annotation, and linking of documents (PDF, Office, etc.).",
+  "requirements": [
+    "Upload and store documents in Minio.",
+    "Parse and extract text, metadata, and structure.",
+    "Generate embeddings for semantic search.",
+    "Build UI for document preview, annotation, and linking."
+  ],
+  "integration": {
+    "pdf_parser": {
+      "python_package": "PyPDF2",
+      "usage": "PDF text and metadata extraction."
+    },
+    "office_parser": {
+      "python_package": "python-docx, openpyxl, python-pptx",
+      "usage": "Office document parsing."
+    }
+  },
+  "agent_tasks": [
+    "Implement document upload and storage.",
+    "Write parsing utilities for PDF and Office formats.",
+    "Integrate with semantic search and annotation UI.",
+    "Write tests for all document types.",
+    "Document setup and usage."
+  ]
+} 

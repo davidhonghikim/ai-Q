@@ -1,0 +1,76 @@
+# AI-Q Environment Configuration Example
+# This file provides a template for the required environment variables.
+# Copy this file to .env and fill in the appropriate values.
+
+# --- Dashboard Configuration ---
+# Used by the frontend to connect to backend services.
+# Can be set to localhost, a LAN IP, or a remote server IP.
+DASHBOARD_HOST=localhost
+DASHBOARD_PROTOCOL=http
+
+# --- HuggingFace Inference Service ---
+HUGGINGFACE_HOST=${DASHBOARD_HOST}
+HUGGINGFACE_PORT=8082
+MODEL_NAME=sentence-transformers/all-MiniLM-L6-v2
+DEVICE=cuda
+MAX_BATCH_SIZE=32
+MAX_BATCH_WAIT=0.1
+LOG_LEVEL=INFO
+HUGGINGFACE_TOKEN=
+
+# --- Ollama LLM Service ---
+OLLAMA_HOST=${DASHBOARD_HOST}
+OLLAMA_PORT=11434
+OLLAMA_MODEL=llama3.2:3b
+OLLAMA_EMBEDDING_MODEL=nomic-embed-text
+OLLAMA_LOG_LEVEL=INFO
+
+# --- Weaviate Vector DB ---
+WEAVIATE_HOST=${DASHBOARD_HOST}
+WEAVIATE_PORT=8080
+WEAVIATE_TRANSFORMERS_INFERENCE_API=http://huggingface-inference:8080
+WEAVIATE_AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED=true
+WEAVIATE_PERSISTENCE_DATA_PATH=/var/lib/weaviate
+WEAVIATE_DEFAULT_VECTORIZER_MODULE=text2vec-transformers
+WEAVIATE_ENABLE_MODULES=text2vec-transformers,ref2vec-centroid
+
+# --- Core Data Services ---
+POSTGRES_HOST=${DASHBOARD_HOST}
+POSTGRES_PORT=5432
+POSTGRES_DB=aiq_knowledge
+POSTGRES_USER=aiq_user
+POSTGRES_PASSWORD=aiq_password
+
+REDIS_HOST=${DASHBOARD_HOST}
+REDIS_PORT=6379
+
+ELASTICSEARCH_HOST=${DASHBOARD_HOST}
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_PASSWORD=elastic
+
+NEO4J_HOST=${DASHBOARD_HOST}
+NEO4J_BROWSER_PORT=7474
+NEO4J_USER=neo4j
+NEO4J_PASSWORD=password
+
+MINIO_HOST=${DASHBOARD_HOST}
+MINIO_API_PORT=9000
+MINIO_CONSOLE_PORT=9001
+MINIO_ROOT_USER=minioadmin
+MINIO_ROOT_PASSWORD=minioadmin
+
+# --- Monitoring Services ---
+GRAFANA_HOST=${DASHBOARD_HOST}
+GRAFANA_PORT=3001
+
+PROMETHEUS_HOST=${DASHBOARD_HOST}
+PROMETHEUS_PORT=9090
+
+CADVISOR_HOST=${DASHBOARD_HOST}
+CADVISOR_PORT=8081
+
+# --- Gitea Git Server ---
+GITEA_HOST=${DASHBOARD_HOST}
+GITEA_PORT=3002
+GITEA_USER=thedangerdawg
+GITEA_PASSWORD=overKill7*nice 

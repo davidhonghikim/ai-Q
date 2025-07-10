@@ -1,0 +1,199 @@
+{
+  "metadata": {
+    "feature_id": "gitea_service",
+    "name": "Gitea Git Server Integration",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-09T01:30:00Z",
+    "status": "ACTIVE",
+    "purpose": "Feature flag for Gitea Git server integration with redundant version control"
+  },
+  "feature_configuration": {
+    "enabled": true,
+    "default_state": true,
+    "environment_specific": {
+      "development": true,
+      "staging": true,
+      "production": true
+    },
+    "rollout_strategy": {
+      "type": "immediate",
+      "percentage": 100,
+      "gradual_rollout": false
+    },
+    "access_control": {
+      "user_roles": ["admin", "developer", "user"],
+      "permissions": ["read", "write", "admin"],
+      "restrictions": []
+    }
+  },
+  "service_configuration": {
+    "container_name": "ai-q-gitea",
+    "image": "gitea/gitea:1.21.0",
+    "ports": {
+      "http": 3002,
+      "ssh": 222
+    },
+    "volumes": {
+      "data": "gitea_data",
+      "config": "gitea_config", 
+      "repos": "gitea_repos",
+      "ssh": "gitea_ssh"
+    },
+    "environment_variables": {
+      "ENABLE_GITEA": "true",
+      "GITEA_DB_TYPE": "sqlite3",
+      "GITEA_DOMAIN": "localhost",
+      "GITEA_ROOT_URL": "http://localhost:3002/",
+      "GITEA_SSH_DOMAIN": "localhost",
+      "GITEA_SSH_PORT": "222",
+      "GITEA_HTTP_PORT": "3000",
+      "GITEA_DISABLE_SSH": "false",
+      "GITEA_INSTALL_LOCK": "true",
+      "GITEA_DISABLE_REGISTRATION": "false",
+      "GITEA_REQUIRE_SIGNIN_VIEW": "false",
+      "GITEA_LOG_LEVEL": "Info",
+      "GITEA_LOG_MODE": "console"
+    }
+  },
+  "monitoring_and_analytics": {
+    "metrics_tracking": {
+      "enabled": true,
+      "metrics": [
+        "gitea_service_uptime",
+        "gitea_repository_count",
+        "gitea_user_count",
+        "gitea_api_requests",
+        "gitea_sync_operations"
+      ]
+    },
+    "health_checks": {
+      "enabled": true,
+      "endpoint": "http://localhost:3000/api/v1/version",
+      "interval": "30s",
+      "timeout": "10s",
+      "retries": 3
+    },
+    "logging": {
+      "enabled": true,
+      "log_level": "Info",
+      "log_mode": "console",
+      "structured_logging": true
+    },
+    "alerting": {
+      "enabled": true,
+      "alerts": [
+        "gitea_service_down",
+        "gitea_high_cpu_usage",
+        "gitea_high_memory_usage",
+        "gitea_sync_failures"
+      ]
+    }
+  },
+  "integration_configuration": {
+    "git_sync": {
+      "enabled": true,
+      "bidirectional": true,
+      "sync_interval": "5m",
+      "conflict_resolution": "manual"
+    },
+    "gitea_actions": {
+      "enabled": true,
+      "workflows_directory": "gitea/workflows/",
+      "supported_triggers": ["push", "pull_request", "tag"]
+    },
+    "api_integration": {
+      "enabled": true,
+      "base_url": "http://localhost:3002/api/v1",
+      "authentication": "token",
+      "rate_limiting": true
+    }
+  },
+  "security_configuration": {
+    "authentication": {
+      "enabled": true,
+      "methods": ["username_password", "oauth2", "ssh_key"],
+      "session_timeout": "24h"
+    },
+    "authorization": {
+      "enabled": true,
+      "rbac": true,
+      "permissions": ["read", "write", "admin"]
+    },
+    "encryption": {
+      "enabled": true,
+      "ssl_tls": true,
+      "data_encryption": true
+    }
+  },
+  "backup_and_recovery": {
+    "backup_enabled": true,
+    "backup_schedule": "daily",
+    "backup_retention": "30_days",
+    "backup_location": "/data/backups",
+    "recovery_procedures": {
+      "documented": true,
+      "tested": true,
+      "automated": true
+    }
+  },
+  "performance_configuration": {
+    "caching": {
+      "enabled": true,
+      "cache_type": "redis",
+      "cache_ttl": "1h"
+    },
+    "scaling": {
+      "horizontal_scaling": true,
+      "auto_scaling": false,
+      "resource_limits": {
+        "cpu": "2",
+        "memory": "4Gi"
+      }
+    }
+  },
+  "deployment_configuration": {
+    "docker_profile": "gitea",
+    "health_check": {
+      "test": ["CMD-SHELL", "curl -f http://localhost:3000/api/v1/version || exit 1"],
+      "interval": "30s",
+      "timeout": "10s",
+      "retries": 3
+    },
+    "restart_policy": "unless-stopped",
+    "network": "ai-q-network"
+  },
+  "usage_analytics": {
+    "tracking_enabled": true,
+    "metrics_collected": [
+      "feature_usage_count",
+      "user_adoption_rate",
+      "error_rate",
+      "performance_metrics",
+      "user_satisfaction"
+    ],
+    "reporting": {
+      "frequency": "daily",
+      "format": "json",
+      "recipients": ["admin", "devops"]
+    }
+  },
+  "dependencies": {
+    "required_services": [],
+    "optional_services": ["redis", "postgres"],
+    "external_dependencies": [],
+    "conflicts": []
+  },
+  "documentation": {
+    "user_guide": "docs/gitea/user_guide.json",
+    "admin_guide": "docs/gitea/admin_guide.json",
+    "api_documentation": "docs/gitea/api_docs.json",
+    "troubleshooting": "docs/gitea/troubleshooting.json"
+  },
+  "maintenance": {
+    "update_schedule": "monthly",
+    "maintenance_window": "sunday_02_00_utc",
+    "backup_before_update": true,
+    "rollback_procedure": "documented"
+  }
+} 

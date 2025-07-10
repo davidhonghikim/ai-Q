@@ -1,0 +1,375 @@
+{
+  "metadata": {
+    "title": "Context7 Integration Documentation",
+    "version": "1.0.0",
+    "created_by": "Q-Assist (GPT-4.1)",
+    "creation_timestamp": "2025-07-08T10:40:00Z",
+    "status": "ACTIVE",
+    "purpose": "Documentation for Context7 MCP server integration in kOS kitchen system",
+    "reference": "https://github.com/upstash/context7"
+  },
+  "overview": {
+    "description": "Context7 MCP server integration provides up-to-date code documentation for LLMs and AI code editors",
+    "benefits": [
+      "Real-time access to current library documentation",
+      "Automatic documentation lookup during development",
+      "Enhanced code assistance with latest API references",
+      "Improved development workflow efficiency"
+    ],
+    "features": [
+      "Library ID resolution",
+      "Documentation fetching",
+      "Topic-focused documentation",
+      "Caching for performance",
+      "Rate limiting for API protection"
+    ]
+  },
+  "installation": {
+    "prerequisites": [
+      "Node.js >= 16.0.0",
+      "npm >= 8.0.0",
+      "Network access for documentation fetching",
+      "kOS kitchen system initialized"
+    ],
+    "package_managers": {
+      "npx": "npx -y @upstash/context7-mcp@latest",
+      "bunx": "bunx -y @upstash/context7-mcp@latest",
+      "yarn": "yarn dlx @upstash/context7-mcp@latest",
+      "pnpm": "pnpm dlx @upstash/context7-mcp@latest"
+    },
+    "auto_detection": {
+      "enabled": true,
+      "description": "System automatically detects available package manager",
+      "priority_order": ["bunx", "npx", "yarn", "pnpm"]
+    }
+  },
+  "configuration": {
+    "main_config": {
+      "file": "kitchen/config/context7_integration.json",
+      "description": "Main Context7 integration configuration"
+    },
+    "kitchen_config": {
+      "file": "kitchen/config/kitchen_config.json",
+      "section": "integration.context7",
+      "description": "Context7 settings in kitchen configuration"
+    },
+    "settings": {
+      "enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable Context7 integration"
+      },
+      "auto_start": {
+        "type": "boolean",
+        "default": true,
+        "description": "Auto-start Context7 server"
+      },
+      "cache_enabled": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable documentation caching"
+      },
+      "rate_limiting": {
+        "type": "boolean",
+        "default": true,
+        "description": "Enable API rate limiting"
+      },
+      "requests_per_minute": {
+        "type": "number",
+        "default": 60,
+        "description": "Maximum requests per minute"
+      },
+      "burst_limit": {
+        "type": "number",
+        "default": 10,
+        "description": "Burst limit for API calls"
+      }
+    }
+  },
+  "usage": {
+    "basic_operations": {
+      "resolve_library_id": {
+        "description": "Resolve library name to Context7 ID",
+        "example": {
+          "operation": "resolve_library_id",
+          "parameters": {
+            "libraryName": "react"
+          },
+          "expected_output": {
+            "libraryId": "/facebook/react",
+            "confidence": 0.95
+          }
+        }
+      },
+      "get_library_docs": {
+        "description": "Fetch library documentation",
+        "example": {
+          "operation": "get_library_docs",
+          "parameters": {
+            "context7CompatibleLibraryID": "/facebook/react",
+            "topic": "hooks",
+            "tokens": 10000
+          },
+          "expected_output": {
+            "documentation": "React Hooks documentation...",
+            "metadata": {
+              "library": "react",
+              "version": "18.2.0",
+              "lastUpdated": "2024-01-15T10:30:00Z"
+            }
+          }
+        }
+      }
+    },
+    "advanced_usage": {
+      "library_id_syntax": {
+        "description": "Direct library ID usage",
+        "examples": [
+          "/supabase/supabase for Supabase documentation",
+          "/vercel/next.js for Next.js documentation",
+          "/mongodb/docs for MongoDB documentation"
+        ]
+      },
+      "topic_focus": {
+        "description": "Focus documentation on specific topics",
+        "examples": [
+          "routing for framework routing documentation",
+          "hooks for React hooks documentation",
+          "authentication for auth-related documentation"
+        ]
+      },
+      "auto_integration": {
+        "description": "Automatic Context7 invocation",
+        "triggers": [
+          "Code examples requested",
+          "Setup instructions needed",
+          "Library documentation requested"
+        ]
+      }
+    }
+  },
+  "integration_points": {
+    "prompt_manager": {
+      "enabled": true,
+      "description": "Integrate with kitchen prompt manager",
+      "features": [
+        "Auto-invoke on documentation requests",
+        "Enhanced prompt responses",
+        "Real-time documentation lookup"
+      ]
+    },
+    "recipe_execution": {
+      "enabled": true,
+      "description": "Use during recipe execution",
+      "use_cases": [
+        "Recipe validation with current documentation",
+        "Dependency resolution",
+        "Setup instruction generation"
+      ]
+    },
+    "development_workflow": {
+      "enabled": true,
+      "description": "Integrate into development workflow",
+      "features": [
+        "Real-time documentation during coding",
+        "Library compatibility checking",
+        "Best practices suggestions"
+      ]
+    }
+  },
+  "troubleshooting": {
+    "common_issues": {
+      "module_not_found": {
+        "symptom": "ERR_MODULE_NOT_FOUND error",
+        "solution": "Use bunx instead of npx",
+        "command": "bunx -y @upstash/context7-mcp",
+        "description": "Often resolves module resolution issues"
+      },
+      "esm_resolution": {
+        "symptom": "ESM module resolution errors",
+        "solution": "Use --experimental-vm-modules flag",
+        "command": "npx -y --node-options=--experimental-vm-modules @upstash/context7-mcp@1.0.6",
+        "description": "Resolves ESM module issues"
+      },
+      "tls_certificate": {
+        "symptom": "TLS/certificate errors",
+        "solution": "Use --experimental-fetch flag",
+        "command": "npx -y --node-options=--experimental-fetch @upstash/context7-mcp",
+        "description": "Bypasses TLS-related problems"
+      },
+      "general_mcp_errors": {
+        "symptom": "General MCP client errors",
+        "solutions": [
+          "Add @latest to package name",
+          "Use bunx as alternative to npx",
+          "Consider using deno as alternative",
+          "Ensure Node.js v18+ for native fetch support"
+        ]
+      }
+    },
+    "diagnostic_commands": {
+      "health_check": {
+        "command": "context7_health_check_operation",
+        "description": "Check Context7 service health"
+      },
+      "test_installation": {
+        "command": "npx -y @upstash/context7-mcp@latest",
+        "description": "Test basic installation"
+      },
+      "test_functionality": {
+        "command": "resolve_library_id_operation('react')",
+        "description": "Test library resolution"
+      }
+    }
+  },
+  "performance": {
+    "caching": {
+      "enabled": true,
+      "duration": "24_hours",
+      "location": "kitchen/cache/context7",
+      "benefits": [
+        "Reduced API calls",
+        "Faster response times",
+        "Offline documentation access"
+      ]
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 60,
+      "burst_limit": 10,
+      "benefits": [
+        "API protection",
+        "Cost control",
+        "Service stability"
+      ]
+    },
+    "optimization_tips": [
+      "Use specific library IDs when possible",
+      "Cache frequently accessed documentation",
+      "Implement topic filtering for focused results",
+      "Monitor API usage and adjust rate limits"
+    ]
+  },
+  "security": {
+    "network_access": {
+      "required": true,
+      "protocol": "https",
+      "endpoints": ["https://mcp.context7.com"],
+      "description": "Context7 requires secure network access"
+    },
+    "content_validation": {
+      "enabled": true,
+      "checks": [
+        "Documentation accuracy verification",
+        "Library compatibility checking",
+        "Security vulnerability scanning"
+      ],
+      "description": "Validate Context7 content before use"
+    },
+    "best_practices": [
+      "Review documentation before implementation",
+      "Verify library versions and compatibility",
+      "Check for security advisories",
+      "Use HTTPS for all communications"
+    ]
+  },
+  "examples": {
+    "react_hooks_documentation": {
+      "description": "Get React hooks documentation",
+      "steps": [
+        "Resolve library ID: resolve_library_id('react')",
+        "Get documentation: get_library_docs('/facebook/react', 'hooks')",
+        "Process and display documentation"
+      ]
+    },
+    "supabase_authentication": {
+      "description": "Get Supabase authentication documentation",
+      "steps": [
+        "Use direct library ID: get_library_docs('/supabase/supabase', 'authentication')",
+        "Extract authentication setup instructions",
+        "Integrate into development workflow"
+      ]
+    },
+    "nextjs_routing": {
+      "description": "Get Next.js routing documentation",
+      "steps": [
+        "Resolve library ID: resolve_library_id('next.js')",
+        "Get routing docs: get_library_docs('/vercel/next.js', 'routing')",
+        "Apply routing best practices"
+      ]
+    }
+  },
+  "api_reference": {
+    "resolve_library_id": {
+      "description": "Resolve a general library name into a Context7-compatible library ID",
+      "parameters": {
+        "libraryName": {
+          "type": "string",
+          "required": true,
+          "description": "The name of the library to search for"
+        }
+      },
+      "returns": {
+        "libraryId": {
+          "type": "string",
+          "description": "Context7-compatible library ID"
+        },
+        "confidence": {
+          "type": "number",
+          "description": "Confidence score for the match"
+        }
+      }
+    },
+    "get_library_docs": {
+      "description": "Fetch documentation for a library using a Context7-compatible library ID",
+      "parameters": {
+        "context7CompatibleLibraryID": {
+          "type": "string",
+          "required": true,
+          "description": "Exact Context7-compatible library ID"
+        },
+        "topic": {
+          "type": "string",
+          "required": false,
+          "description": "Focus the docs on a specific topic"
+        },
+        "tokens": {
+          "type": "number",
+          "required": false,
+          "default": 10000,
+          "description": "Max number of tokens to return"
+        }
+      },
+      "returns": {
+        "documentation": {
+          "type": "string",
+          "description": "The fetched documentation content"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Documentation metadata"
+        }
+      }
+    }
+  },
+  "maintenance": {
+    "regular_tasks": [
+      "Monitor API usage and rate limits",
+      "Update cached documentation periodically",
+      "Check for Context7 package updates",
+      "Validate integration health"
+    ],
+    "updates": {
+      "package_updates": {
+        "frequency": "monthly",
+        "command": "npx -y @upstash/context7-mcp@latest",
+        "description": "Update to latest Context7 version"
+      },
+      "cache_cleanup": {
+        "frequency": "weekly",
+        "command": "cleanup_context7_cache",
+        "description": "Clean expired cache entries"
+      }
+    }
+  }
+} 

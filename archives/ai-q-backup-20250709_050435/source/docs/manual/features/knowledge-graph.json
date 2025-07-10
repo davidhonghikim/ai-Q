@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "title": "Knowledge Graph & Relationships",
+    "description": "Spec for knowledge graph, entity extraction, relationship mapping, semantic queries, and agent tasks.",
+    "token_count": 0
+  },
+  "overview": "The system must support entity extraction, relationship mapping, semantic queries, and visualization using Neo4j.",
+  "requirements": [
+    "Extract entities and relationships from all data types.",
+    "Store and update relationships in Neo4j.",
+    "Build UI for graph visualization and semantic queries."
+  ],
+  "integration": {
+    "neo4j": {
+      "docker_image": "neo4j:latest",
+      "usage": "Knowledge graph storage and queries."
+    }
+  },
+  "agent_tasks": [
+    "Implement entity and relationship extraction utilities.",
+    "Write Neo4j integration for storing and querying relationships.",
+    "Build UI for graph visualization and queries.",
+    "Write tests for all relationship types.",
+    "Document setup and usage."
+  ]
+} 

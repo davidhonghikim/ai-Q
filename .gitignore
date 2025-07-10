@@ -167,6 +167,9 @@ gpu_setup.log
 parallel_processor.log
 *.log
 
+# Repository mirrors (excluded from git, gitea, and archive)
+repos/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 

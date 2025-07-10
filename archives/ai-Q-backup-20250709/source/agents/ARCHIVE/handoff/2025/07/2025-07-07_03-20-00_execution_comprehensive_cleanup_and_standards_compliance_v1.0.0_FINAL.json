@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "title": "Comprehensive Execution Plan - Cleanup and Standards Compliance",
+    "version": "1.0.0",
+    "created_by": "Claude Sonnet 4",
+    "execution_timestamp": "2025-07-07T03:20:00Z",
+    "status": "FINAL",
+    "purpose": "Systematic execution plan to fix all timestamp violations, naming convention violations, and achieve full standards compliance"
+  },
+  "execution_strategy": {
+    "overall_approach": "SYSTEMATIC_BATCH_PROCESSING",
+    "phases": [
+      "PHASE_1: Documentation cleanup and archiving",
+      "PHASE_2: Timestamp fixes (systematic directory by directory)",
+      "PHASE_3: Naming convention fixes (systematic directory by directory)", 
+      "PHASE_4: System validation and testing",
+      "PHASE_5: Final documentation and handoff"
+    ],
+    "batch_processing": "Process directories systematically to avoid shell errors",
+    "error_handling": "Robust validation and rollback procedures",
+    "quality_assurance": "Verify every step before proceeding to next"
+  },
+  "phase_1_documentation_cleanup": {
+    "objective": "Clean up documentation chaos and establish single source of truth",
+    "tasks": [
+      {
+        "task_id": "1.1",
+        "action": "Archive old handoff documents",
+        "description": "Move all old handoff documents to ARCHIVE/handoff/2025/07/",
+        "files_to_archive": [
+          "2025-07-07_02-58-12_handoff_next_agent_comprehensive_fixes_and_system_completion_v1.0.0_FINAL.json"
+        ],
+        "commands": [
+          "New-Item -ItemType Directory -Path 'agents/ARCHIVE/handoff/2025/07' -Force",
+          "Move-Item 'agents/LATEST/2025-07-07_02-58-12_handoff_next_agent_comprehensive_fixes_and_system_completion_v1.0.0_FINAL.json' 'agents/ARCHIVE/handoff/2025/07/'"
+        ],
+        "verification": "Only current handoff document remains in LATEST/"
+      },
+      {
+        "task_id": "1.2", 
+        "action": "Update current handoff status",
+        "description": "Update the current handoff document to reflect actual status",
+        "file": "2025-07-07_03-00-00_handoff_next_agent_cleanup_and_full_compliance_v1.0.0_IN_PROGRESS.json",
+        "updates": [
+          "Update completion_percentage to 25",
+          "Update critical_issues_found to reflect actual mess",
+          "Update remaining_violations with accurate scope"
+        ]
+      }
+    ],
+    "success_criteria": "Single clear handoff document in LATEST/, all others properly archived"
+  },
+  "phase_2_timestamp_fixes": {
+    "objective": "Fix all timestamp violations systematically",
+    "methodology": "Process directories one by one to avoid shell errors",
+    "directories_to_process": [
+      {
+        "directory": "recipes/01-infrastructure/01-core-infrastructure",
+        "priority": "HIGH",
+        "files_identified": [
+          "COMPREHENSIVE_TASK_TEMPLATE.json",
+          "01-11-disaster-recovery.json", 
+          "01-04-api-gateway.json",
+          "README.json",
+          "RECIPE_MODULARIZATION_SUMMARY.json",
+          "01-npm-installation-recipe.json"
+        ],
+        "approach": "Get actual CreationTime, update to >= 2025-06-15"
+      },
+      {
+        "directory": "recipes/01-infrastructure/02-docker-unified-infrastructure",
+        "priority": "HIGH", 
+        "files_identified": [
+          "02-10-backup-services.json",
+          "README.json",
+          "All other .json files"
+        ],
+        "approach": "Get actual CreationTime, update to >= 2025-06-15"
+      },
+      {
+        "directory": "recipes/01-infrastructure/03-storage-systems",
+        "priority": "HIGH",
+        "approach": "Process all .json files systematically"
+      },
+      {
+        "directory": "recipes/01-infrastructure/07-persistent-data-volumes", 
+        "priority": "HIGH",
+        "approach": "Process all .json files systematically"
+      },
+      {
+        "directory": "recipes/01-infrastructure/REFERENCE_MONOLITHIC",
+        "priority": "MEDIUM",
+        "approach": "Process all .json files systematically"
+      },
+      {
+        "directory": "manual",
+        "priority": "MEDIUM",
+        "files_identified": [
+          "All README.json files with 2025-01 timestamps"
+        ],
+        "approach": "Get actual CreationTime, update to >= 2025-06-15"
+      },
+      {
+        "directory": "recipes/00-RECIPE_INDEX.json",
+        "priority": "HIGH",
+        "approach": "Update all timestamp fields to >= 2025-06-15"
+      }
+    ],
+    "batch_processing_approach": [
+      "Process one directory at a time",
+      "Use Get-ItemProperty to get actual CreationTime",
+      "Update timestamps to >= 2025-06-15",
+      "Validate changes before proceeding",
+      "Document all changes"
+    ]
+  },
+  "phase_3_naming_convention_fixes": {
+    "objective": "Rename all files to follow proper naming convention",
+    "methodology": "Use actual creation time for filenames",
+    "files_to_rename": [
+      {
+        "current_name": "KITCHEN_SYSTEM_OVERVIEW.json",
+        "target_format": "YYYY-MM-DD_HH-MM-SS_blueprint_kitchen_system_overview_v1.0.0_FINAL.json",
+        "approach": "Get actual CreationTime, determine document type, add version and status"
+      },
+      {
+        "current_name": "recipes/README.json",
+        "target_format": "YYYY-MM-DD_HH-MM-SS_blueprint_recipes_system_overview_v1.0.0_FINAL.json",
+        "approach": "Get actual CreationTime, determine document type, add version and status"
+      },
+      {
+        "current_name": "recipes/00-RECIPE_INDEX.json",
+        "target_format": "YYYY-MM-DD_HH-MM-SS_blueprint_recipe_index_v1.0.0_FINAL.json",
+        "approach": "Get actual CreationTime, determine document type, add version and status"
+      },
+      {
+        "current_name": "recipes/01-infrastructure/README.json",
+        "target_format": "YYYY-MM-DD_HH-MM-SS_blueprint_infrastructure_overview_v1.0.0_FINAL.json",
+        "approach": "Get actual CreationTime, determine document type, add version and status"
+      }
+    ],
+    "systematic_approach": [
+      "Process files one by one to avoid errors",
+      "Get actual CreationTime for each file",
+      "Determine appropriate document type (blueprint, analysis, execution, etc.)",
+      "Add proper version and status suffixes",
+      "Rename files systematically",
+      "Update all references to renamed files"
+    ]
+  },
+  "phase_4_system_validation": {
+    "objective": "Validate all systems claimed complete by previous agent",
+    "systems_to_validate": [
+      {
+        "system": "kitchen",
+        "validation_requirements": [
+          "Verify kitchen_config.json exists and is complete",
+          "Verify kitchen_log.json exists and is complete",
+          "Test kitchen system functionality",
+          "Validate configuration completeness",
+          "Check for technical debt or incomplete implementation"
+        ],
+        "success_criteria": "Kitchen system fully functional and complete"
+      },
+      {
+        "system": "pantry",
+        "validation_requirements": [
+          "Verify pantry_index.json exists and is complete",
+          "Verify sample ingredients exist",
+          "Test pantry system functionality",
+          "Validate resource management capabilities",
+          "Check for technical debt or incomplete implementation"
+        ],
+        "success_criteria": "Pantry system fully functional and complete"
+      },
+      {
+        "system": "recipe",
+        "validation_requirements": [
+          "Verify all 18 recipe modules exist",
+          "Verify RAG engine in 03-intelligence/01-rag-engine-recipe.json",
+          "Test recipe system functionality",
+          "Validate all modules are complete",
+          "Check for technical debt or incomplete implementation"
+        ],
+        "success_criteria": "Recipe system fully functional and complete"
+      }
+    ]
+  },
+  "phase_5_final_documentation": {
+    "objective": "Create comprehensive final documentation and handoff",
+    "tasks": [
+      {
+        "task_id": "5.1",
+        "action": "Update MASTER_INDEX.json",
+        "description": "Update master index with final status and all changes",
+        "updates": [
+          "Update completion_percentage to 100",
+          "Update all system statuses",
+          "Document all timestamp and naming fixes",
+          "Update file locations for renamed files"
+        ]
+      },
+      {
+        "task_id": "5.2",
+        "action": "Create final handoff document",
+        "description": "Create comprehensive handoff documenting all completed work",
+        "requirements": [
+          "Document all timestamp fixes completed",
+          "Document all naming convention fixes completed",
+          "Document all system validations completed",
+          "Provide clear status of all systems",
+          "Include success criteria verification"
+        ]
+      },
+      {
+        "task_id": "5.3",
+        "action": "Archive current documents",
+        "description": "Archive current analysis and execution documents",
+        "files_to_archive": [
+          "2025-07-07_03-15-00_analysis_comprehensive_previous_agent_mess_and_critical_issues_v1.0.0_FINAL.json",
+          "2025-07-07_03-20-00_execution_comprehensive_cleanup_and_standards_compliance_v1.0.0_FINAL.json"
+        ]
+      }
+    ]
+  },
+  "error_handling_and_validation": {
+    "batch_processing_safety": [
+      "Process one directory at a time to avoid shell errors",
+      "Validate each step before proceeding",
+      "Create backups before any file operations",
+      "Use robust error handling in PowerShell commands",
+      "Document all errors and resolutions"
+    ],
+    "validation_procedures": [
+      "Verify all timestamps >= 2025-06-15 after each batch",
+      "Verify all filenames follow convention after each batch",
+      "Test system functionality after validation",
+      "Update documentation after each phase",
+      "Maintain clear audit trail of all changes"
+    ]
+  },
+  "success_criteria": {
+    "timestamp_compliance": "All timestamps >= 2025-06-15T00:00:00Z",
+    "naming_compliance": "All files follow YYYY-MM-DD_HH-MM-SS_[type]_[description]_v[version]_[status].json format",
+    "system_validation": "All systems (kitchen, pantry, recipe) validated and functional",
+    "documentation_cleanup": "Single clear handoff document in LATEST/, all others archived",
+    "zero_technical_debt": "No standards violations, all systems verified"
+  },
+  "execution_notes": {
+    "user_emphasis": "Continuous, non-stop execution is mandatory. No pauses or confirmations.",
+    "quality_over_speed": "Take the time to verify every step. No shortcuts.",
+    "final_verification": "Do not mark as complete until user confirms all requirements are met.",
+    "batch_processing": "Process systematically to avoid shell errors and ensure quality."
+  }
+} 

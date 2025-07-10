@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Q System Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #3498db;
+        }
+        .service-card.healthy {
+            border-left-color: #27ae60;
+        }
+        .service-card.unhealthy {
+            border-left-color: #e74c3c;
+        }
+        .service-card.starting {
+            border-left-color: #f39c12;
+        }
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .service-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .status-healthy {
+            background: #27ae60;
+            color: white;
+        }
+        .status-unhealthy {
+            background: #e74c3c;
+            color: white;
+        }
+        .status-starting {
+            background: #f39c12;
+            color: white;
+        }
+        .service-info {
+            margin-bottom: 15px;
+        }
+        .service-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .service-link {
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .service-link:hover {
+            background: #2980b9;
+        }
+        .system-status {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .status-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .status-item {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .status-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 15px 25px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s;
+        }
+        .refresh-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI-Q System Dashboard</h1>
+        
+        <div class="system-status">
+            <h2>System Status Overview</h2>
+            <div class="status-summary">
+                <div class="status-item">
+                    <div class="status-number">7</div>
+                    <div>Healthy Services</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-number">1</div>
+                    <div>Starting Services</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-number">3</div>
+                    <div>Unhealthy Services</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-number">11</div>
+                    <div>Total Services</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <!-- AI Services -->
+            <div class="service-card starting">
+                <div class="service-header">
+                    <div class="service-name">🤗 HuggingFace Inference</div>
+                    <span class="status-badge status-starting">Starting</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 8082<br>
+                    <strong>Function:</strong> Text Embeddings & Transformers<br>
+                    <strong>Model:</strong> sentence-transformers/all-MiniLM-L6-v2
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:8082/health" class="service-link" target="_blank">Health Check</a>
+                    <a href="http://localhost:8082/docs" class="service-link" target="_blank">API Docs</a>
+                </div>
+            </div>
+
+            <div class="service-card unhealthy">
+                <div class="service-header">
+                    <div class="service-name">🦙 Ollama</div>
+                    <span class="status-badge status-unhealthy">Unhealthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 11434<br>
+                    <strong>Function:</strong> Local LLM Inference<br>
+                    <strong>Model:</strong> llama3.2:3b
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:11434/api/version" class="service-link" target="_blank">API Status</a>
+                    <a href="http://localhost:11434/api/tags" class="service-link" target="_blank">Models</a>
+                </div>
+            </div>
+
+            <div class="service-card starting">
+                <div class="service-header">
+                    <div class="service-name">🔍 Weaviate</div>
+                    <span class="status-badge status-starting">Restarting</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 8080<br>
+                    <strong>Function:</strong> Vector Database<br>
+                    <strong>Status:</strong> Fixing transformer API connection
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:8080/v1/.well-known/ready" class="service-link" target="_blank">Ready Check</a>
+                    <a href="http://localhost:8080/v1/meta" class="service-link" target="_blank">Meta Info</a>
+                </div>
+            </div>
+
+            <!-- Database Services -->
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">🐘 PostgreSQL</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 5432<br>
+                    <strong>Function:</strong> Primary Database<br>
+                    <strong>Database:</strong> aiq_knowledge
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:5432" class="service-link" target="_blank">Connection</a>
+                </div>
+            </div>
+
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">🔴 Redis</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 6379<br>
+                    <strong>Function:</strong> Cache & Session Store<br>
+                    <strong>Uptime:</strong> 17+ hours
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:6379" class="service-link" target="_blank">Connection</a>
+                </div>
+            </div>
+
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">🔗 Neo4j</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 7474<br>
+                    <strong>Function:</strong> Graph Database<br>
+                    <strong>Plugins:</strong> APOC, GDS
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:7474/browser/" class="service-link" target="_blank">Browser</a>
+                    <a href="http://localhost:7474/db/data/" class="service-link" target="_blank">API</a>
+                </div>
+            </div>
+
+            <div class="service-card unhealthy">
+                <div class="service-header">
+                    <div class="service-name">🔍 Elasticsearch</div>
+                    <span class="status-badge status-unhealthy">Unhealthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 9200<br>
+                    <strong>Function:</strong> Search Engine<br>
+                    <strong>Status:</strong> Health check failing
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:9200/_cluster/health" class="service-link" target="_blank">Health</a>
+                    <a href="http://localhost:9200/_cat/indices" class="service-link" target="_blank">Indices</a>
+                </div>
+            </div>
+
+            <!-- Storage Services -->
+            <div class="service-card unhealthy">
+                <div class="service-header">
+                    <div class="service-name">📦 MinIO</div>
+                    <span class="status-badge status-unhealthy">Unhealthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 9000/9001<br>
+                    <strong>Function:</strong> Object Storage<br>
+                    <strong>Status:</strong> Health check failing
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:9000" class="service-link" target="_blank">API</a>
+                    <a href="http://localhost:9001" class="service-link" target="_blank">Console</a>
+                </div>
+            </div>
+
+            <!-- Monitoring Services -->
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">📊 Grafana</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 3001<br>
+                    <strong>Function:</strong> Monitoring Dashboard<br>
+                    <strong>Login:</strong> admin/admin
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:3001" class="service-link" target="_blank">Dashboard</a>
+                </div>
+            </div>
+
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">📈 Prometheus</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 9090<br>
+                    <strong>Function:</strong> Metrics Collection<br>
+                    <strong>Uptime:</strong> 17+ hours
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:9090" class="service-link" target="_blank">Web UI</a>
+                    <a href="http://localhost:9090/targets" class="service-link" target="_blank">Targets</a>
+                </div>
+            </div>
+
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">📊 cAdvisor</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 8081<br>
+                    <strong>Function:</strong> Container Metrics<br>
+                    <strong>Uptime:</strong> 17+ hours
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:8081" class="service-link" target="_blank">Metrics</a>
+                </div>
+            </div>
+
+            <!-- Development Services -->
+            <div class="service-card healthy">
+                <div class="service-header">
+                    <div class="service-name">🦫 Gitea</div>
+                    <span class="status-badge status-healthy">Healthy</span>
+                </div>
+                <div class="service-info">
+                    <strong>Port:</strong> 3002<br>
+                    <strong>Function:</strong> Git Repository Server<br>
+                    <strong>Status:</strong> All repos migrated
+                </div>
+                <div class="service-links">
+                    <a href="http://localhost:3002" class="service-link" target="_blank">Web UI</a>
+                    <a href="http://localhost:3002/api/v1" class="service-link" target="_blank">API</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="refresh-btn" onclick="location.reload()">🔄 Refresh</button>
+
+    <script>
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            location.reload();
+        }, 30000);
+    </script>
+</body>
+</html> 
